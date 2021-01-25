@@ -1,3 +1,4 @@
+<<<<<<< HEAD:tamplet/css/ResultPageStyle.css
 body{
     background-image: url(/img/bck1.jpg);    
     background-size: 100%;
@@ -24,4 +25,31 @@ body{
 
 .tableResult{
     color: black;
+=======
+body{
+    
+}
+
+.navbar{
+    justify-content: space-between;
+    /* padding-left: 4rem; */
+    /* padding-right: 4rem; */
+}
+
+.nav-item{
+    padding-right: 4rem;
+}
+
+.btn {
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+.content{
+    margin-left: 7rem;
+}
+
+.tableResult{
+    color: black;
+>>>>>>> main:tamplet/ResultPageStyle.css
 }
