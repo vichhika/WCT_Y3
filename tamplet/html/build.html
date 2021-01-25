@@ -13,39 +13,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reab PC</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./../tamplet.css">
+    <link rel="stylesheet" href="./../css/ResultPageStyle.css">  
 
 </head>
 <body>
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-                <!-- nav -->
-                <div class="container navbar-nav"> 
-                        <!-- navitem -->
-                        <li class="nav-item">
-                            <a class="navbar-brand ml-3" href="#">Reab PC</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-        
-                        <li class="nav-item">
-                          <a class="nav-link  active" href="#">Product</a>
-                        </li>
-        
-                        <li class="nav-item">
-                          <a class="nav-link active" href="#">About Us</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Donate</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Start Build</a>
-                        </li>
-                </div>
-    </nav>
+   <nav class="navbar navbar-expand-lg" style="background-color: rgba(0, 0, 0, 0.705) ">
+    <a class="navbar-brand text-light" style="margin-left:4rem;" href="/html/home.html">REAB PC</a>
+    <!-- navitem -->
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active text-light" href="/html/home.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">Product</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active text-light" href="#">About Us</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link active text-light" href="#">Donate</a>
+        </li>
+    </ul> 
+  </nav>
 
     <div class="container text-center p-5 " style="background-color: #ffffff;">
         <h1>Choose your <span>CPU</span>  want to build</h1>
@@ -57,7 +51,7 @@
           </div> -->
 
 
-          <table class="table border">
+          <table class="table border my-2">
             <thead>
               <tr>
                 <th scope="col">Component</th>
@@ -66,34 +60,18 @@
               </tr>
             </thead>
             <tbody>
+
               <tr>
                 <th><span>CPU</span></th>
                 <td><span id="">Core\u2122 i9-10980XE 24.75 MB Cache, up 4.60 GHz 18 Core 36 Threads</span></td>
                 <td><span id="">$1,020</span></td>
-                <td><button class="btn btn-primary" type="submit">Add</button></td>
+                <td><button class="btn btn-primary px-5" type="submit">Add</button></td>
               </tr>
-              <tr>
-                <th><span>CPU</span></th>
-                <td><span id="">Core\u2122 i9-10980XE 24.75 MB Cache, up 4.60 GHz 18 Core 36 Threads</span></td>
-                <td><span id="">$1,020</span></td>
-                <td><button class="btn btn-primary" type="submit">Add</button></td>
-              </tr>
-              <tr>
-                <th><span>CPU</span></th>
-                <td><span id="">Core\u2122 i9-10980XE 24.75 MB Cache, up 4.60 GHz 18 Core 36 Threads</span></td>
-                <td><span id="">$1,020</span></td>
-                <td><button class="btn btn-primary" type="submit">Add</button></td>
-              </tr>
-              <tr>
-                <th><span>CPU</span></th>
-                <td><span id="">Core\u2122 i9-10980XE 24.75 MB Cache, up 4.60 GHz 18 Core 36 Threads</span></td>
-                <td><span id="">$1,020</span></td>
-                <td><button class="btn btn-primary" type="submit">Add</button></td>
-              </tr>
+
             </tbody>
           </table>
           <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-5 px-5 " type="submit">Next</button>
+            <button class="btn btn-success mr-4 px-5 " type="button">Next</button>
           </div>
          
     </div>
