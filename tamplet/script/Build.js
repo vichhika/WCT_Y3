@@ -11,7 +11,7 @@ function cpu(){
                     "<th><span>CPU</span></th>"+
                     '<td><span id="">'+cpu.product+'</span></td>'+
                     '<td><span id="">'+cpu.price+'</span></td>'+
-                    '<td><button class="btn btn-primary px-5" type="submit">Add</button></td>'+
+                    '<td><button class="btn btn-primary btn-sm px-4" type="submit">Add</button></td>'+
                 '</tr>'
             )
         }
