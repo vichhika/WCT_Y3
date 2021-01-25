@@ -1,11 +1,12 @@
 body{
-    
+    background-image: url(/img/bck1.jpg);    
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .navbar{
     justify-content: space-between;
-    /* padding-left: 4rem; */
-    /* padding-right: 4rem; */
 }
 
 .nav-item{
