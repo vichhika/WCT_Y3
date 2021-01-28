@@ -1,16 +1,17 @@
 $(document).ready(function(){
-        cpu(); 
+    displayCon(); 
 })
 
-function cpu(){
+function displayCon(){
     
     $.getJSON( "./../../Data/Chantra.json", (data) => {
-        for(cpu of data.cpu) {
+        //$('#conponentTitle').text(data)
+        for(con of data.cpu) {
             $('#pcConponent').append(
-                '<tr id='+cpu.id+'>'+
-                    "<th><span>CPU</span></th>"+
-                    '<td><span id="">'+cpu.product+'</span></td>'+
-                    '<td><span id="">'+cpu.price+'</span></td>'+
+                '<tr id='+con.id+'>'+
+                    "<th><span>"+con+"</span></th>"+
+                    '<td><span id="">'+con.product+'</span></td>'+
+                    '<td><span id="">'+con.price+'</span></td>'+
                     '<td><button class="btn btn-primary px-5" type="submit">Add</button></td>'+
                 '</tr>'
             )
