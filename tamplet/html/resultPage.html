@@ -37,7 +37,7 @@
     
     <div class="d-flex" style="margin-left: 5rem; margin-right: 6rem;">
         <!--Preview Component-->
-        <div class="container pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.781); width: 18.75rem; margin: auto; border-radius: 10px;">
+        <!-- <div class="container pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.781); width: 18.75rem; margin: auto; border-radius: 10px;">
           <img src="https://cdn.alzashop.com/ImgW.ashx?fd=f3&cd=BO535i" class="rounded mx-lg-auto mb-lg-4 d-block" alt="..." style="width: 50%; height: auto;">
           <div class="Specs text-light">
             <h5 class="font-weight-bold">CPU</h5>
@@ -63,63 +63,19 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
 
         <!--Table Result-->
         <div class="container tableResult pr-0" style="margin: auto;">
           <table class="table table-hover text-light" style="background-color: rgba(0, 0, 0, 0.671);">
-              <thead>
+              <thead class="text-center">
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Component</th>
                   <th scope="col">Model</th>
                   <th scope="col">Price</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <th scope="row"></th>
-                  <td></td>
-                  <td>Total</td>
-                  <td>$1000</td>
-                </tr>
-              </tbody>
+              <tbody id="resCom" class="text-center"><!--resCom mean result component--></tbody>
             </table>
       </div>
     </div>
@@ -162,5 +118,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/tamplet/script/resultPage.js"></script>
 </body>
 </html>
