@@ -27,10 +27,10 @@ let shopMenu = (me) => {
     let shopName = $(me).parent().parent().attr('id')
     $.getJSON( "./../../Data/Chantra.json", (data) => {  
         switch (shopName){
-            case 'Chantra' : {currentConponent.shop = data.Chantra}  break
-            case 'GoldOne': {currentConponent.shop = data.GoldOne}  break
-            case 'Vtech' : {currentConponent.shop = data.Vtech}  break
-            case 'TK': {currentConponent.shop = data.TK}  break
+            case 'chantra' : {currentConponent.shop = data.chantra}  break
+            case 'goldone': {currentConponent.shop = data.goldone}  break
+            case 'vtech' : {currentConponent.shop = data.vtech}  break
+            case 'tk': {currentConponent.shop = data.tk}  break
         }
     })
 }
