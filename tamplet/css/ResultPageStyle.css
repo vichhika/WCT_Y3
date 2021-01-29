@@ -1,0 +1,27 @@
+body{
+    background-image: url(./../img/bck1.jpg);    
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.navbar{
+    justify-content: space-between;
+}
+
+.nav-item{
+    padding-right: 4rem;
+}
+
+.btn {
+    font-size: 1rem;
+    border-radius: 25px;
+}
+
+.content{
+    margin-left: 7rem;
+}
+
+.tableResult{
+    color: black;
+}
