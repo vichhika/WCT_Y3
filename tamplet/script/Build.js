@@ -7,6 +7,8 @@ function nextCon(){
     displayCon();
 }
 
+
+
 function displayCon(){
     
     $.getJSON( "./../../Data/Chantra.json", (data) => {  
