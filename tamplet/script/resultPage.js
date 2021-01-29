@@ -3,6 +3,7 @@ var myBuild = JSON.parse(sessionStorage.getItem("myBuild"));
 var total = 0;
 $(document).ready(() => {
     displayRes();
+    estimate();
 });
 
 /*Display Result Function*/
@@ -36,6 +37,20 @@ function addResToTable(){
             <td>${"$"+total}</td>
         </tr>`
     )
+}
+
+function estimate(){
+    // <tr class="anotherShop">
+    //           <th scope="row">1</th>
+    //           <td>Vtech</td>
+    //           <td>$1000</td>
+    //           <td>+ $10</td>
+    //         </tr>
+    $.getJSON( "./../../Data/Chantra.json" , (data) => {  
+        for ( shop in data){
+            console.log(shop,data[shop]);
+        }
+    })
 }
 
 /*Calculate Total Price Function*/
