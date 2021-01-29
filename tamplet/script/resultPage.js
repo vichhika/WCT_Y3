@@ -19,16 +19,18 @@ function addResToTable(){
                 <td>${c.comp}</td>
                 <td>${c.model}</td>
                 <td>${c.price}</td>
+                <td>${c.unit}</td>
             </tr>`
         )
         /*calculate the price*/
         let price = c.price.replace('$','').replace(',','');
-        calculateTotalPrice(parseFloat(price));
+        calculateTotalPrice(parseFloat(price),parseFloat(c.unit));
     })
 
     /*display Total price*/
     $("#resCom").append(
         `<tr>
+            <td></td>
             <td></td>
             <td><b>Total<b></td>
             <td>${"$"+total}</td>
@@ -37,6 +39,6 @@ function addResToTable(){
 }
 
 /*Calculate Total Price Function*/
-function calculateTotalPrice(price){
-    total += price;
+function calculateTotalPrice(price,unit){
+    total += price * unit;
 }
