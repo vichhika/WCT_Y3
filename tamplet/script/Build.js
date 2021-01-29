@@ -7,6 +7,7 @@ $(document).ready(function(){
 //by leang
 let currentConponent = {'shop':null , 'name':null,'setCon':null}
 let displayShop = () =>{
+    $('#title').append('Choose Shop that you going to build');
     $('#tableTitle').append('<th scope="col">Shop</th><th scope="col">Facebook</th><th scope="col"></th>')
     $.getJSON( "./../../Data/Chantra.json", (data) => {  
         for(con in data) {
@@ -37,6 +38,10 @@ let shopMenu = (me) => {
 //by leang
 $(".btnNextShop").click((me) => {
     $(me.target).removeClass("btnNextShop").addClass("btnNext")
+    $('#title').empty();
+    $('#title').append('Choose your <span id="conponentTitle"></span>  want to build');
+    $('#tableTitle').empty();
+    $('#tableTitle').append('<th scope="col">Conponent</th><th scope="col">Model</th><th scope="col">Price</th><th scope="col"></th>');
     displayCon();
 })
 
