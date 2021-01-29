@@ -66,6 +66,7 @@ $(".btnNext").click(displayCon = () => {
                 `<td><button id=${"RmBtn"+randId} class="btn btn-outline-light rounded" style="border:none" type="button" onclick="remove('${con.id}','${"unit"+randId}')"><i class="far fa-minus"></i></button></td>`+
             '</tr>'
         )
+        randId++;
     }
     window.scrollTo(0,0)
 });
