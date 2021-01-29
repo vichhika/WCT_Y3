@@ -66,9 +66,9 @@ $(".btnNext").click(displayCon = () => {
                 "<th><span>"+currentConponent.name+"</span></th>"+
                 '<td><span>'+con.product+'</span></td>'+
                 '<td><span>'+con.price+'</span></td>'+
-                `<td><button id=${"addBtn"+randId} class="btn btn-outline-light rounded" style="border:none" type="button" onclick="add('${con.id}','${currentConponent.name}','${con.product}','${con.price}','${"unit"+randId}')"><i class="far fa-plus"></i></button></td>`+
-                `<td id="${"unit"+randId}">0</td>`+           
-                `<td><button id=${"RmBtn"+randId} class="btn btn-outline-light rounded" style="border:none" type="button" onclick="remove('${con.id}','${"unit"+randId}')"><i class="far fa-minus"></i></button></td>`+
+                `<td><button id=${"addBtn"+currentConponent.name+con.id} class="btn btn-outline-light rounded" style="border:none" type="button" onclick="add('${currentConponent.name+con.id}','${currentConponent.name}','${con.product}','${con.price}','${"unit"+currentConponent.name+con.id}')"><i class="far fa-plus"></i></button></td>`+
+                `<td id="${"unit"+currentConponent.name+con.id}">0</td>`+           
+                `<td><button id=${"RmBtn"+currentConponent.name+con.id} class="btn btn-outline-light rounded" style="border:none" type="button" onclick="remove('${currentConponent.name+con.id}','${"unit"+currentConponent.name+con.id}')"><i class="far fa-minus"></i></button></td>`+
             '</tr>'
         )
         randId++;
@@ -77,11 +77,12 @@ $(".btnNext").click(displayCon = () => {
 
 function add(id,Comp,Model,Price,unitID){
     let storage = JSON.parse(sessionStorage.getItem("myBuild"));
-    console.log(storage);
+    console.log("add:" + Comp);
     if (storage !== null && storage.find(comp => comp.id === id) !== undefined){
-        storage[id].unit = storage[id].unit + 1;
+        let idx = storage.indexOf(storage.find(comp => comp.id === id));
+        storage[idx].unit = storage[idx].unit + 1;
         sessionStorage.setItem("myBuild",JSON.stringify(storage));
-        $("#"+unitID).html(storage[id].unit);console.log("Here");
+        $("#"+unitID).html(storage[idx].unit);
         mybuild = storage;
     }else{
         /*declare object to hold the data info*/
