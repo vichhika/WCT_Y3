@@ -1,5 +1,5 @@
 var mybuild = [];
-
+var id = 0;
 $(document).ready(function(){
     displayShop()
 })
@@ -55,8 +55,10 @@ $(".btnNext").click(displayCon = () => {
                 "<th><span>"+currentConponent.name+"</span></th>"+
                 '<td><span>'+con.product+'</span></td>'+
                 '<td><span>'+con.price+'</span></td>'+
-                `<td><button id=${"addBtn"+con.id} class="btn btn-primary px-5" type="button" onclick="add('${currentConponent.name}','${con.product}','${con.price}')">Add</button></td>`+            '</tr>'
+                `<td><button id=${"addBtn"+id} class="btn btn-primary px-5" type="button" onclick="add('${currentConponent.name}','${con.product}','${con.price}')">Add</button></td>`+            
+                '</tr>'
         )
+        id++;
     }
 });
 
@@ -68,6 +70,7 @@ function add(Comp,Model,Price){
     mybuild.push(component);
     /*push list of mybuild into sessionStorage*/    
     sessionStorage.setItem("myBuild",JSON.stringify(mybuild));
+    console.log("Hello");
 }
 
 
