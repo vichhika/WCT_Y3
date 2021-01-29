@@ -8,7 +8,7 @@ $(document).ready(() => {
 
 /*Display Result Function*/
 function displayRes(){
-    console.log(myBuild);
+    //console.log(myBuild);
     addResToTable();
 }
 
@@ -40,15 +40,34 @@ function addResToTable(){
 }
 
 function estimate(){
-    // <tr class="anotherShop">
-    //           <th scope="row">1</th>
-    //           <td>Vtech</td>
-    //           <td>$1000</td>
-    //           <td>+ $10</td>
-    //         </tr>
+    
     $.getJSON( "./../../Data/Chantra.json" , (data) => {  
-        for ( shop in data){
-            console.log(shop,data[shop]);
+        let shopName = myBuild[1].shop;
+        for ( shop in data){ 
+            
+            if(shop !== shopName){
+                let alterTotalPrice = 0 ;
+                for( me of myBuild){
+                    
+                    switch (me.comp){
+                        case 'CPU' :        {alterTotalPrice += data[shop].cpu[me.id.split('_')[1]].price.replace('$','')*me.unit} break;
+                        case 'RAM' :        {alterTotalPrice += data[shop].ram[me.id.split('_')[1]].price.replace('$','')*me.unit} break;
+                        case 'Storage' :    {alterTotalPrice += data[shop].harddisk[me.id.split('_')[1]].price.replace('$','')*me.unit} break;
+                        case 'motherboard' :{alterTotalPrice += data[shop].motherboard[me.id.split('_')[1]].price.replace('$','')*me.unit} break;
+                        case 'power' :      {alterTotalPrice += data[shop].power[me.id.split('_')[1]].price.replace('$','')*me.unit} break;
+                        case 'case' :       {alterTotalPrice += data[shop].case[me.id.split('_')[1]].price.replace('$','')*me.unit} break;
+                        case 'vga' :        {alterTotalPrice += data[shop].vga[me.id.split('_')[1]].price.replace('$','')*me.unit} break;
+                        
+                    }
+                }
+                let saving = alterTotalPrice - total;
+                $('.alterShop').append('<tr class="anotherShop">'+
+                '<td>'+shop+'</td>'+
+                '<td>'+'$'+alterTotalPrice+'</td>'+
+                '<td>'+saving+'</td>'+
+                ' </tr> ')
+            }
+
         }
     })
 }
