@@ -9,6 +9,7 @@ function nextCon(){
     displayCon();
 }
 
+<<<<<<< HEAD
 function add(Comp,Model,Price){
     /*declare object to hold the data info*/
     var component = {comp:"",model:"",price:""}
@@ -19,6 +20,8 @@ function add(Comp,Model,Price){
     sessionStorage.setItem("myBuild",JSON.stringify(mybuild));
 }
 
+=======
+>>>>>>> parent of 3638f6d... add pc shop
 function displayCon(){
     
     $.getJSON( "./../../Data/Chantra.json", (data) => {  
@@ -30,13 +33,21 @@ function displayCon(){
             case 'RAM' : {currentConponent.name = "Harddisk",currentConponent.setCon = data.chantra.harddisk} break
         }
         $('#conponentTitle').text(currentConponent.name);
+<<<<<<< HEAD
         for(con of currentConponent.setContype="submit") {
+=======
+        for(con of currentConponent.setCon) {
+>>>>>>> parent of 3638f6d... add pc shop
             $('#pcConponent').append(
                 '<tr id='+con.id+'>'+
                     "<th><span>"+currentConponent.name+"</span></th>"+
                     '<td><span id="">'+con.product+'</span></td>'+
                     '<td><span id="">'+con.price+'</span></td>'+
+<<<<<<< HEAD
                     `<td><button id=${"addBtn"+con.id} class="btn btn-primary px-5" type="button" onclick="add('${currentConponent.name}','${con.product}','${con.price}')">Add</button></td>`+
+=======
+                    '<td><button class="btn btn-primary px-5" type="submit">Add</button></td>'+
+>>>>>>> parent of 3638f6d... add pc shop
                 '</tr>'
             )
         }

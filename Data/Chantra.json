@@ -1,5 +1,5 @@
 {
-  "Chantra":{"cpu": [
+  "chantra":{"cpu": [
     {
       "id": 0,
       "product": "Core\u2122 i9-10980XE 24.75 MB Cache, up 4.60 GHz 18 Core 36 Threads ",
@@ -887,10 +887,8 @@
       "product": "WDBLACK 3.5 7200rpm 256MB SATA III 6Gb/s ( WD6001FZWX ) 6TB",
       "price": "$275"
     }
-  ]},
-  "GoldOne": null,
-  "Vtech": null,
-  "TK":null
+  ]}
+  
 }
 
 
