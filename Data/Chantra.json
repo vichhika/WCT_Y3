@@ -1,0 +1,891 @@
+{
+  "cpu": [
+    {
+      "id": 0,
+      "product": "Core\u2122 i9-10980XE 24.75 MB Cache, up 4.60 GHz 18 Core 36 Threads ",
+      "price": "$1,020"
+    },
+    {
+      "id": 1,
+      "product": "Core\u2122 i9-10940X19.25 MB Cache, up 4.60 GHz 14 Core 28 Threads ",
+      "price": "$815"
+    },
+    {
+      "id": 2,
+      "product": "Core\u2122 i9-10920X19.25 MB Cache, up 4.60 GHz 12 Core 24 Threads ",
+      "price": "$705"
+    },
+    {
+      "id": 3,
+      "product": "Core\u2122 i9-10900X19.25 MB Cache, up 4.50 GHz 10 Core 24 Threads ",
+      "price": "$599"
+    },
+    {
+      "id": 4,
+      "product": "Core\u2122 i9-10980XE 24.75 MB Cache, up 4.60 GHz 18 Core 36 Threads ",
+      "price": "$999"
+    },
+    {
+      "id": 5,
+      "product": "Core\u2122 i9-10940X19.25 MB Cache, up 4.60 GHz 14 Core 28 Threads ",
+      "price": "$795"
+    },
+    {
+      "id": 6,
+      "product": "Core\u2122 i9-10920X19.25 MB Cache, up 4.60 GHz 12 Core 24 Threads ",
+      "price": "$685"
+    },
+    {
+      "id": 7,
+      "product": "Core\u2122 i9-10900X19.25 MB Cache, up 4.50 GHz 10 Core 24 Threads ",
+      "price": "$580"
+    },
+    {
+      "id": 8,
+      "product": "Intel\u00ae Core\u2122 i9-10900K 20M Cache, up to 5.30 GHz 10Core 20threads ",
+      "price": "$570"
+    },
+    {
+      "id": 9,
+      "product": "Intel\u00ae Core\u2122 i9-10900KF 20M Cache, up to 5.30 GHz 10Core 20threads ",
+      "price": "$540"
+    },
+    {
+      "id": 10,
+      "product": "Intel\u00ae Core\u2122 i9-10900 20M Cache, up to 5.20 GHz 10Core 20threads ",
+      "price": "$485"
+    },
+    {
+      "id": 11,
+      "product": "Intel\u00ae Core\u2122 i9-10900F 20M Cache, up to 5.20 GHz 10Core 20threads ",
+      "price": "$475"
+    },
+    {
+      "id": 12,
+      "product": "Intel\u00ae Core\u2122 i9-10900K 20M Cache, up to 5.30 GHz 10Core 20threads ",
+      "price": "$545"
+    },
+    {
+      "id": 13,
+      "product": "Intel\u00ae Core\u2122 i9-10900KF 20M Cache, up to 5.30 GHz 10Core 20threads ",
+      "price": "$520"
+    },
+    {
+      "id": 14,
+      "product": "Intel\u00ae Core\u2122 i9-10900 20M Cache, up to 5.20 GHz 10Core 20threads ",
+      "price": "$465"
+    },
+    {
+      "id": 15,
+      "product": "Intel\u00ae Core\u2122 i9-10900F 20M Cache, up to 5.20 GHz 10Core 20threads ",
+      "price": "$455"
+    },
+    {
+      "id": 16,
+      "product": "Intel\u00ae Core\u2122 i7-10700K 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$399"
+    },
+    {
+      "id": 17,
+      "product": "Intel\u00ae Core\u2122 i7-10700KF 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$390"
+    },
+    {
+      "id": 18,
+      "product": "Intel\u00ae Core\u2122 i7-10700 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$350"
+    },
+    {
+      "id": 19,
+      "product": "Intel\u00ae Core\u2122 i7-10700F 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$325"
+    },
+    {
+      "id": 20,
+      "product": "Intel\u00ae Core\u2122 i7-10700K 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$390"
+    },
+    {
+      "id": 21,
+      "product": "Intel\u00ae Core\u2122 i7-10700KF 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$380"
+    },
+    {
+      "id": 22,
+      "product": "Intel\u00ae Core\u2122 i7-10700 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$335"
+    },
+    {
+      "id": 23,
+      "product": "Intel\u00ae Core\u2122 i7-10700F 16M Cache, up to 5.10 GHz 8Core 16threads ",
+      "price": "$305"
+    },
+    {
+      "id": 24,
+      "product": "Intel\u00ae Core\u2122 i5-10600K 12M Cache, up to 4.8 GHz 6Core 12threads ",
+      "price": "$285"
+    },
+    {
+      "id": 25,
+      "product": "Intel\u00ae Core\u2122 i5-10500 12M Cache, up to 4.5 GHz 6Core 12threads ",
+      "price": "$205"
+    },
+    {
+      "id": 26,
+      "product": "Intel\u00ae Core\u2122 i5-10400 12M Cache, up to 4.3 GHz 6Core 12threads ",
+      "price": "$189"
+    },
+    {
+      "id": 27,
+      "product": "Intel\u00ae Core\u2122 i5-10400F 12M Cache, up to 4.3 GHz 6Core 12threads ",
+      "price": "$170"
+    },
+    {
+      "id": 28,
+      "product": "Intel\u00ae Core\u2122 i3-10100 6M Cache, up to 4.3 GHz 4Core 8threads",
+      "price": "$120"
+    },
+    {
+      "id": 29,
+      "product": "Intel\u00ae Core\u2122 i5-10600K 12M Cache, up to 4.8 GHz 6Core 12threads ",
+      "price": "$275"
+    },
+    {
+      "id": 30,
+      "product": "Intel\u00ae Core\u2122 i5-10500 12M Cache, up to 4.5 GHz 6Core 12threads",
+      "price": "$195"
+    },
+    {
+      "id": 31,
+      "product": "Intel\u00ae Core\u2122 i5-10400 12M Cache, up to 4.3 GHz 6Core 12threads ",
+      "price": "$179"
+    },
+    {
+      "id": 32,
+      "product": "Intel\u00ae Core\u2122 i5-10400F 12M Cache, up to 4.3 GHz 6Core 12threads ",
+      "price": "$160"
+    },
+    {
+      "id": 33,
+      "product": "Intel\u00ae Core\u2122 i3-10100 6M Cache, up to 4.3 GHz 4Core 8threads",
+      "price": "$110"
+    },
+    {
+      "id": 34,
+      "product": "Intel\u00ae Core\u2122 i7-8700(12M Cache, up to 4.60 GHz) 6Core 12Threads",
+      "price": "$250"
+    },
+    {
+      "id": 35,
+      "product": "Intel\u00ae Core\u2122 i3-8300(8M Cache, up to 3.7 GHz) 4Core 4Threads",
+      "price": "$79"
+    },
+    {
+      "id": 36,
+      "product": "Intel\u00ae Core\u2122 i3-8100(6M Cache, up to 3.00 GHz) 4Core 4Threads ",
+      "price": "$69"
+    },
+    {
+      "id": 37,
+      "product": "Intel\u00ae Core\u2122 i7-7700 Processor (8M Cache, up to 4.2 GHz)",
+      "price": "$189"
+    },
+    {
+      "id": 38,
+      "product": "Intel\u00ae Core\u2122 i5-7500 Processor (6M Cache, up to 4.10 GHz)",
+      "price": "$149"
+    },
+    {
+      "id": 39,
+      "product": "Intel\u00ae Core\u2122 i3-7100 Processor (3M Cache, 3.90 GHz)",
+      "price": "$69"
+    },
+    {
+      "id": 40,
+      "product": "AMD Ryzen\u2122 Threadripper\u2122 3990X 2.9GHz Base and 4.3 GHz Max Boost Clocks64 Core 128 threads ",
+      "price": "$3,999"
+    },
+    {
+      "id": 41,
+      "product": "AMD Ryzen\u2122 Threadripper\u2122 3970X 3.7GHz Base and 4.5 GHz Max Boost Clocks32 Core 64 threads ",
+      "price": "$2,099"
+    },
+    {
+      "id": 42,
+      "product": "AMD Ryzen\u2122 Threadripper\u2122 1900X 3.8 GHz Base and 4.0 GHz Max Boost Clocks8Core 16 threads ",
+      "price": "$299"
+    },
+    {
+      "id": 43,
+      "product": "AMD Ryzen\u2122 Threadripper\u2122 3990X 2.9GHz Base and 4.3 GHz Max Boost Clocks64 Core 128 threads ",
+      "price": "$3,849"
+    },
+    {
+      "id": 44,
+      "product": "AMD Ryzen\u2122 Threadripper\u2122 3970X 3.7GHz Base and 4.5 GHz Max Boost Clocks32 Core 64 threads ",
+      "price": "$1,999"
+    },
+    {
+      "id": 45,
+      "product": "AMD Ryzen\u2122 Threadripper\u2122 1900X 3.8 GHz Base and 4.0 GHz Max Boost Clocks8Core 16 threads ",
+      "price": "$249"
+    },
+    {
+      "id": 46,
+      "product": "AMD Ryzen\u2122 9 5950X3.5GHz 64MB Cache 16 Core 32Thread ",
+      "price": "$1,199"
+    },
+    {
+      "id": 47,
+      "product": "AMD Ryzen\u2122 9 5900X3.7GHz 64MB Cache 12 Core 24Thread ",
+      "price": "$790"
+    },
+    {
+      "id": 48,
+      "product": "AMD Ryzen\u2122 7 5800X3.8GHz 32MB Cache 8 Core 16Thread",
+      "price": "$550"
+    },
+    {
+      "id": 49,
+      "product": "AMD Ryzen\u2122 5 5600X3.7GHz 32MB Cache 6 Core 12Thread",
+      "price": "$420"
+    },
+    {
+      "id": 50,
+      "product": "AMD Ryzen\u2122 9 5950X3.5GHz 64MB Cache 16 Core 32Thread ",
+      "price": "$1,145"
+    },
+    {
+      "id": 51,
+      "product": "AMD Ryzen\u2122 9 5900X3.7GHz 64MB Cache 12 Core 24Thread ",
+      "price": "$775"
+    },
+    {
+      "id": 52,
+      "product": "AMD Ryzen\u2122 7 5800X3.8GHz 32MB Cache 8 Core 16Thread",
+      "price": "$530"
+    },
+    {
+      "id": 53,
+      "product": "AMD Ryzen\u2122 5 5600X3.7GHz 32MB Cache 6 Core 12Thread",
+      "price": "$400"
+    },
+    {
+      "id": 54,
+      "product": "AMD Ryzen\u2122 7 3800X3.9GHz 32MB Cache 8 Core 16Thread ",
+      "price": "$365"
+    },
+    {
+      "id": 55,
+      "product": "AMD Ryzen\u2122 7 3700X3.6GHz 32MB Cache 8 Core 16Thread ",
+      "price": "$325"
+    },
+    {
+      "id": 56,
+      "product": "AMD Ryzen\u2122 5 3400G 4.2GHz4 Core 8Threads withWraith Spire Cooler ",
+      "price": "$150"
+    },
+    {
+      "id": 57,
+      "product": "AMD Ryzen\u2122 2 3200G 4.0GHz4 Core 4Threads ",
+      "price": "$115"
+    },
+    {
+      "id": 58,
+      "product": "AMD Ryzen\u2122 7 3800X3.9GHz 32MB Cache 8 Core 16Thread ",
+      "price": "$350"
+    },
+    {
+      "id": 59,
+      "product": "AMD Ryzen\u2122 7 3700X3.6GHz 32MB Cache 8 Core 16Thread ",
+      "price": "$310"
+    },
+    {
+      "id": 60,
+      "product": "AMD Ryzen\u2122 5 3400G 4.2GHz4 Core 6Threads withWraith Spire Cooler ",
+      "price": "$135"
+    },
+    {
+      "id": 61,
+      "product": "AMD Ryzen\u2122 2 3200G 4.0GHz4 Core 4Threads ",
+      "price": "$100"
+    }
+  ],
+  "ram": [
+    {
+      "id": 0,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3000MHz 8GB ",
+      "price": "$65"
+    },
+    {
+      "id": 1,
+      "product": "G.SKILL Trident Z ROYAL RGB  DDR4 3000MHz 16GB",
+      "price": "$99"
+    },
+    {
+      "id": 2,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3200MHz 8GB ",
+      "price": "$70"
+    },
+    {
+      "id": 3,
+      "product": "G.SKILL Trident Z ROYAL RGB  DDR4 3200MHz 16GB",
+      "price": "$105"
+    },
+    {
+      "id": 4,
+      "product": "G.SKILL Trident Z ROYAL RGB  DDR4 3200MHz 32GB",
+      "price": "$165"
+    },
+    {
+      "id": 5,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3000MHz 8GB ",
+      "price": "$65"
+    },
+    {
+      "id": 6,
+      "product": "G.SKILL Trident Z ROYAL RGB  DDR4 3000MHz 16GB",
+      "price": "$99"
+    },
+    {
+      "id": 7,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3200MHz 8GB ",
+      "price": "$70"
+    },
+    {
+      "id": 8,
+      "product": "G.SKILL Trident Z ROYAL RGB  DDR4 3200MHz 16GB",
+      "price": "$105"
+    },
+    {
+      "id": 9,
+      "product": "G.SKILL Trident Z ROYAL RGB  DDR4 3200MHz 32GB",
+      "price": "$165"
+    },
+    {
+      "id": 10,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3600MHz 8GB ",
+      "price": "$"
+    },
+    {
+      "id": 11,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3600MHz 16GB ",
+      "price": "$105"
+    },
+    {
+      "id": 12,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3600MHz 32GB ",
+      "price": "$165"
+    },
+    {
+      "id": 13,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 4600MHz 8GB ",
+      "price": "$170"
+    },
+    {
+      "id": 14,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 4600MHz 8GB ",
+      "price": "$170"
+    },
+    {
+      "id": 15,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3600MHz 8GB ",
+      "price": "$"
+    },
+    {
+      "id": 16,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3600MHz 16GB ",
+      "price": "$105"
+    },
+    {
+      "id": 17,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 3600MHz 32GB ",
+      "price": "$165"
+    },
+    {
+      "id": 18,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 4600MHz 8GB ",
+      "price": "$170"
+    },
+    {
+      "id": 19,
+      "product": "G.SKILL Trident Z ROYAL RGB DDR4 4600MHz 8GB ",
+      "price": "$170"
+    },
+    { "id": 20, "product": "Trident Z NEO DDR4 3000MHz 8GB ", "price": "$55" },
+    { "id": 21, "product": "Trident Z NEO DDR4 3000MHz 16GB ", "price": "$85" },
+    { "id": 22, "product": "Trident Z NEO DDR4 3200MHz 8GB ", "price": "$60" },
+    { "id": 23, "product": "Trident Z NEO DDR4 3200MHz 16GB ", "price": "$89" },
+    { "id": 24, "product": "Trident Z NEO DDR4 3200MHz 32GB", "price": "$155" },
+    { "id": 25, "product": "Trident Z NEO DDR4 3600MHz 8GB ", "price": "$65" },
+    { "id": 26, "product": "Trident Z NEO DDR4 3600MHz 16GB ", "price": "$95" },
+    { "id": 27, "product": "Trident Z NEO DDR4 3600MHz 32GB", "price": "$160" },
+    { "id": 28, "product": "RIPJAWS V DDR4 3200MHz 16GB", "price": "$" },
+    { "id": 29, "product": "RIPJAWS V DDR4 3200MHz 32GB", "price": "$140" },
+    { "id": 30, "product": "RIPJAWS V DDR4 3600MHz 16GB", "price": "$79" },
+    { "id": 31, "product": "RIPJAWS V DDR4 3600MHz 32GB", "price": "$" },
+    { "id": 32, "product": "Sniper X DDR4 3000MHz 8GB", "price": "$" },
+    { "id": 33, "product": "Sniper X DDR4 3000MHz 16GB", "price": "$" },
+    { "id": 34, "product": "Sniper X DDR4 3200MHz 8GB", "price": "$" },
+    { "id": 35, "product": "Sniper X DDR4 3600MHz 8GB", "price": "$" },
+    { "id": 36, "product": "SPARK RGB DDR4 3000MHz 8GB", "price": "$49" },
+    { "id": 37, "product": "SPARK RGB DDR4 3000MHz 16GB", "price": "$70" },
+    { "id": 38, "product": "SPARK RGB DDR4 3200MHz 8GB", "price": "$52" },
+    { "id": 39, "product": "SPARK RGB DDR4 3200MHz 16GB", "price": "$73" },
+    { "id": 40, "product": "SPARK RGB DDR4 3600MHz 8GB", "price": "$55" },
+    { "id": 41, "product": "SPARK RGB DDR4 3600MHz 16GB", "price": "$75" },
+    { "id": 42, "product": "SPARK RGB DDR4 3600MHz 8GB", "price": "$55" },
+    { "id": 43, "product": "SPARK RGB DDR4 3600MHz 16GB", "price": "$75" },
+    { "id": 44, "product": "MOAB RGB DDR4 3000MHz 8GB", "price": "$49" },
+    { "id": 45, "product": "MOAB RGB DDR4 3000MHz 16GB", "price": "$70" },
+    { "id": 46, "product": "MOAB RGB DDR4 3000MHz 8GB", "price": "$49" },
+    { "id": 47, "product": "MOAB RGB DDR4 3000MHz 16GB", "price": "$70" },
+    { "id": 48, "product": "MOAB RGB DDR4 3000MHz 8GB", "price": "$49" },
+    { "id": 49, "product": "MOAB RGB DDR4 3000MHz 16GB", "price": "$70" },
+    { "id": 50, "product": "MOAB RGB DDR4 3000MHz 8GB", "price": "$49" },
+    { "id": 51, "product": "MOAB RGB DDR4 3000MHz 16GB", "price": "$70" },
+    { "id": 52, "product": "T-Force XTREEM ARGB 3200 8GB ", "price": "$60" },
+    { "id": 53, "product": "T-Force XTREEM ARGB 3600 8GB ", "price": "$65" },
+    { "id": 54, "product": "T-Force XTREEM ARGB 4000 8GB ", "price": "" },
+    { "id": 55, "product": "XCALIBUR Phantom RGB 3200 8GB ", "price": "$55" },
+    { "id": 56, "product": "XCALIBUR Phantom RGB 3600 8GB", "price": "$65" },
+    { "id": 57, "product": "XCALIBUR Phantom RGB 4000 8GB", "price": "$70" },
+    { "id": 58, "product": "TUF GAMGING RGB 2666 8GB ", "price": "$50" },
+    { "id": 59, "product": "TUF GAMGING RGB 2666 16GB ", "price": "$75" },
+    { "id": 60, "product": "TUF GAMGING RGB 3200 8GB ", "price": "$55" },
+    { "id": 61, "product": "TUF GAMGING RGB 3200 16GB ", "price": "$79" },
+    { "id": 62, "product": "T- FORCE DELTA RGB 3000 8GB ", "price": "$55" },
+    { "id": 63, "product": "T- FORCE DELTA RGB 3000 16GB ", "price": "$79" },
+    { "id": 64, "product": "T- FORCE DELTA RGB 3000 8GB ", "price": "$55" },
+    { "id": 65, "product": "T- FORCE DELTA RGB 3000 16GB ", "price": "$79" },
+    { "id": 66, "product": "TEAM Night Hawk LED 2666 8GB ", "price": "" },
+    { "id": 67, "product": "TEAM Night Hawk RGB 2666 8GB ", "price": "" },
+    { "id": 68, "product": "TEAM Night Hawk LED 2666 8GB ", "price": "" },
+    { "id": 69, "product": "TEAM Night Hawk RGB 2666 8GB ", "price": "" },
+    { "id": 70, "product": "ASUS TUF Gaming  2666 8GB", "price": "$40" },
+    { "id": 71, "product": "ASUS TUF Gaming  2666 16GB", "price": "$65" },
+    { "id": 72, "product": "ASUS TUF Gaming  3000 8GB", "price": "$45" },
+    { "id": 73, "product": "ASUS TUF Gaming  3200 8GB", "price": "$45" },
+    { "id": 74, "product": "TEAM ELITE AMD CPU 3200 8GB", "price": "$42" },
+    { "id": 75, "product": "TEAM ELITE AMD CPU 3200 16GB", "price": "$65" },
+    { "id": 76, "product": "TEAM ELITE AMD CPU 3200 32GB", "price": "$120" },
+    { "id": 77, "product": "TEAM ELITE AMD CPU 3200 32GB", "price": "$120" },
+    {
+      "id": 78,
+      "product": "Corsair DOMINATOR PLATINUM RGB 3200MHz 8GB   ",
+      "price": "$85"
+    },
+    {
+      "id": 79,
+      "product": "Corsair DOMINATOR PLATINUM RGB 3200MHz 16GB ",
+      "price": "$149"
+    },
+    {
+      "id": 80,
+      "product": "Corsair DOMINATOR PLATINUM RGB 3600MHz 8GB ",
+      "price": "$99"
+    },
+    {
+      "id": 81,
+      "product": "Corsair DOMINATOR PLATINUM RGB 3600MHz 16GB ",
+      "price": "$159"
+    },
+    {
+      "id": 82,
+      "product": "Corsair Vengeance RGB Pro 3200MHz 8GB  White / Black ",
+      "price": "$80"
+    },
+    {
+      "id": 83,
+      "product": "Corsair Vengeance RGB Pro 3000MHz 16GB  White / Black ",
+      "price": "$115"
+    },
+    {
+      "id": 84,
+      "product": "Corsair Vengeance RGB Pro 3000MHz 8GB  White / Black ",
+      "price": "$75"
+    },
+    {
+      "id": 85,
+      "product": "Corsair Vengeance RGB Pro 2666MHz 8GB  White / Black ",
+      "price": "70"
+    },
+    {
+      "id": 86,
+      "product": "Thermaltake TOUGHRAM Z-ONE RGB  3200MHz 8GB ",
+      "price": "$55"
+    },
+    {
+      "id": 87,
+      "product": "Thermaltake TOUGHRAM Z-ONE RGB  3600MHz 8GB ",
+      "price": "$60"
+    },
+    {
+      "id": 88,
+      "product": "Thermaltake TOUGHRAM RGB   3200MHz 8GB ",
+      "price": "$60"
+    },
+    {
+      "id": 89,
+      "product": "Thermaltake TOUGHRAM RGB   3200MHz 8GB ",
+      "price": "$65"
+    },
+    {
+      "id": 90,
+      "product": "Thermaltake TOUGHRAM RGB   4400MHz 8GB ",
+      "price": "$95"
+    },
+    { "id": 91, "product": "DDR4 2400MHz G.Skill 4GB ", "price": "$28" },
+    { "id": 92, "product": "DDR4 2400MHz G.Skill 8GB ", "price": "$45" },
+    { "id": 93, "product": "DDR4 2400MHz G.Skill   16GB ", "price": "$75" },
+    { "id": 94, "product": "DDR4 2666MHz G.Skill 4GB ", "price": "$28" },
+    { "id": 95, "product": "DDR4 2666MHz G.Skill 8GB ", "price": "$45" },
+    { "id": 96, "product": "DDR4 2666MHz G.Skill   16GB ", "price": "$75" },
+    { "id": 97, "product": "DDR4 GAMING  2666MHz 32GB ", "price": "$169" },
+    { "id": 98, "product": "DDR4 GAMING  3200MHz 8GB ", "price": "$55" },
+    { "id": 99, "product": "DDR4 GAMING  3200MHz 16GB ", "price": "$110" },
+    { "id": 100, "product": "DDR4 2666MHz T-FORCE 4GB ", "price": "$28" },
+    { "id": 101, "product": "DDR4 2666MHz T-FORCE  8GB ", "price": "$47" },
+    { "id": 102, "product": "DDR4 2666MHz T-FORCE    16GB ", "price": "$75" },
+    { "id": 103, "product": "G.kill Aegis DDR3L 1600MHz 4GB ", "price": "$25" },
+    { "id": 104, "product": "G.kill Aegis DDR3L 1600MHz 8GB", "price": "$40" },
+    { "id": 105, "product": "DDR3 1333 / 1600MHz 2GB ", "price": "$11" },
+    { "id": 106, "product": "DDR3 1333 / 1600MHz 4GB ", "price": "$25" },
+    { "id": 107, "product": "DDR3 1333 / 1600 MHz 8GB ", "price": "$40" },
+    { "id": 108, "product": "G.kill Aegis DDR3L 1600MHz 4GB ", "price": "$25" },
+    { "id": 109, "product": "G.kill Aegis DDR3L 1600MHz 8GB", "price": "$40" },
+    { "id": 110, "product": "DDR3 1333 / 1600MHz 2GB ", "price": "$11" },
+    { "id": 111, "product": "DDR3 1333 / 1600MHz 4GB ", "price": "$25" },
+    { "id": 112, "product": "DDR3 1333 / 1600 MHz 8GB ", "price": "$40" },
+    { "id": 113, "product": "R-DIMM DDR4 ECC 2133 4GB ", "price": "$45" },
+    { "id": 114, "product": "R-DIMM DDR4 ECC 2133 8GB ", "price": "$70" },
+    { "id": 115, "product": "DDR4 ECC 2133 16GB ", "price": "$120" },
+    { "id": 116, "product": "R-DIMM DDR3 ECC 10600R 2GB ", "price": "$10" },
+    { "id": 117, "product": "R-DIMM DDR3 ECC 10600R 4GB ", "price": "$20" },
+    { "id": 118, "product": "R-DIMM DDR3 ECC 10600R 8GB ", "price": "$35" },
+    { "id": 119, "product": "R-DIMM DDR2 ECC  1GB ", "price": "$5" },
+    { "id": 120, "product": "R-DIMM DDR2 ECC  2GB ", "price": "$10" },
+    { "id": 121, "product": "R-DIMM DDR2 ECC  4GB ", "price": "$25" },
+    { "id": 122, "product": "DDR3 PC3-12800 1600MHz 2GB ", "price": "$10" },
+    { "id": 123, "product": "DDR3 PC3-12800 1600MHz 4GB ", "price": "$25" },
+    { "id": 124, "product": "DDR3 PC3-12800 1600MHz 8GB ", "price": "$40" }
+  ],
+  "harddisk": [
+    { "id": 0, "product": "TEAM GX2 SSD 2.5\" SATA III 128GB", "price": "$23" },
+    { "id": 1, "product": "TEAM GX2 SSD 2.5\" SATA III 256GB", "price": "$35" },
+    { "id": 2, "product": "TEAM GX2 SSD 2.5\" SATA III 512GB", "price": "$59" },
+    { "id": 3, "product": "TEAM GX2 SSD 2.5\" SATA III 1TB", "price": "$99 " },
+    { "id": 4, "product": "T-FORCE VALCAN 2.5\" 250GB", "price": "$50" },
+    { "id": 5, "product": "T-FORCE VALCAN 2.5\" 500GB", "price": "$70" },
+    { "id": 6, "product": "T-FORCE VALCAN 2.5\" 1TB", "price": "$125" },
+    { "id": 7, "product": "T-FORCE DELTA2.5\" 250GB", "price": "$50" },
+    { "id": 8, "product": "T-FORCE DELTA2.5\"500GB", "price": "$69" },
+    { "id": 9, "product": "T-FORCE DELTA2.5\" 1TB", "price": "$110" },
+    { "id": 10, "product": "TEAM ASUS TUF SSD RGB 250GB", "price": "$50" },
+    { "id": 11, "product": "TEAM ASUS TUF SSD RGB 500GB", "price": "$69" },
+    { "id": 12, "product": "TEAM ASUS TUF SSD RGB 1TB", "price": "$110 " },
+    { "id": 13, "product": "T-FORCE DELTA MAX 2.5\" 250GB", "price": "$60" },
+    { "id": 14, "product": "T-FORCE DELTA MAX 2.5\" 500GB", "price": "$75" },
+    { "id": 15, "product": "T-FORCE DELTA MAX 2.5\" 1TB", "price": "$139" },
+    { "id": 16, "product": "LEXAR NS 100 SSD SATA III 128GB", "price": "$23" },
+    { "id": 17, "product": "LEXAR NS 100 SSD SATA III 256GB", "price": "$35" },
+    { "id": 18, "product": "LEXAR NS 100 SSD SATA III 512GB", "price": "$59" },
+    { "id": 19, "product": "LEXAR NS 100 SSD SATA III 1TB", "price": "$99" },
+    { "id": 20, "product": "ADDLINK S20 2.5\" SATA III 120GB", "price": "$23" },
+    { "id": 21, "product": "ADDLINK S20 2.5\" SATA III 256GB", "price": "$35" },
+    { "id": 22, "product": "ADDLINK S20 2.5\" SATA III 512GB", "price": "$59" },
+    { "id": 23, "product": "ADDLINK S20 2.5\" SATA III 1TB", "price": "$99" },
+    { "id": 24, "product": "SAMSUNG 860 EVO 2.5\" 250GB", "price": "$55" },
+    { "id": 25, "product": "SAMSUNG 860 EVO 2.5\" 500GB", "price": "$85" },
+    { "id": 26, "product": "SAMSUNG 870 QVO 2.5\" 1TB", "price": "$125" },
+    { "id": 27, "product": "SAMSUNG 870 QVO 2.5\" 2TB", "price": "$239" },
+    { "id": 28, "product": "SAMSUNG 870 QVO 2.5\" 4TB", "price": "$449" },
+    { "id": 29, "product": "SAMSUNG 860 PRO 2.5\" 256GB", "price": "$89" },
+    { "id": 30, "product": "SAMSUNG 860 PRO 2.5\" 512GB", "price": "$145" },
+    { "id": 31, "product": "SAMSUNG 870 QVO 2.5\" 1TB", "price": "$125" },
+    { "id": 32, "product": "SAMSUNG 870 QVO 2.5\" 2TB", "price": "$239" },
+    { "id": 33, "product": "SAMSUNG 870 QVO 2.5\" 4TB", "price": "$449 " },
+    { "id": 34, "product": "TEAM SSD MS30 M.2 2280 128GB", "price": "$25" },
+    { "id": 35, "product": "TEAM SSD MS30 M.2 2280 256GB", "price": "$39" },
+    { "id": 36, "product": "TEAM SSD MS30 M.2 2280 512GB", "price": "$65" },
+    { "id": 37, "product": "TEAM SSD MS30 M.2 2280 1TB", "price": "$ " },
+    { "id": 38, "product": "MP32 M.2 PCIe Gen 3.0 128GB", "price": "$30" },
+    { "id": 39, "product": "MP34 M.2 PCIe Gen 3.0 X 4 256GB", "price": "$39" },
+    { "id": 40, "product": "MP34 M.2 PCIe Gen 3.0 X 4 512GB", "price": "$65" },
+    { "id": 41, "product": "MP34 M.2 PCIe Gen 3.0 X 4 1TB", "price": "$129 " },
+    { "id": 42, "product": "S70 M.2 PCIe GEN3X4 NVMe 256GB", "price": "$39" },
+    { "id": 43, "product": "S70 M.2 PCIe G3X4 NVMe 512GB", "price": "$65" },
+    { "id": 44, "product": "S70 M.2 PCIe GEN3X4 NVMe 1TB", "price": "$129" },
+    { "id": 45, "product": "S70 M.2 PCIe GEN3X4 NVMe 2TB", "price": "$275 " },
+    { "id": 46, "product": "X70 M.2 PCIe GEN3X4 NVMe 256GB", "price": "$69" },
+    { "id": 47, "product": "X70 M.2 PCIe GEN3X4 NVMe512GB", "price": "$95" },
+    { "id": 48, "product": "X70 M.2 PCIe GEN3X4 NVMe 1TB", "price": "$159" },
+    { "id": 49, "product": "X70 M.2 PCIe GEN3X4 NVMe 2TB", "price": "$299" },
+    { "id": 50, "product": "NM610PCIe GEN3X4 NVMe 250GB", "price": "$39" },
+    { "id": 51, "product": "NM610PCIe GEN3X4 NVMe 500GB", "price": "$65" },
+    { "id": 52, "product": "NM610PCIe GEN3X4 NVMe 1TB", "price": "$129" },
+    { "id": 53, "product": "NM610PCIe GEN3X4 NVMe 2TB", "price": "$" },
+    { "id": 54, "product": "Samsung M.2PCIe 981A 256GB", "price": "$60" },
+    { "id": 55, "product": "Samsung M.2PCIe 981A 512GB", "price": "$89" },
+    { "id": 56, "product": "Samsung M.2PCIe 981A 1TB", "price": "$149" },
+    { "id": 57, "product": "Samsung M.2PCIe 981A 2TB", "price": "$" },
+    { "id": 58, "product": "M.2PCIe 970 EVO PLUS 250GB", "price": "$70" },
+    { "id": 59, "product": "M.2PCIe 970 EVO PLUS 500GB", "price": "$115" },
+    { "id": 60, "product": "M.2PCIe 970 EVO PLUS 1TB", "price": "$225" },
+    { "id": 61, "product": "M.2PCIe 970 EVO PLUS 2TB", "price": "$439" },
+    { "id": 62, "product": "M.2PCIe 980 PRO NVMe 250GB", "price": "$99" },
+    { "id": 63, "product": "M.2PCIe 980 PRO NVMe 512GB", "price": "$165" },
+    { "id": 64, "product": "M.2PCIe 980 PRO NVMe 1TB", "price": "$280" },
+    { "id": 65, "product": "M.2PCIe 980 PRO NVMe 2TB", "price": "Call" },
+    { "id": 66, "product": "HDD 2.5\" 9.5mm 5400 Rpm 1TB", "price": "$45" },
+    { "id": 67, "product": "HDD 2.5\" 9.5mm 7200 Rpm 1TB", "price": "$55" },
+    { "id": 68, "product": "HDD 2.5\" 7mm Slim 5400 Rpm 1TB", "price": "$55" },
+    { "id": 69, "product": "HDD 2.5\" 7mm Slim 7200 Rpm 1TB", "price": "$69" },
+    { "id": 70, "product": "HDD SSHD 2.5\" 7mm5400Rpm 1TB", "price": "\t$75" },
+    { "id": 71, "product": "WD PURPLE 3.5 64MB 6GB/s 1TB", "price": "$45" },
+    { "id": 72, "product": "WD PURPLE 3.5 64MB 6GB/s 2TB", "price": "$60" },
+    { "id": 73, "product": "WD PURPLE 3.5 64MB 6GB/s4TB", "price": "$115" },
+    { "id": 74, "product": "WD PURPLE 3.5 64MB 6GB/s6TB", "price": "$190" },
+    { "id": 75, "product": "WD PURPLE 3.5 128MB 8TB", "price": "$255" },
+    { "id": 76, "product": "WD PURPLE 3.5 128MB 10TB", "price": "$319" },
+    { "id": 77, "product": "WD BLUE 3.5 64MB 6GB/s 1TB", "price": "$40" },
+    { "id": 78, "product": "WD BLUE 3.5 64MB 6GB/s 2TB", "price": "$60" },
+    { "id": 79, "product": "WD BLUE 3.5 64MB 6GB/s 4TB", "price": "$109" },
+    { "id": 80, "product": "WD BLUE 3.5 64MB 6GB/s 6TB", "price": "$179" },
+    {
+      "id": 81,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 64MB( WD10EFRX)1TB",
+      "price": "$69"
+    },
+    {
+      "id": 82,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 256MB( WD20EFAX ) 2TB",
+      "price": "$85"
+    },
+    {
+      "id": 83,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 64MB( WD40EFRX ) 4TB",
+      "price": "$129"
+    },
+    {
+      "id": 84,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 256MB ( WD60EFAX ) 6TB",
+      "price": "$190"
+    },
+    {
+      "id": 85,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 256MB( WD80EFAX ) 8TB",
+      "price": "$265"
+    },
+    {
+      "id": 86,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 256MB( WD100EFAX ) 10TB",
+      "price": "$339 "
+    },
+    {
+      "id": 87,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 64MB ( WD1003FZEX) 2TB",
+      "price": "$129"
+    },
+    {
+      "id": 88,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD4003FFBX) 4TB",
+      "price": "$185"
+    },
+    {
+      "id": 89,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD6003FFBX) 6TB",
+      "price": "$249"
+    },
+    {
+      "id": 90,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD8003FFBX) 8TB",
+      "price": "$305"
+    },
+    {
+      "id": 91,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD101KFBX) 10TB",
+      "price": "$459"
+    },
+    {
+      "id": 92,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD101KFBX) 10TB",
+      "price": "$459"
+    },
+    {
+      "id": 93,
+      "product": "WD ULTRA STAR / GOLD 3.57200rpm 128MB ( 1W10001) 1TB",
+      "price": "$95"
+    },
+    {
+      "id": 94,
+      "product": "WD ULTRA STAR / GOLD 3.57200rpm 128MB ( 1W10002) 2TB",
+      "price": "$125"
+    },
+    {
+      "id": 95,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD6003FFBX) 6TB",
+      "price": "$249"
+    },
+    {
+      "id": 96,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD8003FFBX) 8TB",
+      "price": "$305"
+    },
+    {
+      "id": 97,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD101KFBX) 10TB",
+      "price": "$459"
+    },
+    {
+      "id": 98,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD101KFBX) 10TB",
+      "price": "$459"
+    },
+    {
+      "id": 99,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 64MB ( WD1003FZEX) 2TB",
+      "price": "$129"
+    },
+    {
+      "id": 100,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD4003FFBX) 4TB",
+      "price": "$185"
+    },
+    {
+      "id": 101,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD6003FFBX) 6TB",
+      "price": "$249"
+    },
+    {
+      "id": 102,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD8003FFBX) 8TB",
+      "price": "$305"
+    },
+    {
+      "id": 103,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD101KFBX) 10TB",
+      "price": "$459"
+    },
+    {
+      "id": 104,
+      "product": "WD REDPROHARDDRIVE 3.57200rpm 256MB ( WD101KFBX) 10TB",
+      "price": "$459"
+    },
+    {
+      "id": 105,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 64MB( WD10EFRX)1TB",
+      "price": "$67"
+    },
+    {
+      "id": 106,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 64MB( WD20EFRX )2TB",
+      "price": "$85 "
+    },
+    {
+      "id": 107,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 64MB( WD40EFRX ) 4TB",
+      "price": "$127"
+    },
+    {
+      "id": 108,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 64MB ( WD60EFRX ) 6TB",
+      "price": "$190"
+    },
+    {
+      "id": 109,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 128MB( WD80EFZX ) 8TB",
+      "price": "$265"
+    },
+    {
+      "id": 110,
+      "product": "WD REDNAS HARDDRIVE 3.55400rpm 128MB( WD100EFZX ) 10TB",
+      "price": "$339"
+    },
+    {
+      "id": 111,
+      "product": "WD RED PRO3.57200rpm 128MB SATA III 6Gb/s ( WD2002FFSX ) 2TB",
+      "price": "$129"
+    },
+    {
+      "id": 112,
+      "product": "WD RED PRO3.57200rpm 128MB SATA III 6Gb/s ( WD4002FFWX ) 4TB",
+      "price": "$185"
+    },
+    {
+      "id": 113,
+      "product": "WD RED PRO3.57200rpm 128MB SATA III 6Gb/s ( WD6002FFWX ) 6TB",
+      "price": "$249"
+    },
+    {
+      "id": 114,
+      "product": "WD RED PRO3.57200rpm 128MB SATA III 6Gb/s ( WD8001FFWX ) 8TB",
+      "price": "$305"
+    },
+    {
+      "id": 115,
+      "product": "WD RED PRO3.57200rpm 128MB SATA III 6Gb/s ( WD101KFBX ) 10TB",
+      "price": "$459"
+    },
+    {
+      "id": 116,
+      "product": "WD ULTRA STAR 3.5 7200rpm 128MB 512N SE(HUS722T1TALA604) 1TB",
+      "price": "$95"
+    },
+    {
+      "id": 117,
+      "product": "WD ULTRA STAR 3.5 7200rpm 128MB 512N SE(HUS722T2TALA604) 2TB",
+      "price": "$125"
+    },
+    {
+      "id": 118,
+      "product": "WD ULTRA STAR 3.5 7200rpm 256MB 512N SE(HUS722T4TALA604) 4TB",
+      "price": "$209"
+    },
+    {
+      "id": 119,
+      "product": "WD ULTRA STAR 3.5 7200rpm 256MB 512N SE(HUS722T6TALA604) 6TB",
+      "price": "$275"
+    },
+    {
+      "id": 120,
+      "product": "WD ULTRA STAR 3.5 7200rpm 256MB 512N SE(HUS722T8TALA604) 8TB",
+      "price": "$310"
+    },
+    {
+      "id": 121,
+      "product": "WD ULTRA STAR 3.5 7200rpm 256MB 512N SEHUS722T10TALA60410TB",
+      "price": "$355"
+    },
+    {
+      "id": 122,
+      "product": "WD ULTRA STAR 3.5 7200rpm 256MB 512N SEHUH721212ALE604 12TB",
+      "price": "$539"
+    },
+    {
+      "id": 123,
+      "product": "WDBLACK 3.5 7200rpm 64MB SATA III 6Gb/s ( WD1003FZEX ) 1TB",
+      "price": "$80"
+    },
+    {
+      "id": 124,
+      "product": "WDBLACK 3.5 7200rpm 64MB SATA III 6Gb/s ( WD2003FZEX ) 2TB",
+      "price": "$139"
+    },
+    {
+      "id": 125,
+      "product": "WDBLACK 3.5 7200rpm 256MB SATA III 6Gb/s ( WD4003FZEX ) 4TB",
+      "price": "$209"
+    },
+    {
+      "id": 126,
+      "product": "WDBLACK 3.5 7200rpm 256MB SATA III 6Gb/s ( WD6001FZWX ) 6TB",
+      "price": "$275"
+    },
+    {
+      "id": 127,
+      "product": "WDBLACK 3.5 7200rpm 256MB SATA III 6Gb/s ( WD6001FZWX ) 6TB",
+      "price": "$275"
+    }
+  ]
+}
