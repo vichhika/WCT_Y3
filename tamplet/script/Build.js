@@ -47,12 +47,17 @@ $(".btnNextShop").click((me) => {
 
 //improve code by leang
 $(".btnNext").click(displayCon = () => {
+    window.scrollTo(0,0)
     $('#pcConponent').empty();
     switch(currentConponent.name){
     default : {currentConponent.name = "CPU",currentConponent.setCon = currentConponent.shop.cpu}  break
     case 'CPU' : {currentConponent.name = "RAM",currentConponent.setCon = currentConponent.shop.ram} break
     case 'RAM' : {currentConponent.name = "Storage",currentConponent.setCon = currentConponent.shop.harddisk} break
-    case 'Storage' : window.location.href = "/tamplet/html/resultPage.html"; 
+    case 'Storage' : {currentConponent.name = "motherboard",currentConponent.setCon = currentConponent.shop.motherboard} break
+    case 'motherboard' : {currentConponent.name = "power",currentConponent.setCon = currentConponent.shop.power} break
+    case 'power' : {currentConponent.name = "case",currentConponent.setCon = currentConponent.shop.case} break
+    case 'case' : {currentConponent.name = "vga",currentConponent.setCon = currentConponent.shop.vga} break
+    case 'vga' : window.location.href = "/tamplet/html/resultPage.html"; break
     }
     $('#conponentTitle').text(currentConponent.name);
     for(con of currentConponent.setCon) {
@@ -67,7 +72,6 @@ $(".btnNext").click(displayCon = () => {
             '</tr>'
         )
     }
-    window.scrollTo(0,0)
 });
 
 function add(id,Comp,Model,Price,unitID){
