@@ -63,6 +63,7 @@ $(".btnNext").click(displayCon = () => {
                 `<td><button id=${"addBtn"+con.id} class="btn btn-primary px-5" type="button" onclick="add('${currentConponent.name}','${con.product}','${con.price}')">Add</button></td>`+            '</tr>'
         )
     }
+    window.scrollTo(0,0)
 });
 
 function add(Comp,Model,Price){
