@@ -1,7 +1,8 @@
 body{
-    background-image: url(./../img/fox_stone_fire_paper_figures_93387_3840x2400@2x.jpg);
+   
     
     background-size: 100%;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -35,16 +36,48 @@ body{
 }
 
 .jumbotron {
-    opacity:90%;
-    background-color: rgb(0,0,0,0.55);
+    opacity:100%;
+    background-color: rgba(0, 0, 0, 0.507);
     
 }
 
 .jumbotron img{
-   shape-image-threshold: 1;
+   shape-image-threshold:1;
    
 }
 
 #builder{
     border-radius: 20px;
 }
+
+.carousel-indicators {
+    position: absolute;
+    right: 0;
+    bottom: 90px;
+    left: 0;
+    z-index: 15;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+}
+
+.jumbotron {
+    padding: 2rem 2rem;
+   
+}
+
+.carousel-caption{
+    margin-bottom: 10rem;
+    
+}
+
+
+
+
