@@ -105,13 +105,14 @@ function add(id,shop,Comp,Model,Price,unitID){
 
 function remove(id,unitID){
     let storage = JSON.parse(sessionStorage.getItem("myBuild"));
-        if (storage.length != 0 && storage[id].unit != 0){
+    let idx = storage.indexOf(storage.find(comp => comp.id === id));
+        if (storage.length != 0 && storage[idx].unit != 0){
             /*Decrement unit*/
-            storage[id].unit = storage[id].unit - 1;
+            storage[idx].unit = storage[idx].unit - 1;
             /*update unit value on display unit*/
-            $("#"+unitID).html(storage[id].unit);
-            if (storage[id].unit == 0){
-                storage.splice(id,1);
+            $("#"+unitID).html(storage[idx].unit);
+            if (storage[idx].unit == 0){
+                storage.splice(idx,1);
                 mybuild = storage;
             }
             sessionStorage.setItem("myBuild",JSON.stringify(storage));
