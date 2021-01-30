@@ -25,3 +25,7 @@ body{
 .tableResult{
     color: black;
 }
+
+.table td, .table th {
+    vertical-align: middle;
+}
