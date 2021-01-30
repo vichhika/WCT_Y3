@@ -109,6 +109,7 @@ function remove(id,unitID){
         if (storage.length != 0 && storage[idx].unit != 0){
             /*Decrement unit*/
             storage[idx].unit = storage[idx].unit - 1;
+            mybuild = storage;
             /*update unit value on display unit*/
             $("#"+unitID).html(storage[idx].unit);
             if (storage[idx].unit == 0){
