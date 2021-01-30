@@ -10,8 +10,8 @@
 <body>
 
    <!-- navbar -->
-   <nav class="navbar navbar-expand-lg" style="background-color: rgba(0, 0, 0, 0.705) ">
-    <a class="navbar-brand text-light" style="margin-left:4rem;" href="./../html/home.html">REAB PC</a>
+   <nav class="navbar navbar-expand-lg" style="background-color: rgba(0, 0, 0, 1) ">
+    <a class="navbar-brand text-light" style="margin-left:4rem; padding: .5rem 1rem;" href="./../html/home.html">REAB PC</a>
     <!-- navitem -->
     <ul class="nav">
         <li class="nav-item">
@@ -33,55 +33,57 @@
   </nav>
 
     <!-- jumbotron -->
-    <h5 class="text-light text-center mt-5 mb-5"><b>Result</b></h5>
-    
-    <div class="d-flex" style="margin-left: 5rem; margin-right: 6rem;">
-        <!--Preview Component-->
-        <!-- <div class="container pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.781); width: 18.75rem; margin: auto; border-radius: 10px;">
-          <img src="https://cdn.alzashop.com/ImgW.ashx?fd=f3&cd=BO535i" class="rounded mx-lg-auto mb-lg-4 d-block" alt="..." style="width: 50%; height: auto;">
-          <div class="Specs text-light">
-            <h5 class="font-weight-bold">CPU</h5>
-            <h6 class="font-weight-bold">Intel Core i9 X-series</h6>
-            <ul style="font-size: 9.5px;">
-              <li>
-                <p>20 MB Intel Smart Cache cache</p>
-              </li>
-              <li>
-                <p>10 Core</p>
-              </li>
-              <li>
-                <p>20 Thread</p>
-              </li>
-              <li>
-                <p>5.30 GHz Max Turbo Frequency</p>
-              </li>
-              <li>
-                <p>K - Unlocked</p>
-              </li>
-              <li>
-                <p>10th Generation</p>
-              </li>
-            </ul>
-          </div>
-        </div> -->
+    <div style="background-color: rgba(0, 0, 0, 0.719); margin-left: 6rem; margin-right: 6rem;">
+      <h5 class="text-light text-center mt-5 pt-5 mb-5"><b>Result</b></h5>
+      
+      <div class="d-flex" style="margin-left: 5rem; margin-right: 6rem;">
+          <!--Preview Component-->
+          <!-- <div class="container pt-4 pb-2" style="background-color: rgba(0, 0, 0, 0.781); width: 18.75rem; margin: auto; border-radius: 10px;">
+            <img src="https://cdn.alzashop.com/ImgW.ashx?fd=f3&cd=BO535i" class="rounded mx-lg-auto mb-lg-4 d-block" alt="..." style="width: 50%; height: auto;">
+            <div class="Specs text-light">
+              <h5 class="font-weight-bold">CPU</h5>
+              <h6 class="font-weight-bold">Intel Core i9 X-series</h6>
+              <ul style="font-size: 9.5px;">
+                <li>
+                  <p>20 MB Intel Smart Cache cache</p>
+                </li>
+                <li>
+                  <p>10 Core</p>
+                </li>
+                <li>
+                  <p>20 Thread</p>
+                </li>
+                <li>
+                  <p>5.30 GHz Max Turbo Frequency</p>
+                </li>
+                <li>
+                  <p>K - Unlocked</p>
+                </li>
+                <li>
+                  <p>10th Generation</p>
+                </li>
+              </ul>
+            </div>
+          </div> -->
 
-        <!--Table Result-->
-        <div class="container tableResult pr-0" style="margin: auto;">
-          <table class="table table-hover text-light" style="background-color: rgba(0, 0, 0, 0.671);">
-              <thead class="text-center">
-                <tr>
-                  <th scope="col">Component</th>
-                  <th scope="col">Model</th>
-                  <th scope="col">Price</th>
-                </tr>
-              </thead>
-              <tbody id="resCom" class="text-center"><!--resCom mean result component--></tbody>
-            </table>
+          <!--Table Result-->
+          <div class="container tableResult pr-0" style="margin: auto;">
+            <table class="table table-hover text-light" style="background-color: rgba(0, 0, 0, 0.671);">
+                <thead class="text-center">
+                  <tr>
+                    <th scope="col">Component</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Unit</th>
+                  </tr>
+                </thead>
+                <tbody id="resCom" class="text-center"><!--resCom mean result component--></tbody>
+              </table>
+        </div>
       </div>
-    </div>
 
-    <h5 class="text-light text-center mt-5 mb-5">Estimate Price by Shop</h5>
-    <!-- <div class="container-fluid">
+      <h5 class="text-light text-center mt-5 mb-5">Estimate Price by Shop</h5>
+      <!-- <div class="container-fluid">
 
     </div> -->
     <div class="tableResult" style="margin: auto; margin-left: 5rem; margin-right: 6rem;">
@@ -89,34 +91,22 @@
       <table class="table table-hover text-light" style="background-color: rgba(0, 0, 0, 0.671);">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Shop</th>
               <th scope="col">Total Price</th>
               <th scope="col">Saving</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Vtech</td>
-              <td>$1000</td>
-              <td>+ $10</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Chantra</td>
-              <td>$1200</td>
-              <td>- $210</td>
-            </tr>
+          <tbody class="alterShop">
+            
           </tbody>
         </table>
   </div>
-  <div class="d-flex justify-content-between" style="margin-left: 5rem; margin-right: 6rem; margin-bottom: 10px;">
-    <button type="button" class="btn btn-danger" style="width: 6.25rem;">Back</button>  
+  <div class="d-flex justify-content-center" style="margin-left: 5rem; margin-right: 6rem; margin-bottom: 10px;">
+    <!-- <button type="button" class="btn btn-danger" style="width: 6.25rem;">Back</button>   -->
     <button type="button" class="btn btn-success" style="width: 6.25rem;">Print</button>  
   </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="/tamplet/script/resultPage.js"></script>
 </body>
