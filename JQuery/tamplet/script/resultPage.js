@@ -64,7 +64,7 @@ function estimate(){
                 $('.alterShop').append('<tr class="anotherShop">'+
                 '<td>'+shop+'</td>'+
                 '<td>'+'$'+alterTotalPrice+'</td>'+
-                '<td>'+saving+'</td>'+
+                '<td>'+saving+' $'+'</td>'+
                 ' </tr> ')
             }
 
