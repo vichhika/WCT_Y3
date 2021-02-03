@@ -1,5 +1,5 @@
 import React from "react";
-import './../../Css/tamplet.css'
+
 
 function Jumbotron() {
   return (

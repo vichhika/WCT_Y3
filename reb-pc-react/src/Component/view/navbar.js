@@ -1,27 +1,27 @@
 import React from "react";
-import './../../Css/tamplet.css'
+import {Link} from 'react-router-dom'
 
 function Navbar() {
 
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top">
-        <a className="navbar-brand text-light" href="home.html">REAB PC</a>
+    <nav className="navbar navbar-expand-lg">
+        <Link className="navbar-brand" to="/">REAB PC</Link>
         <ul className="nav collapse">
             <li className="nav-item">
-              <a className="nav-link active text-light" href="home.html">Home <span className="sr-only">(current)</span></a>
+              <Link className="nav-link active" to="/">Home <span className="sr-only">(current)</span></Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link text-light" href="#">Product</a>
+              <Link className="nav-link" to="/product">Product</Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link active text-light" href="./../html/aboutUs.html">About Us</a>
+              <Link className="nav-link active" to="/aboutUs">About Us</Link>
             </li>
 
             <li className="nav-item">
-                <a className="nav-link active text-light" href="./../html/donate.html">Donate</a>
+                <Link className="nav-link active" to="/donate">Donate</Link>
             </li>
         </ul>  
     </nav>
