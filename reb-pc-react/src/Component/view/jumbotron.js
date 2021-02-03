@@ -10,7 +10,7 @@ function Jumbotron() {
         </h1>
         <p className="lead mb-4">
           Reab PC is a platform that provide a user more easier to build 
-          PC <br></br>,estimate price, and PC shop recommandation.
+          PC,<br/>estimate price, and PC shop recommandation.
         </p>
         <div className="mb-4">
           <button
