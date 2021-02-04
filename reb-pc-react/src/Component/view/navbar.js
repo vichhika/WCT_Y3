@@ -1,11 +1,11 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-
+import './../../Css/navbar.scss'
 function Navbar() {
 
 
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="myNav navbar navbar-expand-lg text-light fixed-top">
         <Link className="navbar-brand" to="/">REAB PC</Link>
         <ul className="nav collapse">
             <li className="nav-item">

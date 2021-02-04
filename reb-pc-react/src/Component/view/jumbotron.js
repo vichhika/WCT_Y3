@@ -1,22 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./../../Css/tamplet.css";
+import './../../Css/jumbotron.scss'
 
 function Jumbotron() {
   return (
-    <div className="jumbotron jumbotron-fluid d-flex align-content-center my-0">
-      <div className="container  my-auto content">
+    <div className="jumbotron jumbotron-fluid d-flex align-content-center">
+      <div className="conatiner my-auto content">
         <h1 className="mb-4 ">
           <b>Welcome !</b>
         </h1>
         <p className="lead mb-4">
-<<<<<<< HEAD
           Reab PC is a platform that provide a user more easier to build 
           PC,<br/>estimate price, and PC shop recommandation.
-=======
-          Reab PC is a platform that provide a user more easier to build PC{" "}
-          <br></br>,estimate price, and PC shop recommandation.
->>>>>>> main
         </p>
         <div className="mb-4">
           <Link to="/build">

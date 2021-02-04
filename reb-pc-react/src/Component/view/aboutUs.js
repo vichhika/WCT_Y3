@@ -1,5 +1,4 @@
 import React from "react";
-import './../../Css/aboutUsStyle.css'
 
 function AboutUs() {
     return(

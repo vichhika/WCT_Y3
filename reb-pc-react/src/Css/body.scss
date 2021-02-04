@@ -1,0 +1,14 @@
+
+$img: "https://www.turn-on.de/media/cache/article_images/media/cms/2019/09/intel-amd-motherboard-mainboard-prozessor-chip.jpg?763189";
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    background-image: url($img);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
