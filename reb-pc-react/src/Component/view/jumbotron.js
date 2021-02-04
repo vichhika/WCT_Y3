@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import "./../../Css/tamplet.css";
 
 function Jumbotron() {
   return (
@@ -9,17 +10,22 @@ function Jumbotron() {
           <b>Welcome !</b>
         </h1>
         <p className="lead mb-4">
+<<<<<<< HEAD
           Reab PC is a platform that provide a user more easier to build 
           PC,<br/>estimate price, and PC shop recommandation.
+=======
+          Reab PC is a platform that provide a user more easier to build PC{" "}
+          <br></br>,estimate price, and PC shop recommandation.
+>>>>>>> main
         </p>
         <div className="mb-4">
-          <button
-            id="startBtn"
-            type="button m-5"
-            className="btn btn-primary btn-sm my-2 px-4 py-2"
-          >
-            Start Build
-          </button>
+          <Link to="/build">
+            <button
+              id="startBtn"
+              type="button m-5"
+              className="btn btn-primary btn-sm my-2 px-4 py-2"
+            >Start Build</button>
+          </Link>
         </div>
       </div>
     </div>
