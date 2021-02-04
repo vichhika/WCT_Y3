@@ -2,17 +2,17 @@ import React from "react";
 
 function Donate() {
   return (
-    <div class="jumbotron jumbotron-fluid d-flex align-content-center my-0">
-    <div class="container  my-auto content">
+    <div className="jumbotron jumbotron-fluid d-flex align-content-center my-0">
+    <div className="container  my-auto content">
       
       <p>
         
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
           Donate us
         </button>
       </p>
-      <div class="collapse " id="collapseExample">
-        <div class="card card-body ">
+      <div className="collapse " id="collapseExample">
+        <div className="card card-body ">
             <img src="./../img/aba.png" style={{width:'265px;',height:'50%;'}}></img>
             <p>XXXXXXXXXXX</p>
             <p>Thank you</p>
