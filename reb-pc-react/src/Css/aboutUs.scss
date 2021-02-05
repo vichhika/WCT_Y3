@@ -1,0 +1,35 @@
+.bannerInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: white;
+    .container{
+        display: flex;
+        justify-content: space-around;
+        h3{
+            padding-top: 50px;
+        }
+        .detailInfo{
+            img{
+                margin-bottom: 15px;
+                width: 50%;
+                height: auto;
+                border-radius: 50%;
+            }
+            .career{
+                font-weight: bold;
+                color: gray;
+                font-size: 13px;
+            }
+            .graduated{
+                font-weight: bold;
+                color: gray;
+                font-size: 13px;
+            }
+            text-align: center;
+        }
+        padding: 3.75rem;
+    }
+}
