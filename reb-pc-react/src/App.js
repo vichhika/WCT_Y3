@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";
-
+import Product from "./Component/view/product";
 function App() {
   return (
     <div className="App" style={{ height: "100%" }}>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/Blog" component={Blog} />
         <Route path="/donate" component={Donate} />
         <Route path="/build" component={Build} />
+        <Route path="/product" component={Product} />
       </div>
     </div>
   );
