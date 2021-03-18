@@ -2,7 +2,7 @@ import React from "react";
 import "./../../../Css/build.scss";
 function Build() {
   return (
-    <div>
+    <div className="p-Build">
       <div class="container d-flex justify-content-center text-center">
         <h2 class="card-title">Build Custom PC</h2>
         <p class="card-text mt-3">
