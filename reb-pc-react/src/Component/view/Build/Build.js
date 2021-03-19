@@ -1,5 +1,7 @@
 import React from "react";
 import "./../../../Css/build.scss";
+import "./ProductList"
+import ProductList from "./ProductList";
 function Build() {
   return (
     <div className="p-Build">
@@ -13,7 +15,7 @@ function Build() {
           <img
             src="https://www.freeiconspng.com/thumbs/microprocessor-icon/microprocessor-icon-6.png"
             alt="CPU"
-            // style=border-color: "green"
+          // style=border-color: "green"
           />
 
           <div class="progress">
@@ -128,7 +130,8 @@ function Build() {
             alt="CPU"
           />
         </div>
-      </div>
+        <ProductList />
+      </div>     
     </div>
   );
 }
