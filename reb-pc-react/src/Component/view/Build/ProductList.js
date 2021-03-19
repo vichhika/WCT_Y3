@@ -1,6 +1,7 @@
 import React from "react"
 import ListSize from "./ListSize"
 import ListControl from"./ListControl"
+import ItemList from"./ItemList"
 function ProductList() {
     return (
         <div class="card mt-5">
@@ -18,10 +19,16 @@ function ProductList() {
                             placeholder="Search"
                             aria-label="Search"
                         />
+                           
                         <button class="btn btn-light" type="button">
                             <i class="far fa-search"></i>
                         </button>
                     </form>
+                </div>
+
+                <div>
+                    <ItemList/>
+
                 </div>
 
                 <div class="below-bar d-flex">

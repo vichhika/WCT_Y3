@@ -129,8 +129,12 @@ function Build() {
             src="https://img.pngio.com/computer-screen-icon-png-239841-free-icons-library-computer-monitor-icon-png-1600_1600.jpg"
             alt="CPU"
           />
+      
         </div>
+
         <ProductList />
+        
+          
       </div>     
     </div>
   );
