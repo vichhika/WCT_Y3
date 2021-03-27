@@ -11,9 +11,8 @@ function ProductList() {
 
     let btnNext = "btn btn-success";
     let btnBack = "btn btn-secondary";
-    btnBack += contextState.component == 0 ? " d-none" : "";
-    btnNext += contextState.component == 7 ? " d-none " : "";
-
+    btnBack += contextState.component === 0 ? " d-none" : "";
+    btnNext += contextState.component === 7 ? " d-none " : "";
     const nextStep = () => {
         if(contextState.component < 7){
             updatContext({
@@ -39,7 +38,7 @@ function ProductList() {
                 <h6 id="step_title">{conponent[contextState.component]}</h6>
             </div>
 
-            <div className="card-body">
+            <div className="card-body pt-0">
                 <div className="filter-bar d-flex">
                     <ListSize />
                     <form className="d-flex">
