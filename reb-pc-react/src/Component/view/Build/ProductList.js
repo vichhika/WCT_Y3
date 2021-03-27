@@ -9,6 +9,11 @@ function ProductList() {
     const {contextState,updatContext} = useContext(buildContext)
     const conponent = ["CPU", "Motherboard", "RAM", "Hard Drive", "GPU", "Power supply", "Case", "Monitor"]
 
+    let btnNext = "btn btn-success";
+    let btnBack = "btn btn-secondary";
+    btnBack += contextState.component == 0 ? " d-none" : "";
+    btnNext += contextState.component == 7 ? " d-none " : "";
+
     const nextStep = () => {
         if(contextState.component < 7){
             updatContext({
@@ -25,6 +30,7 @@ function ProductList() {
                 payload: contextState.component - 1
             })
         }
+        
     }
 
     return (
@@ -65,8 +71,8 @@ function ProductList() {
             </div>
 
             <div className="card-footer">
-                <button type="button" onClick = {previouStep} className="btn btn-secondary">back</button>
-                <button type="button" onClick = {nextStep} className="btn btn-success">Next</button>
+                <button type="button" onClick = {previouStep} className={btnBack}>back</button>
+                <button type="button" onClick = {nextStep} className={btnNext}>Next</button>
             </div>
 
         </div>

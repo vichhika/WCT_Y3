@@ -50,7 +50,7 @@
                     }
                 }
                 .below-bar {
-                    justify-content: space-between;
+                    justify-content: space-around;
                     .product_qty_instock {
                         margin-top: 6px;
                         color: #6c757d;
@@ -65,7 +65,7 @@
             }
             .card-footer {
                 display: flex;
-                justify-content: space-between;
+                justify-content: space-around;
                 background-color: white;
                 border: none;
                 padding: 16px;
