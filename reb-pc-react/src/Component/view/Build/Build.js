@@ -2,6 +2,7 @@ import React from "react";
 import "./../../../Css/build.scss";
 import "./ProductList"
 import ProductList from "./ProductList";
+
 function Build() {
   return (
     <div className="p-Build">
@@ -12,12 +13,12 @@ function Build() {
         </p>
 
         <div class="progressBar d-flex flex-row justify-content-center mt-3">
+          
           <img
-            src="https://www.freeiconspng.com/thumbs/microprocessor-icon/microprocessor-icon-6.png"
+            src="https://www.flaticon.com/svg/vstatic/svg/911/911514.svg?token=exp=1616753708~hmac=6e3c22309b57e3769b3afd1000cb8cbc"
             alt="CPU"
-          // style=border-color: "green"
+            style={{borderColor: "green"}}
           />
-
           <div class="progress">
             <div
               class="progress-bar bg-success"
@@ -33,7 +34,6 @@ function Build() {
             src="https://img.icons8.com/carbon-copy/2x/motherboard.png"
             alt="Motherboard"
           />
-
           <div class="progress">
             <div
               class="progress-bar bg-success"
@@ -129,13 +129,13 @@ function Build() {
             src="https://img.pngio.com/computer-screen-icon-png-239841-free-icons-library-computer-monitor-icon-png-1600_1600.jpg"
             alt="CPU"
           />
-      
+
         </div>
 
         <ProductList />
-        
-          
-      </div>     
+
+
+      </div>
     </div>
   );
 }
