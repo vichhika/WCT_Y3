@@ -1,0 +1,80 @@
+.p-Build {
+    height: auto;
+    background-color: white;
+    background-size: 100%;
+    .container {
+        width: fit-content;
+        flex-direction: column;
+        padding: 20px;
+        .progressBar {
+            align-items: center;
+            img {
+                width: 50px;
+                height: 50px;
+                position: relative;
+                border: 5px solid #ccc;
+                border-radius: 50%;
+            }
+            .progress {
+                background-size: cover;
+                width: 80px;
+                height: 5px;
+            }
+        }
+        .card {
+            .card-header {
+                background-color: white;
+                border: none;
+                padding: 16px;
+                #step_title {
+                    text-align: start;
+                    margin: 0;
+                }
+            }
+            .card-body {
+                .filter-bar {
+                    justify-content: space-between;
+                    .dropList {
+                        .dropList-menu {
+                            list-style-type: none;
+                            display: none;
+                            width: fit-content;
+                            position: absolute;
+                            background-color: #f1f1f1;
+                        }
+                        &:hover {
+                            .dropList-menu {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+                .below-bar {
+                    justify-content: space-between;
+                    .product_qty_instock {
+                        margin-top: 6px;
+                        color: #6c757d;
+                    }
+                    .btn-group {
+                        .btn-outline-secondary {
+                            color: #6c757d transparent;
+                            border-color: white;
+                        }
+                    }
+                }
+            }
+            .card-footer {
+                display: flex;
+                justify-content: space-between;
+                background-color: white;
+                border: none;
+                padding: 16px;
+                .btn {
+                    width: 100px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
+

@@ -1,8 +1,8 @@
-import logo from "./logo.svg";
+
 import "./App.css";
 import Jumbotron from "./Component/view/jumbotron.js";
 import Navbar from "./Component/view/navbar.js";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";
