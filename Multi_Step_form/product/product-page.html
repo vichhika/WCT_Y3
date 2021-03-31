@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <title>
+            Product
+        </title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="product_page.css">
+        <link rel="stylesheet" href="./control-bar_css/control-bar.css">
+        <link rel="stylesheet" href="./Filter-side-bar/filter.css">
+        <!-- <link rel="stylesheet" href="./product_css/productAsRow.css"> -->
+        <link rel="stylesheet" href="./product_css/productAsGrid.css">
+        <script src="https://raw.githack.com/vichhika/font_awesome_pro/main/font.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <main>
+
+            <div class="conatiner-fluid d-flex">
+                
+                <!--Filter Component-->
+                <div class="filter">
+                    <h3 class="filter_title">Shop by</h3>
+
+                    <hr>
+
+                    <h5 class="specific_filter_tile"><b>CPU</b></h5>
+
+                    <h6 class="sub_specific_filter_title">INTEL</h6>
+                        <!---Check box for cpu intel-->
+                        <div class="form-check" style="padding-left: 100px;">
+                            <input class="form-check-input" type="checkbox" value="" id="inteli3">
+                            <label class="form-check-label" for="inteli3" style="font-size: 15px;">
+                            CORE i3
+                            </label>
+                        </div>
+                        <div class="form-check" style="padding-left: 100px;">
+                            <input class="form-check-input" type="checkbox" value="" id="inteli5" checked>
+                            <label class="form-check-label" for="inteli5" style="font-size: 15px;">
+                            CORE i5
+                            </label>
+                        </div>
+                        <div class="form-check" style="padding-left: 100px;">
+                            <input class="form-check-input" type="checkbox" value="" id="inteli7" checked>
+                            <label class="form-check-label" for="inteli7" style="font-size: 15px;">
+                            CORE i7
+                            </label>
+                        </div>
+
+                    <h6 class="sub_specific_filter_title">AMD</h6>
+                        <!---Check box for AMD intel-->
+                        <div class="form-check" style="padding-left: 100px;">
+                            <input class="form-check-input" type="checkbox" value="" id="amd1">
+                            <label class="form-check-label" for="amd1" style="font-size: 15px;">
+                            AMD...
+                            </label>
+                        </div>
+                        <div class="form-check" style="padding-left: 100px;">
+                            <input class="form-check-input" type="checkbox" value="" id="amd2" checked>
+                            <label class="form-check-label" for="amd2" style="font-size: 15px;">
+                            AMD...
+                            </label>
+                        </div>
+                </div>
+
+                <div class="products container">
+                    <h4><b>Computer Custom</b></h4>
+
+                    <!--Control-bar Component-->
+                    <div class="control-bar d-flex justify-content-between">
+                        <div class="displayOption d-flex align-self-center">
+                            <i class="fas fa-th" style="margin-left: 16px; margin-right: 16px;"></i>
+                            <i class="far fa-bars" style="margin-right: 16px;"></i>
+                            <i class="far fa-list" style="margin-right: 16px;"></i>
+                        </div>
+                        <div class="sortOption">
+                            <div class="sortIn input-group-sm">
+                                <select class="custom-select" id="sortSelection">
+                                    <option selected>Default Sort</option>
+                                    <option value="1">lower to upper</option>
+                                    <option value="2">upper to lower</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+    
+                    <!-- Product Component-->
+                    <!-- <div class="product row">
+                        <div class="product-img">
+                            <img src="https://desktop.goldonecomputer.com/image/cache/catalog/products/Case/JESM%20BT/11-400x400.jpg">
+                        </div>
+                        <div class="product-detail d-flex flex-column">
+                            <h5 class="description">Intel Pentium G5400 3.7GHz 
+                                                    Deepcool CK-11508 115x <br>
+                                                    DDR4 4GB 2666 MHz <br>
+                                                    GX1 120GB SATA III <br>
+                                                    ASUS H310M-R R2.0 DDR4 1151 <br> 
+                                                    Spire OEMJ1522B-500Z-E12</h5>
+                            <h6 class="price"><b>$29.00</b></h6>
+                            <button class="detailBtn btn btn-primary btn-sm">Detail</button>    
+                        </div>
+                    </div> -->
+                    
+
+                    <div class="Grid-display row">
+                        <!-- Product component as Grid -->
+                        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                            <div class="product d-flex flex-column">
+                                <img src="https://desktop.goldonecomputer.com/image/cache/catalog/products/Case/JESM%20BT/11-400x400.jpg">
+                                <br>
+                                <h5 class="description">Aigo BT Mini( Micro ATX MB / Front USB 3.0 )</h5>  
+                                <h6 class="price">$29.00</h6>
+                                <button class="detailBtn btn btn-primary btn-sm">Detail</button>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                </div>
+
+            </div>
+        </main>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    </body>
+
+</html>
+
+
+<!--Below code is just a junk code-->
+
+<!--Product Component for Mobile phone screen-->
+
+<!-- <div class="product row" style="width: auto; border: 1px solid;padding: 9px;border-color: #cccccc;margin: auto;">
+    <div class="product-img">
+        <img src="https://desktop.goldonecomputer.com/image/cache/catalog/products/Case/JESM%20BT/11-400x400.jpg" width="80px" height="auto">
+    </div>
+    <div class="product-detail d-flex flex-column" style="width: 70%;">
+        <h5 class="description" style="font-size: 10px;">Intel Pentium G5400 3.7GHz 
+                                Deepcool CK-11508 115x <br>
+                                DDR4 4GB 2666 MHz <br>
+                                GX1 120GB SATA III <br>
+                                ASUS H310M-R R2.0 DDR4 1151 <br> 
+                                Spire OEMJ1522B-500Z-E12</h5>
+        <h6 class="price" style="color: red; font-size: 10px;"><b>$29.00</b></h6>
+        <button class="detailBtn btn btn-primary btn-sm" style="font-size: 10px; width: auto;">Detail</button>    
+    </div>
+</div> -->
+
+<!--Product Component for medium and large screen: display as 1 row-->
+
+<!-- <div class="product row" style="width: auto; border: 1px solid; padding: 16px; border-color: #cccccc; margin: 0;">
+    <div class="product-img">
+        <img src="https://desktop.goldonecomputer.com/image/cache/catalog/products/Case/JESM%20BT/11-400x400.jpg" width="160px" height="auto" style="margin-left: 20px ; margin-right: 20px;">
+    </div>
+    <div class="product-detail d-flex flex-column">
+        <h5 class="description" style="font-size: 18px;">Intel Pentium G5400 3.7GHz 
+                                Deepcool CK-11508 115x <br>
+                                DDR4 4GB 2666 MHz <br>
+                                GX1 120GB SATA III <br>
+                                ASUS H310M-R R2.0 DDR4 1151 <br> 
+                                Spire OEMJ1522B-500Z-E12</h5>
+        <h6 class="price" style="color: red; font-size: 18px;"><b>$29.00</b></h6>
+        <button class="detailBtn btn btn-primary btn-sm" style="font-size: 15px;">Detail</button>    
+    </div>
+</div> -->

@@ -1,0 +1,14 @@
+body .navigation-bar{
+    background-color: #141d26c5;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+@media (max-width: 823px) {
+    
+    body .navigation-bar{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+}   
