@@ -1,0 +1,54 @@
+.bannerInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  background-color: white;
+}
+
+.bannerInfo .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 3.75rem;
+}
+
+.bannerInfo .container h3 {
+  padding-top: 50px;
+}
+
+.bannerInfo .container .detailInfo {
+  text-align: center;
+}
+
+.bannerInfo .container .detailInfo img {
+  margin-bottom: 15px;
+  width: 50%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.bannerInfo .container .detailInfo .career {
+  font-weight: bold;
+  color: gray;
+  font-size: 13px;
+}
+
+.bannerInfo .container .detailInfo .graduated {
+  font-weight: bold;
+  color: gray;
+  font-size: 13px;
+}
+/*# sourceMappingURL=aboutUs.css.map */
