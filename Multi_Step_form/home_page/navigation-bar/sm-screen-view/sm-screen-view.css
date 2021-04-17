@@ -1,0 +1,9 @@
+.sm-screen-view{
+    width: 100%;
+}
+
+@media (min-width: 824px){
+    .sm-screen-view{
+        display: none;
+    }
+}

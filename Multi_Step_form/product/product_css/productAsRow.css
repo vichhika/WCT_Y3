@@ -1,0 +1,71 @@
+.product{
+    width: auto; 
+    border: 1px solid; 
+    padding: 16px; 
+    border-color: #cccccc; 
+    margin: auto;
+}
+
+.product .product-img img{
+    /* desktop */
+    width: 160px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.product .product-detail{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product .product-detail .description{
+    /* desktop */
+    font-size: 18px;
+}
+
+.product .product-detail .price{
+    /* desktop */
+    font-size: 20px;
+    color: red;
+}
+.product .product-detail .detailBtn{
+    /* desktop */
+    font-size: 15px;
+    width: auto;
+}
+
+/* Extra small devices (portrait phones, less than 1024px) */
+@media (max-width: 1024px) {
+    /*disable filter side-bar*/
+    body main .conatiner-fluid .filter{
+        display: none;
+    }
+    /*Remove margin since it is already small*/
+    body main .conatiner-fluid{
+        margin: 0px;
+    }
+    
+    /*Product Edit*/
+    .product{
+        padding: 9px;
+    }
+    .product .product-img img{
+        width: 80px;
+        height: auto;
+        margin-right: 0 ;
+    }
+
+    .product .product-detail .description{
+        font-size: 10px;
+    }
+
+    .product .product-detail .price{
+        font-size: 10px;
+    }
+
+    .product .product-detail .detailBtn{
+        font-size: 10px;
+    }
+    
+}

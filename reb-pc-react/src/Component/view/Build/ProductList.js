@@ -9,10 +9,11 @@ function ProductList() {
     const {contextState,updatContext} = useContext(buildContext)
     const conponent = ["CPU", "Motherboard", "RAM", "Hard Drive", "GPU", "Power supply", "Case", "Monitor"]
 
-    let btnNext = "btn btn-success";
-    let btnBack = "btn btn-secondary";
-    btnBack += contextState.component === 0 ? " d-none" : "";
-    btnNext += contextState.component === 7 ? " d-none " : "";
+    let btnNextStyle = {visibility: "visible"};
+    let btnBackStyle = {visibility: "visible"};
+    btnNextStyle.visibility = contextState.component === 7 ? "hidden" : "visible";
+    btnBackStyle.visibility = contextState.component === 0 ? "hidden" : "visible";
+    
     const nextStep = () => {
         if(contextState.component < 7){
             updatContext({
@@ -62,7 +63,7 @@ function ProductList() {
 
                 <div className="below-bar d-flex">
                     <div className="product_qty_instock d-flex justify-content-center">
-                        <p className="mb-0">Showing 1 to 5 of 35 entries</p>
+                        <p className="mb-0">Showing 1 to {contextState.listSize} of 35 entries</p>
                     </div>
                     <ListControl />
                 </div>
@@ -70,14 +71,11 @@ function ProductList() {
             </div>
 
             <div className="card-footer">
-                <button type="button" onClick = {previouStep} className={btnBack}>back</button>
-                <button type="button" onClick = {nextStep} className={btnNext}>Next</button>
+                <button type="button" style={btnBackStyle} onClick = {previouStep} className="btn btn-secondary">back</button>
+                <button type="button" style={btnNextStyle} onClick = {nextStep} className="btn btn-success">Next</button>
             </div>
-
         </div>
-    );
-
-    
+    ); 
 }
 
 export default ProductList;

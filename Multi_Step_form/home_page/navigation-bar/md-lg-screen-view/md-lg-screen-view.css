@@ -1,0 +1,11 @@
+.md-lg-screen-view {
+    display: flex;
+    width: 100%; 
+    justify-content: space-between;
+}
+
+@media (max-width: 823px){
+    .md-lg-screen-view{
+        display: none;
+    }
+}
