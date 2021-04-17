@@ -1,0 +1,99 @@
+.p-Build {
+  height: auto;
+  background-color: white;
+  background-size: 100%;
+}
+
+.p-Build .container {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+}
+
+.p-Build .container .progressBar {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.p-Build .container .progressBar img {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border: 5px solid #ccc;
+  border-radius: 50%;
+}
+
+.p-Build .container .progressBar .progress {
+  background-size: cover;
+  width: 80px;
+  height: 5px;
+}
+
+.p-Build .container .card .card-header {
+  background-color: white;
+  border: none;
+  padding: 16px;
+}
+
+.p-Build .container .card .card-header #step_title {
+  text-align: start;
+  margin: 0;
+}
+
+.p-Build .container .card .card-body .filter-bar {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.p-Build .container .card .card-body .filter-bar .dropList .dropList-menu {
+  list-style-type: none;
+  display: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: absolute;
+  background-color: #f1f1f1;
+}
+
+.p-Build .container .card .card-body .filter-bar .dropList:hover .dropList-menu {
+  display: block;
+}
+
+.p-Build .container .card .card-body .below-bar {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.p-Build .container .card .card-body .below-bar .product_qty_instock {
+  margin-top: 6px;
+  color: #6c757d;
+}
+
+.p-Build .container .card .card-body .below-bar .btn-group .btn-outline-secondary {
+  color: #6c757d transparent;
+  border-color: white;
+}
+
+.p-Build .container .card .card-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: white;
+  border: none;
+  padding: 16px;
+}
+
+.p-Build .container .card .card-footer .btn {
+  width: 100px;
+  height: 40px;
+}
+/*# sourceMappingURL=build.css.map */
