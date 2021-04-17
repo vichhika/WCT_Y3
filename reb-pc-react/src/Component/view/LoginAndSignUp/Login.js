@@ -5,13 +5,13 @@ function Login() {
     return(
         
     
-        <div class="container">
+        <div class="container login">
        
         <div class="row">
             <div class="col-sm">
 
                 
-                <div class="card" style={{width:"20rem"}}>
+                <div class="card login" style={{width:"20rem"}}>
                     <form>
                         <h1>Log in</h1>
                         <div class="form-group" >

@@ -3,12 +3,10 @@ import  "./../../../Css/stylesignup.scss";
 
 function SignUp() {
     return(
-        <div class="container">
+    <div class="container signup">
        
         <div class="row">
-            <div class="col-sm">
-
-                
+            <div class="col-sm">               
                 <div class="card" style={{width:"20rem"}}>
                     <form>
                         <h1>Sign Up</h1>
@@ -33,15 +31,10 @@ function SignUp() {
                             <input type="checkbox" class="form-check-input" id="Check1"></input>
                             <label class="form-check-label" for="Check1">Check me out</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
-                        
-                        
+                        <button type="submit" class="btn btn-primary">Sign Up</button>                        
                     </form>
                 </div>
             </div>
-
-           
-
         </div>
 
     </div>
