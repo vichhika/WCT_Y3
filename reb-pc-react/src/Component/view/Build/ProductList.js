@@ -58,14 +58,13 @@ function ProductList() {
 
                 <div>
                     <ItemList />
-
                 </div>
 
                 <div className="below-bar d-flex">
                     <div className="product_qty_instock d-flex justify-content-center">
                         <p className="mb-0">Showing 1 to {contextState.listSize} of 35 entries</p>
                     </div>
-                    <ListControl />
+                    <ListControl/>
                 </div>
 
             </div>
