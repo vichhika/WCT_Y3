@@ -2,7 +2,8 @@ import React, { createContext, useReducer } from 'react'
 
 const initState = {
     component: 0,
-    listSize: 5
+    listSize: 5,
+    componentPayload: []
 }
 
 const buildContext = createContext(initState);
@@ -19,6 +20,12 @@ const actions = {
             ...state,
             listSize 
         }
+    },
+    setComponentPayload: (state,ComponentPayload) => {
+        return {
+            ...state,
+            ComponentPayload 
+        }
     }
 }
 
@@ -29,6 +36,9 @@ const buildReucer = (state,action) => {
             return {...state}
         case 'set_listSize':
             state = actions.setlistSize(state,action.payload)
+            return {...state}
+        case 'set_ComponentPayload':
+            state = actions.setComponentPayload(state,action.payload)
             return {...state}
         default:
     }

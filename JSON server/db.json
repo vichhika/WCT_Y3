@@ -1,0 +1,26 @@
+{
+    "cpu": [
+        {"name": "cpu"}
+    ],
+    "motherboard": [
+        {"name": "motherboard"}
+    ],
+    "memory": [
+        {"name": "memory"}
+    ],
+    "internal-hard-drive": [
+        {"name": "internal-hard-drive"}
+    ],
+    "video-card": [
+        {"name": "video-card"}
+    ],
+    "case": [
+        {"name": "case"}
+    ],
+    "power-supply": [
+        {"name": "power-supply"}
+    ],
+    "monitor": [
+        {"name": "monitor"}
+    ]
+}
