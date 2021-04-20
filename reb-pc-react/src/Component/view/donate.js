@@ -1,5 +1,6 @@
 import React from "react";
-
+import ABA from './../../img/aba.png'
+import './../../Css/donate.scss'
 function Donate() {
 
   return (
@@ -12,9 +13,10 @@ function Donate() {
           Donate us
         </button>
       </p>
+
       <div className="collapse " id="collapseExample">
         <div className="card card-body ">
-            <img src="./../img/aba.png" style={{width:'265px;',height:'50%;'}}></img>
+            <img src={ABA}></img>
             <p>XXXXXXXXXXX</p>
             <p>Thank you</p>
         </div>

@@ -1,13 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { buildContext } from "./../../Context/BuildContext"
 import Item from "./Item"
+import useData from './../../userData.js'
 
-export default function ItemList() {
+export default function ItemList(props) {
     const { contextState } = useContext(buildContext)
     const list = () => {
         let table = []
         for (let i = 0; i < contextState.listSize; i++) {
-            table.push(<Item />)
+            table.push(<Item itemDetail={props.components[i]} />)
         }
         return table;
     }
