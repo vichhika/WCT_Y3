@@ -4,6 +4,9 @@ import ProductList from "./ProductList";
 import ProcessBar from "./ProcessBar";
 
 function Build() {
+
+  document.body.style.backgroundImage = 'none';
+
   return (
     <div className="p-Build">
       <div class="container d-flex justify-content-center text-center">

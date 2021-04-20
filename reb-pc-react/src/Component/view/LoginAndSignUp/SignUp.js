@@ -9,7 +9,7 @@ function SignUp() {
        
         <div class="row">
             <div class="col-sm">               
-                <div class="card" style={{margin:'auto'}}>
+                <div class="card" style={{width:'20rem',margin:'auto'}}>
                     <form>
                         <h1>Sign Up</h1>
                         <div class="form-group" >
