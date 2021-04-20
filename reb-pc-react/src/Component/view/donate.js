@@ -1,6 +1,7 @@
 import React from "react";
 
 function Donate() {
+
   return (
     <div className="jumbotron jumbotron-fluid d-flex align-content-center my-0">
     <div className="container  my-auto content">
