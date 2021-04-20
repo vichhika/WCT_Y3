@@ -22,7 +22,6 @@ function App() {
         <Route path="/product" component={Product} />
         <Route path="/Login" component={Login} />
         <Route path="/SignUp" component={Signup} />
-
       </div>
     </div>
   );
