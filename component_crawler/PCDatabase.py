@@ -10,3 +10,9 @@ class PCDatabase:
             database=database_name
         )
         self.mycursor = self.mydb.cursor()
+
+
+
+
+if __name__ == '__main__':
+    pcDatabase = PCDatabase("127.0.0.1","root","","buildpc")
