@@ -1,0 +1,36 @@
+.bannerInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: white;
+}
+.bannerInfo .container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.bannerInfo .container h3 {
+    padding-top: 50px;
+}
+.bannerInfo .container .detailInfo {
+    text-align: center;
+}
+.bannerInfo .container .detailInfo img {
+    margin-bottom: 15px;
+    width: 50%;
+    height: auto;
+    border-radius: 50%;
+}
+.bannerInfo .container .detailInfo .career {
+    font-weight: bold;
+    color: gray;
+    font-size: 13px;
+}
+.bannerInfo .container .detailInfo .graduated {
+    font-weight: bold;
+    color: gray;
+    font-size: 13px;
+}

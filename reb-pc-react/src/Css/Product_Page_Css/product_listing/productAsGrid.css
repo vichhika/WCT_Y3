@@ -1,0 +1,36 @@
+/* <div class="Grid-display row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+        <div class="product d-flex flex-column">
+            <img src="https://desktop.goldonecomputer.com/image/cache/catalog/products/Case/JESM%20BT/11-400x400.jpg" width="70%" height="auto">
+            <br>
+            <h5 class="description">Aigo BT Mini( Micro ATX MB / Front USB 3.0 )</h5>  
+            <h6 class="price">$29.00</h6>
+            <button class="detailBtn btn btn-primary btn-sm">Detail</button>  
+        </div>
+    </div>
+</div> */
+.Grid-display{
+    
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid;
+    border-color: #cccccc;
+}
+
+.product img{
+    width: 70%;
+    height: auto;
+}
+
+.product .price{
+    color: red;
+}
+
+.product .detailBtn{
+    width: 100px;
+}

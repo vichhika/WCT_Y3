@@ -13,8 +13,10 @@ import monitor from './../../../img/componentImg/monitor.jpg'
 function ProcessBar() {
     const { contextState } = useContext(buildContext)
     const componentImg = [cpu, motherboard, ram, hdd, gpu, casePC, power, monitor];
+
     const process = () => {
         let item = []
+
         for (let i = 0; i < 8; i++) {
             let processStyle = { borderColor: "#ccc" };
             let barStyle = { width: "0" }

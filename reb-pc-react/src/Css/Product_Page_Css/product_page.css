@@ -1,0 +1,39 @@
+body .conatiner-fluid{
+    /* margin: 5px 100px; */
+    background-color:white;
+}
+
+@media (max-width: 1024px) {
+    /*disable filter side-bar*/
+    body .conatiner-fluid .filter{
+        display: none;
+    }
+    /*Remove margin since it is already small*/
+    body .conatiner-fluid{
+        margin: 0px;
+    }
+    
+    /*Product Edit*/
+    .product{
+        padding: 9px;
+    }
+    
+    .product .product-img img{
+        width: 80px;
+        height: auto;
+        margin-right: 0 ;
+    }
+
+    .product .product-detail .description{
+        font-size: 10px;
+    }
+
+    .product .product-detail .price{
+        font-size: 10px;
+    }
+
+    .product .product-detail .detailBtn{
+        font-size: 10px;
+    }
+    
+}
