@@ -19,11 +19,11 @@ function ProductList() {
         setloading(true);
         axios.get(`https://api-303.herokuapp.com${componetApi[contextState.component]}`)
             .then(function (response) {
-                setloading(false);
                 updatContext({
                     type: 'set_ComponentPayload',
                     payload: response.data
                 })
+                setloading(false);
             })
             .catch(function (error) {
                 // handle error

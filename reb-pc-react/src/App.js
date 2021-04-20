@@ -14,18 +14,6 @@ function App() {
 
   return (
     <div className="App" style={{ height: "100%" }}>
-<<<<<<< HEAD
-      <Navbar />
-      <div  style={{ height: "100%" }}>
-        <Route path="/" exact component={Jumbotron} />
-        <Route path="/Blog" component={Blog} />
-        <Route path="/donate" component={Donate} />
-        <Route path="/build" component={Build} />
-        <Route path="/product" component={Product} />
-        <Route path="/Login" component={Login} />
-        <Route path="/SignUp" component={Signup} />
-      </div>
-=======
       <Navbar/>
       <Route path="/" exact component={Home}/>
       <Route path="/Blog" component={Blog} />
@@ -34,7 +22,6 @@ function App() {
       <Route path="/product_page" component={Product} />
       <Route path="/Login" component={Login} />
       <Route path="/SignUp" component={Signup} />
->>>>>>> main
     </div>
   );
 }
