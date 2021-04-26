@@ -22,10 +22,11 @@ CREATE TABLE CPU(
     cpuID int NOT NULL AUTO_INCREMENT,
     brand CHAR(25) NOT NULL,
     model CHAR(25) NOT NULL,
-    core int NOT NULL,
+    cores int NOT NULL,
     tdp int NOT NULL,
     integrated_graphics CHAR(50) NOT NULL,
-    PRIMARY KEY (cpuID)
+    PRIMARY KEY (cpuID),
+    UNIQUE (model)
 );
 
 CREATE TABLE PowerSupply(
@@ -34,7 +35,8 @@ CREATE TABLE PowerSupply(
     model CHAR(25) NOT NULL,
     form_factor CHAR(25) NOT NULL,
     wattage int NOT NULL,
-    PRIMARY KEY (powersupplyID)
+    PRIMARY KEY (powersupplyID),
+    UNIQUE (model)
 );
 
 CREATE TABLE InternalHardDrive(
@@ -44,7 +46,8 @@ CREATE TABLE InternalHardDrive(
     capacity int NOT NULL,
     form_factor CHAR(25) NOT NULL,
     storage_type CHAR(10) NOT NULL,
-    PRIMARY KEY (internalharddriveID)
+    PRIMARY KEY (internalharddriveID),
+    UNIQUE (model)
 );
 
 CREATE TABLE Motherboard(
@@ -55,7 +58,8 @@ CREATE TABLE Motherboard(
     form_factor CHAR(25) NOT NULL,
     ram_slots int NOT NULL,
     max_ram int NOT NULL,
-    PRIMARY KEY (motherboardID)
+    PRIMARY KEY (motherboardID),
+    UNIQUE (model)
 );
 
 CREATE TABLE Monitor(
@@ -67,7 +71,8 @@ CREATE TABLE Monitor(
     resolution_height int NOT NULL,
     refresh_rate CHAR(10),
     panel_type CHAR(10),
-    PRIMARY KEY (monitorID)
+    PRIMARY KEY (monitorID),
+    UNIQUE (model)
 );
 
 CREATE TABLE VideoCard(
@@ -76,7 +81,8 @@ CREATE TABLE VideoCard(
     model CHAR(25) NOT NULL,
     chipset CHAR(25) NOT NULL,
     vram int NOT NULL,
-    PRIMARY KEY (videocardID)
+    PRIMARY KEY (videocardID),
+    UNIQUE (model)
 );
 
 CREATE TABLE `Case`(
@@ -86,16 +92,18 @@ CREATE TABLE `Case`(
     form_factor CHAR(25) NOT NULL,
     external_bays int NOT NULL,
     internal_bays int NOT NULL,
-    PRIMARY KEY (caseID)
+    PRIMARY KEY (caseID),
+    UNIQUE (model)
 );
 
 CREATE TABLE Memory(
     memoryID int NOT NULL AUTO_INCREMENT,
     brand CHAR(25) NOT NULL,
     model CHAR(25) NOT NULL,
-    form_factor CHAR(25) NOT NULL,
+    module_type CHAR(25) NOT NULL,
     speed int NOT NULL,
-    PRIMARY KEY (memoryID)
+    PRIMARY KEY (memoryID),
+    UNIQUE (model)
 );
 
 CREATE TABLE CPUPrice(

@@ -1,6 +1,8 @@
 from pcpartpicker import API
 import json
 
+from PCDatabase import PCDatabase
+
 api = API('us')
 data = {}
 dataEntity = {
@@ -13,6 +15,23 @@ dataEntity = {
     'case':['brand','model','form_factor','external_bays','internal_bays'],
     'memory':['brand','model','module_type','speed']
 }
+tableName = {
+    'cpu':'CPU',
+    'motherboard':'Motherboard',
+    'internal-hard-drive':'InternalHardDrive',
+    'video-card':'VideoCard',
+    'power-supply':'PowerSupply',
+    'monitor':'Monitor',
+    'case':'Case',
+    'memory':'Memory'
+}
+
+database = PCDatabase(
+    hostname="127.0.0.1",
+    username="root",
+    password="",
+    database_name="buildpc"
+)
 
 #fetch data from api to dictionary
 for component in dataEntity.keys():
@@ -41,5 +60,10 @@ for i in range(len(data['monitor'])):
 # overwrite speed key
 for i in range(len(data['memory'])): ((data['memory'])[i])['speed'] = ((data['memory'])[i])['speed']['cycles']
 
-for key in dataEntity.keys():
-    print("{0} = {1}".format(key,(data[key])[0]))
+for k,v in data.items():
+    table = tableName[k]
+    entity_keys = list((v[0]).keys())
+    values = [tuple([y for y in x.values()]) for x in v]
+    database.insertOrIgnore(table,entity_keys,values)
+
+
