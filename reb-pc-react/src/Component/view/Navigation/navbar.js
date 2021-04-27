@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useContext}from "react";
 import {Link} from 'react-router-dom'
 import '../../../Css/navigation_bar/navigation-bar-style.css';
 import '../../../Css/navigation_bar/menu/menu.css';
@@ -6,19 +6,25 @@ import '../../../Css/navigation_bar/sm-screen-view/sm-screen-view.css';
 import '../../../Css/navigation_bar/md-lg-screen-view/md-lg-screen-view.css';
 import '../../../Css/navigation_bar/menu/entry.css';
 import '../../../Css/navigation_bar/user-profile-btn/user-profile-btn.css';
-
+import { AuthContext } from "../../Context/AuthContext";
 
 function Navbar() {
 
-  function click(){
-    let menu = document.getElementById("mnu").style.display;
-    if (menu == 0 || menu ==='none')
-        document.getElementById("mnu").style.display = 'block';
-    else if (menu === 'block')
-        document.getElementById("mnu").style.display = 'none';
-  }
+    const {isAuthenticated} = useContext(AuthContext);
 
-  return (
+    const displayEntry = !isAuthenticated ? 'none' : 'list-item';
+    const displayUserProfile = isAuthenticated ? 'none' : 'inline-block';
+    const displayUserBuildPage = isAuthenticated ? 'none' : 'list-item';
+
+    function click(){
+        let menu = document.getElementById("mnu").style.display;
+        if (menu == 0 || menu ==='none')
+            document.getElementById("mnu").style.display = 'block';
+        else if (menu === 'block')
+            document.getElementById("mnu").style.display = 'none';
+    }
+
+    return (
 
     // <!--Navigation bar component-->
         <nav className="navigation-bar navbar navbar-expand-lg fixed-top">
@@ -27,10 +33,10 @@ function Navbar() {
             <div className="sm-screen-view">
                 {/* <!--navigation-bar-sm-width--> */}
                 <div className="sm-nav-property d-flex" style={{justifyContent: 'space-between', width: '100%'}}>
-                     
+                        
                     {/* <!--menulist button--> */}
                     <button type="button" className="btn btn-dark btn-sm" style={{backgroundColor: 'rgba(0, 0, 0, 1)', alignSelf: 'center', border:'none'}} onClick={click}>
-                      <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign:'middle'}}></i>
+                        <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign:'middle'}}></i>
                     </button>
                     
                     {/* <!--Website Title Component--> */}
@@ -66,12 +72,12 @@ function Navbar() {
                     </li>
 
                     {/* <!--Declare entry to make it easy to select and disable--> */}
-                    <li className="entry log-in-btn">
+                    <li className="entry log-in-btn" style={{display: displayEntry}}>
                         <Link to="/Login">Login</Link>
                         {/* <a href="#">Log in</a> */}
                     </li>
-                    <li className="entry sign-up-btn">
-                        <Link to="/Login">Sign Up</Link>
+                    <li className="entry sign-up-btn" style={{display: displayEntry}}>
+                        <Link to="/SignUp">Sign Up</Link>
                         {/* <a href="#">Sign up</a> */}
                     </li>
                 </ul>
@@ -82,8 +88,8 @@ function Navbar() {
             <div className="md-lg-screen-view">
 
                 {/* <a className="navbar-brand text-light"
-                   href="#"
-                  style={{margin: 0}}>Reab PC</a> */}
+                    href="#"
+                    style={{margin: 0}}>Reab PC</a> */}
                 <Link className="navbar-brand text-light" to="/" style={{margin: 0, fontWeight: 'bold'}}>Reab PC</Link>
                 
                 <ul className="menu">
@@ -101,23 +107,31 @@ function Navbar() {
                     </li>
                     
                     {/* <!--Declare entry to make it easy to select and disable--> */}
-                    <li className="entry log-in-btn">
+
+
+                    <li className="entry log-in-btn" style={{display: displayEntry}}>
                         <Link to="/Login">Login</Link>
                     </li>
-                    <li className="entry sign-up-btn">
+                    <li className="entry sign-up-btn" style={{display: displayEntry}}>
                         <Link to="/SignUp">Sign Up</Link>
                     </li>
                     
+                    {/* User Build */}
+
+                    <li style={{display: displayUserBuildPage}}>
+                        <Link  className="text-light" to="#">My Build</Link>
+                    </li>
+
                     {/* <!--Display this user-profile only acc exist--> */}
-                    <li className="acc-exist" style={{display:'none'}}>
+                    <li className="acc-exist" style={{display: displayUserProfile}}>
                         <button className="user-profile-btn btn btn-primary btn-sm">B</button>
                     </li>
                 </ul>
             </div>
-          
+            
         </nav>
 
-  );
+    );
 }
 
 export default Navbar;

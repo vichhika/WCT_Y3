@@ -9,12 +9,15 @@ import Product from "./Component/view/Product/product_page";
 import Login from "./Component/view/LoginAndSignUp/Login";
 import Signup from "./Component/view/LoginAndSignUp/SignUp";
 import Home from "./../src/Component/view/HomePage/Home"
+import AuthContextProvider from "./Component/Context/AuthContext";
 
 function App() {
 
   return (
     <div className="App" style={{ height: "100%" }}>
-      <Navbar/>
+      <AuthContextProvider>
+        <Navbar/>
+      </AuthContextProvider>
       <Route path="/" exact component={Home}/>
       <Route path="/Blog" component={Blog} />
       <Route path="/donate" component={Donate} />

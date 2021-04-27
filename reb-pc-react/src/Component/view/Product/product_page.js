@@ -3,6 +3,7 @@ import ProductFilter from './product_filter'
 import './../../../Css/Product_Page_Css/product_page.css'
 import ControlBar from './control_bar'
 import ProductListing from './product_listing'
+import Pagination from './pagination'
 
 function ProductPage(){
     document.body.style.backgroundImage = 'none';
@@ -18,6 +19,8 @@ function ProductPage(){
                 <ControlBar/>
                 <hr/>
                 <ProductListing/>
+                <hr/>
+                <Pagination/>
             </div>
 
         </div>
