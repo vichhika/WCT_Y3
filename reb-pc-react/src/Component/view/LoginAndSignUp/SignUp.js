@@ -2,12 +2,14 @@ import React from "react";
 import  "./../../../Css/stylesignup.scss";
 
 function SignUp() {
+    document.body.style.backgroundImage = 'none';
+
     return(
     <div class="container signup">
        
         <div class="row">
             <div class="col-sm">               
-                <div class="card" style={{width:"20rem"}}>
+                <div class="card" style={{width:'20rem',margin:'auto'}}>
                     <form>
                         <h1>Sign Up</h1>
                         <div class="form-group" >

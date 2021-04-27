@@ -2,16 +2,17 @@ import React from "react";
 import "./../../../Css/styleLogin.scss";
 
 function Login() {
+    document.body.style.backgroundImage = 'none';
     return(
         
     
-        <div class="container login">
+        <div class="container login" style={{marginTop: '150px'}}>
        
         <div class="row">
             <div class="col-sm">
 
                 
-                <div class="card login" style={{width:"20rem"}}>
+                <div class="card login" style={{margin:'auto'}}>
                     <form>
                         <h1>Log in</h1>
                         <div class="form-group" >

@@ -5,10 +5,11 @@ import useData from './../../userData.js'
 
 export default function ItemList(props) {
     const { contextState } = useContext(buildContext)
+    
     const list = () => {
         let table = []
         for (let i = 0; i < contextState.listSize; i++) {
-            table.push(<Item itemDetail={props.components[i]} />)
+            table.push(<Item itemDetail={contextState.componentPayload[i]} />)
         }
         return table;
     }

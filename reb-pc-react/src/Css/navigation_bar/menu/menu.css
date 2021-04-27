@@ -1,0 +1,32 @@
+/*
+    Default menu for large screen
+*/
+.menu{
+    display: flex;
+    width: 50%;
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*
+    Default menu for small screen
+*/
+
+@media (max-width: 823px){
+    
+    .menu{
+        flex-direction: column;
+        width: 100%;
+        /*Default close menu item
+          show only menu btn is click*/
+        display: none;
+    }
+    .menu li{
+        line-height: 35px;
+        width: inherit;
+    }
+
+}
