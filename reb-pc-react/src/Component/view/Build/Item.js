@@ -20,8 +20,7 @@ export default function Item(props) {
       <td>{props.itemDetail.price}</td>
       <td>
         <button type="button" class="btn btn-light" style={{ padding: "0" }}>
-          <i class="far fa-plus" style={{ color: "#0d6efd" }}></i>
-        </button>
+        Add</button>
       </td>
     </tr>
 

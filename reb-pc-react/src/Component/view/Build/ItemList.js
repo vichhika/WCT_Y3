@@ -5,10 +5,14 @@ import useData from './../../userData.js'
 
 export default function ItemList(props) {
     const { contextState } = useContext(buildContext)
-    
+
+
+    let lastIndex = Math.min(contextState.currentList * 10 , contextState.componentPayload.length);
+    let startIndex = Math.min(contextState.currentList * 10 - 10, contextState.componentPayload.length);
+
     const list = () => {
         let table = []
-        for (let i = 0; i < contextState.listSize; i++) {
+        for (let i = startIndex; i < lastIndex; i++) {
             table.push(<Item itemDetail={contextState.componentPayload[i]} />)
         }
         return table;

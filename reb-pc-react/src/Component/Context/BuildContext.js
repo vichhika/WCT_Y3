@@ -2,9 +2,8 @@ import React, { createContext, useReducer } from 'react'
 
 const initState = {
     component: 0,
-    listSize: 5,
     componentPayload: [],
-    listsNumber: 1,
+    listSize: 5,
     currentList: 1
 }
 
@@ -20,19 +19,13 @@ const actions = {
     setlistSize: (state,listSize) => {
         return {
             ...state,
-            listSize 
+            listSize
         }
     },
     setComponentPayload: (state,componentPayload) => {
         return {
             ...state,
             componentPayload 
-        }
-    },
-    setListsNumber: (state,listsNumber) => {
-        return {
-            ...state,
-            listsNumber 
         }
     },
     setCurrentList: (state,currentList) => {
@@ -53,9 +46,6 @@ const buildReucer = (state,action) => {
             return {...state}
         case 'set_ComponentPayload':
             state = actions.setComponentPayload(state,action.payload)
-            return {...state}
-        case 'set_listsNumber':
-            state = actions.setListsNumber(state,action.payload)
             return {...state}
         case 'set_currentList':
             state = actions.setCurrentList(state,action.payload)

@@ -66,30 +66,11 @@ function ProductList() {
         loaingPage =
             <>
                 <div className="card-body pt-0">
-                    <div className="filter-bar d-flex">
-                        <ListSize />
-                        <form className="d-flex">
-                            <input
-                                className="form-control me-2"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                            />
-
-                            <button className="btn btn-light" type="button">
-                                <i className="far fa-search"></i>
-                            </button>
-                        </form>
-                    </div>
-
                     <div>
                         <ItemList/>
                     </div>
 
                     <div className="below-bar d-flex">
-                        <div className="product_qty_instock d-flex justify-content-center">
-                            <p className="mb-0">Showing 1 to {contextState.listSize} of 35 entries</p>
-                        </div>
                         <ListControl />
                     </div>
                 </div>
@@ -103,8 +84,22 @@ function ProductList() {
 
     return (
         <div className="card mt-5">
-            <div className="card-header">
-                <h6 id="step_title">{conponent[contextState.component]}</h6>
+            <div className="card-header mb-0">
+                <div className="d-flex justify-content-between align-items-center">
+                    <h6 id="step_title">{conponent[contextState.component]}</h6>
+                    <form className="d-flex">
+                        <input
+                            className="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+
+                        <button className="btn btn-light" type="submit">
+                            <i className="far fa-search"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
             {loaingPage}
         </div>
