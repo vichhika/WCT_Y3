@@ -24,5 +24,7 @@ class PCDatabase:
             try:
                 self.mycursor.execute(sql, x)
                 self.mydb.commit()
-            except:
+            except Exception as e:
                 self.mydb.rollback()
+                # print(str(x))
+                # print(e)

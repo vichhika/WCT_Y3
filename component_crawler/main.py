@@ -16,21 +16,21 @@ dataEntity = {
     'memory':['brand','model','module_type','speed']
 }
 tableName = {
-    'cpu':'CPU',
-    'motherboard':'Motherboard',
-    'internal-hard-drive':'InternalHardDrive',
-    'video-card':'VideoCard',
-    'power-supply':'PowerSupply',
-    'monitor':'Monitor',
-    'case':'`Case`',
-    'memory':'Memory'
+    'cpu':'cpus',
+    'motherboard':'motherboards',
+    'internal-hard-drive':'internalharddrives',
+    'video-card':'videocards',
+    'power-supply':'powersupplies',
+    'monitor':'monitors',
+    'case':'casepcs',
+    'memory':'memories'
 }
 
 database = PCDatabase(
     hostname="127.0.0.1",
     username="root",
     password="",
-    database_name="buildpc"
+    database_name="reabpc"
 )
 
 #fetch data from api to dictionary
