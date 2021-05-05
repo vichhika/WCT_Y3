@@ -1,0 +1,38 @@
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    
+    div.card{
+        background-color: rgba(0, 0, 0, 0.459);
+
+        form{
+
+            margin: 10%;
+            color: white;
+    
+            p{
+               margin-top: 2rem;
+            }
+      
+        }
+
+        .btn{
+            margin-top: 2rem;
+            width: 10rem;
+            font-weight: bold;
+    
+        }
+    
+
+    }
+}   
+
+
+
+
+
+
+
+
