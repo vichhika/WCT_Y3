@@ -5,8 +5,8 @@ import Item from "./Item";
 export default function ListControl() {
     const {contextState, updatContext} = useContext(buildContext)
 
-    let lastIndex = contextState.currentList * 10;
-    let startIndex = lastIndex - 10 + 1;
+    let lastIndex = Math.min(contextState.currentList * 10 , contextState.componentPayload.length);
+    let startIndex = Math.max(lastIndex - 10, 0);
 
 
     const nextList = () => {
@@ -55,15 +55,16 @@ export default function ListControl() {
         btns.push(<button type="button" onClick={() => setCuttentList(1)} className="btn btn-secondary">First</button>,
         <button type="button" onClick={previousList} className="btn btn-secondary">Previor</button>)
 
-        if (contextState.currentList <= 3) {
-            for (let i = 1; i <= 5; i++) {
+        if (contextState.currentList <= 3 || totleList <= 5) {
+            let List = Math.min(5,totleList)
+            for (let i = 1; i <= List; i++) {
                 btnpushing(i);
             }
-        } else if (contextState.currentList > 3 && contextState.currentList <= totleList - 4) {
+        } else if (contextState.currentList > 3 && contextState.currentList <= totleList - 3) {
             for (let i = contextState.currentList - 2; i <= contextState.currentList + 2; i++) {
                 btnpushing(i);
             }
-        } else if (contextState.currentList > Math.ceil(contextState.componentPayload.length / 10) - 4) {
+        } else if (contextState.currentList > totleList - 3) {
             for (let i = totleList - 4; i <= totleList; i++) {
                 btnpushing(i);
             }
@@ -75,11 +76,11 @@ export default function ListControl() {
         return btns;
     }
 
-
     return (
+
         <>
             <div className="product_qty_instock d-flex justify-content-center">
-                <p className="mb-0">Showing {startIndex} to {lastIndex} of {contextState.componentPayload.length} entries</p>
+                <p className="mb-0">Showing {startIndex+1} to {lastIndex} of {contextState.componentPayload.length} entries</p>
             </div>
 
             <div className="btn-group" role="group" aria-label="First group">

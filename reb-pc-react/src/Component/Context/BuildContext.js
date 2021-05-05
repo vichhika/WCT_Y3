@@ -2,9 +2,12 @@ import React, { createContext, useReducer } from 'react'
 
 const initState = {
     component: 0,
-    componentPayload: [],
     listSize: 5,
-    currentList: 1
+    currentList: 1,
+    shopPayload: null,
+    componentPayload: [],
+    isBuildDone: false,
+    selectedComponent: [null,null,null,null,null,null,null,null]
 }
 
 const buildContext = createContext(initState);
@@ -33,6 +36,24 @@ const actions = {
             ...state,
             currentList 
         }
+    },
+    setShopPayload: (state,shopPayload) => {
+        return {
+            ...state,
+            shopPayload
+        }
+    },
+    setSelectedComponent: (state,selectedComponent) => {
+        return {
+            ...state,
+            selectedComponent
+        }
+    },
+    setisBuildDone: (state,isBuildDone) => {
+        return {
+            ...state,
+            isBuildDone
+        }
     }
 }
 
@@ -49,6 +70,15 @@ const buildReucer = (state,action) => {
             return {...state}
         case 'set_currentList':
             state = actions.setCurrentList(state,action.payload)
+            return {...state}
+        case 'set_shopPayload':
+            state = actions.setShopPayload(state,action.payload)
+            return {...state}
+        case 'set_SelectedComponent':
+            state = actions.setSelectedComponent(state,action.payload)
+            return {...state}
+        case 'set_setIsBuildDone':
+            state = actions.setisBuildDone(state,action.payload)
             return {...state}
         default:
     }
