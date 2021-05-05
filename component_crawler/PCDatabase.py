@@ -1,5 +1,4 @@
 import sys
-from time import sleep
 
 import mysql.connector
 
@@ -20,11 +19,10 @@ class PCDatabase:
 
     def insertOrIgnore(self,table,entities,values):
         num_cols = ['%s'] * len(entities)
-        sql = "INSERT INTO {0} ({1}) VALUES ({2})".format(table,','.join(entities),','.join(num_cols))
-        try:
-            self.mycursor.executemany(sql,values)
-            self.mydb.commit()
-            sleep(1)
-            print("The table {0} insert successfully".format(table))
-        except:
-            print("data ignore")
+        sql = "INSERT INTO {0} ({1}) VALUES ({2})".format(table,', '.join(entities),', '.join(num_cols))
+        for x in values:
+            try:
+                self.mycursor.execute(sql, x)
+                self.mydb.commit()
+            except:
+                self.mydb.rollback()

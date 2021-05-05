@@ -22,7 +22,7 @@ tableName = {
     'video-card':'VideoCard',
     'power-supply':'PowerSupply',
     'monitor':'Monitor',
-    'case':'Case',
+    'case':'`Case`',
     'memory':'Memory'
 }
 

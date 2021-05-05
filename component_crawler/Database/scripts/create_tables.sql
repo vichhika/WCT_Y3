@@ -1,109 +1,101 @@
-CREATE TABLE User(
+CREATE TABLE `User`(
     userID int NOT NULL AUTO_INCREMENT,
-    username CHAR(50) NOT NULL,
+    username CHAR(255) NOT NULL,
     password VARCHAR(512) NOT NULL,
     Phone CHAR(15) NOT NULL,
-    EMail CHAR(50) NOT NULL,
+    EMail CHAR(255) NOT NULL,
     PRIMARY KEY (userID)
 );
 
 CREATE TABLE AdminShop(
     adminshopID int NOT NULL AUTO_INCREMENT,
-    username CHAR(50) NOT NULL,
+    username CHAR(255) NOT NULL,
     password VARCHAR(512) NOT NULL,
-    shop_name CHAR(50) NOT NULL,
+    shop_name CHAR(255) NOT NULL,
     Phone CHAR(15) NOT NULL,
-    Email CHAR(50) NOT NULL,
+    Email CHAR(255) NOT NULL,
     Location VARCHAR(512) NOT NULL,
     PRIMARY KEY (adminshopID)
 );
 
 CREATE TABLE CPU(
     cpuID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
     cores int NOT NULL,
-    tdp int NOT NULL,
-    integrated_graphics CHAR(50) NOT NULL,
-    PRIMARY KEY (cpuID),
-    UNIQUE (model)
+    tdp BIGINT NOT NULL,
+    integrated_graphics CHAR(255),
+    PRIMARY KEY (cpuID)
 );
 
 CREATE TABLE PowerSupply(
     powersupplyID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
-    form_factor CHAR(25) NOT NULL,
-    wattage int NOT NULL,
-    PRIMARY KEY (powersupplyID),
-    UNIQUE (model)
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
+    form_factor CHAR(255) NOT NULL,
+    wattage BIGINT NOT NULL,
+    PRIMARY KEY (powersupplyID)
 );
 
 CREATE TABLE InternalHardDrive(
     internalharddriveID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
-    capacity int NOT NULL,
-    form_factor CHAR(25) NOT NULL,
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
+    capacity BIGINT NOT NULL,
+    form_factor CHAR(255) NOT NULL,
     storage_type CHAR(10) NOT NULL,
-    PRIMARY KEY (internalharddriveID),
-    UNIQUE (model)
+    PRIMARY KEY (internalharddriveID)
 );
 
 CREATE TABLE Motherboard(
     motherboardID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
-    socket CHAR(10) NOT NULL,
-    form_factor CHAR(25) NOT NULL,
-    ram_slots int NOT NULL,
-    max_ram int NOT NULL,
-    PRIMARY KEY (motherboardID),
-    UNIQUE (model)
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
+    socket CHAR(255) NOT NULL,
+    form_factor CHAR(255) NOT NULL,
+    ram_slots BIGINT NOT NULL,
+    max_ram BIGINT NOT NULL,
+    PRIMARY KEY (motherboardID)
 );
 
 CREATE TABLE Monitor(
     monitorID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
-    size int NOT NULL,
-    resolution_width int NOT NULL,
-    resolution_height int NOT NULL,
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
+    size BIGINT NOT NULL,
+    resolution_width BIGINT NOT NULL,
+    resolution_height BIGINT NOT NULL,
     refresh_rate CHAR(10),
     panel_type CHAR(10),
-    PRIMARY KEY (monitorID),
-    UNIQUE (model)
+    PRIMARY KEY (monitorID)
 );
 
 CREATE TABLE VideoCard(
     videocardID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
-    chipset CHAR(25) NOT NULL,
-    vram int NOT NULL,
-    PRIMARY KEY (videocardID),
-    UNIQUE (model)
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
+    chipset CHAR(255) NOT NULL,
+    vram BIGINT NOT NULL,
+    PRIMARY KEY (videocardID)
 );
 
 CREATE TABLE `Case`(
     caseID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
-    form_factor CHAR(25) NOT NULL,
-    external_bays int NOT NULL,
-    internal_bays int NOT NULL,
-    PRIMARY KEY (caseID),
-    UNIQUE (model)
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
+    form_factor CHAR(255) NOT NULL,
+    external_bays BIGINT NOT NULL,
+    internal_bays BIGINT NOT NULL,
+    PRIMARY KEY (caseID)
 );
 
 CREATE TABLE Memory(
     memoryID int NOT NULL AUTO_INCREMENT,
-    brand CHAR(25) NOT NULL,
-    model CHAR(25) NOT NULL,
-    module_type CHAR(25) NOT NULL,
-    speed int NOT NULL,
-    PRIMARY KEY (memoryID),
-    UNIQUE (model)
+    brand CHAR(255) NOT NULL,
+    model CHAR(255) NOT NULL,
+    module_type CHAR(255) NOT NULL,
+    speed BIGINT NOT NULL,
+    PRIMARY KEY (memoryID)
 );
 
 CREATE TABLE CPUPrice(
