@@ -134,7 +134,7 @@ function ProductList() {
             </button>
         </Link>
 
-    let btn;
+    let btn,cardfooterStyle = "card-footer ";
     if (!contextState.isBuildDone) {
         btn =
             <><button type="button" style={btnBackStyle} onClick={previouStep}
@@ -152,6 +152,8 @@ function ProductList() {
             })} className="btn btn-success">Summery
             </button>
         </Link>
+        cardfooterStyle += "justify-content-center"
+
     }
 
 
@@ -170,7 +172,7 @@ function ProductList() {
                     </div>
                 </div>
 
-                <div className="card-footer">
+                <div className={cardfooterStyle}>
                     {btn}
                 </div>
             </>

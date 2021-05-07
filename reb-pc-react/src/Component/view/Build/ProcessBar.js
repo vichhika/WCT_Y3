@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { buildContext } from "./../../Context/BuildContext";
+import React, {useContext} from 'react';
+import {buildContext} from "./../../Context/BuildContext";
 import cpu from './../../../img/componentImg/cpu.png';
 import motherboard from './../../../img/componentImg/motherboard.png';
 import ram from './../../../img/componentImg/ram.webp';
@@ -11,15 +11,15 @@ import monitor from './../../../img/componentImg/monitor.jpg'
 
 
 function ProcessBar() {
-    const { contextState } = useContext(buildContext)
+    const {contextState} = useContext(buildContext)
     const componentImg = [cpu, motherboard, ram, hdd, gpu, casePC, power, monitor];
 
     const process = () => {
         let item = []
 
         for (let i = 0; i < 8; i++) {
-            let processStyle = { borderColor: "#ccc" };
-            let barStyle = { width: "0" }
+            let processStyle = {borderColor: "#ccc"};
+            let barStyle = {width: "0"}
             if (i <= contextState.component) {
                 processStyle.borderColor = "green";
             }
@@ -31,16 +31,18 @@ function ProcessBar() {
                 barStyle.width = "100%"
             }
             if (i !== 7) {
-                item.push(<><div class="progress">
-                    <div
-                        class="progress-bar bg-success"
-                        role="progressbar"
-                        style={barStyle}
-                        aria-valuenow="100"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                    ></div>
-                </div></>)
+                item.push(<>
+                    <div className="progress">
+                        <div
+                            className="progress-bar bg-success"
+                            role="progressbar"
+                            style={barStyle}
+                            aria-valuenow="100"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                        />
+                    </div>
+                </>)
             }
         }
         return item;

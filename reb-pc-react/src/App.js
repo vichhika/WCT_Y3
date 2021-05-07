@@ -10,8 +10,11 @@ import Signup from "./Component/view/LoginAndSignUp/SignUp";
 import Home from "./../src/Component/view/HomePage/Home"
 import AuthContextProvider from "./Component/Context/AuthContext";
 import SummeryBuild from "./Component/view/Build/SummeryBuild";
+import Profile from "./Component/view/My Build/Profile";
 
 function App() {
+
+
 
     return (
         <div className="App" style={{height: "100%"}}>
@@ -26,8 +29,9 @@ function App() {
             <Route path="/Login" component={Login}/>
             <Route path="/SignUp" component={Signup}/>
             <Route path="/summeryBuild" component={SummeryBuild}/>
+            <Route path="/profile" component={Profile}/>
         </div>
     );
-}
+};
 
 export default App;
