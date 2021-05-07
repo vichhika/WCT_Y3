@@ -10,6 +10,7 @@ import Login from "./Component/view/LoginAndSignUp/Login";
 import Signup from "./Component/view/LoginAndSignUp/SignUp";
 import Home from "./../src/Component/view/HomePage/Home"
 import AuthContextProvider from "./Component/Context/AuthContext";
+import PreBuildContextProvider from "./Component/Context/PreBuildContext";
 
 function App() {
 
@@ -22,7 +23,9 @@ function App() {
       <Route path="/Blog" component={Blog} />
       <Route path="/donate" component={Donate} />
       <Route path="/build" component={Build} />
-      <Route path="/product_page" component={Product} />
+      <PreBuildContextProvider>
+        <Route path="/product_page" component={Product} />
+      </PreBuildContextProvider>
       <Route path="/Login" component={Login} />
       <Route path="/SignUp" component={Signup} />
     </div>
