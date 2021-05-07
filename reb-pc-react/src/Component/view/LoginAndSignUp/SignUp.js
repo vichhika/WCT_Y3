@@ -9,7 +9,8 @@ function SignUp() {
        
         <div class="row">
             <div class="col-sm">               
-                <div class="card" style={{width:'20rem',margin:'auto'}}>
+                {/* <div class="card" style={{width:'20rem',margin:'auto'}}> */}
+                <div class="loginbox">
                     <form>
                         <h1>Sign Up</h1>
                         <div class="form-group" >
@@ -33,13 +34,19 @@ function SignUp() {
                             <input type="checkbox" class="form-check-input" id="Check1"></input>
                             <label class="form-check-label" for="Check1">Check me out</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Sign Up</button>                        
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary ">Sign Up</button>
+                        </div>                        
                     </form>
+                    
                 </div>
+      
             </div>
         </div>
 
     </div>
+
+    
     );
 }
 export default SignUp;

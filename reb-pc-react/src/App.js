@@ -1,7 +1,6 @@
-
 import "./App.css";
 import Navbar from "./Component/view/Navigation/navbar.js";
-import { Route } from "react-router-dom";
+import {Route} from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";
@@ -10,6 +9,9 @@ import Login from "./Component/view/LoginAndSignUp/Login";
 import Signup from "./Component/view/LoginAndSignUp/SignUp";
 import Home from "./../src/Component/view/HomePage/Home"
 import AuthContextProvider from "./Component/Context/AuthContext";
+import PreBuildContextProvider from "./Component/Context/PreBuildContext";
+import SummeryBuild from "./Component/view/Build/SummeryBuild";
+import Profile from "./Component/view/My Build/Profile";
 
 function App() {
 
@@ -22,9 +24,13 @@ function App() {
       <Route path="/Blog" component={Blog} />
       <Route path="/donate" component={Donate} />
       <Route path="/build" component={Build} />
-      <Route path="/product_page" component={Product} />
+      <PreBuildContextProvider>
+        <Route path="/product_page" component={Product} />
+      </PreBuildContextProvider>
       <Route path="/Login" component={Login} />
       <Route path="/SignUp" component={Signup} />
+      <Route path="/summeryBuild" component={SummeryBuild}/>
+      <Route path="/profile" component={Profile}/>
     </div>
   );
 }
