@@ -1,32 +1,46 @@
 .login{
+    
+  
+    .col-sm{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    
-    div.card{
-        background-color: rgba(0, 0, 0, 0.459);
+    height: fit-content;
 
+    
+    .loginbox{
+        
+        width: 500px;
+        height: 460px;
+        background-color: rgb(0, 0, 0);
+        margin-bottom:10% ;
+        
         form{
-
+            background-color: rgb(0, 0, 0);
             margin: 10%;
+        
             color: white;
-    
+            
             p{
-               margin-top: 2rem;
+               margin-top: 1rem;
             }
       
         }
 
+
         .btn{
-            margin-top: 2rem;
-            width: 10rem;
+            
+            margin-top: 1rem;
+            width: 50%;
             font-weight: bold;
-    
+       
         }
-    
+                    
 
     }
+}
+
+
 }   
 
 
