@@ -1,32 +1,50 @@
-import React, { useContext, useEffect } from 'react'
-import { buildContext } from "./../../Context/BuildContext"
+import React, {useContext} from 'react'
+import {buildContext} from "../../Context/BuildContext";
 
 export default function Item(props) {
 
-  return (
+    const {contextState, updatContext} = useContext(buildContext)
 
-    <tr style={{ verticalAlign: "middle" }}>
-      <td>
-        <img
-          src="http://www.goldonecomputer.com/image/catalog/products/Motherboards/ASUS/Asus Strix B450F - Gaming.jpg"
-          width="50px"
-          height="50px"
-        />
-      </td>
-      <td width="50%">
-        {props.itemDetail.brand}
-      </td>
-      <td>{props.itemDetail.model}</td>
-      <td>{props.itemDetail.price}</td>
-      <td>
-        <button type="button" class="btn btn-light" style={{ padding: "0" }}>
-          <i class="far fa-plus" style={{ color: "#0d6efd" }}></i>
-        </button>
-      </td>
-    </tr>
+    const pushToSelectedStore = componnet => {
+        const store = contextState.selectedComponent
+        store[contextState.component] = componnet
+        updatContext({
+            type: 'set_SelectedComponent',
+            payload: store
+        })
+    }
 
+    const popOutSelectedStore = () => {
+        const store = contextState.selectedComponent
+        store[contextState.component] = null
+        updatContext({
+            type: 'set_SelectedComponent',
+            payload: store
+        })
+    }
 
+    let btn;
+    if (contextState.selectedComponent[contextState.component] === null) {
+        btn =
+            <button onClick={() => pushToSelectedStore(props.itemDetail)} type="button" className="btn btn-primary">
+                Add
+            </button>
+    } else {
+        btn =
+            <button onClick={popOutSelectedStore} type="button" className="btn btn-danger">
+                Delete
+            </button>
+    }
 
-  );
+    return (
+        <tr className="row">
+            <td className="col-3">{props.itemDetail.brand}</td>
+            <td className="col-3">{props.itemDetail.model}</td>
+            <td className="col-3">{props.itemDetail.price}</td>
+            <td className="col-3">
+                {btn}
+            </td>
+        </tr>
+    );
 }
 
