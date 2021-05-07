@@ -3,9 +3,11 @@ import React, { createContext, useReducer } from 'react'
 const initState = {
     component: 0,
     listSize: 5,
+    currentList: 1,
+    shopPayload: null,
     componentPayload: [],
-    listsNumber: 1,
-    currentList: 1
+    isBuildDone: false,
+    selectedComponent: [null,null,null,null,null,null,null,null]
 }
 
 const buildContext = createContext(initState);
@@ -20,7 +22,7 @@ const actions = {
     setlistSize: (state,listSize) => {
         return {
             ...state,
-            listSize 
+            listSize
         }
     },
     setComponentPayload: (state,componentPayload) => {
@@ -29,16 +31,28 @@ const actions = {
             componentPayload 
         }
     },
-    setListsNumber: (state,listsNumber) => {
-        return {
-            ...state,
-            listsNumber 
-        }
-    },
     setCurrentList: (state,currentList) => {
         return {
             ...state,
             currentList 
+        }
+    },
+    setShopPayload: (state,shopPayload) => {
+        return {
+            ...state,
+            shopPayload
+        }
+    },
+    setSelectedComponent: (state,selectedComponent) => {
+        return {
+            ...state,
+            selectedComponent
+        }
+    },
+    setisBuildDone: (state,isBuildDone) => {
+        return {
+            ...state,
+            isBuildDone
         }
     }
 }
@@ -54,11 +68,17 @@ const buildReucer = (state,action) => {
         case 'set_ComponentPayload':
             state = actions.setComponentPayload(state,action.payload)
             return {...state}
-        case 'set_listsNumber':
-            state = actions.setListsNumber(state,action.payload)
-            return {...state}
         case 'set_currentList':
             state = actions.setCurrentList(state,action.payload)
+            return {...state}
+        case 'set_shopPayload':
+            state = actions.setShopPayload(state,action.payload)
+            return {...state}
+        case 'set_SelectedComponent':
+            state = actions.setSelectedComponent(state,action.payload)
+            return {...state}
+        case 'set_setIsBuildDone':
+            state = actions.setisBuildDone(state,action.payload)
             return {...state}
         default:
     }
