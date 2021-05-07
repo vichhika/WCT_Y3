@@ -12,10 +12,10 @@ function Login() {
             <div class="col-sm">
 
                 
-                <div class="card login" style={{margin:'auto'}}>
+                <div class="loginbox">
                     <form>
                         <h1>Log in</h1>
-                        <div class="form-group" >
+                        <div class="form-group " >
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required></input>
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -28,18 +28,27 @@ function Login() {
                             <input type="checkbox" class="form-check-input" id="exampleCheck1"></input>
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary ">Login</button>
+                        </div>
+                            
+                       
+                        
                         
                         <p>Forget password?</p>
                     </form>
+            
+              
                 </div>
-            </div>
 
            
 
-        </div>
+            </div>
 
-    </div>
+        </div> 
+
+        </div>
+   
 
 
         

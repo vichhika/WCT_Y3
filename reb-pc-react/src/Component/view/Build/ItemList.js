@@ -16,21 +16,27 @@ export default function ItemList(props) {
                 table.push(<Item itemDetail={contextState.componentPayload[i]}/>)
             }
         } else {
-                table.push(<Item itemDetail={contextState.selectedComponent[contextState.component]}/>)
+            table.push(<Item itemDetail={contextState.selectedComponent[contextState.component]}/>)
         }
         return table;
     }
 
     return (
 
-        <table class="table table-hover mt-5">
+        <table class="table">
+            <thead>
             <tr className="row">
                 <th className="col-3">Name</th>
                 <th className="col-3">Model</th>
                 <th className="col-3">Price</th>
-                <th className="col-3">Select</th>
+                <th className="col-2">Select</th>
+                <th className="col-1"></th>
             </tr>
+            </thead>
+            <tbody>
             {list()}
+            </tbody>
+
         </table>
 
     );

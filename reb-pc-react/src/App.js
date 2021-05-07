@@ -9,25 +9,30 @@ import Login from "./Component/view/LoginAndSignUp/Login";
 import Signup from "./Component/view/LoginAndSignUp/SignUp";
 import Home from "./../src/Component/view/HomePage/Home"
 import AuthContextProvider from "./Component/Context/AuthContext";
+import PreBuildContextProvider from "./Component/Context/PreBuildContext";
 import SummeryBuild from "./Component/view/Build/SummeryBuild";
+import Profile from "./Component/view/My Build/Profile";
 
 function App() {
 
-    return (
-        <div className="App" style={{height: "100%"}}>
-            <AuthContextProvider>
-                <Navbar/>
-            </AuthContextProvider>
-            <Route path="/" exact component={Home}/>
-            <Route path="/Blog" component={Blog}/>
-            <Route path="/donate" component={Donate}/>
-            <Route path="/build" component={Build}/>
-            <Route path="/product_page" component={Product}/>
-            <Route path="/Login" component={Login}/>
-            <Route path="/SignUp" component={Signup}/>
-            <Route path="/summeryBuild" component={SummeryBuild}/>
-        </div>
-    );
+  return (
+    <div className="App" style={{ height: "100%" }}>
+      <AuthContextProvider>
+        <Navbar/>
+      </AuthContextProvider>
+      <Route path="/" exact component={Home}/>
+      <Route path="/Blog" component={Blog} />
+      <Route path="/donate" component={Donate} />
+      <Route path="/build" component={Build} />
+      <PreBuildContextProvider>
+        <Route path="/product_page" component={Product} />
+      </PreBuildContextProvider>
+      <Route path="/Login" component={Login} />
+      <Route path="/SignUp" component={Signup} />
+      <Route path="/summeryBuild" component={SummeryBuild}/>
+      <Route path="/profile" component={Profile}/>
+    </div>
+  );
 }
 
 export default App;
