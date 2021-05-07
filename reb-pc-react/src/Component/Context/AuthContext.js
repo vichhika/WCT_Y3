@@ -1,15 +1,17 @@
-import React, {createContext} from 'react';
+import React, {createContext, useState} from 'react';
 
 export const AuthContext = createContext();
 
 function AuthContextProvider(props){
 
-    const state = {
-        isAuthenticated: true
+    const initState = {
+        isAuthenticated: false,
     }
 
+    const [state, setState] = useState(initState);
+
     const setAuth = () => {
-        this.setState({isAuthenticated: !this.state.isAuthenticated });
+        setState({isAuthenticated: !this.state.isAuthenticated });
     }
     
     return(
