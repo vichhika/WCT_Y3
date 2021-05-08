@@ -1,7 +1,11 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import '../../../Css/Product_Page_Css/control-bar_css/control-bar.css'
+import { PreBuildContext } from '../../Context/PreBuildContext';
 
 function ControlBar(){
+
+    const {sortAs, setSortAs} = useContext(PreBuildContext);
+
     return (
 
         // <!--Control-bar Component-->
@@ -13,10 +17,10 @@ function ControlBar(){
             </div>
             <div className="sortOption">
                 <div className="sortIn input-group-sm">
-                    <select className="custom-select" id="sortSelection">
+                    <select className="custom-select" id="sortSelection" onChange={() => setSortAs(document.getElementById('sortSelection').value)}>
                         <option selected>Default Sort</option>
-                        <option value="1">lower to upper</option>
-                        <option value="2">upper to lower</option>
+                        <option value='ASC'>lower to upper</option>
+                        <option value='DESC'>upper to lower</option>
                     </select>
                 </div>
             </div>

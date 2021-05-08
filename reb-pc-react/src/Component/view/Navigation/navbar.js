@@ -12,9 +12,9 @@ function Navbar() {
 
     const {isAuthenticated} = useContext(AuthContext);
 
-    const displayEntry = !isAuthenticated ? 'none' : 'list-item';
-    const displayUserProfile = isAuthenticated ? 'none' : 'inline-block';
-    const displayUserBuildPage = isAuthenticated ? 'none' : 'list-item';
+    const displayEntry = isAuthenticated ? 'none' : 'list-item';
+    const displayUserProfile = !isAuthenticated ? 'none' : 'inline-block';
+    const displayUserBuildPage = !isAuthenticated ? 'none' : 'list-item';
 
     function click(){
         let menu = document.getElementById("mnu").style.display;

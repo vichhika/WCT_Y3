@@ -6,6 +6,7 @@ import ProductListing from './product_listing'
 import Pagination from './pagination'
 
 function ProductPage(){
+
     document.body.style.backgroundImage = 'none';
     return (
         <div className="conatiner-fluid d-flex" style={{paddingTop: '100px'}}>
@@ -21,6 +22,7 @@ function ProductPage(){
                 <ProductListing/>
                 <hr/>
                 <Pagination/>
+                
             </div>
 
         </div>
