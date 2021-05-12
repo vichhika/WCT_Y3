@@ -7,10 +7,7 @@ export default function ItemList(props) {
     const {contextState} = useContext(buildContext)
 
     let lastIndex = Math.min(contextState.currentList * 10, contextState.componentPayload.length);
-    let startIndex = contextState.currentList * 10 - 10;
-
-    console.log(startIndex,contextState.componentPayload.length);
-    console.log(lastIndex,contextState.componentPayload.length);
+    let startIndex = Math.min(contextState.currentList * 10 - 10, contextState.componentPayload.length);
 
     const list = () => {
         let table = []
