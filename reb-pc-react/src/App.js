@@ -14,11 +14,9 @@ import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
 import {BuildContextProvider} from "./Component/Context/BuildContext";
 import React from "react";
-import { createBrowserHistory } from "history";
 import * as url from "url";
 
 function App() {
-    let path = useLocation();
     let background;
     if (path.pathname === '/') {
         background = {backgroundColor: 'white'}
@@ -27,11 +25,8 @@ function App() {
 
     }
 
-    const history = createBrowserHistory();
-
     return (
         <div className="App" style={{height: "100% " +" " + background}}>
-            <Router history={history}>
                 <AuthContextProvider>
                     <Navbar/>
                 </AuthContextProvider>
@@ -48,7 +43,6 @@ function App() {
                 <Route path="/Login" component={Login}/>
                 <Route path="/SignUp" component={Signup}/>
                 <Route path="/profile" component={Profile}/>
-            </Router>
         </div>
     );
 
