@@ -13,25 +13,23 @@ function ProductList() {
     const {contextState, updatContext} = useContext(buildContext)
     const [loading, setloading] = useState(true)
     const conponent = ["CPU", "Motherboard", "RAM", "HardDrive", "GPU", "Case", "PowerSupply", "Monitor"]
-    const [gotoSummer,setgotoSummer] = useState(false);
+    const [gotoSummer, setgotoSummer] = useState(false);
     let history = useHistory();
 
-    if (gotoSummer){
+    if (gotoSummer) {
         history.replace('/summeryBuild')
     }
 
     useEffect(() => {
         setloading(true);
         setgotoSummer(false);
-        if (sessionStorage.getItem("buildSave")){
-            console.log('reset')
+        if (sessionStorage.getItem("buildSave") !== null) {
             updatContext({
                 type: 'rest_context',
                 payload: JSON.parse(sessionStorage.getItem("buildSave"))
             })
             setloading(false);
-        }else {
-            console.log('init')
+        } else {
             axios.get(`https://api-303.herokuapp.com/ChantraComputer`)
                 .then(function (response) {
                     updatContext({
@@ -39,24 +37,23 @@ function ProductList() {
                         payload: response.data
                     })
                     setloading(false);
-
                 })
                 .catch(function (error) {
                     // handle error
                     console.log(error);
                 })
-                .then(function () {
-
-                });
+                .then(function () {});
         }
     }, [])
 
     useEffect(() => {
-        sessionStorage.setItem("buildSave",JSON.stringify(contextState));
-    },[contextState]);
+        if (!loading){
+            sessionStorage.setItem("buildSave", JSON.stringify(contextState));
+        }
+    }, [contextState]);
 
     useEffect(() => {
-        if (!loading) {
+        if (!loading ) {
             let newComponet = [];
             switch (contextState.component) {
                 case 0: {
@@ -149,7 +146,8 @@ function ProductList() {
             updatContext({
                 type: 'set_setIsBuildDone',
                 payload: true
-            });setgotoSummer(true)
+            });
+            setgotoSummer(true)
         }} className="btn btn-success">Summery
         </button>
 
@@ -171,7 +169,8 @@ function ProductList() {
                 updatContext({
                     type: 'set_setIsBuildDone',
                     payload: true
-                });setgotoSummer(true)
+                });
+                setgotoSummer(true)
             }} className="btn btn-success">Summery
             </button>
         cardfooterStyle += "justify-content-center"
