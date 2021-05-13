@@ -10,10 +10,7 @@ import { BuildContextProvider } from './Component/Context/BuildContext'
 ReactDOM.render(
 
   <BrowserRouter>
-    <BuildContextProvider>
       <App />
-    </BuildContextProvider>
-
   </BrowserRouter>
   ,
   document.getElementById("root")
