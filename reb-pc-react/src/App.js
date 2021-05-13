@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Component/view/Navigation/navbar.js";
-import {BrowserRouter, Route, useLocation} from "react-router-dom";
+import {BrowserRouter, Route, Router, useLocation} from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";
@@ -14,6 +14,7 @@ import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
 import {BuildContextProvider} from "./Component/Context/BuildContext";
 import React from "react";
+import { createBrowserHistory } from "history";
 import * as url from "url";
 
 function App() {
@@ -26,24 +27,28 @@ function App() {
 
     }
 
+    const history = createBrowserHistory();
+
     return (
         <div className="App" style={{height: "100% " +" " + background}}>
-            <AuthContextProvider>
-                <Navbar/>
-            </AuthContextProvider>
-            <Route path="/" exact component={Home}/>
-            <Route path="/Blog" component={Blog}/>
-            <Route path="/donate" component={Donate}/>
-            <PreBuildContextProvider>
-                <Route path="/product_page" component={Product}/>
-            </PreBuildContextProvider>
-            <BuildContextProvider>
-                <Route path="/buildPC" component={Build}/>
-                <Route path="/summeryBuild" component={SummeryBuild}/>
-            </BuildContextProvider>
-            <Route path="/Login" component={Login}/>
-            <Route path="/SignUp" component={Signup}/>
-            <Route path="/profile" component={Profile}/>
+            <Router history={history}>
+                <AuthContextProvider>
+                    <Navbar/>
+                </AuthContextProvider>
+                <Route path="/" exact component={Home}/>
+                <Route path="/Blog" component={Blog}/>
+                <Route path="/donate" component={Donate}/>
+                <PreBuildContextProvider>
+                    <Route path="/product_page" component={Product}/>
+                </PreBuildContextProvider>
+                <BuildContextProvider>
+                    <Route path="/buildPC" component={Build}/>
+                    <Route path="/summeryBuild" component={SummeryBuild}/>
+                </BuildContextProvider>
+                <Route path="/Login" component={Login}/>
+                <Route path="/SignUp" component={Signup}/>
+                <Route path="/profile" component={Profile}/>
+            </Router>
         </div>
     );
 
