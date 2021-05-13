@@ -20,7 +20,7 @@ function SummeryBuild() {
     let history = useHistory()
 
     if (goToBuild){
-        history.replace('/build');
+        history.replace('/buildPC');
     }
 
     useEffect(() => {

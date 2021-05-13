@@ -38,7 +38,7 @@ function App() {
                 <Route path="/product_page" component={Product}/>
             </PreBuildContextProvider>
             <BuildContextProvider>
-                <Route path="/build" component={Build}/>
+                <Route path="/buildPC" component={Build}/>
                 <Route path="/summeryBuild" component={SummeryBuild}/>
             </BuildContextProvider>
             <Route path="/Login" component={Login}/>

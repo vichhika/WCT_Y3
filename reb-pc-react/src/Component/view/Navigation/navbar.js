@@ -100,7 +100,7 @@ function Navbar() {
                         <Link className="text-light" to="/">Home</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/Build">Build</Link>
+                        <Link className="text-light" to="/buildPC">Build</Link>
                     </li>
                     <li>
                         <Link className="text-light" to="/product_page">Product</Link>
