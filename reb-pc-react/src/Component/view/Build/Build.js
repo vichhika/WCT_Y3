@@ -11,7 +11,6 @@ function Build() {
 
     let processBar;
     if (!contextState.isBuildDone) {
-
         processBar = <ProcessBar/>
     }
 
