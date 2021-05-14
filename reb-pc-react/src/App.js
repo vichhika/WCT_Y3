@@ -46,6 +46,26 @@ function App() {
         </div>
     );
 
+  return (
+    <div className="App" style={{ height: "100%" }}>
+      
+      <AuthContextProvider>
+        <Navbar/>
+      </AuthContextProvider>
+      <Route path="/" exact component={Home}/>
+      <Route path="/Blog" component={Blog} />
+      <Route path="/donate" component={Donate} />
+      <Route path="/build" component={Build} />
+      <PreBuildContextProvider>
+        <Route path="/product_page" component={Product} />
+      </PreBuildContextProvider>
+      <Route path="/Login" component={Login} />
+      <Route path="/SignUp" component={Signup} />
+      <Route path="/summeryBuild" component={SummeryBuild}/>
+      <Route path="/profile" component={Profile}/>
+      
+    </div>
+  );
 }
 
 export default App;

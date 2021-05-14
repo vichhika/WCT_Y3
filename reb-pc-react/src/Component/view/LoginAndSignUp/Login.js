@@ -29,13 +29,14 @@ function Login() {
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary ">Login</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </div>
                             
                        
                         
-                        
-                        <p>Forget password?</p>
+                        <div className="ButtonForget">
+                        <button type="button" className="btn btn-link"> Forget password?</button>
+                        </div>                        
                     </form>
             
               
