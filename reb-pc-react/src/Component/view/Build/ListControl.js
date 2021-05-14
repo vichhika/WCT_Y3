@@ -6,7 +6,7 @@ export default function ListControl() {
     const {contextState, updatContext} = useContext(buildContext)
 
     let lastIndex = Math.min(contextState.currentList * 10 , contextState.componentPayload.length);
-    let startIndex = contextState.currentList * 10 - 10;
+    let startIndex = Math.max(lastIndex - 10, 0);
 
 
     const nextList = () => {
