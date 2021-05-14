@@ -17,6 +17,7 @@ function App() {
 
   return (
     <div className="App" style={{ height: "100%" }}>
+      
       <AuthContextProvider>
         <Navbar/>
       </AuthContextProvider>
@@ -31,6 +32,7 @@ function App() {
       <Route path="/SignUp" component={Signup} />
       <Route path="/summeryBuild" component={SummeryBuild}/>
       <Route path="/profile" component={Profile}/>
+      
     </div>
   );
 }
