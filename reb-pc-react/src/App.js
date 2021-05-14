@@ -23,7 +23,6 @@ function App() {
         background = {backgroundColor: 'white'}
     }else{
         background = {backgroundImage: `url("https://www.turn-on.de/media/cache/article_images/media/cms/2019/09/intel-amd-motherboard-mainboard-prozessor-chip.jpg?7631")`}
-
     }
 
     return (
