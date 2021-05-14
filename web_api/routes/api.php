@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//leang
+Route::middleware(['html_filter'])->group(function (){
+    Route::POST('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+    Route::POST('/login', [\App\Http\Controllers\AuthController::class, 'login']);
+    Route::POST('/change_password', [\App\Http\Controllers\AuthController::class, 'changePassword']);
+    
 });
 
-Route::POST('/register', [\App\Http\Controllers\AuthController::class, 'register'])->middleware('html_filter');
-Route::POST('/login', [\App\Http\Controllers\AuthController::class, 'login'])->middleware('html_filter');
-Route::POST('/change_password', [\App\Http\Controllers\AuthController::class, 'changePassword'])->middleware('html_filter');
+//leang
+Route::GET('/email/verification_resend/{id}', [\App\Http\Controllers\VerificationController::class, 'resend'])->name('verification.send');
+Route::GET('email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verification.verify');
 
-
+//leang
 Route::middleware(['auth:sanctum', 'html_filter'])->group(function () {
-    Route::post('/email/verification-notification', [\App\Http\Controllers\VerificationController::class, 'resend'])->name('verification.send');
-    Route::get('email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verification.verify');
     Route::POST('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+    Route::GET('/user',function (Request $request){return $request->user();});
 });
 
