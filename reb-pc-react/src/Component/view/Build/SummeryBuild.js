@@ -33,7 +33,9 @@ function SummeryBuild() {
     },[])
 
     useEffect(() => {
-        sessionStorage.setItem("buildSave",JSON.stringify(contextState));
+        if (!isLoading){
+            sessionStorage.setItem("buildSave",JSON.stringify(contextState));
+        }
     },[contextState])
 
     const itemDetail = (itemDetail) => {
