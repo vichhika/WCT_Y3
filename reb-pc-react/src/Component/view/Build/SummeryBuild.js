@@ -30,7 +30,7 @@ function SummeryBuild() {
 
     const getSelectedCpn = () => {
         const cpn = [];
-        for (let i = 0; i < contextState.selectedComponent.length; i++) {
+        for (let i = 0; i < contextState.selectedComponent.length && contextState.isBuildDone; i++) {
             const itemID = "collapse" + i
             const itemIDQ = "#" + itemID
             cpn.push(<tr className="row">

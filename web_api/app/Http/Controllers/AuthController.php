@@ -3,28 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Testing\Fluent\Concerns\Has;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function register(Request $request){
-        $user = new User();
-        $user->fullname = $request->fullname;
-        $user->username = $request->username;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
 
+        $rules = array(
+            'fullname' => 'required|string|max:55',
+            'username' => 'required|string|max:55',
+            'phone' => 'required|string|unique:users|regex:/^0[0-9]{1,9}/',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8',
+        );
 
-        $user->save();
-        event(new Registered($user));
-        $token = $user->createToken('myToken')->plainTextToken;
+        $messages = array(
+            'fullname.required' => 'A fullname is required.',
+            'fullname.max' => 'A fullname maximun input 55 characters.',
+            'username.required' => 'A username is required.',
+            'username.max' => 'A username maximun input 55 characters.',
+            'phone.required' => 'A phone number is required.',
+            'phone.regex' => 'A phone number is invalid.',
+            'phone.unique' => 'A phone number is already registered.',
+            'email.required' => 'A email address is required.',
+            'email.email' => 'A email address is invalid.',
+            'email.unique' => 'A email address is already registerd.',
+            'password.required' => 'A password is required.',
+            'password.min' => 'A password is required more than or equal 8 digits.'
+        );
 
-
-        return ["token" => $token];
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if($validator->fails()){
+            return $validator->errors();
+        }else{
+            $user = new User([
+                'fullname' => $request->get('fullname'),
+                'username' => $request->get('username'),
+                'phone' => $request->get('phone'),
+                'email' => $request->get('email'),
+                'password' => bcrypt($request->get('password')),
+            ]);
+            $user->save();
+            $accessToken = $user->createToken('myToken')->accessToken;
+            $user->sendEmailVerificationNotification();
+            return response()->json([
+                'access_token' => $accessToken,
+                'message' => 'Email sent! please comfirm your email at your inbox message.'
+            ],201);
+        }
     }
 
     public function changePassword(Request $request){
