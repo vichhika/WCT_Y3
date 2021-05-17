@@ -15,7 +15,7 @@ function ProductListing(){
         view = filterComponents.cpu.map(cpu => {
             return <div key={cpu._id} className="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                 <div className="product d-flex flex-column" style={{marginBottom:'30px'}}>
-                    <img src="https://desktop.goldonecomputer.com/image/cache/catalog/products/Case/JESM%20BT/11-400x400.jpg"/>
+                    <img src="https://www.chantracomputer.com/DESKTOP%20SYSTEM/CASE/AEROCOOL/TOR-PRO-RGB.gif"/>
                     <br/>
                     <h5 className="description">{cpu.brand + ' | ' + cpu.model + ' | cores ' + cpu.cores}</h5>  
                 <h6 className="price">{cpu.price}</h6>
