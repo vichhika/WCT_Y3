@@ -12,10 +12,7 @@ function SignUp() {
 
     const summitToServer = data => {
         console.log(token.getAttribute('content'))
-        axios.post("http://128.199.190.255:8080/api/register", data, {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN'": token.getAttribute('content')
-        })
+        axios.post("http://128.199.190.255:8080/api/register", data,)
             .then(function (response) {
                 console.log(response);
             }).catch(function (error) {
