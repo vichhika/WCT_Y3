@@ -1,64 +1,97 @@
-import React,{useState} from "react";
-import  "./../../../Css/stylesignup.scss";
+import React, {useState} from "react";
+import "./../../../Css/stylesignup.scss";
+import {useForm} from "react-hook-form";
+import axios from "axios";
 
 function SignUp() {
     document.body.style.backgroundImage = 'none';
 
-   
+    const {register, handleSubmit, watch, formState: {errors}} = useForm();
 
-    return(
-    <div class="container signup">
-       
-        <div class="row">
-            <div class="col-sm">               
-                
-                
-                <div class="signinbox">
-                   
-                    <form>
-                        <h1>Sign Up</h1>
-                        <div class="form-group" >
-                            <label for="InputFullname">Fullname</label>
-                            <input type="text" class="form-control" id="InputFullname" placeholder="Enter Fullname" required></input>
-                        </div>
+    const token = document.head.querySelector('meta[name="csrf-token"]');
 
-                        <div class="form-group" >
-                            <label for="InputUsername">Username</label>
-                            <input type="text" class="form-control" id="InputUsername" placeholder="Enter Username" required></input>
-                        </div>
-                        
-                        <div class="form-group" >
-                            <label for="InputEmail">Email</label>
-                            <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email" required></input>
-                            
-                        </div>
-                       
-                        <div class="form-group">
-                            <label for="InputPassword">Password</label>
-                            <input type="password" class="form-control" id="InputPassword" placeholder="Enter Password" required></input>
-                        </div>
-                        <div class="form-group">
-                            <label for="ConfirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="ConfirmPassword" placeholder="Confirm Password" required></input>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="Check1"></input>
-                            <label class="form-check-label" for="Check1">Check me out</label>
-                        </div>
+    const summitToServer = data => {
+        console.log(token.getAttribute('content'))
+        axios.post("http://128.199.190.255:8080/api/register", data, {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN'": token.getAttribute('content')
+        })
+            .then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+            console.log(error);
+        });
+    }
 
-                        <div class="d-flex justify-content-center">
-                            <button type="submit"  class="btn btn-primary" >Sign Up</button>
-                        </div>                        
-                    </form>
-                    
-                </div>
-      
+    return (
+        <div class="container signup">
+
+            <div className="signinbox w-50">
+
+                <form onSubmit={handleSubmit(summitToServer)}>
+                    <h1>Sign Up</h1>
+                    <div className="form-group">
+                        <label htmlFor="InputFullname">Fullname</label>
+                        <input type="text" class="form-control"
+                               placeholder="Enter Fullname" {...register("fullname", {required: true})} />
+                        {errors.fullname && <p className="error-signup">Last fullname is required</p>}
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="InputUsername">Username</label>
+                        <input type="text" class="form-control"
+                               placeholder="Enter Username" {...register("username", {required: true})} />
+                        {errors.username && <p className="error-signup">Last username is required</p>}
+
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="InputEmail">Email</label>
+                        <input type="email" class="form-control"
+                               placeholder="Enter email" {...register("email", {required: true})} />
+                        {errors.email && <p className="error-signup">Last email is required</p>}
+
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="InputPhone">Phone</label>
+                        <input type="phone" className="form-control"
+                               placeholder="Enter you phone number" {...register("phone", {required: true})} />
+                        {errors.phone && <p className="error-signup">Last phone is required</p>}
+
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="InputPassword">Password</label>
+                        <input name="password" type="password" class="form-control"
+                               placeholder="Enter Password" {...register("password", {required: true})} />
+                        {errors.password && <p className="error-signup">Last password is required</p>}
+
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="ConfirmPassword">Confirm Password</label>
+                        <input name="ConfirmPassword" type="password" class="form-control"
+                               placeholder="Confirm Password" {...register("confirmPassword", {
+                            required: true,
+                            validate: value => value === watch("password") ||
+                                "The passwords do not match"
+                        })}/>
+                        {errors.confirmPassword && <p className="error-signup">{errors.confirmPassword.message}</p>}
+                    </div>
+
+                    <div className="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+
+                </form>
+
             </div>
+
         </div>
 
-    </div>
 
-    
     );
 }
+
 export default SignUp;
