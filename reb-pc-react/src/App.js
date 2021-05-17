@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Component/view/Navigation/navbar.js";
-import {BrowserRouter, Route, Router, useLocation} from "react-router-dom";
+import { Route} from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";
@@ -17,15 +17,9 @@ import React from "react";
 import * as url from "url";
 
 function App() {
-    let background;
-    if (path.pathname === '/') {
-        background = {backgroundColor: 'white'}
-    }else{
-        background = {backgroundImage: `url("https://www.turn-on.de/media/cache/article_images/media/cms/2019/09/intel-amd-motherboard-mainboard-prozessor-chip.jpg?7631")`}
-    }
 
     return (
-        <div className="App" style={{height: "100% " +" " + background}}>
+        <div className="App">
                 <AuthContextProvider>
                     <Navbar/>
                 </AuthContextProvider>
@@ -45,26 +39,6 @@ function App() {
         </div>
     );
 
-  return (
-    <div className="App" style={{ height: "100%" }}>
-      
-      <AuthContextProvider>
-        <Navbar/>
-      </AuthContextProvider>
-      <Route path="/" exact component={Home}/>
-      <Route path="/Blog" component={Blog} />
-      <Route path="/donate" component={Donate} />
-      <Route path="/build" component={Build} />
-      <PreBuildContextProvider>
-        <Route path="/product_page" component={Product} />
-      </PreBuildContextProvider>
-      <Route path="/Login" component={Login} />
-      <Route path="/SignUp" component={Signup} />
-      <Route path="/summeryBuild" component={SummeryBuild}/>
-      <Route path="/profile" component={Profile}/>
-      
-    </div>
-  );
 }
 
 export default App;
