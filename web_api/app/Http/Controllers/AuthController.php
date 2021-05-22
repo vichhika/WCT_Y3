@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+
     public function register(Request $request){
 
         $rules = array(
@@ -18,6 +19,7 @@ class AuthController extends Controller
             'phone' => 'required|string|unique:users|regex:/^0[0-9]{1,9}/',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
+            'password_confirmation' => 'required|string|min:8|same:password',
         );
 
         $messages = array(
@@ -32,12 +34,16 @@ class AuthController extends Controller
             'email.email' => 'A email address is invalid.',
             'email.unique' => 'A email address is already registerd.',
             'password.required' => 'A password is required.',
-            'password.min' => 'A password is required more than or equal 8 digits.'
+            'password.min' => 'A password is required more than or equal 8 digits.',
+            'password_confirmation.same' => 'Password confirmation should match pasasword fill.',
         );
 
         $validator = Validator::make($request->all(),$rules,$messages);
         if($validator->fails()){
-            return $validator->errors();
+            return response()->json([
+                "statusCode" => 0,
+                "messages" => $validator->errors(),
+            ]);
         }else{
             $user = new User([
                 'fullname' => $request->get('fullname'),
@@ -47,9 +53,10 @@ class AuthController extends Controller
                 'password' => bcrypt($request->get('password')),
             ]);
             $user->save();
-            $accessToken = $user->createToken('myToken')->accessToken;
+            $accessToken = $user->createToken('myToken')->plainTextToken;
             $user->sendEmailVerificationNotification();
             return response()->json([
+                'statusCode' => 1,
                 'access_token' => $accessToken,
                 'message' => 'Email sent! please comfirm your email at your inbox message.'
             ],201);
