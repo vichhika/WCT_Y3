@@ -53,7 +53,7 @@ class AuthController extends Controller
                 'password' => bcrypt($request->get('password')),
             ]);
             $user->save();
-            $accessToken = $user->createToken('myToken')->plainTextToken;
+            $accessToken = $user->createToken('myToken',['role:user'])->plainTextToken;
             $user->sendEmailVerificationNotification();
             return response()->json([
                 'statusCode' => 1,
@@ -88,12 +88,11 @@ class AuthController extends Controller
 
     public function login(Request $request){
         $user = User::where('email',$request->email)->first();
-
         if (!$user || !Hash::check($request->password,$user->password)){
             return ['message' => 'wrong password'];
         }
-
-        $token = $user->createToken('myToken')->plainTextToken;
+        $user->tokens()->delete();
+        $token = $user->createToken('myToken',['role:user'])->plainTextToken;
         return ["token" => $token];
     }
 }

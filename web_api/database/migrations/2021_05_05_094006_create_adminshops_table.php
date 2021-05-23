@@ -20,8 +20,11 @@ class CreateAdminshopsTable extends Migration
             $table->string('shop_name')->unique();
             $table->string('phonenumber')->unique();
             $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->string('location');
             $table->string('profile');
+            $table->integer('permission')->default(1);
             $table->timestamps();
         });
     }

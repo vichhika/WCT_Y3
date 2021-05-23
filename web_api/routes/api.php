@@ -32,3 +32,11 @@ Route::middleware(['auth:sanctum', 'html_filter'])->group(function () {
     Route::GET('/user',function (Request $request){return $request->user();});
 });
 
+/////////////////////////////////////////////
+Route::middleware(['shop_role'])->group(function(){
+    //route for shop owner permission
+});
+
+Route::middleware(['user_role'])->group(function(){
+    //route for user permission
+});
