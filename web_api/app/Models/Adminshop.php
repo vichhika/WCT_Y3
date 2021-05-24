@@ -21,8 +21,10 @@ class Adminshop extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, HasApiTokens, Notifiable;
 
+    protected $primaryKey = 'adminshopID';
+
     protected $fillable = [
-        'username',
+        'password',
         'shop_name',
         'phonenumber',
         'email',
