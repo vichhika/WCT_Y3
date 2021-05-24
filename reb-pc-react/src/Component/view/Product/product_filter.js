@@ -5,6 +5,7 @@ import { PreBuildContext } from '../../Context/PreBuildContext';
 function ProductFilter(){
 
     const {loading,components,filterBy,setFilterBy} = useContext(PreBuildContext); 
+    
     let INTEL;
     let AMD;
     let intel = [];

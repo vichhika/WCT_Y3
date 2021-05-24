@@ -12,6 +12,9 @@ import AuthContextProvider from "./Component/Context/AuthContext";
 import PreBuildContextProvider from "./Component/Context/PreBuildContext";
 import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
+import ProductDetail from './Component/view/Product/productDetail'
+import ProductDetailContextProvider from './Component/Context/productDetailContext'
+
 
 function App() {
 
@@ -25,7 +28,10 @@ function App() {
       <Route path="/donate" component={Donate} />
       <Route path="/build" component={Build} />
       <PreBuildContextProvider>
-        <Route path="/product_page" component={Product} />
+        <ProductDetailContextProvider>
+          <Route path="/product_page" component={Product} />
+          <Route path="/productDetail" component={ProductDetail}/>
+        </ProductDetailContextProvider>
       </PreBuildContextProvider>
       <Route path="/Login" component={Login} />
       <Route path="/SignUp" component={Signup} />

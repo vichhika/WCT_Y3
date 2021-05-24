@@ -8,7 +8,7 @@ import '../../../Css/navigation_bar/menu/entry.css';
 import '../../../Css/navigation_bar/user-profile-btn/user-profile-btn.css';
 import { AuthContext } from "../../Context/AuthContext";
 
-function Navbar() {
+function Navbar(props) {
 
     const {isAuthenticated} = useContext(AuthContext);
 
@@ -22,6 +22,10 @@ function Navbar() {
             document.getElementById("mnu").style.display = 'block';
         else if (menu === 'block')
             document.getElementById("mnu").style.display = 'none';
+    }
+
+    const styleNavItem = {
+        textDecoration: 'none',
     }
 
     return (
@@ -97,20 +101,20 @@ function Navbar() {
                 
                 <ul className="menu">
                     <li>
-                        <Link className="text-light" to="/">Home</Link>
+                        <Link className="text-light" to="/" style={styleNavItem}>Home</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/Build">Build</Link>
+                        <Link className="text-light" to="/Build" style={styleNavItem}>Build</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/product_page">Product</Link>
+                        <Link className="text-light" to="/product_page" style={styleNavItem}>Product</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/Donate">Donate</Link>
+                        <Link className="text-light" to="/Donate" style={styleNavItem}>Donate</Link>
                     </li>
 
                     <li>
-                        <Link className="text-light" to="/profile">Profile</Link>
+                        <Link className="text-light" to="/profile" style={styleNavItem}>Profile</Link>
                         {/* <a className="text-light" href="#">Donate</a> */}
                     </li>
 
@@ -118,16 +122,16 @@ function Navbar() {
 
 
                     <li className="entry log-in-btn" style={{display: displayEntry}}>
-                        <Link to="/Login">Login</Link>
+                        <Link to="/Login" style={styleNavItem}>Login</Link>
                     </li>
                     <li className="entry sign-up-btn" style={{display: displayEntry}}>
-                        <Link to="/SignUp">Sign Up</Link>
+                        <Link to="/SignUp" style={styleNavItem}>Sign Up</Link>
                     </li>
                     
                     {/* User Build */}
 
                     <li style={{display: displayUserBuildPage}}>
-                        <Link  className="text-light" to="#">My Build</Link>
+                        <Link  className="text-light" to="#" style={styleNavItem}>My Build</Link>
                     </li>
 
                     {/* <!--Display this user-profile only acc exist--> */}
