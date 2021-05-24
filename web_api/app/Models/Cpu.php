@@ -10,6 +10,8 @@ class Cpu extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'cpuID';
+
     public function cpuprices()
     {
         return $this->hasMany(Cpuprice::class,'cpuID');

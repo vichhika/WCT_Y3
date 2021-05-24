@@ -10,8 +10,10 @@ class Motherboard extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'motherboardID';
+
     public function motherboardprices()
     {
-        return $this->hasMany(Motherboard::class,'monitorID');
+        return $this->hasMany(Motherboard::class,'motherboardID');
     }
 }

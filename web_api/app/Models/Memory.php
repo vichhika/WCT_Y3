@@ -10,6 +10,8 @@ class Memory extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'memoryID';
+
     public function memoryprices()
     {
         return $this->hasMany(Memoryprice::class,'memoryID');

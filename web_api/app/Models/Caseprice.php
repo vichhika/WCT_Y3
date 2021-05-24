@@ -12,6 +12,8 @@ class Caseprice extends Model
 {
     use HasFactory;
 
+    protected $table = 'casepcprices';
+
     protected $fillable = [
         'casepcID',
         'adminshopID',

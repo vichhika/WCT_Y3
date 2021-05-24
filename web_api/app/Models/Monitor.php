@@ -10,6 +10,8 @@ class Monitor extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'monitorID';
+
     public function monitorprices()
     {
         return $this->hasMany(Monitor::class,'monitorID');

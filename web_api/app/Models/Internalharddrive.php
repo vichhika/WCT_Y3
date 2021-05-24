@@ -10,6 +10,8 @@ class Internalharddrive extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'internalharddriveID';
+
     public function internalharddriveprices()
     {
         return $this->hasMany(internalharddriveprices::class,'internalharddriveID');

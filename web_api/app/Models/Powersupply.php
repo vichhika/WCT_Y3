@@ -10,6 +10,8 @@ class Powersupply extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'powersupplyID';
+
     public function powersupplyprices()
     {
         return $this->hasMany(Powersupplyprice::class,'powersupplyID');

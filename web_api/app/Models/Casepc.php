@@ -10,6 +10,8 @@ class Casepc extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'casepcID';
+
     public function caseprices()
     {
         return $this->hasMany(Caseprice::class,'casepcID');

@@ -12,6 +12,8 @@ class Videocardprice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'videocardpriceID';
+
     protected $fillable = [
         'videocardID',
         'adminshopID',

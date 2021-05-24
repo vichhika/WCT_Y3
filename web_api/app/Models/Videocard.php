@@ -10,6 +10,8 @@ class Videocard extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'videocardID';
+
     public function videocardprices()
     {
         return $this->hasMany(Videocardprice::class,'videocardID');

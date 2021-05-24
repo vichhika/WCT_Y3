@@ -37,6 +37,12 @@ Route::middleware(['shop_role','auth:sanctum','html_filter'])->group(function(){
     Route::GET('/admin_shop/logout',[\App\Http\Controllers\AuthShopController::class,'logout']);
     Route::GET('/admin_shop/components/index',[\App\Http\Controllers\ComponentController::class,'index']);
     Route::GET('/admin_shop/components/list',[\App\Http\Controllers\ComponentController::class,'list']);
+    Route::GET('/admin_shop/index',[\App\Http\Controllers\ShopController::class,'index']);
+    Route::GET('/admin_shop/list',[\App\Http\Controllers\ShopController::class,'list']);
+    Route::POST('/admin_shop/store',[\App\Http\Controllers\ShopController::class,'store']);
+    Route::POST('/admin_shop/update',[\App\Http\Controllers\ShopController::class,'update']);
+    Route::POST('/admin_shop/destroy',[\App\Http\Controllers\ShopController::class,'destroy']);
+
 });
 
 Route::middleware(['user_role','auth:sanctum','html_filter'])->group(function(){
