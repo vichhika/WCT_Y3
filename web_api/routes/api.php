@@ -35,6 +35,8 @@ Route::middleware(['shop_role','auth:sanctum','html_filter'])->group(function(){
     //route for shop owner permission
     Route::POST('/admin_shop/change_password',[\App\Http\Controllers\AuthShopController::class,'changePassword']);
     Route::GET('/admin_shop/logout',[\App\Http\Controllers\AuthShopController::class,'logout']);
+    Route::GET('/admin_shop/components/index',[\App\Http\Controllers\ComponentController::class,'index']);
+    Route::GET('/admin_shop/components/list',[\App\Http\Controllers\ComponentController::class,'list']);
 });
 
 Route::middleware(['user_role','auth:sanctum','html_filter'])->group(function(){
