@@ -34,28 +34,28 @@ class ShopController extends Controller
         ]);
         switch ($request->component) {
             case 'cpu':
-                $components = Cpuprice::with(['Cpu'])->paginate($request->input('current_page',10));
+                $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->paginate($request->input('current_page',10));
+                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
-                $components = Internalharddriveprice::with(['Internalharddrive'])->paginate($request->input('current_page',10));
+                $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'memory':
-                $components = Memoryprice::with(['Memory'])->paginate($request->input('current_page',10));
+                $components = Memoryprice::with(['Memory'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'monitor':
-                $components = Monitorprice::with(['Monitor'])->paginate($request->input('current_page',10));
+                $components = Monitorprice::with(['Monitor'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'motherboard':
-                $components = Motherboardprice::with(['Motherboard'])->paginate($request->input('current_page',10));
+                $components = Motherboardprice::with(['Motherboard'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'powersupply':
-                $components = Powersupplyprice::with(['Powersupply'])->paginate($request->input('current_page',10));
+                $components = Powersupplyprice::with(['Powersupply'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'videocard':
-                $components = Videocardprice::with(['Videocard'])->paginate($request->input('current_page',10));
+                $components = Videocardprice::with(['Videocard'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             default:
                 return response()->json([
@@ -75,28 +75,28 @@ class ShopController extends Controller
     {
         switch ($request->component) {
             case 'cpu':
-                $components = Cpuprice::with(['Cpu'])->get();
+                $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->get();
+                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'internalharddrive':
-                $components = Internalharddriveprice::with(['Internalharddrive'])->get();
+                $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'memory':
-                $components = Memoryprice::with(['Memory'])->get();
+                $components = Memoryprice::with(['Memory'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'monitor':
-                $components = Monitorprice::with(['Monitor'])->get();
+                $components = Monitorprice::with(['Monitor'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'motherboard':
-                $components = Motherboardprice::with(['Motherboard'])->get();
+                $components = Motherboardprice::with(['Motherboard'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'powersupply':
-                $components = Powersupplyprice::with(['Powersupply'])->get();
+                $components = Powersupplyprice::with(['Powersupply'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'videocard':
-                $components = Videocardprice::with(['Videocard'])->get();
+                $components = Videocardprice::with(['Videocard'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             default:
                 return response()->json([
@@ -127,7 +127,9 @@ class ShopController extends Controller
         switch ($request->component) {
             case 'cpu':
                 $component = Cpu::where('cpuID',$request->cpuID)->first();
-                $is_exist = Cpuprice::where('cpuID',$request->cpuID)->first();
+                $is_exist = Cpuprice::where([
+                    ['cpuID',$request->cpuID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([
@@ -149,7 +151,9 @@ class ShopController extends Controller
                 break;
             case 'casepc':
                 $component = Casepc::where('casepcID',$request->casepcID)->first();
-                $is_exist = Caseprice::where('casepcID',$request->casepcID)->first();
+                $is_exist = Caseprice::where([
+                    ['casepcID',$request->casepcID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([
@@ -171,7 +175,9 @@ class ShopController extends Controller
                 break;
             case 'internalharddrive':
                 $component = Internalharddrive::where('internalharddriveID',$request->internalharddriveID)->first();
-                $is_exist = Internalharddriveprice::where('internalharddriveID',$request->internalharddriveID)->first();
+                $is_exist = Internalharddriveprice::where([
+                    ['internalharddriveID',$request->internalharddriveID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([
@@ -193,7 +199,9 @@ class ShopController extends Controller
                 break;
             case 'memory':
                 $component = Memory::where('memoryID',$request->memoryID)->first();
-                $is_exist = Memoryprice::where('memoryID',$request->memoryID)->first();
+                $is_exist = Memoryprice::where([
+                    ['memoryID',$request->memoryID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([
@@ -215,7 +223,9 @@ class ShopController extends Controller
                 break;
             case 'monitor':
                 $component = Monitor::where('monitorID',$request->monitorID)->first();
-                $is_exist = Monitorprice::where('monitorID',$request->monitorID)->first();
+                $is_exist = Monitorprice::where([
+                    ['monitorID',$request->monitorID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([
@@ -237,7 +247,9 @@ class ShopController extends Controller
                 break;
             case 'motherboard':
                 $component = Motherboard::where('motherboardID',$request->motherboardID)->first();
-                $is_exist = Motherboardprice::where('motherboardID',$request->motherboardID)->first();
+                $is_exist = Motherboardprice::where([
+                    ['motherboardID',$request->motherboardID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([
@@ -259,7 +271,9 @@ class ShopController extends Controller
                 break;
             case 'powersupply':
                 $component = Powersupply::where('powersupplyID',$request->powersupplyID)->first();
-                $is_exist = Powersupplyprice::where('powersupplyID',$request->powersupplyID)->first();
+                $is_exist = Powersupplyprice::where([
+                    ['powersupplyID',$request->powersupplyID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([
@@ -281,7 +295,9 @@ class ShopController extends Controller
                 break;
             case 'videocard':
                 $component = Videocard::where('videocardID',$request->videocardID)->first();
-                $is_exist = Videocardprice::where('videocardID',$request->videocardID)->first();
+                $is_exist = Videocardprice::where([
+                    ['videocardID',$request->videocardID],
+                    ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
                 {
                     return response()->json([

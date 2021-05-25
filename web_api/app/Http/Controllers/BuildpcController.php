@@ -2,56 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Adminshop;
-use App\Models\Casepc;
 use App\Models\Caseprice;
-use App\Models\Cpu;
 use App\Models\Cpuprice;
-use App\Models\Internalharddrive;
 use App\Models\Internalharddriveprice;
-use App\Models\Memory;
 use App\Models\Memoryprice;
-use App\Models\Monitor;
 use App\Models\Monitorprice;
-use App\Models\Motherboard;
 use App\Models\Motherboardprice;
-use App\Models\Powersupply;
 use App\Models\Powersupplyprice;
-use App\Models\Videocard;
 use App\Models\Videocardprice;
 use Illuminate\Http\Request;
 
-class ComponentController extends Controller
+class BuildpcController extends Controller
 {
     public function index(Request $request)
     {
+
         $request->validate([
             'current_page' => 'numeric|min:1|max:100'
         ]);
         switch ($request->component) {
             case 'cpu':
-                $components = Cpu::paginate($request->input('current_page',10));
+                $components = Cpuprice::with(['Cpu'])->paginate($request->input('current_page',10));
                 break;
             case 'casepc':
-                $components = Casepc::paginate($request->input('current_page',10));
+                $components = Caseprice::with(['Casepc'])->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
-                $components = Internalharddrive::paginate($request->input('current_page',10));
+                $components = Internalharddriveprice::with(['Internalharddrive'])->paginate($request->input('current_page',10));
                 break;
             case 'memory':
-                $components = Memory::paginate($request->input('current_page',10));
+                $components = Memoryprice::with(['Memory'])->paginate($request->input('current_page',10));
                 break;
             case 'monitor':
-                $components = Monitor::paginate($request->input('current_page',10));
+                $components = Monitorprice::with(['Monitor'])->paginate($request->input('current_page',10));
                 break;
             case 'motherboard':
-                $components = Motherboard::paginate($request->input('current_page',10));
+                $components = Motherboardprice::with(['Motherboard'])->paginate($request->input('current_page',10));
                 break;
             case 'powersupply':
-                $components = Powersupply::paginate($request->input('current_page',10));
+                $components = Powersupplyprice::with(['Powersupply'])->paginate($request->input('current_page',10));
                 break;
             case 'videocard':
-                $components = Videocard::paginate($request->input('current_page',10));
+                $components = Videocardprice::with(['Videocard'])->paginate($request->input('current_page',10));
                 break;
             default:
                 return response()->json([
@@ -69,31 +61,30 @@ class ComponentController extends Controller
 
     public function list(Request $request)
     {
-        //dd($request->user()->adminshopID);
         switch ($request->component) {
             case 'cpu':
-                $components = Cpu::all();
+                $components = Cpuprice::with(['Cpu'])->get();
                 break;
             case 'casepc':
-                $components = Casepc::all();
+                $components = Caseprice::with(['Casepc'])->get();
                 break;
             case 'internalharddrive':
-                $components = Internalharddrive::all();
+                $components = Internalharddriveprice::with(['Internalharddrive'])->get();
                 break;
             case 'memory':
-                $components = Memory::all();
+                $components = Memoryprice::with(['Memory'])->get();
                 break;
             case 'monitor':
-                $components = Monitor::all();
+                $components = Monitorprice::with(['Monitor'])->get();
                 break;
             case 'motherboard':
-                $components = Motherboard::all();
+                $components = Motherboardprice::with(['Motherboard'])->get();
                 break;
             case 'powersupply':
-                $components = Powersupply::all();
+                $components = Powersupplyprice::with(['Powersupply'])->get();
                 break;
             case 'videocard':
-                $components = Videocard::all();
+                $components = Videocardprice::with(['Videocard'])->get();
                 break;
             default:
                 return response()->json([
@@ -107,5 +98,6 @@ class ComponentController extends Controller
             'statusCode' => 1,
             'message' => $components,
         ]);
+
     }
 }

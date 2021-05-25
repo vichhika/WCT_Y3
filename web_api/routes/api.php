@@ -28,6 +28,10 @@ Route::middleware(['html_filter'])->group(function (){
     //email verify
     Route::GET('/email/verification_resend/{id}', [\App\Http\Controllers\VerificationController::class, 'resend'])->name('verification.send');
     Route::GET('email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verification.verify');
+
+    // build pc route
+    Route::GET('/build/index',[\App\Http\Controllers\BuildpcController::class,'index']);
+    Route::GET('/build/list',[\App\Http\Controllers\BuildpcController::class,'index']);
 });
 
 /////////////////////////////////////////////
