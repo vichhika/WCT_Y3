@@ -58,7 +58,10 @@ function App() {
       <Route path="/" exact component={Home}/>
       <Route path="/Blog" component={Blog} />
       <Route path="/donate" component={Donate} />
-      <Route path="/build" component={Build} />
+      <BuildContextProvider>
+        <Route path="/build" component={Build} />
+        <Route path="/summeryBuild" component={SummeryBuild}/>
+      </BuildContextProvider>
       <PreBuildContextProvider>
         <ProductDetailContextProvider>
           <Route path="/product_page" component={Product} />
@@ -67,7 +70,6 @@ function App() {
       </PreBuildContextProvider>
       <Route path="/Login" component={Login} />
       <Route path="/SignUp" component={Signup} />
-      <Route path="/summeryBuild" component={SummeryBuild}/>
       <Route path="/profile" component={Profile}/>
       
     </div>
