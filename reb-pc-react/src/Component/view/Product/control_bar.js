@@ -19,8 +19,8 @@ function ControlBar(){
                 <div className="sortIn input-group-sm">
                     <select className="custom-select" id="sortSelection" onChange={() => setSortAs(document.getElementById('sortSelection').value)}>
                         <option selected>Default Sort</option>
-                        <option value='ASC'>lower to higher (price)</option>
-                        <option value='DESC'>higer to lower (price)</option>
+                        <option value='ASC'>Price(Low &#45;&#62; Hight)</option>
+                        <option value='DESC'>Price(Hight &#45;&#62; Low)</option>
                     </select>
                 </div>
             </div>
