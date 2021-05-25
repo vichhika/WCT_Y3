@@ -13,14 +13,14 @@ class CreateCasepricesTable extends Migration
      */
     public function up()
     {
-        Schema::create('caseprices', function (Blueprint $table) {
-            $table->id('casepriceID');
-            $table->bigInteger('caseID');
+        Schema::create('casepcprices', function (Blueprint $table) {
+            $table->id('casepcpriceID');
+            $table->bigInteger('casepcID');
             $table->bigInteger('adminshopID');
             $table->integer('price');
             $table->timestamps();
             $table->unique([
-                'caseID',
+                'casepcID',
                 'adminshopID',
             ]);
         });
