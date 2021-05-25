@@ -16,34 +16,33 @@ class BuildpcController extends Controller
 {
     public function index(Request $request)
     {
-
         $request->validate([
             'current_page' => 'numeric|min:1|max:100'
         ]);
         switch ($request->component) {
             case 'cpu':
-                $components = Cpuprice::with(['Cpu'])->paginate($request->input('current_page',10));
+                $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->paginate($request->input('current_page',10));
+                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
-                $components = Internalharddriveprice::with(['Internalharddrive'])->paginate($request->input('current_page',10));
+                $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'memory':
-                $components = Memoryprice::with(['Memory'])->paginate($request->input('current_page',10));
+                $components = Memoryprice::with(['Memory'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'monitor':
-                $components = Monitorprice::with(['Monitor'])->paginate($request->input('current_page',10));
+                $components = Monitorprice::with(['Monitor'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'motherboard':
-                $components = Motherboardprice::with(['Motherboard'])->paginate($request->input('current_page',10));
+                $components = Motherboardprice::with(['Motherboard'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'powersupply':
-                $components = Powersupplyprice::with(['Powersupply'])->paginate($request->input('current_page',10));
+                $components = Powersupplyprice::with(['Powersupply'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'videocard':
-                $components = Videocardprice::with(['Videocard'])->paginate($request->input('current_page',10));
+                $components = Videocardprice::with(['Videocard'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             default:
                 return response()->json([
@@ -63,28 +62,28 @@ class BuildpcController extends Controller
     {
         switch ($request->component) {
             case 'cpu':
-                $components = Cpuprice::with(['Cpu'])->get();
+                $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->get();
+                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'internalharddrive':
-                $components = Internalharddriveprice::with(['Internalharddrive'])->get();
+                $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'memory':
-                $components = Memoryprice::with(['Memory'])->get();
+                $components = Memoryprice::with(['Memory'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'monitor':
-                $components = Monitorprice::with(['Monitor'])->get();
+                $components = Monitorprice::with(['Monitor'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'motherboard':
-                $components = Motherboardprice::with(['Motherboard'])->get();
+                $components = Motherboardprice::with(['Motherboard'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'powersupply':
-                $components = Powersupplyprice::with(['Powersupply'])->get();
+                $components = Powersupplyprice::with(['Powersupply'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'videocard':
-                $components = Videocardprice::with(['Videocard'])->get();
+                $components = Videocardprice::with(['Videocard'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             default:
                 return response()->json([
@@ -98,6 +97,5 @@ class BuildpcController extends Controller
             'statusCode' => 1,
             'message' => $components,
         ]);
-
     }
 }
