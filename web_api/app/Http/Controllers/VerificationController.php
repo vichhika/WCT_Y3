@@ -22,6 +22,7 @@ class VerificationController extends Controller
 
         $user->markEmailAsVerified();
 
+        //redirect to frondend
         return ['message'=>'verify'];
     }
 

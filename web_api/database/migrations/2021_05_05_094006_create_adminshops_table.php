@@ -15,13 +15,15 @@ class CreateAdminshopsTable extends Migration
     {
         Schema::create('adminshops', function (Blueprint $table) {
             $table->id('adminshopID');
-            $table->string('username')->unique();
             $table->string('password');
             $table->string('shop_name')->unique();
             $table->string('phonenumber')->unique();
             $table->string('email')->unique();
-            $table->string('location');
-            $table->string('profile');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
+            $table->string('location')->nullable();
+            $table->string('profile')->nullable();
+            $table->integer('permission')->default(1);
             $table->timestamps();
         });
     }
