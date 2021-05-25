@@ -1,27 +1,42 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useReducer} from 'react';
 
-export const AuthContext = createContext();
 
-function AuthContextProvider(props){
-
-    const initState = {
-        isAuthenticated: false,
-    }
-
-    const [state, setState] = useState(initState);
-
-    const setAuth = () => {
-        setState({isAuthenticated: !this.state.isAuthenticated });
-    }
-    
-    return(
-
-        <AuthContext.Provider value={{...state, setAuth: setAuth}}>
-            {props.children}
-        </AuthContext.Provider>
-
-    );
-
+const initState = {
+    isAuthenticated: false,
 }
 
-export default AuthContextProvider;
+const authContext = createContext(initState);
+
+const actions = {
+    setIsAuthenticated: (state, isAuthenticated) => {
+        return {
+            ...state,
+            isAuthenticated
+        }
+    }
+}
+
+const authReducer = (state, action) => {
+    switch (action.type) {
+        case 'set_isAuthenticated':
+            state = actions.setIsAuthenticated(state, action.payload)
+            return {...state}
+        default:
+            return {...state}
+    }
+}
+
+const AuthContextProvider = props => {
+    const [contextAuthState, updateAuthContext] = useReducer(authReducer, initState);
+    return (
+        <authContext.Provider value={{contextAuthState, updateAuthContext}}>
+            {props.children}
+        </authContext.Provider>
+    );
+}
+
+
+export {
+    AuthContextProvider,
+    authContext
+};

@@ -6,15 +6,17 @@ import '../../../Css/navigation_bar/sm-screen-view/sm-screen-view.css';
 import '../../../Css/navigation_bar/md-lg-screen-view/md-lg-screen-view.css';
 import '../../../Css/navigation_bar/menu/entry.css';
 import '../../../Css/navigation_bar/user-profile-btn/user-profile-btn.css';
-import { AuthContext } from "../../Context/AuthContext";
+import { authContext } from "../../Context/AuthContext";
 
 function Navbar(props) {
 
-    const {isAuthenticated} = useContext(AuthContext);
+    const {contextAuthState} = useContext(authContext);
 
-    const displayEntry = isAuthenticated ? 'none' : 'list-item';
-    const displayUserProfile = !isAuthenticated ? 'none' : 'inline-block';
-    const displayUserBuildPage = !isAuthenticated ? 'none' : 'list-item';
+    console.log("navbar ",contextAuthState)
+
+    const displayEntry = contextAuthState.isAuthenticated ? 'none' : 'list-item';
+    const displayUserProfile = !contextAuthState.isAuthenticated ? 'none' : 'inline-block';
+    const displayUserBuildPage = !contextAuthState.isAuthenticated ? 'none' : 'list-item';
 
     function click(){
         let menu = document.getElementById("mnu").style.display;
