@@ -6,19 +6,21 @@ import '../../../Css/navigation_bar/sm-screen-view/sm-screen-view.css';
 import '../../../Css/navigation_bar/md-lg-screen-view/md-lg-screen-view.css';
 import '../../../Css/navigation_bar/menu/entry.css';
 import '../../../Css/navigation_bar/user-profile-btn/user-profile-btn.css';
-import { AuthContext } from "../../Context/AuthContext";
+import { authContext } from "../../Context/AuthContext";
 
 function Navbar(props) {
 
-    const {isAuthenticated} = useContext(AuthContext);
+    const {contextAuthState} = useContext(authContext);
 
-    const displayEntry = isAuthenticated ? 'none' : 'list-item';
-    const displayUserProfile = !isAuthenticated ? 'none' : 'inline-block';
-    const displayUserBuildPage = !isAuthenticated ? 'none' : 'list-item';
+    console.log("navbar ",contextAuthState)
+
+    const displayEntry = contextAuthState.isAuthenticated ? 'none' : 'list-item';
+    const displayUserProfile = !contextAuthState.isAuthenticated ? 'none' : 'inline-block';
+    const displayUserBuildPage = !contextAuthState.isAuthenticated ? 'none' : 'list-item';
 
     function click(){
         let menu = document.getElementById("mnu").style.display;
-        if (menu == 0 || menu ==='none')
+        if (menu === 0 || menu ==='none')
             document.getElementById("mnu").style.display = 'block';
         else if (menu === 'block')
             document.getElementById("mnu").style.display = 'none';
@@ -40,7 +42,7 @@ function Navbar(props) {
                         
                     {/* <!--menulist button--> */}
                     <button type="button" className="btn btn-dark btn-sm" style={{backgroundColor: 'rgba(0, 0, 0, 1)', alignSelf: 'center', border:'none'}} onClick={click}>
-                        <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign:'middle'}}></i>
+                        <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign: 'middle'}}/>
                     </button>
                     
                     {/* <!--Website Title Component--> */}
