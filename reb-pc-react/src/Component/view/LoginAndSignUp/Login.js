@@ -5,13 +5,14 @@ import server from "../../../config.json";
 import {useHistory} from "react-router-dom";
 import {authContext} from "../../Context/AuthContext";
 import axios from "axios";
+import {CircularProgress} from "@material-ui/core";
 
 function Login() {
     document.body.style.backgroundImage = 'none';
     const {contextAuthState, updateAuthContext} = useContext(authContext);
     let history = useHistory()
 
-    const {register, handleSubmit, watch, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
     let [wrongEmail, setWrongEmail] = useState(false);
     let [wrongPassword, setWrongPassword] = useState(false);
@@ -24,15 +25,17 @@ function Login() {
         setOnSubmited(true);
         axios.post(server.uri + "login", data)
             .then(function (response) {
-                if (response.data.email && response.data.email.toString().localeCompare("A email address is already registerd.") === 0) {
+                console.log(response.data)
+                if (response.data.message && response.data.message.toString().localeCompare("A email address is already registerd.") === 0) {
                     setWrongEmail(true);
                 }
-                if (response.data.phone && response.data.phone.toString().localeCompare("A phone number is already registered.") === 0) {
+                if (response.data.message && response.data.message.toString().localeCompare("wrong password") === 0) {
                     setWrongPassword(true);
                 }
-                if (response.data.access_token) {
-                    sessionStorage.setItem("token", response.data.access_token);
+                if (response.data.token) {
+                    sessionStorage.setItem("token", response.data.token);
                     updateAuthContext({type: "set_isAuthenticated",payload: true});
+                    updateAuthContext({type: "set_token",payload: response.data.token});
                     history.replace('/');
                 }
                 setOnSubmited(false);
@@ -57,18 +60,23 @@ function Login() {
                                 <label for="exampleInputEmail1">Email address</label>
                                 <input type="email" className="form-control" id="exampleInputEmail1"
                                        aria-describedby="emailHelp" placeholder="Enter email"
-                                       {...register("email", {required: true})}  />
+                                       {...register("email", {required: true})}
+                                        onChange={() => setWrongEmail(false)}/>
                                 {errors.email && <p className="error-signup">Email is required</p>}
+                                {wrongEmail && <p className="error-signup">Wrong Email</p>}
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1"
                                        placeholder="Password"
-                                       {...register("password", {required: true})}/>
+                                       {...register("password", {required: true})}
+                                       onChange={() => setWrongPassword(false)}/>
                                 {errors.password && <p className="error-signup">Password is required</p>}
+                                {wrongPassword && <p className="error-signup">Wrong Password</p>}
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Login</button>
+                                {onSubmited || <button type="submit" className="btn btn-primary">Log In</button>}
+                                {onSubmited && <CircularProgress/>}
                             </div>
 
                             <div className="ButtonForget">

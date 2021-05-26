@@ -20,7 +20,7 @@ function Navbar(props) {
 
     function click(){
         let menu = document.getElementById("mnu").style.display;
-        if (menu == 0 || menu ==='none')
+        if (menu === 0 || menu ==='none')
             document.getElementById("mnu").style.display = 'block';
         else if (menu === 'block')
             document.getElementById("mnu").style.display = 'none';
@@ -42,7 +42,7 @@ function Navbar(props) {
                         
                     {/* <!--menulist button--> */}
                     <button type="button" className="btn btn-dark btn-sm" style={{backgroundColor: 'rgba(0, 0, 0, 1)', alignSelf: 'center', border:'none'}} onClick={click}>
-                        <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign:'middle'}}></i>
+                        <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign: 'middle'}}/>
                     </button>
                     
                     {/* <!--Website Title Component--> */}
