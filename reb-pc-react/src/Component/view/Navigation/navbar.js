@@ -7,6 +7,8 @@ import '../../../Css/navigation_bar/md-lg-screen-view/md-lg-screen-view.css';
 import '../../../Css/navigation_bar/menu/entry.css';
 import '../../../Css/navigation_bar/user-profile-btn/user-profile-btn.css';
 import { authContext } from "../../Context/AuthContext";
+import Avatar from '@material-ui/core/Avatar';
+import Popover from '@material-ui/core/Popover';
 
 function Navbar(props) {
 
@@ -28,6 +30,7 @@ function Navbar(props) {
 
     const styleNavItem = {
         textDecoration: 'none',
+
     }
 
     return (
@@ -111,13 +114,12 @@ function Navbar(props) {
                     <li>
                         <Link className="text-light" to="/product_page" style={styleNavItem}>Product</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link className="text-light" to="/Donate" style={styleNavItem}>Donate</Link>
-                    </li>
+                    </li> */}
 
-                    <li>
+                    <li style={{display: `${contextAuthState.isAuthenticated ? "list-item" : "none"}`}}>
                         <Link className="text-light" to="/profile" style={styleNavItem}>Profile</Link>
-                        {/* <a className="text-light" href="#">Donate</a> */}
                     </li>
 
                     {/* <!--Declare entry to make it easy to select and disable--> */}
@@ -129,16 +131,14 @@ function Navbar(props) {
                     <li className="entry sign-up-btn" style={{display: displayEntry}}>
                         <Link to="/SignUp" style={styleNavItem}>Sign Up</Link>
                     </li>
-                    
-                    {/* User Build */}
-
-                    <li style={{display: displayUserBuildPage}}>
-                        <Link  className="text-light" to="#" style={styleNavItem}>My Build</Link>
-                    </li>
 
                     {/* <!--Display this user-profile only acc exist--> */}
-                    <li className="acc-exist" style={{display: displayUserProfile}}>
-                        <button className="user-profile-btn btn btn-primary btn-sm">B</button>
+                    <li className="acc-exist" style={{display: displayUserProfile}} style={{position: 'relative'}}>
+                        {/* <button className="user-profile-btn btn btn-primary btn-sm">B</button> */}
+                        <Avatar id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" arial-expanded="true">B</Avatar>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style={{minWidth: '120px'}}>
+                            <a class="dropdown-item text-danger" href="#">Logout &nbsp;<i class="far fa-sign-out"></i></a>
+                        </div>
                     </li>
                 </ul>
             </div>
