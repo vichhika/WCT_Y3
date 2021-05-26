@@ -36,18 +36,6 @@ const styleLayoutSidenav_content = {
 
 let selectedItem = <PersonalInfo/>;
 
-const handleSeletedMenuItem = (itemName) =>{
-    if(itemName === "Personal Info"){
-        console.log("hello");
-        selectedItem = <PersonalInfo/>;
-    }
-    else if(itemName === "Build"){
-        selectedItem = <UserBuild/>;
-    }
-
-}
-
-
 function Profile() {
 
     let initState = {
@@ -75,7 +63,7 @@ function Profile() {
                                 <h5><b>Tith Sambath</b></h5>
                             </div>
                             <div className="sb-sidenav-menu-heading">Settings</div>
-                            <a className="nav-link collapsed active" href="#" 
+                            <a className={`nav-link ${state.selectedItem === "Personal Info" ? "active" : ""}`} href="#" 
                                 data-toggle="collapse" 
                                 data-target="#collapseLayouts" 
                                 aria-expanded="false" 
@@ -84,7 +72,7 @@ function Profile() {
                                 Personal Info
                             </a>
                             <div className="sb-sidenav-menu-heading">History</div>
-                            <a className="nav-link" href="#"
+                            <a className={`nav-link ${state.selectedItem === "Build" ? "active" : ""}`} href="#"
                                 onClick={() => setState({selectedItem: "Build"})}>
                                 Build
                             </a>
