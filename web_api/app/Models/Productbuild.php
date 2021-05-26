@@ -18,6 +18,8 @@ class Productbuild extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'productbuildID';
+
     protected $fillable = [
         'cpupriceID',
         'motherboardpriceID',

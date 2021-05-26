@@ -73,10 +73,10 @@ class AuthShopController extends Controller
             ]);
         }
         $adminShop->tokens()->delete();
-        $token = $adminShop->createToken('shopToken',['role:adminShop'])->plainTextToken;
+        $token = $adminShop->createToken('shop_token',['role:adminShop'])->plainTextToken;
         return response()->json([
             'statusCode' => 1,
-            'access_token' => $token,
+            'shop_token' => $token,
             'message' => 'login successfully.'
         ]);
     }

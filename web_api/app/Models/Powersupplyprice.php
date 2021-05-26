@@ -12,6 +12,8 @@ class Powersupplyprice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'powersupplypriceID';
+
     protected $fillable = [
         'powersupplyID',
         'adminshopID',
