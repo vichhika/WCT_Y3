@@ -28,27 +28,6 @@ function App() {
         background = {backgroundImage: `url("https://www.turn-on.de/media/cache/article_images/media/cms/2019/09/intel-amd-motherboard-mainboard-prozessor-chip.jpg?7631")`}
     }
 
-    // return (
-    //     <div className="App" style={{height: "100% " +" " + background}}>
-    //         <AuthContextProvider>
-    //             <Navbar/>
-    //         </AuthContextProvider>
-    //         <Route path="/" exact component={Home}/>
-    //         <Route path="/Blog" component={Blog}/>
-    //         <Route path="/donate" component={Donate}/>
-    //         <PreBuildContextProvider>
-    //             <Route path="/product_page" component={Product}/>
-    //         </PreBuildContextProvider>
-    //         <BuildContextProvider>
-    //             <Route path="/build" component={Build}/>
-    //             <Route path="/summeryBuild" component={SummeryBuild}/>
-    //         </BuildContextProvider>
-    //         <Route path="/Login" component={Login}/>
-    //         <Route path="/SignUp" component={Signup}/>
-    //         <Route path="/profile" component={Profile}/>
-    //     </div>
-    // );
-
   return (
     <div className="App" style={{ height: "100%" }}>
       

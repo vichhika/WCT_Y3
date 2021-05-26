@@ -40,6 +40,17 @@ const PersonalInfo = () => {
                         {/*list user personal information */}
                         <div class="list-group">
 
+                            <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('Fullname', 'Tithsambath Dyly')}>
+                                <div className="row">
+                                    <div className="col-3">
+                                        <p className='mb-0'>Fullname</p>
+                                    </div>
+                                    <div className="col">
+                                        <p className='mb-0'>Tithsambath Dyly</p>
+                                    </div>
+                                </div>
+                            </a>
+
                             <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('UserName', 'Tith Sambath')}>
                                 <div className="row">
                                     <div className="col-3">
@@ -60,6 +71,18 @@ const PersonalInfo = () => {
                                     </div>
                                 </div>
                             </a>
+
+                            <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('PhoneNo.', '012886342')}>
+                                <div className="row">
+                                    <div className="col-3">
+                                        <p className='mb-0'>Phone No.</p>
+                                    </div>
+                                    <div className="col">
+                                        <p className='mb-0'>012886342</p>
+                                    </div>
+                                </div>
+                            </a>
+
                             <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('Password', '')}>
                                 <div className="row">
                                     <div className="col-3">
