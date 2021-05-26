@@ -12,6 +12,8 @@ class Memoryprice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'memorypriceID';
+
     protected $fillable = [
         'memoryID',
         'adminshopID',

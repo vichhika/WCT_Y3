@@ -12,6 +12,8 @@ class Internalharddriveprice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'internalharddrivepriceID';
+
     protected $fillable = [
         'internalharddriveID',
         'adminshopID',

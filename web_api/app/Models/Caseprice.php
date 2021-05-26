@@ -13,6 +13,7 @@ class Caseprice extends Model
     use HasFactory;
 
     protected $table = 'casepcprices';
+    protected $primaryKey = 'casepcpriceID';
 
     protected $fillable = [
         'casepcID',

@@ -12,6 +12,8 @@ class Motherboardprice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'motherboardpriceID';
+
     protected $fillable = [
         'motherboardID',
         'adminshopID',

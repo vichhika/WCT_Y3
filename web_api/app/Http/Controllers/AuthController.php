@@ -59,40 +59,86 @@ class AuthController extends Controller
                 'statusCode' => 1,
                 'access_token' => $accessToken,
                 'message' => 'Email sent! please comfirm your email at your inbox message.'
-            ],201);
+            ]);
         }
     }
 
-    public function changePassword(Request $request){
+    public function login(Request $request){
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
         $user = User::where('email',$request->email)->first();
-
-        if (!$user){
-            return response('Login wrong email', 502);
+        if (!$user || !Hash::check($request->password,$user->password)){
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'email  or password is incorrected.'
+            ]);
         }
-        if (!Hash::check($request->password, $user->password)) {
-            return response('Login wrong password', 503);
-        }
-        if ($request->newpassword != $request->confirmpassword){
-            return response('Login password and confirm pasword invalid', 504);
-        }
-
-        $user->password = bcrypt($request->newpassword);
-        $user->save();
-        return ['newpassword' => $user->password,'message' => 'change password success',$request->all()];
+        $user->tokens()->delete();
+        $token = $user->createToken('user_token',['role:user'])->plainTextToken;
+        return response()->json([
+            'statusCode' => 1,
+            'user_token' => $token,
+            'message' => 'login successfully.'
+        ]);
     }
 
     public function logout(Request $request){
         $request->user()->tokens()->delete();
-        return ["message" => "logout: success"];
+        return response()->json([
+            'statusCode' => 1,
+            'message' => 'logout successfully.',
+        ]);
     }
 
-    public function login(Request $request){
-        $user = User::where('email',$request->email)->first();
-        if (!$user || !Hash::check($request->password,$user->password)){
-            return ['message' => 'wrong password'];
-        }
-        $user->tokens()->delete();
-        $token = $user->createToken('myToken',['role:user'])->plainTextToken;
-        return ["token" => $token];
+    public function forgotPassword(Request $request)
+    {
+        return response()->json([
+            'statusCode' => 1,
+        ]);
     }
+
+    public function changePassword(Request $request)
+    {
+        if(!Hash::check($request->current_password, $request->user()->password))
+        {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'current password is not correct.',
+            ]);
+        }
+
+        $rules = array(
+            'new_password' => 'required|string|min:8:unique:adminshops',
+            'new_password_confirmation' => 'required|string|min:8|same:password',
+        );
+
+        $messages = array(
+            'new_password.required' => 'A password is required.',
+            'new_password.unique' => 'Cannot use old password.',
+            'new_password.min' => 'A password is required more than or equal 8 digits.',
+            'new_password_confirmation.same' => 'Password confirmation should match pasasword fill.',
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if($validator->fails())
+        {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => $validator->errors(),
+            ]);
+        }else
+        {
+            $request->user()->password = bcrypt($request->new_password);
+            $request->user()->save();
+            return response()->json([
+                'statusCode' => 1,
+                'message' => 'password change successfully.'
+            ]);
+        }
+    }
+
 }
