@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adminshop;
 use App\Models\Casepc;
 use App\Models\Caseprice;
 use App\Models\Cpu;
@@ -617,6 +618,16 @@ class ShopController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => 'delete price successfully.'
+        ]);
+    }
+
+    public function listShop(Request $request)
+    {
+        $shops = Adminshop::all(['shop_name','phonenumber','email','location','profile']);
+
+        return response()->json([
+            'statusCode' => 0,
+            'message' => $shops
         ]);
     }
 }
