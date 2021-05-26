@@ -12,6 +12,8 @@ class Cpuprice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'cpupriceID';
+
     protected $fillable = [
         'cpuID',
         'adminshopID',

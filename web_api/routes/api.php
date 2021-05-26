@@ -53,4 +53,7 @@ Route::middleware(['user_role','auth:sanctum','html_filter'])->group(function(){
     //route for user permission
     Route::POST('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
     Route::GET('/user',function (Request $request){return $request->user();});
+
+    // route build pc
+    Route::POST('/build/save',[\App\Http\Controllers\BuildpcController::class,'save']);
 });
