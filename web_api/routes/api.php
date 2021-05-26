@@ -30,6 +30,8 @@ Route::middleware(['html_filter'])->group(function (){
     Route::GET('email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verification.verify');
 
     // build pc route
+    Route::GET('/index_shop',[\App\Http\Controllers\ShopController::class,'indexShop']);
+    Route::GET('/list_shop',[\App\Http\Controllers\ShopController::class,'listShop']);
     Route::GET('/build/index',[\App\Http\Controllers\BuildpcController::class,'index']);
     Route::GET('/build/list',[\App\Http\Controllers\BuildpcController::class,'index']);
 });

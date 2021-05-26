@@ -20,6 +20,7 @@ use App\Models\Powersupplyprice;
 use App\Models\Videocard;
 use App\Models\Videocardprice;
 use Illuminate\Http\Request;
+use Whoops\Run;
 
 class ShopController extends Controller
 {
@@ -621,12 +622,25 @@ class ShopController extends Controller
         ]);
     }
 
+    public function indexShop(Request $request)
+    {
+        $request->validate([
+            'current_page' => 'numeric|min:1|max:100'
+        ]);
+        $shops = Adminshop::paginate($request->input('current_page',10));
+
+        return response()->json([
+            'statusCode' => 1,
+            'message' => $shops
+        ]);
+    }
+
     public function listShop(Request $request)
     {
         $shops = Adminshop::all(['shop_name','phonenumber','email','location','profile']);
 
         return response()->json([
-            'statusCode' => 0,
+            'statusCode' => 1,
             'message' => $shops
         ]);
     }
