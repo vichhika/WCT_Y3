@@ -168,6 +168,31 @@ class AuthController extends Controller
         ]);
     }
 
+           /**
+ * @OA\Post(
+ * path="/api/change_password",
+ * summary="user change_password",
+ * tags={"user"},
+ * security={ {"sanctum": {} }},
+* @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"current_password","new_password","new_password_confirmation"},
+ *      @OA\Property(property="current_password", type="string", format="password", example="PassWord12345"),
+ *      @OA\Property(property="new_password", type="string", format="password", example="password"),
+ *      @OA\Property(property="new_password_confirmation", type="string", format="password", example="password")
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="changed password successfully.")
+ *        )
+ *     )
+ * )
+ */
+
     public function changePassword(Request $request)
     {
         if(!Hash::check($request->current_password, $request->user()->password))
@@ -180,13 +205,13 @@ class AuthController extends Controller
 
         $rules = array(
             'new_password' => 'required|string|min:8:unique:adminshops',
-            'new_password_confirmation' => 'required|string|min:8|same:password',
+            'new_password_confirmation' => 'required|string|min:8|same:new_password',
         );
 
         $messages = array(
             'new_password.required' => 'A password is required.',
             'new_password.unique' => 'Cannot use old password.',
-            'new_password.min' => 'A password is required more than or equal 8 digits.',
+            'new_password.min' => 'A password is required more than 8 digits.',
             'new_password_confirmation.same' => 'Password confirmation should match pasasword fill.',
         );
 
