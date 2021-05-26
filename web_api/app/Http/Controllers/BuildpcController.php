@@ -143,6 +143,6 @@ class BuildpcController extends Controller
 
     public function result(Request $request)
     {
-
+        
     }
 }

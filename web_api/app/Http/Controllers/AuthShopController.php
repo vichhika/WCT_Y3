@@ -76,7 +76,7 @@ class AuthShopController extends Controller
         $token = $adminShop->createToken('shop_token',['role:adminShop'])->plainTextToken;
         return response()->json([
             'statusCode' => 1,
-            'shop_token' => $token,
+            'token' => $token,
             'message' => 'login successfully.'
         ]);
     }
