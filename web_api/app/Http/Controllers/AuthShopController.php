@@ -19,7 +19,7 @@ class AuthShopController extends Controller
  *    @OA\JsonContent(
  *       required={"shop_name","phonenumber","email","password","password_confirmation"},
  *      @OA\Property(property="shop_name", type="string", format="string", example="Sok kha Computer"),
- *      @OA\Property(property="phone", type="string", format="phone", example="012812812"),
+ *      @OA\Property(property="phonenumber", type="string", format="phone", example="012812812"),
  *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
  *      @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
  *      @OA\Property(property="password_confirmation", type="string", format="password_confirmation", example="PassWord12345"),
@@ -132,7 +132,7 @@ class AuthShopController extends Controller
         ]);
     }
 
-           /**
+ /**
  * @OA\Get(
  * path="/api/admin_shop/logout",
  * summary="shop owner logout",

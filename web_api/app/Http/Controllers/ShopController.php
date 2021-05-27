@@ -20,18 +20,49 @@ use App\Models\Powersupplyprice;
 use App\Models\Videocard;
 use App\Models\Videocardprice;
 use Illuminate\Http\Request;
-use Whoops\Run;
 
 class ShopController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ * @OA\Get(
+ * path="/api/admin_shop/index",
+ * summary="shop owner index pagination product added",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*          example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="current_page",
+*          description="number of component",
+*           example="10",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="page",
+*          description="number of pagination",
+*           example="1",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
     public function index(Request $request)
     {
         $request->validate([
+            'component' => 'required',
             'current_page' => 'numeric|min:1|max:100'
         ]);
         switch ($request->component) {
@@ -72,9 +103,35 @@ class ShopController extends Controller
             'message' => $components,
         ]);
     }
-
+    /**
+ * @OA\Get(
+ * path="/api/admin_shop/list",
+ * summary="shop owner list product added",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*          example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
     public function list(Request $request)
     {
+
+        $request->validate([
+            'component' => 'required',
+        ]);
+
         switch ($request->component) {
             case 'cpu':
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->user()->adminshopID)->get();
@@ -115,14 +172,33 @@ class ShopController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ * @OA\Post(
+ * path="/api/admin_shop/store",
+ * summary="shop owner add product",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ *  * @OA\RequestBody(
+*          required=true,
+*          @OA\JsonContent(
+*               required={"component","cpuID","price"},
+*      @OA\Property(property="component", type="string", format="string", example="cpu"),
+*      @OA\Property(property="cpuID", type="integer", format="integer", example="1"),
+*      @OA\Property(property="price", type="integer", format="integer", example="85"),
+*          )
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
     public function store(Request $request)
     {
         $request->validate([
+            'component' => 'required',
             'price' => 'required|numeric'
         ]);
 
@@ -334,15 +410,33 @@ class ShopController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ * @OA\Post(
+ * path="/api/admin_shop/update",
+ * summary="shop owner update product",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ *  * @OA\RequestBody(
+*          required=true,
+*          @OA\JsonContent(
+*               required={"component","cpuID","price"},
+*      @OA\Property(property="component", type="string", format="string", example="cpu"),
+*      @OA\Property(property="cpuID", type="integer", format="integer", example="1"),
+*      @OA\Property(property="price", type="integer", format="integer", example="85"),
+*          )
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
     public function update(Request $request)
     {
         $request->validate([
+            'component' => 'required',
             'price' => 'required|numeric'
         ]);
 
@@ -497,13 +591,35 @@ class ShopController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ * @OA\Post(
+ * path="/api/admin_shop/destroy",
+ * summary="shop owner destroy product",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ *  * @OA\RequestBody(
+*          required=true,
+*          @OA\JsonContent(
+*               required={"component","cpuID"},
+*      @OA\Property(property="component", type="string", format="string", example="cpu"),
+*      @OA\Property(property="cpuID", type="integer", format="integer", example="1"),
+*          )
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
     public function destroy(Request $request)
     {
+
+        $request->validate([
+            'component' => 'required',
+        ]);
+
         switch ($request->component) {
             case 'cpu':
                 $component = Cpuprice::where([
@@ -622,6 +738,35 @@ class ShopController extends Controller
         ]);
     }
 
+        /**
+ * @OA\Get(
+ * path="/api/index_shop",
+ * summary="index pagination shop",
+ * tags={"guest","user"},
+ * @OA\Parameter(
+*          name="current_page",
+*          description="number of component",
+*           example="10",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="page",
+*          description="number of pagination",
+*           example="1",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
     public function indexShop(Request $request)
     {
         $request->validate([
@@ -634,6 +779,21 @@ class ShopController extends Controller
             'message' => $shops
         ]);
     }
+
+        /**
+ * @OA\Get(
+ * path="/api/list_shop",
+ * summary="list shop",
+ * tags={"guest","user"},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
 
     public function listShop(Request $request)
     {

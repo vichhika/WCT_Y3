@@ -23,6 +23,44 @@ use Illuminate\Http\Request;
 
 class ComponentController extends Controller
 {
+
+        /**
+ * @OA\Get(
+ * path="/api/admin_shop/components/index",
+ * summary="index pagination components",
+ * tags={"shop"},
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*           example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="current_page",
+*          description="number of component",
+*           example="10",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="page",
+*          description="number of pagination",
+*           example="1",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
+
     public function index(Request $request)
     {
         $request->validate([
@@ -66,6 +104,28 @@ class ComponentController extends Controller
             'message' => $components,
         ]);
     }
+
+    /**
+ * @OA\Get(
+ * path="/api/admin_shop/components/list",
+ * summary="list components",
+ * tags={"shop"},
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*           example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
 
     public function list(Request $request)
     {

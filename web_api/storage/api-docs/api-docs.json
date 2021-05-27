@@ -256,7 +256,7 @@
                                         "format": "string",
                                         "example": "Sok kha Computer"
                                     },
-                                    "phone": {
+                                    "phonenumber": {
                                         "type": "string",
                                         "format": "phone",
                                         "example": "012812812"
@@ -459,6 +459,545 @@
                         "sanctum": []
                     }
                 ]
+            }
+        },
+        "/api/build/index": {
+            "get": {
+                "tags": [
+                    "guest",
+                    "user"
+                ],
+                "summary": "index pagination components price by shopID",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::index",
+                "parameters": [
+                    {
+                        "name": "adminshopID",
+                        "in": "query",
+                        "description": "id of component",
+                        "required": true,
+                        "example": "1"
+                    },
+                    {
+                        "name": "component",
+                        "in": "query",
+                        "description": "name of component",
+                        "required": true,
+                        "example": "cpu"
+                    },
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": false,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of pagination",
+                        "required": false,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/build/list": {
+            "get": {
+                "tags": [
+                    "guest",
+                    "user"
+                ],
+                "summary": "list components price by shopID",
+                "parameters": [
+                    {
+                        "name": "adminshopID",
+                        "in": "query",
+                        "description": "id of component",
+                        "required": true,
+                        "example": "1"
+                    },
+                    {
+                        "name": "component",
+                        "in": "query",
+                        "description": "name of component",
+                        "required": true,
+                        "example": "cpu"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin_shop/components/index": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "index pagination components",
+                "operationId": "App\\Http\\Controllers\\ComponentController::index",
+                "parameters": [
+                    {
+                        "name": "component",
+                        "in": "query",
+                        "description": "name of component",
+                        "required": true,
+                        "example": "cpu"
+                    },
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": false,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of pagination",
+                        "required": false,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin_shop/components/list": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "list components",
+                "parameters": [
+                    {
+                        "name": "component",
+                        "in": "query",
+                        "description": "name of component",
+                        "required": true,
+                        "example": "cpu"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin_shop/index": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop owner index pagination product added",
+                "operationId": "App\\Http\\Controllers\\ShopController::index",
+                "parameters": [
+                    {
+                        "name": "component",
+                        "in": "query",
+                        "description": "name of component",
+                        "required": true,
+                        "example": "cpu"
+                    },
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": false,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of pagination",
+                        "required": false,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_shop/list": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop owner list product added",
+                "parameters": [
+                    {
+                        "name": "component",
+                        "in": "query",
+                        "description": "name of component",
+                        "required": true,
+                        "example": "cpu"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_shop/store": {
+            "post": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop owner add product",
+                "operationId": "App\\Http\\Controllers\\ShopController::store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "component",
+                                    "cpuID",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "component": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "cpu"
+                                    },
+                                    "cpuID": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "85"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_shop/update": {
+            "post": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop owner update product",
+                "operationId": "App\\Http\\Controllers\\ShopController::update",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "component",
+                                    "cpuID",
+                                    "price"
+                                ],
+                                "properties": {
+                                    "component": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "cpu"
+                                    },
+                                    "cpuID": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "85"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_shop/destroy": {
+            "post": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop owner destroy product",
+                "operationId": "App\\Http\\Controllers\\ShopController::destroy",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "component",
+                                    "cpuID"
+                                ],
+                                "properties": {
+                                    "component": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "cpu"
+                                    },
+                                    "cpuID": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/index_shop": {
+            "get": {
+                "tags": [
+                    "guest",
+                    "user"
+                ],
+                "summary": "index pagination shop",
+                "operationId": "App\\Http\\Controllers\\ShopController::indexShop",
+                "parameters": [
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": false,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "number of pagination",
+                        "required": false,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/list_shop": {
+            "get": {
+                "tags": [
+                    "guest",
+                    "user"
+                ],
+                "summary": "list shop",
+                "operationId": "App\\Http\\Controllers\\ShopController::listShop",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
