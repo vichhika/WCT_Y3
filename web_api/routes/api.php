@@ -47,6 +47,7 @@ Route::middleware(['shop_role','auth:sanctum','html_filter'])->group(function(){
     Route::POST('/admin_shop/store',[\App\Http\Controllers\ShopController::class,'store']);
     Route::POST('/admin_shop/update',[\App\Http\Controllers\ShopController::class,'update']);
     Route::POST('/admin_shop/destroy',[\App\Http\Controllers\ShopController::class,'destroy']);
+    Route::GET('/admin_shop/profile_info',[\App\Http\Controllers\ShopController::class,'profileInfo']);
 
 });
 
@@ -54,6 +55,7 @@ Route::middleware(['user_role','auth:sanctum','html_filter'])->group(function(){
     //route for user permission
     Route::GET('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
     Route::POST('/change_password', [\App\Http\Controllers\AuthController::class, 'changePassword']);
+    Route::GET('/profile_info',[\App\Http\Controllers\UserController::class,'profileInfo']);
 
     // route build pc
     Route::POST('/build/save',[\App\Http\Controllers\BuildpcController::class,'save']);

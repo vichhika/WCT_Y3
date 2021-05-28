@@ -20,6 +20,7 @@ use App\Models\Powersupplyprice;
 use App\Models\Videocard;
 use App\Models\Videocardprice;
 use Illuminate\Http\Request;
+use OpenApi\Annotations\Get;
 
 class ShopController extends Controller
 {
@@ -772,7 +773,7 @@ class ShopController extends Controller
         $request->validate([
             'current_page' => 'numeric|min:1|max:100'
         ]);
-        $shops = Adminshop::paginate($request->input('current_page',10));
+        $shops = Adminshop::select('shop_name','profile')->paginate($request->input('current_page',10));
 
         return response()->json([
             'statusCode' => 1,
@@ -797,11 +798,36 @@ class ShopController extends Controller
 
     public function listShop(Request $request)
     {
-        $shops = Adminshop::all(['shop_name','phonenumber','email','location','profile']);
+        $shops = Adminshop::all(['shop_name','profile']);
 
         return response()->json([
             'statusCode' => 1,
             'message' => $shops
+        ]);
+    }
+
+            /**
+ * @OA\Get(
+ * path="/api/admin_shop/profile_info",
+ * summary="shop profile info",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function profileInfo(Request $request)
+    {
+        $shop = Adminshop::select('shop_name','phonenumber','email','location','profile')->where('adminshopID',$request->user()->adminshopID)->get();
+        return response()->json([
+            'statusCode' => 1,
+            'message' => $shop
         ]);
     }
 }
