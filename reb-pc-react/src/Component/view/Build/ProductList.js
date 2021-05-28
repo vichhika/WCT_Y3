@@ -6,37 +6,54 @@ import ItemList from "./ItemList"
 import {buildContext} from "./../../Context/BuildContext"
 import axios from 'axios'
 import useData from './../../userData.js'
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 
 function ProductList() {
     const {contextState, updatContext} = useContext(buildContext)
     const [loading, setloading] = useState(true)
     const conponent = ["CPU", "Motherboard", "RAM", "HardDrive", "GPU", "Case", "PowerSupply", "Monitor"]
+    const [gotoSummer, setgotoSummer] = useState(false);
+    let history = useHistory();
 
+    if (gotoSummer) {
+        history.replace('/summeryBuild')
+    }
 
     useEffect(() => {
         setloading(true);
-        axios.get(`https://api-303.herokuapp.com/ChantraComputer`)
-            .then(function (response) {
-                updatContext({
-                    type: 'set_shopPayload',
-                    payload: response.data
+        setgotoSummer(false);
+        if (sessionStorage.getItem("buildSave") !== null) {
+            updatContext({
+                type: 'rest_context',
+                payload: JSON.parse(sessionStorage.getItem("buildSave"))
+            })
+            setloading(false);
+        } else {
+            axios.get(`https://api-303.herokuapp.com/ChantraComputer`)
+                .then(function (response) {
+                    updatContext({
+                        type: 'set_shopPayload',
+                        payload: response.data
+                    })
+                    setloading(false);
                 })
-                setloading(false);
-
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-
-            });
+                .catch(function (error) {
+                    // handle error
+                    console.log(error);
+                })
+                .then(function () {});
+        }
     }, [])
 
     useEffect(() => {
-        if (!loading) {
+        if (!loading){
+            sessionStorage.setItem("buildSave", JSON.stringify(contextState));
+        }
+    }, [contextState]);
+
+    useEffect(() => {
+        if (!loading ) {
             let newComponet = [];
             switch (contextState.component) {
                 case 0: {
@@ -123,35 +140,39 @@ function ProductList() {
         listControl = <ListControl/>
     }
 
-
     let btnNext = contextState.component < 7 ?
         <button type="button" style={btnNextStyle} onClick={nextStep} className="btn btn-success">Next</button> :
-        <Link to="/summeryBuild">
-            <button style={btnNextStyle} onClick={() => updatContext({
+        <button style={btnNextStyle} onClick={() => {
+            updatContext({
                 type: 'set_setIsBuildDone',
                 payload: true
-            })} className="btn btn-success">Summery
-            </button>
-        </Link>
+            });
+            setgotoSummer(true)
+        }} className="btn btn-success">Summery
+        </button>
 
-    let btn,cardfooterStyle = "card-footer ";
+
+    let btn, cardfooterStyle = "card-footer ";
     if (!contextState.isBuildDone) {
         btn =
-            <><button type="button" style={btnBackStyle} onClick={previouStep}
-                      className="btn btn-secondary">Previous
-            </button>
+            <>
+                <button type="button" style={btnBackStyle} onClick={previouStep}
+                        className="btn btn-secondary">Previous
+                </button>
                 {
                     btnNext
                 }</>
 
     } else {
-        btn = <Link to="/summeryBuild">
-            <button style={btnNextStyle} onClick={() => updatContext({
-                type: 'set_setIsBuildDone',
-                payload: true
-            })} className="btn btn-success">Summery
+        btn =
+            <button style={btnNextStyle} onClick={() => {
+                updatContext({
+                    type: 'set_setIsBuildDone',
+                    payload: true
+                });
+                setgotoSummer(true)
+            }} className="btn btn-success">Summery
             </button>
-        </Link>
         cardfooterStyle += "justify-content-center"
 
     }

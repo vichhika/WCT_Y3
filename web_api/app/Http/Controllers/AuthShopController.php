@@ -2,30 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-
+use App\Models\Adminshop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class AuthController extends Controller
+class AuthShopController extends Controller
 {
-
-/**
+    /**
  * @OA\Post(
- * path="/api/register",
- * summary="user register",
- * tags={"user"},
+ * path="/api/admin_shop/register",
+ * summary="shop owner register",
+ * tags={"shop"},
  * @OA\RequestBody(
  *    required=true,
  *    @OA\JsonContent(
- *       required={"fullname","username","phone","email","password","password_confirmation"},
- *      @OA\Property(property="fullname", type="string", format="fullname", example="Sok kha"),
- *      @OA\Property(property="username", type="string", format="username", example="user1"),
- *      @OA\Property(property="phone", type="string", format="phone", example="012812812"),
+ *       required={"shop_name","phonenumber","email","password","password_confirmation"},
+ *      @OA\Property(property="shop_name", type="string", format="string", example="Sok kha Computer"),
+ *      @OA\Property(property="phonenumber", type="string", format="phone", example="012812812"),
  *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
  *      @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
  *      @OA\Property(property="password_confirmation", type="string", format="password_confirmation", example="PassWord12345"),
+ *      @OA\Property(property="location", type="string", format="string", example="Phnom Penh Cambodia"),
+ *      @OA\Property(property="profile", type="image", format="image", example="Image upload"),
  *    ),
  * ),
  * @OA\Response(
@@ -38,25 +37,23 @@ class AuthController extends Controller
  * )
  */
 
-    public function register(Request $request){
-
+    public function register(Request $request)
+    {
         $rules = array(
-            'fullname' => 'required|string|max:55',
-            'username' => 'required|string|max:55',
-            'phone' => 'required|string|unique:users|regex:/^0[0-9]{1,9}/',
-            'email' => 'required|email|unique:users',
+            'shop_name' => 'required|string|max:55|unique:adminshops',
+            'phonenumber' => 'required|string|unique:adminshops|regex:/^0[0-9]{1,9}/',
+            'email' => 'required|email|unique:adminshops',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|min:8|same:password',
         );
 
         $messages = array(
-            'fullname.required' => 'A fullname is required.',
-            'fullname.max' => 'A fullname maximun input 55 characters.',
-            'username.required' => 'A username is required.',
-            'username.max' => 'A username maximun input 55 characters.',
-            'phone.required' => 'A phone number is required.',
-            'phone.regex' => 'A phone number is invalid.',
-            'phone.unique' => 'A phone number is already registered.',
+            'shop_name.required' => 'A fullname is required.',
+            'shop_name.unique' => 'shop name already used.',
+            'shop_name.max' => 'A fullname maximun input 55 characters.',
+            'phonenumber.required' => 'A phone number is required.',
+            'phonenumber.regex' => 'A phone number is invalid.',
+            'phonenumber.unique' => 'A phone number is already registered.',
             'email.required' => 'A email address is required.',
             'email.email' => 'A email address is invalid.',
             'email.unique' => 'A email address is already registerd.',
@@ -66,35 +63,38 @@ class AuthController extends Controller
         );
 
         $validator = Validator::make($request->all(),$rules,$messages);
-        if($validator->fails()){
+        if($validator->fails())
+        {
             return response()->json([
-                "statusCode" => 0,
-                "message" => $validator->errors(),
+                'statusCode' => 0,
+                'messages' => $validator->errors(),
             ]);
-        }else{
-            $user = new User([
-                'fullname' => $request->get('fullname'),
-                'username' => $request->get('username'),
-                'phone' => $request->get('phone'),
+        }else
+        {
+            $adminShop = new Adminshop([
+                'shop_name' => $request->get('shop_name'),
+                'phonenumber' => $request->get('phonenumber'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
+                'location' => $request->get('location'),
+                'profile'  => $request->get('profile'),
             ]);
-            $user->save();
-            $accessToken = $user->createToken('myToken',['role:user'])->plainTextToken;
-            $user->sendEmailVerificationNotification();
+            $adminShop->save();
+            $token = $adminShop->createToken('shopToken',['role:adminShop'])->plainTextToken;
+            $adminShop->sendEmailVerificationNotification(); // please create shop owner templete email
             return response()->json([
                 'statusCode' => 1,
-                'access_token' => $accessToken,
-                'message' => 'Email sent! please comfirm your email at your inbox message.'
+                'access_token' => $token,
+                'message' => 'Email sent! please comfirm your email at your inbox message.',
             ]);
         }
     }
 
     /**
  * @OA\Post(
- * path="/api/login",
- * summary="user login",
- * tags={"user"},
+ * path="/api/admin_shop/login",
+ * summary="shop owner login",
+ * tags={"shop"},
  * @OA\RequestBody(
  *    required=true,
  *    @OA\JsonContent(
@@ -113,22 +113,18 @@ class AuthController extends Controller
  * )
  */
 
-    public function login(Request $request){
-
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        $user = User::where('email',$request->email)->first();
-        if (!$user || !Hash::check($request->password,$user->password)){
+    public function login(Request $request)
+    {
+        $adminShop = Adminshop::where('email', $request->email)->first();
+        if(!$adminShop || !Hash::check($request->password, $adminShop->password))
+        {
             return response()->json([
                 'statusCode' => 0,
-                'message' => 'email  or password is incorrected.'
+                'message' => 'wrong password.'
             ]);
         }
-        $user->tokens()->delete();
-        $token = $user->createToken('user_token',['role:user'])->plainTextToken;
+        $adminShop->tokens()->delete();
+        $token = $adminShop->createToken('shop_token',['role:adminShop'])->plainTextToken;
         return response()->json([
             'statusCode' => 1,
             'token' => $token,
@@ -136,11 +132,11 @@ class AuthController extends Controller
         ]);
     }
 
-       /**
+ /**
  * @OA\Get(
- * path="/api/logout",
- * summary="user logout",
- * tags={"user"},
+ * path="/api/admin_shop/logout",
+ * summary="shop owner logout",
+ * tags={"shop"},
  * security={ {"sanctum": {} }},
  * @OA\Response(
  *    response=200,
@@ -152,13 +148,14 @@ class AuthController extends Controller
  * )
  */
 
-
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         $request->user()->tokens()->delete();
         return response()->json([
             'statusCode' => 1,
             'message' => 'logout successfully.',
         ]);
+
     }
 
     public function forgotPassword(Request $request)
@@ -168,11 +165,11 @@ class AuthController extends Controller
         ]);
     }
 
-           /**
+              /**
  * @OA\Post(
- * path="/api/change_password",
- * summary="user change_password",
- * tags={"user"},
+ * path="/api/admin_shop/change_password",
+ * summary="shop owner change_password",
+ * tags={"shop"},
  * security={ {"sanctum": {} }},
 * @OA\RequestBody(
  *    required=true,
@@ -205,13 +202,13 @@ class AuthController extends Controller
 
         $rules = array(
             'new_password' => 'required|string|min:8:unique:adminshops',
-            'new_password_confirmation' => 'required|string|min:8|same:new_password',
+            'new_password_confirmation' => 'required|string|min:8|same:password',
         );
 
         $messages = array(
             'new_password.required' => 'A password is required.',
             'new_password.unique' => 'Cannot use old password.',
-            'new_password.min' => 'A password is required more than 8 digits.',
+            'new_password.min' => 'A password is required more than or equal 8 digits.',
             'new_password_confirmation.same' => 'Password confirmation should match pasasword fill.',
         );
 
@@ -232,5 +229,4 @@ class AuthController extends Controller
             ]);
         }
     }
-
 }

@@ -21,7 +21,7 @@ class CreateProductbuildsTable extends Migration
             $table->bigInteger('internalharddrivepriceID');
             $table->bigInteger('monitorpriceID');
             $table->bigInteger('videocardpriceID');
-            $table->bigInteger('casepriceID');
+            $table->bigInteger('casepcpriceID');
             $table->bigInteger('memorypriceID');
             $table->bigInteger('memberID');
             $table->timestamps();

@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react'
+import {act} from "@testing-library/react";
 
 const initState = {
     component: 0,
@@ -54,6 +55,9 @@ const actions = {
             ...state,
             isBuildDone
         }
+    },
+    resetContext: (state,newContext) => {
+        return {...newContext}
     }
 }
 
@@ -79,6 +83,9 @@ const buildReucer = (state,action) => {
             return {...state}
         case 'set_setIsBuildDone':
             state = actions.setisBuildDone(state,action.payload)
+            return {...state}
+        case 'rest_context':
+            state = actions.resetContext(state,action.payload)
             return {...state}
         default:
     }
