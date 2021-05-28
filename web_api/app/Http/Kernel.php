@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\RegisterMiddleware;
 use App\Http\Middleware\ValidationAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -64,6 +65,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-         'html_filter' => \App\Http\Middleware\ValidationAuth::class,
+        'html_filter' => \App\Http\Middleware\ValidationAuth::class,
+        'isAlreadyRegister' => \App\Http\Middleware\RegisterMiddleware::class,
     ];
 }

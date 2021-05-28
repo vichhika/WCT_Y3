@@ -3,6 +3,7 @@
     justify-content: space-between;
     background-color: #cccccc;
     border-radius: 6px;
+    line-height: 48px;
 }
 
 .control-bar .displayOption{

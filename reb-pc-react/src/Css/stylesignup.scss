@@ -1,31 +1,23 @@
 .signup{
-    .col-sm{
     display: flex;
     justify-content: center;
     align-items: center;
-   
     margin-top: 80px;
 
 
     .signinbox{
-        
-        width: 510px;
-        height: 700px;
         background-color: rgb(0, 0, 0);
-        margin-bottom:10% ;
+        margin-bottom:5% ;
 
         form{
-            
-            background-color: rgb(0, 0, 0);        
+
+            background-color: rgb(0, 0, 0);
             margin: 10%;
             color: rgb(255, 255, 255);
 
-            div .col {
-                padding: 0 ;
-             }
-             div .col-sm{
-                 padding: 0;
-             }
+            .error-signup{
+                color: #e50c3f;
+            }
             
         }
 
@@ -38,7 +30,6 @@
        
 
     }
-}
 }
 
 

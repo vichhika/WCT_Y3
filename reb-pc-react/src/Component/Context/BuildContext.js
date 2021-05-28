@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react'
-import {act} from "@testing-library/react";
 
 const initState = {
     component: 0,
