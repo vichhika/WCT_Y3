@@ -5,7 +5,11 @@ chardet==3.0.4
 dacite==1.6.0
 idna==3.1
 multidict==5.1.0
+mysql-connector==2.2.9
+mysql-connector-python==8.0.25
 pcpartpicker==2.2.2
+protobuf==3.17.1
 py-moneyed==0.8.0
+six==1.16.0
 typing-extensions==3.7.4.3
 yarl==1.6.3
