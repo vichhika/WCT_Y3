@@ -43,6 +43,7 @@ function App() {
             <Route path="/Login" component={Login}/>
             <Route path="/SignUp" component={Signup}/>
             <Route path="/profile" component={Profile}/>
+            
         </div>
     );
 
