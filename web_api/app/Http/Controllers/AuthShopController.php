@@ -9,6 +9,34 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthShopController extends Controller
 {
+    /**
+ * @OA\Post(
+ * path="/api/admin_shop/register",
+ * summary="shop owner register",
+ * tags={"shop"},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"shop_name","phonenumber","email","password","password_confirmation"},
+ *      @OA\Property(property="shop_name", type="string", format="string", example="Sok kha Computer"),
+ *      @OA\Property(property="phonenumber", type="string", format="phone", example="012812812"),
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *      @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+ *      @OA\Property(property="password_confirmation", type="string", format="password_confirmation", example="PassWord12345"),
+ *      @OA\Property(property="location", type="string", format="string", example="Phnom Penh Cambodia"),
+ *      @OA\Property(property="profile", type="image", format="image", example="Image upload"),
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Email sent! please comfirm your email at your inbox message.")
+ *        )
+ *     )
+ * )
+ */
+
     public function register(Request $request)
     {
         $rules = array(
@@ -62,6 +90,29 @@ class AuthShopController extends Controller
         }
     }
 
+    /**
+ * @OA\Post(
+ * path="/api/admin_shop/login",
+ * summary="shop owner login",
+ * tags={"shop"},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"email","password"},
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *      @OA\Property(property="password", type="string", format="password", example="PassWord12345")
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="login successfully.")
+ *        )
+ *     )
+ * )
+ */
+
     public function login(Request $request)
     {
         $adminShop = Adminshop::where('email', $request->email)->first();
@@ -81,6 +132,22 @@ class AuthShopController extends Controller
         ]);
     }
 
+ /**
+ * @OA\Get(
+ * path="/api/admin_shop/logout",
+ * summary="shop owner logout",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="logout successfully.")
+ *        )
+ *     )
+ * )
+ */
+
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
@@ -97,6 +164,31 @@ class AuthShopController extends Controller
             'statusCode' => 1,
         ]);
     }
+
+              /**
+ * @OA\Post(
+ * path="/api/admin_shop/change_password",
+ * summary="shop owner change_password",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+* @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"current_password","new_password","new_password_confirmation"},
+ *      @OA\Property(property="current_password", type="string", format="password", example="PassWord12345"),
+ *      @OA\Property(property="new_password", type="string", format="password", example="password"),
+ *      @OA\Property(property="new_password_confirmation", type="string", format="password", example="password")
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="changed password successfully.")
+ *        )
+ *     )
+ * )
+ */
 
     public function changePassword(Request $request)
     {
