@@ -11,6 +11,33 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
 
+/**
+ * @OA\Post(
+ * path="/api/register",
+ * summary="user register",
+ * tags={"user"},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"fullname","username","phone","email","password","password_confirmation"},
+ *      @OA\Property(property="fullname", type="string", format="fullname", example="Sok kha"),
+ *      @OA\Property(property="username", type="string", format="username", example="user1"),
+ *      @OA\Property(property="phone", type="string", format="phone", example="012812812"),
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *      @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+ *      @OA\Property(property="password_confirmation", type="string", format="password_confirmation", example="PassWord12345"),
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Email sent! please comfirm your email at your inbox message.")
+ *        )
+ *     )
+ * )
+ */
+
     public function register(Request $request){
 
         $rules = array(
@@ -63,6 +90,29 @@ class AuthController extends Controller
         }
     }
 
+    /**
+ * @OA\Post(
+ * path="/api/login",
+ * summary="user login",
+ * tags={"user"},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"email","password"},
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *      @OA\Property(property="password", type="string", format="password", example="PassWord12345")
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="login successfully.")
+ *        )
+ *     )
+ * )
+ */
+
     public function login(Request $request){
 
         $request->validate([
@@ -86,6 +136,23 @@ class AuthController extends Controller
         ]);
     }
 
+       /**
+ * @OA\Get(
+ * path="/api/logout",
+ * summary="user logout",
+ * tags={"user"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="logout successfully.")
+ *        )
+ *     )
+ * )
+ */
+
+
     public function logout(Request $request){
         $request->user()->tokens()->delete();
         return response()->json([
@@ -101,6 +168,31 @@ class AuthController extends Controller
         ]);
     }
 
+           /**
+ * @OA\Post(
+ * path="/api/change_password",
+ * summary="user change_password",
+ * tags={"user"},
+ * security={ {"sanctum": {} }},
+* @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"current_password","new_password","new_password_confirmation"},
+ *      @OA\Property(property="current_password", type="string", format="password", example="PassWord12345"),
+ *      @OA\Property(property="new_password", type="string", format="password", example="password"),
+ *      @OA\Property(property="new_password_confirmation", type="string", format="password", example="password")
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="changed password successfully.")
+ *        )
+ *     )
+ * )
+ */
+
     public function changePassword(Request $request)
     {
         if(!Hash::check($request->current_password, $request->user()->password))
@@ -113,13 +205,13 @@ class AuthController extends Controller
 
         $rules = array(
             'new_password' => 'required|string|min:8:unique:adminshops',
-            'new_password_confirmation' => 'required|string|min:8|same:password',
+            'new_password_confirmation' => 'required|string|min:8|same:new_password',
         );
 
         $messages = array(
             'new_password.required' => 'A password is required.',
             'new_password.unique' => 'Cannot use old password.',
-            'new_password.min' => 'A password is required more than or equal 8 digits.',
+            'new_password.min' => 'A password is required more than 8 digits.',
             'new_password_confirmation.same' => 'Password confirmation should match pasasword fill.',
         );
 

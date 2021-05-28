@@ -15,9 +15,53 @@ use Illuminate\Http\Request;
 
 class BuildpcController extends Controller
 {
+    /**
+ * @OA\Get(
+ * path="/api/build/index",
+ * summary="index pagination components price by shopID",
+ * tags={"guest","user"},
+ *  *  * @OA\Parameter(
+*          name="adminshopID",
+*          description="id of component",
+*           example="1",
+*          required=true,
+*          in="query",
+*      ),
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*           example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="current_page",
+*          description="number of component",
+*           example="10",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="page",
+*          description="number of pagination",
+*           example="1",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
     public function index(Request $request)
     {
         $request->validate([
+            'adminshopID' => 'required',
+            'component' => 'required',
             'current_page' => 'numeric|min:1|max:100'
         ]);
         switch ($request->component) {
@@ -59,8 +103,41 @@ class BuildpcController extends Controller
         ]);
     }
 
+    /**
+ * @OA\Get(
+ * path="/api/build/list",
+ * summary="list components price by shopID",
+ * tags={"guest","user"},
+ *  *  * @OA\Parameter(
+*          name="adminshopID",
+*          description="id of component",
+*           example="1",
+*          required=true,
+*          in="query",
+*      ),
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*           example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
     public function list(Request $request)
     {
+        $request->validate([
+            'adminshopID' => 'required',
+            'component' => 'required'
+        ]);
         switch ($request->component) {
             case 'cpu':
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->adminshopID)->get();
@@ -99,6 +176,8 @@ class BuildpcController extends Controller
             'message' => $components,
         ]);
     }
+
+
 
     public function save(Request $request)
     {
@@ -143,6 +222,6 @@ class BuildpcController extends Controller
 
     public function result(Request $request)
     {
-        
+
     }
 }
