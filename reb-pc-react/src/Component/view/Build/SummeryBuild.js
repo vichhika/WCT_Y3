@@ -1,15 +1,8 @@
 import React from "react"
 import {useContext, useEffect, useState} from "react"
-import ListSize from "./ListSize"
-import ListControl from "./ListControl"
-import ItemList from "./ItemList"
 import {buildContext} from "./../../Context/BuildContext"
 import "./../../../Css/build.scss";
-import axios from 'axios'
-import useData from './../../userData.js'
-import ProcessBar from "./ProcessBar";
-import ProductList from "./ProductList";
-import {Link, useHistory} from "react-router-dom";
+import {useHistory,Redirect} from "react-router-dom";
 
 
 function SummeryBuild() {
@@ -20,7 +13,7 @@ function SummeryBuild() {
     let history = useHistory()
 
     if (goToBuild){
-        history.replace('/buildPC');
+        history.replace('/build');
     }
 
     useEffect(() => {
@@ -56,11 +49,11 @@ function SummeryBuild() {
                 const itemID = "collapse" + i
                 const itemIDQ = "#" + itemID
                 cpn.push(<tr className="row">
-                    <td className="col">{conponent[i]}</td>
-                    <td className="col">{contextState.selectedComponent[i].brand}</td>
-                    <td className="col">{contextState.selectedComponent[i].model}</td>
-                    <td className="col">{contextState.selectedComponent[i].price}</td>
-                    <td className="col">
+                    <td className="col-2">{conponent[i]}</td>
+                    <td className="col-3">{contextState.selectedComponent[i].brand}</td>
+                    <td className="col-3">{contextState.selectedComponent[i].model}</td>
+                    <td className="col-2">{contextState.selectedComponent[i].price}</td>
+                    <td className="col-1">
                         <button type="button" className="btn btn-danger" onClick={() => {
                             popOutSelectedStore(i)
                             setGotoBuild(true)
@@ -104,6 +97,16 @@ function SummeryBuild() {
         })
     }
 
+    const clearBuild = () => {
+        console.log("hook")
+        sessionStorage.removeItem("buildSave")
+        updatContext({
+            type: 'init_context'
+        })
+        setIsLoading(true)
+        setGotoBuild(true)
+    }
+
     if(goToBuild){
         return <></>
     }else {
@@ -121,11 +124,12 @@ function SummeryBuild() {
                                 <table className="table">
                                     <thead>
                                     <tr className="row">
-                                        <th className="col">Component</th>
-                                        <th className="col">Brand</th>
-                                        <th className="col">Model</th>
-                                        <th className="col">Price</th>
-                                        <th className="col"></th>
+                                        <th className="col-2">Component</th>
+                                        <th className="col-3">Brand</th>
+                                        <th className="col-3">Model</th>
+                                        <th className="col-2">Price</th>
+                                        <th className="col-1"/>
+                                        <th className="col-1"/>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -136,8 +140,11 @@ function SummeryBuild() {
                                 </table>
                             </div>
                         </div>
+                        <div className="card-footer pt-0">
+                            <button type="button" onClick={clearBuild} className="btn btn-secondary">Clear</button>
+                            <button type="button" className="btn btn-success">Save</button>
+                        </div>
                     </div>
-
                 </div>
             </div>
         );

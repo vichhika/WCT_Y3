@@ -2,7 +2,6 @@ import React from "react";
 import {Link} from 'react-router-dom'
 import '../../../Css/Home-panel/transparent-layer/transparent-layer.css'
 
-
 function TransparentLayer(){
     return(
         <div className="transparent-layer jumbotron jumbotron-fluid d-flex mt-5">

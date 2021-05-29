@@ -14,7 +14,6 @@ import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
 import {BuildContextProvider} from "./Component/Context/BuildContext";
 import React from "react";
-import * as url from "url";
 
 function App() {
 

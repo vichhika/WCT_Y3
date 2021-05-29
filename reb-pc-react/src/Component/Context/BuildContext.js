@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react'
-import {act} from "@testing-library/react";
 
 const initState = {
     component: 0,
@@ -87,6 +86,8 @@ const buildReucer = (state,action) => {
         case 'rest_context':
             state = actions.resetContext(state,action.payload)
             return {...state}
+        case 'init_context':
+            return {...initState,selectedComponent: [null,null,null,null,null,null,null,null] }
         default:
     }
 }
