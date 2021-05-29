@@ -28,9 +28,9 @@ tableName = {
 
 database = PCDatabase(
     hostname="127.0.0.1",
-    username="root",
-    password="",
-    database_name="reabpc"
+    username="admin303",
+    password="rupp303",
+    database_name="reabpc_db"
 )
 
 #fetch data from api to dictionary
