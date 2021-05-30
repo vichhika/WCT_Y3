@@ -20,6 +20,11 @@ class Monitorprice extends Model
         'price',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function monitor()
     {
         return $this->belongsTo(Memory::class,'monitorID');

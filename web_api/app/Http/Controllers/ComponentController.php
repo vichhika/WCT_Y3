@@ -95,13 +95,13 @@ class ComponentController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $components,
+            'message' => $components->items(),
         ]);
     }
 
@@ -159,7 +159,7 @@ class ComponentController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 

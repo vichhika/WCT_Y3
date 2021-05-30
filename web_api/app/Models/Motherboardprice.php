@@ -20,6 +20,11 @@ class Motherboardprice extends Model
         'price',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function motherboard()
     {
         return $this->belongsTo(Motherboard::class,'motherboardID');

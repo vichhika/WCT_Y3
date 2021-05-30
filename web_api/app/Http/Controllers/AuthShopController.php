@@ -86,7 +86,7 @@ class AuthShopController extends Controller
                 'statusCode' => 1,
                 'access_token' => $token,
                 'message' => 'Email sent! please comfirm your email at your inbox message.',
-            ]);
+            ],201);
         }
     }
 
@@ -129,7 +129,7 @@ class AuthShopController extends Controller
             'statusCode' => 1,
             'token' => $token,
             'message' => 'login successfully.'
-        ]);
+        ],202);
     }
 
  /**
@@ -154,7 +154,7 @@ class AuthShopController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => 'logout successfully.',
-        ]);
+        ],202);
 
     }
 
@@ -226,7 +226,7 @@ class AuthShopController extends Controller
             return response()->json([
                 'statusCode' => 1,
                 'message' => 'password change successfully.'
-            ]);
+            ],202);
         }
     }
 }

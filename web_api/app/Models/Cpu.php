@@ -12,6 +12,11 @@ class Cpu extends Model
 
     protected $primaryKey = 'cpuID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function cpuprices()
     {
         return $this->hasMany(Cpuprice::class,'cpuID');

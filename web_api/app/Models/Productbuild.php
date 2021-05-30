@@ -32,6 +32,11 @@ class Productbuild extends Model
         'id',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function cpuprice()
     {
         return $this->belongsTo(Cpuprice::class,'cpupriceID');

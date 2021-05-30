@@ -101,7 +101,7 @@ class ShopController extends Controller
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $components,
+            'message' => $components->items(),
         ]);
     }
     /**
@@ -162,7 +162,7 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
@@ -400,14 +400,14 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
         return response()->json([
             'statusCode' => 1,
             'message' => 'add price successfully.'
-        ]);
+        ],201);
     }
 
     /**
@@ -582,7 +582,7 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
         return response()->json([
@@ -730,7 +730,7 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
         return response()->json([
@@ -773,11 +773,11 @@ class ShopController extends Controller
         $request->validate([
             'current_page' => 'numeric|min:1|max:100'
         ]);
-        $shops = Adminshop::select('shop_name','profile')->paginate($request->input('current_page',10));
+        $shops = Adminshop::select('adminshopID','shop_name','profile')->paginate($request->input('current_page',10));
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $shops
+            'message' => $shops->items()
         ]);
     }
 
@@ -798,7 +798,7 @@ class ShopController extends Controller
 
     public function listShop(Request $request)
     {
-        $shops = Adminshop::all(['shop_name','profile']);
+        $shops = Adminshop::all(['adminshopID','shop_name','profile']);
 
         return response()->json([
             'statusCode' => 1,

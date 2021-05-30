@@ -20,6 +20,11 @@ class Cpuprice extends Model
         'price',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function cpu()
     {
         return $this->belongsTo(Cpu::class,'cpuID');

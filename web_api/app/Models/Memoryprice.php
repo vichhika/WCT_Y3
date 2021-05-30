@@ -20,6 +20,11 @@ class Memoryprice extends Model
         'price',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function memory()
     {
         return $this->belongsTo(Memory::class,'memoryID');

@@ -93,13 +93,13 @@ class BuildpcController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $components,
+            'message' => $components->items(),
         ]);
     }
 
@@ -167,7 +167,7 @@ class BuildpcController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
@@ -197,7 +197,7 @@ class BuildpcController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'invalid submit.'
-                ]);
+                ],400);
             }
         }
 
@@ -216,7 +216,7 @@ class BuildpcController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => 'save successfully.'
-        ]);
+        ],201);
 
     }
 

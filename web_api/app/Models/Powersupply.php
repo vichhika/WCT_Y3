@@ -12,6 +12,11 @@ class Powersupply extends Model
 
     protected $primaryKey = 'powersupplyID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function powersupplyprices()
     {
         return $this->hasMany(Powersupplyprice::class,'powersupplyID');

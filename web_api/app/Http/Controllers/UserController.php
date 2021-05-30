@@ -32,4 +32,10 @@ class UserController extends Controller
             'message' => $user
         ]);
     }
+
+    public function productIndex(Request $request)
+    {
+        
+    }
+
 }

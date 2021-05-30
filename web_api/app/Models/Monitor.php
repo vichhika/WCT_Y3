@@ -12,6 +12,11 @@ class Monitor extends Model
 
     protected $primaryKey = 'monitorID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function monitorprices()
     {
         return $this->hasMany(Monitor::class,'monitorID');

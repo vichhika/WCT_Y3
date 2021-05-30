@@ -999,6 +999,70 @@
                     }
                 }
             }
+        },
+        "/api/admin_shop/profile_info": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop profile info",
+                "operationId": "App\\Http\\Controllers\\ShopController::profileInfo",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/profile_info": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user profile info",
+                "operationId": "App\\Http\\Controllers\\UserController::profileInfo",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
         }
     },
     "components": {

@@ -21,6 +21,11 @@ class Caseprice extends Model
         'price'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function casepc()
     {
         return $this->belongsTo(Casepc::class,'casepcID');

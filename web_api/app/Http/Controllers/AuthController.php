@@ -86,7 +86,7 @@ class AuthController extends Controller
                 'statusCode' => 1,
                 'access_token' => $accessToken,
                 'message' => 'Email sent! please comfirm your email at your inbox message.'
-            ]);
+            ],201);
         }
     }
 
@@ -133,7 +133,7 @@ class AuthController extends Controller
             'statusCode' => 1,
             'token' => $token,
             'message' => 'login successfully.'
-        ]);
+        ],202);
     }
 
        /**
@@ -158,7 +158,7 @@ class AuthController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => 'logout successfully.',
-        ]);
+        ],202);
     }
 
     public function forgotPassword(Request $request)
@@ -229,7 +229,7 @@ class AuthController extends Controller
             return response()->json([
                 'statusCode' => 1,
                 'message' => 'password change successfully.'
-            ]);
+            ],202);
         }
     }
 

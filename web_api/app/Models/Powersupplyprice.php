@@ -20,6 +20,11 @@ class Powersupplyprice extends Model
         'price',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function powersupply()
     {
         return $this->belongsTo(Powersupply::class,'powersupplyID');

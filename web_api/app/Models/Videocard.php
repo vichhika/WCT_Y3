@@ -12,6 +12,11 @@ class Videocard extends Model
 
     protected $primaryKey = 'videocardID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function videocardprices()
     {
         return $this->hasMany(Videocardprice::class,'videocardID');
