@@ -84,11 +84,11 @@ function Navbar(props) {
 
                     {/* <!--Declare entry to make it easy to select and disable--> */}
                     <li className="entry log-in-btn" style={{display: displayEntry}}>
-                        <Link to="/Login">Login</Link>
+                        <Link to="/login">Login</Link>
                         {/* <a href="#">Log in</a> */}
                     </li>
                     <li className="entry sign-up-btn" style={{display: displayEntry}}>
-                        <Link to="/SignUp">Sign Up</Link>
+                        <Link to="/signUp">Sign Up</Link>
                         {/* <a href="#">Sign up</a> */}
                     </li>
                 </ul>
@@ -108,7 +108,7 @@ function Navbar(props) {
                         <Link className="text-light" to="/" style={styleNavItem}>Home</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/Build" style={styleNavItem}>Build</Link>
+                        <Link className="text-light" to="/build" style={styleNavItem}>Build</Link>
                     </li>
                     <li>
                         <Link className="text-light" to="/product_page" style={styleNavItem}>Product</Link>
@@ -122,11 +122,11 @@ function Navbar(props) {
 
 
                     <li className="entry log-in-btn" style={{display: displayEntry}}>
-                        <Link to="/Login" style={styleNavItem}>Login</Link>
+                        <Link to="/login" style={styleNavItem}>Login</Link>
                     </li>
 
                     <li className="entry sign-up-btn" style={{display: displayEntry}}>
-                        <Link to="/SignUp" style={styleNavItem}>Sign Up</Link>
+                        <Link to="/signUp" style={styleNavItem}>Sign Up</Link>
                     </li>
 
                     {/* <!--Display this user-profile only acc exist--> */}

@@ -16,22 +16,17 @@ function Login() {
     const {register, handleSubmit, formState: {errors}} = useForm();
 
     let [wrongEmail, setWrongEmail] = useState(false);
-    let [wrongPassword, setWrongPassword] = useState(false);
     let [onSubmited, setOnSubmited] = useState(false);
 
 
     const summitToServer = data => {
         setWrongEmail(false);
-        setWrongPassword(false);
         setOnSubmited(true);
         axios.post(server.uri + "login", data)
             .then(function (response) {
                 console.log(response.data)
-                if (response.data.message && response.data.message.toString().localeCompare("A email address is already registerd.") === 0) {
+                if (response.data.message && response.data.message.toString().localeCompare("email  or password is incorrected.") === 0) {
                     setWrongEmail(true);
-                }
-                if (response.data.message && response.data.message.toString().localeCompare("wrong password") === 0) {
-                    setWrongPassword(true);
                 }
                 if (response.data.token) {
                     sessionStorage.setItem("token", response.data.token);
@@ -64,17 +59,16 @@ function Login() {
                                        {...register("email", {required: true})}
                                         onChange={() => setWrongEmail(false)}/>
                                 {errors.email && <p className="error-signup">Email is required</p>}
-                                {wrongEmail && <p className="error-signup">Wrong Email</p>}
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1"
                                        placeholder="Password"
                                        {...register("password", {required: true})}
-                                       onChange={() => setWrongPassword(false)}/>
+                                       onChange={() => setWrongEmail(false)}/>
                                 {errors.password && <p className="error-signup">Password is required</p>}
-                                {wrongPassword && <p className="error-signup">Wrong Password</p>}
                             </div>
+                            {wrongEmail && <p className="error-signup">Wrong Email or Password</p>}
                             <div class="d-flex justify-content-center">
                                 {onSubmited || <button type="submit" className="btn btn-primary">Log In</button>}
                                 {onSubmited && <CircularProgress/>}
