@@ -13,7 +13,14 @@ const UpdateDialog = (props) => {
     const handleOpen = props.handleClickOpen;
     let updateLabel = props.label;
     let labelValue = props.labelValue;
+    console.log(labelValue);
     let inputType = 'text'
+
+    let form_update = <div class="form-group">
+                        <label for="updateInput">{updateLabel + '*'}</label>
+                        <input type={inputType} class="form-control" id="updateInput" aria-describedby="updateHelp" defaultValue ={labelValue}/>
+                        {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                    </div>;
 
     if (updateLabel === 'Email'){
         inputType = 'email';
@@ -21,37 +28,47 @@ const UpdateDialog = (props) => {
         inputType = 'text';
     }else if (updateLabel === 'Password'){
         inputType = 'password';
+        form_update = <div class="form-group">
+                        <label for="updateInput">Old Password*</label>
+                        <input type={inputType} class="form-control" id="confirmOldPass" aria-describedby="confirmOldPass"/>
+                        {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                        <label for="updateInput">{updateLabel + '*'}</label>
+                        <input type={inputType} class="form-control" id="updateInput" aria-describedby="updatePassword"/>
+                        {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
+                    </div>;
+
     }
 
     return (
+        
         <>
-            <Dialog open={open} onClose={() => handleOpen(false) } aria-labelledby="form-dialog-title">
-                    <DialogTitle id="form-dialog-title">{updateLabel}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
+
+            {/* <!-- Modal --> */}
+            <div class="modal fade" id="UpdateModalCenter" tabindex="-1" role="dialog" aria-labelledby="UpdateModalCenter" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLongTitle">{updateLabel}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
                             To update {updateLabel.toLowerCase()} in this website, please update the {updateLabel.toLowerCase()} below. We will send updates
                             request to our server.
-                        </DialogContentText>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label={updateLabel}
-                            defaultValue={labelValue}
-                            type={inputType}
-                            fullWidth
-                        />
-                    </DialogContent>
-                <DialogActions>
-                    <Button onClick={() => handleOpen(false)} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={() => handleOpen(false)} color="primary">
-                        Update
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                            <hr/>
+                            {form_update}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onClick={() => console.log("Save")}>Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </>
+
     );
 
 }

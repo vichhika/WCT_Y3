@@ -8,6 +8,7 @@ import axios from "axios";
 import {CircularProgress} from "@material-ui/core";
 
 function Login() {
+    
     document.body.style.backgroundImage = 'none';
     const {contextAuthState, updateAuthContext} = useContext(authContext);
     let history = useHistory()

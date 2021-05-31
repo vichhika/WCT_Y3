@@ -40,7 +40,7 @@ const PersonalInfo = () => {
                         {/*list user personal information */}
                         <div class="list-group">
 
-                            <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('Fullname', 'Tithsambath Dyly')}>
+                            <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#UpdateModalCenter" onClick={() => handleClickUpdate('Fullname', 'Tithsambath Dyly')}>
                                 <div className="row">
                                     <div className="col-3">
                                         <p className='mb-0'>Fullname</p>
@@ -51,7 +51,7 @@ const PersonalInfo = () => {
                                 </div>
                             </a>
 
-                            <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('UserName', 'Tith Sambath')}>
+                            <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#UpdateModalCenter" onClick={() => handleClickUpdate('UserName', 'Tith Sambath')}>
                                 <div className="row">
                                     <div className="col-3">
                                         <p className='mb-0'>UserName</p>
@@ -61,7 +61,7 @@ const PersonalInfo = () => {
                                     </div>
                                 </div>
                             </a>
-                            <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('Email', 'dilytithsambath@gmail.com')}>
+                            <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#UpdateModalCenter" onClick={() => handleClickUpdate('Email', 'dilytithsambath@gmail.com')}>
                                 <div className="row">
                                     <div className="col-3">
                                         <p className='mb-0'>Email</p>
@@ -72,7 +72,7 @@ const PersonalInfo = () => {
                                 </div>
                             </a>
 
-                            <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('PhoneNo.', '012886342')}>
+                            <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#UpdateModalCenter" onClick={() => handleClickUpdate('PhoneNo.', '012886342')}>
                                 <div className="row">
                                     <div className="col-3">
                                         <p className='mb-0'>Phone No.</p>
@@ -83,13 +83,13 @@ const PersonalInfo = () => {
                                 </div>
                             </a>
 
-                            <a href="#" class="list-group-item list-group-item-action" onClick={() => handleClickUpdate('Password', '')}>
+                            <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#UpdateModalCenter" onClick={() => handleClickUpdate('Password', '')}>
                                 <div className="row">
                                     <div className="col-3">
-                                        <p className='mb-0'>Password</p>
+                                        <p className='mb-0 text-primary'><i class="far fa-lock"></i> Change Password</p>
                                     </div>
                                     <div className="col">
-                                        <p className='mb-0'>********************</p>
+                                        
                                     </div>
                                 </div>
                             </a>
@@ -98,8 +98,8 @@ const PersonalInfo = () => {
                     </div>
                 </div>
             </div>
-
-            <UpdateDialog open={open} handleClickOpen={handleClickOpen} label={state.label} labelValue={state.value}/>
+        
+            <UpdateDialog  open={open} handleClickOpen={handleClickOpen} label={state.label} labelValue={state.value} />
 
         </>
     );
