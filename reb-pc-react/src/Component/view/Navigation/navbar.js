@@ -8,12 +8,25 @@ import '../../../Css/navigation_bar/menu/entry.css';
 import '../../../Css/navigation_bar/user-profile-btn/user-profile-btn.css';
 import { authContext } from "../../Context/AuthContext";
 import Logout from './../LoginAndSignUp/Logout';
+import useScrollPosition from '@react-hook/window-scroll'
+import { useHistory } from 'react-router';
 
 function Navbar(props) {
 
-    const {contextAuthState} = useContext(authContext);
+    let history = useHistory();
+    const scrollY = useScrollPosition(60 /*fps*/);
 
-    console.log("navbar ",contextAuthState)
+    let colorNavbar = '';
+    
+    let location = history.location.pathname;
+
+    if(location == '/'){
+        colorNavbar = scrollY > 0 ? '#161b21' : '';
+    }else {
+        colorNavbar = '#161b21';
+    }
+
+    const {contextAuthState} = useContext(authContext);
 
     const displayEntry = contextAuthState.isAuthenticated ? 'none' : 'list-item';
     const displayUserProfile = !contextAuthState.isAuthenticated ? 'inline-block' : 'none';
@@ -35,7 +48,7 @@ function Navbar(props) {
     return (
 
     // <!--Navigation bar component-->
-        <nav className="navigation-bar navbar navbar-expand-lg fixed-top">
+        <nav className="navigation-bar navbar navbar-expand-lg fixed-top" style={{backgroundColor: colorNavbar}}>
 
             {/* <!--sm Screen view--> */}
             <div className="sm-screen-view">
@@ -62,19 +75,19 @@ function Navbar(props) {
 
                 {/* <!--menu-component (dropdown)--> */}
                 <ul id="mnu" className="menu">
-                    <li className="active">
+                    <li>
                         {/* <a className="text-light" href="#">Home</a> */}
                         <Link className="text-light" to="/">Home</Link>
                     </li>
-                    <li className="active">
+                    <li>
                         <Link className="text-light" to="/Build">Build</Link>
                         {/* <a className="text-light" href="#">Build</a> */}
                     </li>
-                    <li className="active">
+                    <li>
                         <Link className="text-light" to="/Product">Product</Link>
                         {/* <a className="text-light" href="#">Product</a> */}
                     </li>
-                    <li className="active">
+                    <li>
                         <Link className="text-light" to="/Donate">Donate</Link>
                         {/* <a className="text-light" href="#">Donate</a> */}
                     </li>
@@ -101,21 +114,21 @@ function Navbar(props) {
                 {/* <a className="navbar-brand text-light"
                     href="#"
                     style={{margin: 0}}>Reab PC</a> */}
-                <Link className="navbar-brand text-light" to="/" style={{margin: 0, fontWeight: 'bold'}}>Reab PC</Link>
+                <Link className="navbar-brand" to="/" style={{margin: 0, color: '#f3aa4e'}}><i class="fal fa-desktop"></i> &nbsp;REABPC</Link>
                 
                 <ul className="menu">
                     <li>
-                        <Link className="text-light" to="/" style={styleNavItem}>Home</Link>
+                        <Link className={location == '/' ? '.mactive' : 'text-white-50'} to="/" style={styleNavItem}>Home</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/build" style={styleNavItem}>Build</Link>
+                        <Link className={location == '/build' ? '.mactive' : 'text-white-50'} to="/build" style={styleNavItem}>Build</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/product_page" style={styleNavItem}>Product</Link>
+                        <Link className={location == '/product_page' ? '.mactive' : 'text-white-50'} to="/product_page" style={styleNavItem}>Product</Link>
                     </li>
 
                     <li style={{display: `${contextAuthState.isAuthenticated ? "list-item" : "none"}`}}>
-                        <Link className="text-light" to="/profile" style={styleNavItem}>Profile</Link>
+                        <Link className={location == '/profile' ? '.mactive' : 'text-white-50'} to="/profile" style={styleNavItem}>Profile</Link>
                     </li>
 
                     {/* <!--Declare entry to make it easy to select and disable--> */}
@@ -126,7 +139,9 @@ function Navbar(props) {
                     </li>
 
                     <li className="entry sign-up-btn" style={{display: displayEntry}}>
-                        <Link to="/signUp" style={styleNavItem}>Sign Up</Link>
+                        <button className="btn btn-sm">
+                            <Link className="text-light" to="/signUp" style={styleNavItem}><b>Sign Up</b></Link>
+                        </button>
                     </li>
 
                     {/* <!--Display this user-profile only acc exist--> */}
