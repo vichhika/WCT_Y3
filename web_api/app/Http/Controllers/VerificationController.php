@@ -6,24 +6,31 @@ use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Mail\VerificationEmail;
+use Illuminate\Support\Facades\Mail;
 
 class VerificationController extends Controller
 {
     public function verify( Request $request) {
         if(!$request->hasValidSignature()){
-            return ['message'=>'Invalid/Expired url provided.'];
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'Invalid/Expired url provided.',
+            ],400);
         }
 
         $user = User::find($request->route('id'));
 
         if ($user->hasVerifiedEmail()) {
-            return ['message'=>'already-verify'];
+            // return response()->json([
+            //     'statusCode' => 1,
+            //     'message'=>'already-verify',
+            //     ]);
+            return view('email_verified');
         }
 
         $user->markEmailAsVerified();
-
-        //redirect to frondend
-        return ['message'=>'verify'];
+        return view('email_verified');
     }
 
     public function resend(Request $request){

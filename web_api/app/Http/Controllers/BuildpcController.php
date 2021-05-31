@@ -22,7 +22,7 @@ class BuildpcController extends Controller
  * tags={"guest","user"},
  *  *  * @OA\Parameter(
 *          name="adminshopID",
-*          description="id of component",
+*          description="id of adminshop",
 *           example="1",
 *          required=true,
 *          in="query",
