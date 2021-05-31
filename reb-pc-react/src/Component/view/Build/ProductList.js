@@ -25,15 +25,12 @@ function ProductList() {
         setloading(true);
         setgotoSummer(false);
         if (sessionStorage.getItem("buildSave") !== null) {
-            console.log("first ",  sessionStorage.getItem("buildSave"))
-            console.log(sessionStorage.getItem("buildSave"))
             updatContext({
                 type: 'rest_context',
                 payload: JSON.parse(sessionStorage.getItem("buildSave"))
             })
             setloading(false);
         } else {
-            console.log("load data from server")
             axios.get(`https://api-303.herokuapp.com/ChantraComputer`)
                 .then(function (response) {
                     updatContext({
@@ -52,15 +49,12 @@ function ProductList() {
 
     useEffect(() => {
         if (!loading){
-            console.log("second ",  sessionStorage.getItem("buildSave"))
             sessionStorage.setItem("buildSave", JSON.stringify(contextState));
         }
     }, [contextState]);
 
     useEffect(() => {
         if (!loading ) {
-            console.log("thirth ",  sessionStorage.getItem("buildSave"))
-
             let newComponet = [];
             switch (contextState.component) {
                 case 0: {
@@ -95,8 +89,7 @@ function ProductList() {
                     newComponet = contextState.shopPayload.monitor
                 }
                     break;
-            }
-            ;
+            };
             updatContext({
                 type: 'set_ComponentPayload',
                 payload: newComponet

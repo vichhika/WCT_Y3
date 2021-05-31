@@ -34,7 +34,7 @@ export default function ItemList(props) {
             </tr>
             </thead>
             <tbody>
-            {list()}
+                {list()}
             </tbody>
 
         </table>

@@ -1,4 +1,4 @@
-import React, {createContext, useReducer} from 'react';
+import React, {createContext, useEffect, useReducer, useState} from 'react';
 
 
 const initState = {
@@ -31,6 +31,8 @@ const authReducer = (state, action) => {
         case 'set_token':
             state = actions.setToken(state, action.payload)
             return {...state}
+        case 'reset_context':
+            return {...action.payload}
         default:
             return {...state}
     }
@@ -38,8 +40,32 @@ const authReducer = (state, action) => {
 
 const AuthContextProvider = props => {
     const [contextAuthState, updateAuthContext] = useReducer(authReducer, initState);
+    const [loadingState,setLoadingState] = useState(false);
+
     return (
         <authContext.Provider value={{contextAuthState, updateAuthContext}}>
+
+            {
+                useEffect(() => {
+                    setLoadingState(true);
+                    if (sessionStorage.getItem("auth") !== null) {
+                        updateAuthContext({
+                            type: 'reset_context',
+                            payload: JSON.parse(sessionStorage.getItem("auth"))
+                        })
+                        setLoadingState(false);
+                    }
+                }, [])
+            }
+
+            {
+                useEffect(() => {
+                    if (!loadingState){
+                        sessionStorage.setItem("auth", JSON.stringify(contextAuthState));
+                    }
+                }, [contextAuthState])
+            }
+
             {props.children}
         </authContext.Provider>
     );
