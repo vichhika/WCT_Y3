@@ -14,6 +14,7 @@ import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
 import ProductDetail from './Component/view/Product/productDetail'
 import ProductDetailContextProvider from './Component/Context/productDetailContext'
+import Dashboard from "./Component/view/ShopOwner/Dashboard";
 
 import {BuildContextProvider} from "./Component/Context/BuildContext";
 import React from "react";
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="App" style={{ height: "100%" }}>
       
-        <Navbar/>
+        {/* <Navbar/> */}
       <Route path="/" exact component={Home}/>
       <Route path="/Blog" component={Blog} />
       <Route path="/donate" component={Donate} />
@@ -48,6 +49,7 @@ function App() {
       <Route path="/Login" component={Login} />
       <Route path="/SignUp" component={Signup} />
       <Route path="/profile" component={Profile}/>
+      <Route path="/dashboard" component={Dashboard}/>
       
     </div>
   );
