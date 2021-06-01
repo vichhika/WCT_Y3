@@ -2,15 +2,15 @@ import React, {useContext} from 'react'
 import {buildContext} from "../../Context/BuildContext";
 import Item from "./Item";
 
-export default function ListControl() {
+export default function ListControl(pros) {
     const {contextState, updatContext} = useContext(buildContext)
 
-    let lastIndex = Math.min(contextState.currentList * 10 , contextState.componentPayload.length);
+    let lastIndex = Math.min(contextState.currentList * 10 , pros.display.length);
     let startIndex = Math.max(lastIndex - 10, 0);
 
 
     const nextList = () => {
-        if (Math.ceil(contextState.componentPayload.length / 10) > contextState.currentList) {
+        if (Math.ceil(pros.display.length / 10) > contextState.currentList) {
             updatContext({
                 type: 'set_currentList',
                 payload: contextState.currentList + 1
@@ -36,7 +36,7 @@ export default function ListControl() {
 
     const btns = () => {
 
-        let totleList = Math.ceil(contextState.componentPayload.length / 10);
+        let totleList = Math.ceil(pros.display.length / 10);
 
         const btnpushing = i => {
             let btnClassname = "btn btn-outline-secondary"
@@ -80,7 +80,7 @@ export default function ListControl() {
 
         <>
             <div className="product_qty_instock d-flex justify-content-center">
-                <p className="mb-0">Showing {startIndex+1} to {lastIndex} of {contextState.componentPayload.length} entries</p>
+                <p className="mb-0">Showing {startIndex+1} to {lastIndex} of {pros.display.length} entries</p>
             </div>
 
             <div className="btn-group" role="group" aria-label="First group">

@@ -14,6 +14,7 @@ import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
 import ProductDetail from './Component/view/Product/productDetail'
 import ProductDetailContextProvider from './Component/Context/productDetailContext'
+import Dashboard from "./Component/view/ShopOwner/Dashboard";
 
 import {BuildContextProvider} from "./Component/Context/BuildContext";
 import React from "react";
@@ -56,6 +57,7 @@ function App() {
                         </ProductDetailContextProvider>
                     </PreBuildContextProvider>
                 </Route>
+                <Route path="/admin_shop/dashboard"><Dashboard/></Route>
                 <Route path="*"><PageNotfound/></Route>
             </Switch>
         </div>
