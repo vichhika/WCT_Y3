@@ -473,7 +473,7 @@
                     {
                         "name": "adminshopID",
                         "in": "query",
-                        "description": "id of component",
+                        "description": "id of adminshop",
                         "required": true,
                         "example": "1"
                     },
@@ -609,7 +609,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/admin_shop/components/list": {
@@ -644,7 +649,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/admin_shop/index": {
@@ -940,7 +950,7 @@
                     {
                         "name": "current_page",
                         "in": "query",
-                        "description": "number of component",
+                        "description": "number of adminshop",
                         "required": false,
                         "example": "10"
                     },
@@ -1049,6 +1059,69 @@
                                         "message": {
                                             "type": "string",
                                             "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_shop/resend_email_verification": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "send email verify again",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "send successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/resend_email_verification": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "send email verify again",
+                "operationId": "App\\Http\\Controllers\\VerificationController::resend",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "send successfully."
                                         }
                                     },
                                     "type": "object"

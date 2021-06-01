@@ -746,7 +746,7 @@ class ShopController extends Controller
  * tags={"guest","user"},
  * @OA\Parameter(
 *          name="current_page",
-*          description="number of component",
+*          description="number of adminshop",
 *           example="10",
 *          required=false,
 *          in="query",

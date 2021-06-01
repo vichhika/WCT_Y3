@@ -16,3 +16,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Auth::routes();
+
+// Password Reset Routes...
+// user
+Route::get('user/password/reset', '\App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('user/password/email', '\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('user/password/reset/{token}', '\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('user/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');
+
+// shop
+Route::get('admin_shop/password/reset', '\App\Http\Controllers\AuthShop\ForgotPasswordController@showLinkRequestForm')->name('shop.password.request');
+Route::post('admin_shop/password/email', '\App\Http\Controllers\AuthShop\ForgotPasswordController@sendResetLinkEmail')->name('shop.password.email');
+Route::get('admin_shop/password/reset/{token}', '\App\Http\Controllers\AuthShop\ResetPasswordController@showResetForm')->name('shop.password.reset');
+Route::post('admin_shop/password/reset', '\App\Http\Controllers\AuthShop\ResetPasswordController@reset')->name('shop.password.update');
+
+Route::get('/password_changed', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+
+Route::fallback(function(){
+    abort(404);
+});

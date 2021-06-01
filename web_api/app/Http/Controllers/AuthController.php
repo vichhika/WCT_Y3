@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\VerificationEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -166,8 +167,14 @@ class AuthController extends Controller
 
     public function forgotPassword(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+        Password::sendResetLink($request);
+
         return response()->json([
             'statusCode' => 1,
+            'message' => 'Reset password link sent on your email.'
         ]);
     }
 

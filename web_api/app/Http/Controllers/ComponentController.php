@@ -28,6 +28,7 @@ class ComponentController extends Controller
  * @OA\Get(
  * path="/api/admin_shop/components/index",
  * summary="index pagination components",
+ * security={ {"sanctum": {} }},
  * tags={"shop"},
  *  * @OA\Parameter(
 *          name="component",
@@ -109,6 +110,7 @@ class ComponentController extends Controller
  * @OA\Get(
  * path="/api/admin_shop/components/list",
  * summary="list components",
+* security={ {"sanctum": {} }},
  * tags={"shop"},
  *  * @OA\Parameter(
 *          name="component",

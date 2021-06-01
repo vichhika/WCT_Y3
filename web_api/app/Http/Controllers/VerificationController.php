@@ -14,7 +14,6 @@ class VerificationController extends Controller
     public function verify( Request $request) {
         if(!$request->hasValidSignature()){
             return response()->json([
-                'statusCode' => 0,
                 'message' => 'Invalid/Expired url provided.',
             ],400);
         }
@@ -33,11 +32,30 @@ class VerificationController extends Controller
         return view('email_verified');
     }
 
+      /**
+ * @OA\Get(
+ * path="/api/resend_email_verification",
+ * summary="send email verify again",
+ * tags={"user"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="send successfully.")
+ *        )
+ *     )
+ * )
+ */
+
     public function resend(Request $request){
-        $user = User::find($request->route('id'));
+        $user = $request->user();
 
         if ($user->hasVerifiedEmail()){
-             return redirect('/already-verify');
+             return response()->json([
+                 'statusCode' => 0,
+                 'message' => 'email has been verified.',
+             ]);
         }
 
         $user->sendEmailVerificationNotification();
