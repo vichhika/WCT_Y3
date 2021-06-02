@@ -81,6 +81,7 @@ class AuthController extends Controller
                 'phone' => $request->get('phone'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
+                'permission' => 0,
             ]);
             $user->save();
             $accessToken = $user->createToken('myToken',['role:user'])->plainTextToken;

@@ -7,18 +7,23 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Mail\VerificationEmail;
+use App\Models\Adminshop;
 use Illuminate\Support\Facades\Mail;
 
 class VerificationController extends Controller
 {
+
     public function verify( Request $request) {
         if(!$request->hasValidSignature()){
             return response()->json([
                 'message' => 'Invalid/Expired url provided.',
             ],400);
         }
-
-        $user = User::find($request->route('id'));
+        if($request->route('permission') == 1){
+            $user = Adminshop::find($request->route('id'));
+        }else if($request->route('permission') == 0){
+            $user = User::find($request->route('id'));
+        }
 
         if ($user->hasVerifiedEmail()) {
             // return response()->json([
@@ -37,6 +42,22 @@ class VerificationController extends Controller
  * path="/api/resend_email_verification",
  * summary="send email verify again",
  * tags={"user"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="send successfully.")
+ *        )
+ *     )
+ * )
+ */
+
+       /**
+ * @OA\Get(
+ * path="/api/admin_shop/resend_email_verification",
+ * summary="send email verify again",
+ * tags={"shop"},
  * security={ {"sanctum": {} }},
  * @OA\Response(
  *    response=200,

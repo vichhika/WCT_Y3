@@ -78,6 +78,7 @@ class AuthShopController extends Controller
                 'password' => bcrypt($request->get('password')),
                 'location' => $request->get('location'),
                 'profile'  => $request->get('profile'),
+                'permission' => 1,
             ]);
             $adminShop->save();
             $token = $adminShop->createToken('shopToken',['role:adminShop'])->plainTextToken;

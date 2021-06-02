@@ -25,8 +25,7 @@ Route::middleware(['html_filter'])->group(function (){
     Route::POST('/admin_shop/login',[\App\Http\Controllers\AuthShopController::class,'login']);
 
     //email verify
-    Route::GET('/email/verification_resend/{id}', [\App\Http\Controllers\VerificationController::class, 'resend'])->name('verification.send');
-    Route::GET('email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verification.verify');
+    Route::GET('email/verify/{id}/{hash}/{permission}', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verification.verify');
 
     // build pc route
     Route::GET('/index_shop',[\App\Http\Controllers\ShopController::class,'indexShop']);
@@ -48,7 +47,7 @@ Route::middleware(['shop_role','auth:sanctum','html_filter'])->group(function(){
     Route::POST('/admin_shop/update',[\App\Http\Controllers\ShopController::class,'update']);
     Route::POST('/admin_shop/destroy',[\App\Http\Controllers\ShopController::class,'destroy']);
     Route::GET('/admin_shop/profile_info',[\App\Http\Controllers\ShopController::class,'profileInfo']);
-    //Route::GET('/admin_shop/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend']);
+    Route::GET('/admin_shop/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend']);
 
 });
 

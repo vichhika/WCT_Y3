@@ -23,7 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'phone',
         'email',
-        'password'
+        'password',
+        'permission',
     ];
 
     /**
@@ -50,5 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function productbuilds()
     {
         return $this->hasMany(Productbuild::class,'id');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+      return $this->notify(new \App\Notifications\VerificationEmail);
     }
 }
