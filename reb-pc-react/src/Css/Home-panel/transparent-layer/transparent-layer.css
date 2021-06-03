@@ -7,6 +7,19 @@
     margin-bottom: 0;
 }
 
+@keyframes greetSlideInFromLeft {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.greeting{
+    animation: 1s ease-out 0s 1 greetSlideInFromLeft;
+}
+
 /* Extra small devices (portrait phones, less than 450px) */
 @media (max-width: 540px) {
     .transparent-layer{
