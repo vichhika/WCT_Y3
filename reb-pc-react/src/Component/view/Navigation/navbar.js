@@ -1,5 +1,5 @@
 import React ,{useContext}from "react";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import '../../../Css/navigation_bar/navigation-bar-style.css';
 import '../../../Css/navigation_bar/menu/menu.css';
 import '../../../Css/navigation_bar/sm-screen-view/sm-screen-view.css';
@@ -48,7 +48,7 @@ function Navbar(props) {
     return (
 
     // <!--Navigation bar component-->
-        <nav className="navigation-bar navbar navbar-expand-lg fixed-top" style={{backgroundColor: colorNavbar}}>
+        <nav className="navigation-bar navbar navbar-expand-lg fixed-top" style={{backgroundColor: colorNavbar, transition: 'all 1s ease 0s'}}>
 
             {/* <!--sm Screen view--> */}
             <div className="sm-screen-view">
