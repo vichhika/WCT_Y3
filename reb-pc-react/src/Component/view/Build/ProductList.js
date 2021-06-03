@@ -15,6 +15,7 @@ function ProductList() {
     const [loading, setloading] = useState(true)
     const conponent = ["CPU", "Motherboard", "RAM", "HardDrive", "GPU", "Case", "PowerSupply", "Monitor"]
     const [gotoSummer, setgotoSummer] = useState(false);
+    const [display,setdisplay] = useState([]);
     let history = useHistory();
 
     if (gotoSummer) {
@@ -25,15 +26,12 @@ function ProductList() {
         setloading(true);
         setgotoSummer(false);
         if (sessionStorage.getItem("buildSave") !== null) {
-            console.log("first ",  sessionStorage.getItem("buildSave"))
-            console.log(sessionStorage.getItem("buildSave"))
             updatContext({
                 type: 'rest_context',
                 payload: JSON.parse(sessionStorage.getItem("buildSave"))
             })
             setloading(false);
         } else {
-            console.log("load data from server")
             axios.get(`https://api-303.herokuapp.com/ChantraComputer`)
                 .then(function (response) {
                     updatContext({
@@ -46,21 +44,19 @@ function ProductList() {
                     // handle error
                     console.log(error);
                 })
-                .then(function () {});
+                .then(function () {
+                });
         }
     }, [])
 
     useEffect(() => {
-        if (!loading){
-            console.log("second ",  sessionStorage.getItem("buildSave"))
+        if (!loading) {
             sessionStorage.setItem("buildSave", JSON.stringify(contextState));
         }
     }, [contextState]);
 
     useEffect(() => {
-        if (!loading ) {
-            console.log("thirth ",  sessionStorage.getItem("buildSave"))
-
+        if (!loading) {
             let newComponet = [];
             switch (contextState.component) {
                 case 0: {
@@ -101,10 +97,24 @@ function ProductList() {
                 type: 'set_ComponentPayload',
                 payload: newComponet
             })
+            setdisplay([].concat(newComponet));
         }
     }, [contextState.component, loading])
 
-    console.log(contextState.shopPayload)
+    const searchChangeHandler = (e) => {
+        let fillter = e.target.value.toUpperCase()
+        let displayayload = [].concat(contextState.componentPayload);
+        if (fillter){
+            for (let i = 0 ; i < displayayload.length ; i++){
+                if (displayayload[i].model.toUpperCase().indexOf(fillter) === -1){
+                    displayayload.splice(i,1)
+                    i--;
+                }
+            }
+        }
+        setdisplay([].concat(displayayload));
+    }
+
     let btnNextStyle = {visibility: "visible"};
     let btnBackStyle = {visibility: "visible"};
 
@@ -144,7 +154,7 @@ function ProductList() {
     let listProduct, listControl;
 
     if (contextState.selectedComponent[contextState.component] === null) {
-        listControl = <ListControl/>
+        listControl = <ListControl display={display}/>
     }
 
     let btnNext = contextState.component < 7 ?
@@ -185,14 +195,14 @@ function ProductList() {
     }
 
 
-    if (loading) {
+    if (loading && display.length === 0) {
         listProduct = <h1>keep calm and wait our data</h1>
     } else {
         listProduct =
             <>
                 <div className="card-body pt-0">
                     <div>
-                        <ItemList/>
+                        <ItemList display={display}/>
                     </div>
 
                     <div className="below-bar d-flex">
@@ -206,6 +216,8 @@ function ProductList() {
             </>
     }
 
+
+
     return (
         <div className="card mt-5">
             <div className="card-header mx-3">
@@ -217,11 +229,12 @@ function ProductList() {
                             type="search"
                             placeholder="Search"
                             aria-label="Search"
+                            onChange={searchChangeHandler}
                         />
 
-                        <button className="btn btn-light" type="submit">
-                            <i className="far fa-search"></i>
-                        </button>
+                        {/*<button className="btn btn-light" type="submit">*/}
+                        {/*    <i className="far fa-search"></i>*/}
+                        {/*</button>*/}
                     </form>
                 </div>
             </div>

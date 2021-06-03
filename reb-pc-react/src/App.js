@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Component/view/Navigation/navbar.js";
-import {BrowserRouter, Route, useLocation} from "react-router-dom";
+import {Route} from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";

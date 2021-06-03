@@ -8,6 +8,7 @@ import axios from "axios";
 import {CircularProgress} from "@material-ui/core";
 
 function Login() {
+    
     document.body.style.backgroundImage = 'none';
     const {contextAuthState, updateAuthContext} = useContext(authContext);
     let history = useHistory()
@@ -28,7 +29,6 @@ function Login() {
                     setWrongEmail(true);
                 }
                 if (response.data.token) {
-                    sessionStorage.setItem("token", response.data.token);
                     updateAuthContext({type: "set_isAuthenticated",payload: true});
                     updateAuthContext({type: "set_token",payload: response.data.token});
                     history.replace('/');
@@ -37,7 +37,6 @@ function Login() {
             }).catch(function (error) {
             console.log(error);
         });
-
     }
 
     return (

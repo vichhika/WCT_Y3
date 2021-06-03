@@ -35,7 +35,7 @@ function ProductListing(props){
                     <h5 className="description">{cpu.brand + ' | ' + cpu.model + ' | cores ' + cpu.cores}</h5>  
                 <h6 className="price">{cpu.price}</h6>
                     {/* <button >Detail</button> */}
-                    <Link id={"btn" + cpu._id} className="detailBtn btn btn-primary btn-sm" onClick={() => props.selectDetailProduct(cpu)} to='/productDetail' >Detail</Link>  
+                    <Link id={"btn" + cpu._id} className="detailBtn btn btn-primary btn-sm text-light" onClick={() => props.selectDetailProduct(cpu)} to='/productDetail'>Detail</Link>  
                 </div>
             </div>
         });

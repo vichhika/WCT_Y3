@@ -31,7 +31,6 @@ function SignUp() {
                     setPhoneUsed(true);
                 }
                 if (response.data.access_token) {
-                    sessionStorage.setItem("token", response.data.access_token);
                     updateAuthContext({type: "set_isAuthenticated",payload: true});
                     updateAuthContext({type: "set_token",payload: response.data.access_token});
                     history.replace('/');
