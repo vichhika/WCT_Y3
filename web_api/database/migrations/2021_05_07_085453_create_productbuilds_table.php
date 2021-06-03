@@ -23,7 +23,7 @@ class CreateProductbuildsTable extends Migration
             $table->bigInteger('videocardpriceID');
             $table->bigInteger('casepcpriceID');
             $table->bigInteger('memorypriceID');
-            $table->bigInteger('memberID');
+            $table->bigInteger('id');
             $table->timestamps();
         });
     }

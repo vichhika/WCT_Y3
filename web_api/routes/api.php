@@ -35,7 +35,7 @@ Route::middleware(['html_filter'])->group(function (){
 });
 
 /////////////////////////////////////////////
-Route::middleware(['shop_role','auth:sanctum','html_filter'])->group(function(){
+Route::middleware(['shop_role','auth:sanctum','html_filter','verified'])->group(function(){
     //route for shop owner permission
     Route::POST('/admin_shop/change_password',[\App\Http\Controllers\AuthShopController::class,'changePassword']);
     Route::GET('/admin_shop/logout',[\App\Http\Controllers\AuthShopController::class,'logout']);
@@ -48,15 +48,17 @@ Route::middleware(['shop_role','auth:sanctum','html_filter'])->group(function(){
     Route::POST('/admin_shop/destroy',[\App\Http\Controllers\ShopController::class,'destroy']);
     Route::GET('/admin_shop/profile_info',[\App\Http\Controllers\ShopController::class,'profileInfo']);
     Route::GET('/admin_shop/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend']);
+    Route::POST('/admin_shop/profile_update',[\App\Http\Controllers\ShopController::class,'profileUpdate']);
 
 });
 
-Route::middleware(['user_role','auth:sanctum','html_filter'])->group(function(){
+Route::middleware(['user_role','auth:sanctum','html_filter','verified'])->group(function(){
     //route for user permission
     Route::GET('/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend']);
     Route::GET('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
     Route::POST('/change_password', [\App\Http\Controllers\AuthController::class, 'changePassword']);
     Route::GET('/profile_info',[\App\Http\Controllers\UserController::class,'profileInfo']);
+    Route::POST('profile_update',[\App\Http\Controllers\UserController::class,'profileUpdate']);
 
     // route build pc
     Route::POST('/build/save',[\App\Http\Controllers\BuildpcController::class,'save']);

@@ -830,4 +830,52 @@ class ShopController extends Controller
             'message' => $shop
         ]);
     }
+
+        /**
+ * @OA\Post(
+ * path="/api/admin_shop/profile_update",
+ * summary="admin shop update profile",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"fullname","phone","email"},
+ *      @OA\Property(property="fullname", type="string", format="fullname", example="Sok kha"),
+ *      @OA\Property(property="phone", type="string", format="phone", example="012812812"),
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="profile update successfully.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function profileUpdate(Request $request)
+    {
+        $request->validate([
+            'shop_name' => 'required|string|max:55|unique:adminshops',
+            'phonenumber' => 'required|string|unique:adminshops|regex:/^0[0-9]{1,9}/',
+            'email' => 'required|email|unique:adminshops',
+        ]);
+
+        $request->user()->update([
+            'shop_name' => $request->shop_name,
+            'phonenumber' => $request->phonenumber,
+            'email' =>  $request->email,
+            'email_verified_at' => NULL,
+        ]);
+
+        $request->user()->sendEmailVerificationNotification();
+
+        return response()->json([
+            'statusCode' => '1',
+            'message' => 'profile update successfully. Please check your inbox to verify your email.'
+        ]);
+    }
 }

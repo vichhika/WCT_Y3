@@ -31,6 +31,7 @@ class Adminshop extends Authenticatable implements MustVerifyEmail
         'location',
         'profile',
         'permission',
+        'email_verified_at',
     ];
 
     protected $hidden= [

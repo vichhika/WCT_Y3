@@ -1042,6 +1042,70 @@
                 ]
             }
         },
+        "/api/admin_shop/profile_update": {
+            "post": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "admin shop update profile",
+                "operationId": "App\\Http\\Controllers\\ShopController::profileUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fullname",
+                                    "phone",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string",
+                                        "format": "fullname",
+                                        "example": "Sok kha"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "phone",
+                                        "example": "012812812"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user1@mail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "profile update successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/profile_info": {
             "get": {
                 "tags": [
@@ -1074,10 +1138,74 @@
                 ]
             }
         },
-        "/api/admin_shop/resend_email_verification": {
+        "/api/profile_update": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user update profile",
+                "operationId": "App\\Http\\Controllers\\UserController::profileUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fullname",
+                                    "phone",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string",
+                                        "format": "fullname",
+                                        "example": "Sok kha"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "phone",
+                                        "example": "012812812"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user1@mail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "profile update successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/resend_email_verification": {
             "get": {
                 "tags": [
-                    "shop"
+                    "user"
                 ],
                 "summary": "send email verify again",
                 "responses": {
@@ -1105,10 +1233,10 @@
                 ]
             }
         },
-        "/api/resend_email_verification": {
+        "/api/admin_shop/resend_email_verification": {
             "get": {
                 "tags": [
-                    "user"
+                    "shop"
                 ],
                 "summary": "send email verify again",
                 "operationId": "App\\Http\\Controllers\\VerificationController::resend",
