@@ -33,6 +33,8 @@ Route::middleware(['html_filter'])->group(function (){
     Route::GET('/build/index',[\App\Http\Controllers\BuildpcController::class,'index']);
     Route::GET('/build/list',[\App\Http\Controllers\BuildpcController::class,'index']);
     Route::POST('/build/relative_build',[\App\Http\Controllers\BuildpcController::class,'relativeBuild']);
+    Route::GET('/product/index',[\App\Http\Controllers\ProductController::class,'index']);
+
 });
 
 /////////////////////////////////////////////

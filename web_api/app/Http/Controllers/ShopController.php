@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adminshop;
 use App\Models\Casepc;
-use App\Models\Caseprice;
+use App\Models\Casepcprice;
 use App\Models\Cpu;
 use App\Models\Cpuprice;
 use App\Models\Internalharddrive;
@@ -64,14 +64,15 @@ class ShopController extends Controller
     {
         $request->validate([
             'component' => 'required',
-            'current_page' => 'numeric|min:1|max:100'
+            'current_page' => 'numeric|min:1|max:100',
+            'page' => 'numeric|min:1',
         ]);
         switch ($request->component) {
             case 'cpu':
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
+                $components = Casepcprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
@@ -138,7 +139,7 @@ class ShopController extends Controller
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->get();
+                $components = Casepcprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->user()->adminshopID)->get();
@@ -230,7 +231,7 @@ class ShopController extends Controller
                 break;
             case 'casepc':
                 $component = Casepc::where('casepcID',$request->casepcID)->first();
-                $is_exist = Caseprice::where([
+                $is_exist = Casepcprice::where([
                     ['casepcID',$request->casepcID],
                     ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
@@ -246,7 +247,7 @@ class ShopController extends Controller
                         'message' => 'component is already set price.'
                     ]);
                 }
-                Caseprice::create([
+                Casepcprice::create([
                     'casepcID' => $request->casepcID,
                     'adminshopID' => $request->user()->adminshopID,
                     'price' => $request->price
@@ -460,7 +461,7 @@ class ShopController extends Controller
                 ]);
                 break;
             case 'casepc':
-                $component = Caseprice::where([
+                $component = Casepcprice::where([
                     ['casepcID',$request->casepcID],
                     ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
@@ -636,7 +637,7 @@ class ShopController extends Controller
                 $component->delete();
                 break;
             case 'casepc':
-                $component = Caseprice::where([
+                $component = Casepcprice::where([
                     ['casepcID',$request->casepcID],
                     ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)

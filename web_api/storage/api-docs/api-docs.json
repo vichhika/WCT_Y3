@@ -905,6 +905,48 @@
                 ]
             }
         },
+        "/api/product/index": {
+            "get": {
+                "tags": [
+                    "guest"
+                ],
+                "summary": "index pagination products",
+                "parameters": [
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": true,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "index of page",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/admin_shop/index": {
             "get": {
                 "tags": [

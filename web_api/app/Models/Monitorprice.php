@@ -12,7 +12,7 @@ class Monitorprice extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'monittorpriceID';
+    protected $primaryKey = 'monitorpriceID';
 
     protected $fillable = [
         'monitorID',

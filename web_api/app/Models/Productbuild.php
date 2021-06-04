@@ -54,7 +54,7 @@ class Productbuild extends Model
 
     public function internalharddriveprice()
     {
-        return $this->belongsTo(Internalharddriveprice::class,'internaldrivehardpriceID');
+        return $this->belongsTo(Internalharddriveprice::class,'internalharddrivepriceID');
     }
 
     public function monitorprice()

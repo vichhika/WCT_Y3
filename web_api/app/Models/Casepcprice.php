@@ -8,7 +8,7 @@ use App\Models\Casepc;
 use App\Models\Adminshop;
 use App\Models\Productbuild;
 
-class Caseprice extends Model
+class Casepcprice extends Model
 {
     use HasFactory;
 
