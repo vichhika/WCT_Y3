@@ -575,22 +575,28 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "cpupriceID",
-                                    "casepcpriceID",
-                                    "internalharddrivepriceID",
-                                    "memorypriceID",
-                                    "monitorpriceID",
-                                    "motherboardpriceID",
-                                    "powersupplypriceID",
-                                    "videocardpriceID"
+                                    "adminshopID",
+                                    "cpuID",
+                                    "casepcID",
+                                    "internalharddriveID",
+                                    "memoryID",
+                                    "monitorID",
+                                    "motherboardID",
+                                    "powersupplyID",
+                                    "videocardID"
                                 ],
                                 "properties": {
-                                    "cpupriceID": {
+                                    "adminshopID": {
                                         "type": "Integer",
                                         "format": "Integer",
                                         "example": "1"
                                     },
-                                    "casepcpriceID": {
+                                    "cpuID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "casepcID": {
                                         "type": "Integer",
                                         "format": "Integer",
                                         "example": "1"
@@ -600,27 +606,79 @@
                                         "format": "Integer",
                                         "example": "1"
                                     },
-                                    "memorypriceID": {
+                                    "memoryID": {
                                         "type": "Integer",
                                         "format": "Integer",
                                         "example": "1"
                                     },
-                                    "monitorpriceID": {
+                                    "monitorID": {
                                         "type": "Integer",
                                         "format": "Integer",
                                         "example": "1"
                                     },
-                                    "motherboardpriceID": {
+                                    "motherboardID": {
                                         "type": "Integer",
                                         "format": "Integer",
                                         "example": "1"
                                     },
-                                    "powersupplypriceID": {
+                                    "powersupplyID": {
                                         "type": "Integer",
                                         "format": "Integer",
                                         "example": "1"
                                     },
-                                    "videocardpriceID": {
+                                    "videocardID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/build/delete": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user delete build product",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::destory",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "productbuildID"
+                                ],
+                                "properties": {
+                                    "productbuildID": {
                                         "type": "Integer",
                                         "format": "Integer",
                                         "example": "1"
