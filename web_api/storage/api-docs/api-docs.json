@@ -562,6 +562,196 @@
                 }
             }
         },
+        "/api/build/save": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user save build pc",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::save",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "cpupriceID",
+                                    "casepcpriceID",
+                                    "internalharddrivepriceID",
+                                    "memorypriceID",
+                                    "monitorpriceID",
+                                    "motherboardpriceID",
+                                    "powersupplypriceID",
+                                    "videocardpriceID"
+                                ],
+                                "properties": {
+                                    "cpupriceID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "casepcpriceID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "internalharddriveID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "memorypriceID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "monitorpriceID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "motherboardpriceID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "powersupplypriceID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "videocardpriceID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/build/relative_build": {
+            "post": {
+                "tags": [
+                    "user",
+                    "guest"
+                ],
+                "summary": "finding relative build",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::relativeBuild",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "adminshopID",
+                                    "cpuID",
+                                    "casepcID",
+                                    "internalharddriveID",
+                                    "memoryID",
+                                    "monitorID",
+                                    "motherboardID",
+                                    "powersupplyID",
+                                    "videocardID"
+                                ],
+                                "properties": {
+                                    "adminshopID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "cpuID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "casepcID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "internalharddriveID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "memoryID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "monitorID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "motherboardID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "powersupplyID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "videocardID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/admin_shop/components/index": {
             "get": {
                 "tags": [

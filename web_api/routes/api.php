@@ -32,6 +32,7 @@ Route::middleware(['html_filter'])->group(function (){
     Route::GET('/list_shop',[\App\Http\Controllers\ShopController::class,'listShop']);
     Route::GET('/build/index',[\App\Http\Controllers\BuildpcController::class,'index']);
     Route::GET('/build/list',[\App\Http\Controllers\BuildpcController::class,'index']);
+    Route::POST('/build/relative_build',[\App\Http\Controllers\BuildpcController::class,'relativeBuild']);
 });
 
 /////////////////////////////////////////////
@@ -62,6 +63,7 @@ Route::middleware(['user_role','auth:sanctum','html_filter','verified'])->group(
 
     // route build pc
     Route::POST('/build/save',[\App\Http\Controllers\BuildpcController::class,'save']);
+
 });
 
 Route::fallback(function(){
