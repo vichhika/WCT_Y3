@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adminshop;
 use App\Models\Casepc;
-use App\Models\Caseprice;
+use App\Models\Casepcprice;
 use App\Models\Cpu;
 use App\Models\Cpuprice;
 use App\Models\Internalharddrive;
@@ -64,14 +64,15 @@ class ShopController extends Controller
     {
         $request->validate([
             'component' => 'required',
-            'current_page' => 'numeric|min:1|max:100'
+            'current_page' => 'numeric|min:1|max:100',
+            'page' => 'numeric|min:1',
         ]);
         switch ($request->component) {
             case 'cpu':
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
+                $components = Casepcprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->user()->adminshopID)->paginate($request->input('current_page',10));
@@ -101,7 +102,7 @@ class ShopController extends Controller
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $components,
+            'message' => $components->items(),
         ]);
     }
     /**
@@ -138,7 +139,7 @@ class ShopController extends Controller
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->get();
+                $components = Casepcprice::with(['Casepc'])->where('adminshopID', $request->user()->adminshopID)->get();
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->user()->adminshopID)->get();
@@ -162,7 +163,7 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
@@ -230,7 +231,7 @@ class ShopController extends Controller
                 break;
             case 'casepc':
                 $component = Casepc::where('casepcID',$request->casepcID)->first();
-                $is_exist = Caseprice::where([
+                $is_exist = Casepcprice::where([
                     ['casepcID',$request->casepcID],
                     ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
@@ -246,7 +247,7 @@ class ShopController extends Controller
                         'message' => 'component is already set price.'
                     ]);
                 }
-                Caseprice::create([
+                Casepcprice::create([
                     'casepcID' => $request->casepcID,
                     'adminshopID' => $request->user()->adminshopID,
                     'price' => $request->price
@@ -400,14 +401,14 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
         return response()->json([
             'statusCode' => 1,
             'message' => 'add price successfully.'
-        ]);
+        ],201);
     }
 
     /**
@@ -460,7 +461,7 @@ class ShopController extends Controller
                 ]);
                 break;
             case 'casepc':
-                $component = Caseprice::where([
+                $component = Casepcprice::where([
                     ['casepcID',$request->casepcID],
                     ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
@@ -582,7 +583,7 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
         return response()->json([
@@ -636,7 +637,7 @@ class ShopController extends Controller
                 $component->delete();
                 break;
             case 'casepc':
-                $component = Caseprice::where([
+                $component = Casepcprice::where([
                     ['casepcID',$request->casepcID],
                     ['adminshopID',$request->user()->adminshopID]])->first();
                 if(!$component)
@@ -730,7 +731,7 @@ class ShopController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
         return response()->json([
@@ -746,7 +747,7 @@ class ShopController extends Controller
  * tags={"guest","user"},
  * @OA\Parameter(
 *          name="current_page",
-*          description="number of component",
+*          description="number of adminshop",
 *           example="10",
 *          required=false,
 *          in="query",
@@ -773,11 +774,11 @@ class ShopController extends Controller
         $request->validate([
             'current_page' => 'numeric|min:1|max:100'
         ]);
-        $shops = Adminshop::select('shop_name','profile')->paginate($request->input('current_page',10));
+        $shops = Adminshop::select('adminshopID','shop_name','profile')->paginate($request->input('current_page',10));
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $shops
+            'message' => $shops->items()
         ]);
     }
 
@@ -798,7 +799,7 @@ class ShopController extends Controller
 
     public function listShop(Request $request)
     {
-        $shops = Adminshop::all(['shop_name','profile']);
+        $shops = Adminshop::all(['adminshopID','shop_name','profile']);
 
         return response()->json([
             'statusCode' => 1,
@@ -828,6 +829,54 @@ class ShopController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => $shop
+        ]);
+    }
+
+        /**
+ * @OA\Post(
+ * path="/api/admin_shop/profile_update",
+ * summary="admin shop update profile",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"fullname","phone","email"},
+ *      @OA\Property(property="fullname", type="string", format="fullname", example="Sok kha"),
+ *      @OA\Property(property="phone", type="string", format="phone", example="012812812"),
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="profile update successfully.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function profileUpdate(Request $request)
+    {
+        $request->validate([
+            'shop_name' => 'required|string|max:55|unique:adminshops',
+            'phonenumber' => 'required|string|unique:adminshops|regex:/^0[0-9]{1,9}/',
+            'email' => 'required|email|unique:adminshops',
+        ]);
+
+        $request->user()->update([
+            'shop_name' => $request->shop_name,
+            'phonenumber' => $request->phonenumber,
+            'email' =>  $request->email,
+            'email_verified_at' => NULL,
+        ]);
+
+        $request->user()->sendEmailVerificationNotification();
+
+        return response()->json([
+            'statusCode' => '1',
+            'message' => 'profile update successfully. Please check your inbox to verify your email.'
         ]);
     }
 }

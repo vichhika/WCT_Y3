@@ -23,7 +23,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'phone',
         'email',
-        'password'
+        'password',
+        'permission',
+        'email_verified_at',
     ];
 
     /**
@@ -34,6 +36,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -48,5 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function productbuilds()
     {
         return $this->hasMany(Productbuild::class,'id');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+      return $this->notify(new \App\Notifications\VerificationEmail);
     }
 }

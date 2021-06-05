@@ -20,6 +20,11 @@ class Videocardprice extends Model
         'price',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function videocard()
     {
         return $this->belongsTo(Videocard::class,'videocardID');

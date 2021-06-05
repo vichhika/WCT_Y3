@@ -29,12 +29,17 @@ class Adminshop extends Authenticatable implements MustVerifyEmail
         'phonenumber',
         'email',
         'location',
-        'profile'
+        'profile',
+        'permission',
+        'email_verified_at',
     ];
 
     protected $hidden= [
         'password',
+        'permission',
         'remember_token',
+        'created_at',
+        'updated_at',
     ];
 
     protected $casts = [
@@ -79,6 +84,11 @@ class Adminshop extends Authenticatable implements MustVerifyEmail
     public function videocardprices()
     {
         return $this->hasMany(Videocardprice::class,'adminshopID');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+      return $this->notify(new \App\Notifications\VerificationEmail);
     }
 
 }

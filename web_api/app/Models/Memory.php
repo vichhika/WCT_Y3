@@ -12,6 +12,11 @@ class Memory extends Model
 
     protected $primaryKey = 'memoryID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function memoryprices()
     {
         return $this->hasMany(Memoryprice::class,'memoryID');

@@ -20,6 +20,11 @@ class Internalharddriveprice extends Model
         'price',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function internalharddrive()
     {
         return $this->belongsTo(Internalharddrive::class,'internalharddriveID');

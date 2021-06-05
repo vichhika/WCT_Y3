@@ -12,12 +12,17 @@ class Monitorprice extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'monittorpriceID';
+    protected $primaryKey = 'monitorpriceID';
 
     protected $fillable = [
         'monitorID',
         'adminshopID',
         'price',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 
     public function monitor()

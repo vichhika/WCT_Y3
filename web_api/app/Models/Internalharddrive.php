@@ -12,6 +12,11 @@ class Internalharddrive extends Model
 
     protected $primaryKey = 'internalharddriveID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function internalharddriveprices()
     {
         return $this->hasMany(internalharddriveprices::class,'internalharddriveID');

@@ -12,6 +12,11 @@ class Motherboard extends Model
 
     protected $primaryKey = 'motherboardID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function motherboardprices()
     {
         return $this->hasMany(Motherboard::class,'motherboardID');

@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\VerificationEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -78,15 +81,17 @@ class AuthController extends Controller
                 'phone' => $request->get('phone'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
+                'permission' => 0,
             ]);
             $user->save();
             $accessToken = $user->createToken('myToken',['role:user'])->plainTextToken;
             $user->sendEmailVerificationNotification();
+            //Mail::to($user->email)->send(new VerificationEmail($user));
             return response()->json([
                 'statusCode' => 1,
                 'access_token' => $accessToken,
                 'message' => 'Email sent! please comfirm your email at your inbox message.'
-            ]);
+            ],201);
         }
     }
 
@@ -133,7 +138,7 @@ class AuthController extends Controller
             'statusCode' => 1,
             'token' => $token,
             'message' => 'login successfully.'
-        ]);
+        ],202);
     }
 
        /**
@@ -158,13 +163,19 @@ class AuthController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => 'logout successfully.',
-        ]);
+        ],202);
     }
 
     public function forgotPassword(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+        Password::sendResetLink($request);
+
         return response()->json([
             'statusCode' => 1,
+            'message' => 'Reset password link sent on your email.'
         ]);
     }
 
@@ -229,7 +240,7 @@ class AuthController extends Controller
             return response()->json([
                 'statusCode' => 1,
                 'message' => 'password change successfully.'
-            ]);
+            ],202);
         }
     }
 

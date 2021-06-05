@@ -473,7 +473,7 @@
                     {
                         "name": "adminshopID",
                         "in": "query",
-                        "description": "id of component",
+                        "description": "id of adminshop",
                         "required": true,
                         "example": "1"
                     },
@@ -562,6 +562,254 @@
                 }
             }
         },
+        "/api/build/save": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user save build pc",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::save",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "adminshopID",
+                                    "cpuID",
+                                    "casepcID",
+                                    "internalharddriveID",
+                                    "memoryID",
+                                    "monitorID",
+                                    "motherboardID",
+                                    "powersupplyID",
+                                    "videocardID"
+                                ],
+                                "properties": {
+                                    "adminshopID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "cpuID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "casepcID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "internalharddriveID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "memoryID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "monitorID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "motherboardID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "powersupplyID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "videocardID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/build/delete": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user delete build product",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::destory",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "productbuildID"
+                                ],
+                                "properties": {
+                                    "productbuildID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/build/relative_build": {
+            "post": {
+                "tags": [
+                    "user",
+                    "guest"
+                ],
+                "summary": "finding relative build",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::relativeBuild",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "adminshopID",
+                                    "cpuID",
+                                    "casepcID",
+                                    "internalharddriveID",
+                                    "memoryID",
+                                    "monitorID",
+                                    "motherboardID",
+                                    "powersupplyID",
+                                    "videocardID"
+                                ],
+                                "properties": {
+                                    "adminshopID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "cpuID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "casepcID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "internalharddriveID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "memoryID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "monitorID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "motherboardID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "powersupplyID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    },
+                                    "videocardID": {
+                                        "type": "Integer",
+                                        "format": "Integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/admin_shop/components/index": {
             "get": {
                 "tags": [
@@ -609,7 +857,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/admin_shop/components/list": {
@@ -644,7 +897,161 @@
                             }
                         }
                     }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/product/index": {
+            "get": {
+                "tags": [
+                    "guest"
+                ],
+                "summary": "index pagination products",
+                "operationId": "App\\Http\\Controllers\\ProductController::index",
+                "parameters": [
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": true,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "index of page",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
                 }
+            }
+        },
+        "/api/product/list": {
+            "get": {
+                "tags": [
+                    "guest"
+                ],
+                "summary": "list pagination products",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/build/product_index": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "index pagination products by user",
+                "operationId": "App\\Http\\Controllers\\ProductController::indexByUser",
+                "parameters": [
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": true,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "index of page",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/build/product_list": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "list products by user",
+                "operationId": "App\\Http\\Controllers\\ProductController::listByUser",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/admin_shop/index": {
@@ -940,7 +1347,7 @@
                     {
                         "name": "current_page",
                         "in": "query",
-                        "description": "number of component",
+                        "description": "number of adminshop",
                         "required": false,
                         "example": "10"
                     },
@@ -998,6 +1405,261 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/admin_shop/profile_info": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop profile info",
+                "operationId": "App\\Http\\Controllers\\ShopController::profileInfo",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_shop/profile_update": {
+            "post": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "admin shop update profile",
+                "operationId": "App\\Http\\Controllers\\ShopController::profileUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fullname",
+                                    "phone",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string",
+                                        "format": "fullname",
+                                        "example": "Sok kha"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "phone",
+                                        "example": "012812812"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user1@mail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "profile update successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/profile_info": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user profile info",
+                "operationId": "App\\Http\\Controllers\\UserController::profileInfo",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/profile_update": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "user update profile",
+                "operationId": "App\\Http\\Controllers\\UserController::profileUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fullname",
+                                    "phone",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string",
+                                        "format": "fullname",
+                                        "example": "Sok kha"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "format": "phone",
+                                        "example": "012812812"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user1@mail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "profile update successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/resend_email_verification": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "send email verify again",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "send successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/admin_shop/resend_email_verification": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "send email verify again",
+                "operationId": "App\\Http\\Controllers\\VerificationController::resend",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "send successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         }
     },

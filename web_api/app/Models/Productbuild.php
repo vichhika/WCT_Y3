@@ -32,6 +32,11 @@ class Productbuild extends Model
         'id',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function cpuprice()
     {
         return $this->belongsTo(Cpuprice::class,'cpupriceID');
@@ -49,7 +54,7 @@ class Productbuild extends Model
 
     public function internalharddriveprice()
     {
-        return $this->belongsTo(Internalharddriveprice::class,'internaldrivehardpriceID');
+        return $this->belongsTo(Internalharddriveprice::class,'internalharddrivepriceID');
     }
 
     public function monitorprice()

@@ -12,6 +12,11 @@ class Casepc extends Model
 
     protected $primaryKey = 'casepcID';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function caseprices()
     {
         return $this->hasMany(Caseprice::class,'casepcID');

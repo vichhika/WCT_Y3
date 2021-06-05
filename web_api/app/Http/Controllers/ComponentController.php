@@ -28,6 +28,7 @@ class ComponentController extends Controller
  * @OA\Get(
  * path="/api/admin_shop/components/index",
  * summary="index pagination components",
+ * security={ {"sanctum": {} }},
  * tags={"shop"},
  *  * @OA\Parameter(
 *          name="component",
@@ -95,13 +96,13 @@ class ComponentController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $components,
+            'message' => $components->items(),
         ]);
     }
 
@@ -109,6 +110,7 @@ class ComponentController extends Controller
  * @OA\Get(
  * path="/api/admin_shop/components/list",
  * summary="list components",
+* security={ {"sanctum": {} }},
  * tags={"shop"},
  *  * @OA\Parameter(
 *          name="component",
@@ -159,7 +161,7 @@ class ComponentController extends Controller
                 return response()->json([
                     'statusCode' => 0,
                     'message' => 'not found.'
-                ]);
+                ],404);
                 break;
         }
 
