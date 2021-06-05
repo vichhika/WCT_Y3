@@ -34,6 +34,7 @@ Route::middleware(['html_filter'])->group(function (){
     Route::GET('/build/list',[\App\Http\Controllers\BuildpcController::class,'index']);
     Route::POST('/build/relative_build',[\App\Http\Controllers\BuildpcController::class,'relativeBuild']);
     Route::GET('/product/index',[\App\Http\Controllers\ProductController::class,'index']);
+    Route::GET('/product/list',[\App\Http\Controllers\ProductController::class,'list']);
 
 });
 
@@ -65,7 +66,8 @@ Route::middleware(['user_role','auth:sanctum','html_filter','verified'])->group(
 
     // route build pc
     Route::POST('/build/save',[\App\Http\Controllers\BuildpcController::class,'save']);
-
+    Route::GET('/build/product_index',[\App\Http\Controllers\ProductController::class,'indexByUser']);
+    Route::GET('/build/product_list',[\App\Http\Controllers\ProductController::class,'listByUser']);
 });
 
 Route::fallback(function(){

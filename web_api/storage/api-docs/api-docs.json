@@ -911,6 +911,7 @@
                     "guest"
                 ],
                 "summary": "index pagination products",
+                "operationId": "App\\Http\\Controllers\\ProductController::index",
                 "parameters": [
                     {
                         "name": "current_page",
@@ -945,6 +946,112 @@
                         }
                     }
                 }
+            }
+        },
+        "/api/product/list": {
+            "get": {
+                "tags": [
+                    "guest"
+                ],
+                "summary": "list pagination products",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/build/product_index": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "index pagination products by user",
+                "operationId": "App\\Http\\Controllers\\ProductController::indexByUser",
+                "parameters": [
+                    {
+                        "name": "current_page",
+                        "in": "query",
+                        "description": "number of component",
+                        "required": true,
+                        "example": "10"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "index of page",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/build/product_list": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "list products by user",
+                "operationId": "App\\Http\\Controllers\\ProductController::listByUser",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
             }
         },
         "/api/admin_shop/index": {
