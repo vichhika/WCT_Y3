@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function profileInfo(Request $request)
     {
-        $user = User::select('fullname','username','phone','email')->where('id',$request->user()->id)->get();
+        $user = User::select('id','fullname','username','phone','email')->where('id',$request->user()->id)->get();
         return response()->json([
             'statusCode' => 1,
             'message' => $user
@@ -62,9 +62,34 @@ class UserController extends Controller
     {
         $request->validate([
             'fullname' => 'required|string|max:55',
-            'email' => 'required|email|unique:users',
-            'phone' => 'required|string|unique:users|regex:/^0[0-9]{1,9}/',
+            'email' => 'required|email',
+            'phone' => 'required|string|regex:/^0[0-9]{1,9}/',
         ]);
+
+        $duplicates = User::where('id','!=',$request->user()->id)->get(['email','phone'])->all();
+        foreach($duplicates as $duplicate)
+        {
+            if($duplicate->email == $request->email || $duplicate->phone == $request->phone)
+            {
+                return response()->json([
+                    'statusCode' => 0,
+                    'message' => 'email or phone is already used.'
+                ]);
+            }
+        }
+
+        if($request->email == $request->user()->email){
+            $request->user()->update([
+                'fullname' => $request->fullname,
+                'email' => $request->email,
+                'phone' => $request->phone,
+            ]);
+
+            return response()->json([
+                'statusCode' => 1,
+                'message' => 'profile update successfully.'
+            ]);
+        }
 
         $request->user()->update([
             'fullname' => $request->fullname,
@@ -74,9 +99,8 @@ class UserController extends Controller
         ]);
 
         $request->user()->sendEmailVerificationNotification();
-
         return response()->json([
-            'statusCode' => '1',
+            'statusCode' => 2,
             'message' => 'profile update successfully. Please check your inbox to verify your email.'
         ]);
     }

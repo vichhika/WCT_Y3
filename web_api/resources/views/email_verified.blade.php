@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <div class="alert alert-success" role="alert">
-                        email is verification.
+                        Your email is verified. Thanks you for using our platform.
                     </div>
                 </div>
             </div>

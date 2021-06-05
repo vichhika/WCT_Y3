@@ -1452,19 +1452,19 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "fullname",
-                                    "phone",
+                                    "shop_name",
+                                    "phonenumber",
                                     "email"
                                 ],
                                 "properties": {
-                                    "fullname": {
+                                    "shop_name": {
                                         "type": "string",
-                                        "format": "fullname",
+                                        "format": "shop_name",
                                         "example": "Sok kha"
                                     },
-                                    "phone": {
+                                    "phonenumber": {
                                         "type": "string",
-                                        "format": "phone",
+                                        "format": "phonenumber",
                                         "example": "012812812"
                                     },
                                     "email": {

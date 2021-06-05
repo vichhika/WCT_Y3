@@ -825,7 +825,7 @@ class ShopController extends Controller
 
     public function profileInfo(Request $request)
     {
-        $shop = Adminshop::select('shop_name','phonenumber','email','location','profile')->where('adminshopID',$request->user()->adminshopID)->get();
+        $shop = Adminshop::select('adminshopID','shop_name','phonenumber','email','location','profile')->where('adminshopID',$request->user()->adminshopID)->get();
         return response()->json([
             'statusCode' => 1,
             'message' => $shop
@@ -841,9 +841,9 @@ class ShopController extends Controller
  * @OA\RequestBody(
  *    required=true,
  *    @OA\JsonContent(
- *       required={"fullname","phone","email"},
- *      @OA\Property(property="fullname", type="string", format="fullname", example="Sok kha"),
- *      @OA\Property(property="phone", type="string", format="phone", example="012812812"),
+ *       required={"shop_name","phonenumber","email"},
+ *      @OA\Property(property="shop_name", type="string", format="shop_name", example="Sok kha"),
+ *      @OA\Property(property="phonenumber", type="string", format="phonenumber", example="012812812"),
  *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
  *    ),
  * ),
@@ -860,10 +860,36 @@ class ShopController extends Controller
     public function profileUpdate(Request $request)
     {
         $request->validate([
-            'shop_name' => 'required|string|max:55|unique:adminshops',
-            'phonenumber' => 'required|string|unique:adminshops|regex:/^0[0-9]{1,9}/',
-            'email' => 'required|email|unique:adminshops',
+            'shop_name' => 'required|string|max:55',
+            'phonenumber' => 'required|string|regex:/^0[0-9]{1,9}/',
+            'email' => 'required|email',
         ]);
+
+        $duplicates = Adminshop::where('adminshopID','!=',$request->user()->adminshopID)->get(['shop_name','phonenumber','email'])->all();
+        foreach($duplicates as $duplicate)
+        {
+            if($duplicate->shop_name == $request->shop_name || $duplicate->phonenumber == $request->phonenumber || $duplicate->email == $request->email)
+            {
+                return response()->json([
+                    'statusCode' => 0,
+                    'message' => 'Shop name, phone number, or email is used.'
+                ]);
+            }
+        }
+
+        if($request->email == $request->user()->email)
+        {
+            $request->user()->update([
+                'shop_name' => $request->shop_name,
+                'phonenumber' => $request->phonenumber,
+                'email' =>  $request->email,
+            ]);
+
+            return response()->json([
+                'statusCode' => 1,
+                'message' => 'profile update successfully.'
+            ]);
+        }
 
         $request->user()->update([
             'shop_name' => $request->shop_name,
@@ -875,7 +901,7 @@ class ShopController extends Controller
         $request->user()->sendEmailVerificationNotification();
 
         return response()->json([
-            'statusCode' => '1',
+            'statusCode' => 2,
             'message' => 'profile update successfully. Please check your inbox to verify your email.'
         ]);
     }
