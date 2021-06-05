@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Adminshop;
 use App\Models\Casepc;
-use App\Models\Caseprice;
+use App\Models\Casepcprice;
 use App\Models\Cpu;
 use App\Models\Cpuprice;
 use App\Models\Internalharddrive;

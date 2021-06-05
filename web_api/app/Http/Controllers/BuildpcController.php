@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adminshop;
-use App\Models\Caseprice;
+use App\Models\Casepcprice;
 use App\Models\Cpuprice;
 use App\Models\Internalharddriveprice;
 use App\Models\Memoryprice;
@@ -70,7 +70,7 @@ class BuildpcController extends Controller
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
+                $components = Casepcprice::with(['Casepc'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
@@ -144,7 +144,7 @@ class BuildpcController extends Controller
                 $components = Cpuprice::with(['Cpu'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'casepc':
-                $components = Caseprice::with(['Casepc'])->where('adminshopID', $request->adminshopID)->get();
+                $components = Casepcprice::with(['Casepc'])->where('adminshopID', $request->adminshopID)->get();
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->adminshopID)->get();
@@ -228,7 +228,7 @@ class BuildpcController extends Controller
                 ['adminshopID' , $request->adminshopID],
                 ['cpuID' , $request->cpuID]
             ])->first(),
-            Caseprice::where([
+            Casepcprice::where([
                 ['adminshopID' , $request->adminshopID],
                 ['casepcID' , $request->casepcID]
             ])->first(),
@@ -385,7 +385,7 @@ class BuildpcController extends Controller
                 ['adminshopID' , $shop->adminshopID],
                 ['cpuID' , $request->cpuID]
             ])->first();
-            $casepcprice = Caseprice::where([
+            $casepcprice = Casepcprice::where([
                 ['adminshopID' , $shop->adminshopID],
                 ['casepcID' , $request->casepcID]
             ])->first();
