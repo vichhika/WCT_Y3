@@ -6,30 +6,77 @@ use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Mail\VerificationEmail;
+use App\Models\Adminshop;
+use Illuminate\Support\Facades\Mail;
 
 class VerificationController extends Controller
 {
+
     public function verify( Request $request) {
         if(!$request->hasValidSignature()){
-            return ['message'=>'Invalid/Expired url provided.'];
+            return response()->json([
+                'message' => 'Invalid/Expired url provided.',
+            ],400);
+        }
+        if($request->route('permission') == 1){
+            $user = Adminshop::find($request->route('id'));
+        }else if($request->route('permission') == 0){
+            $user = User::find($request->route('id'));
         }
 
-        $user = User::find($request->route('id'));
-
         if ($user->hasVerifiedEmail()) {
-            return ['message'=>'already-verify'];
+            // return response()->json([
+            //     'statusCode' => 1,
+            //     'message'=>'already-verify',
+            //     ]);
+            return view('email_verified');
         }
 
         $user->markEmailAsVerified();
-
-        return ['message'=>'verify'];
+        return view('email_verified');
     }
 
+      /**
+ * @OA\Get(
+ * path="/api/resend_email_verification",
+ * summary="send email verify again",
+ * tags={"user"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="send successfully.")
+ *        )
+ *     )
+ * )
+ */
+
+       /**
+ * @OA\Get(
+ * path="/api/admin_shop/resend_email_verification",
+ * summary="send email verify again",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="send successfully.")
+ *        )
+ *     )
+ * )
+ */
+
     public function resend(Request $request){
-        $user = User::find($request->route('id'));
+        $user = $request->user();
 
         if ($user->hasVerifiedEmail()){
-             return redirect('/already-verify');
+             return response()->json([
+                 'statusCode' => 0,
+                 'message' => 'email has been verified.',
+             ]);
         }
 
         $user->sendEmailVerificationNotification();
