@@ -1,18 +1,10 @@
 import React from "react";
 import Sidebar from "./sidebar";
-import "../../css/dashboard.css"
-function Dashboard(){
 
-    
+
+function Dashboard() {
     return (
-      <>
-
-      <Sidebar/>
-
-      </>
-
-
-        
+        <h1>Dashboard</h1>
     );
 }
 
