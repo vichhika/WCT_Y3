@@ -101,6 +101,7 @@ class BuildpcController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => $components->items(),
+            'total_page' => $components->lastPage(),
         ]);
     }
 

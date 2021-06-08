@@ -103,6 +103,7 @@ class ShopController extends Controller
         return response()->json([
             'statusCode' => 1,
             'message' => $components->items(),
+            'total_page' => $components->lastPage(),
         ]);
     }
     /**
@@ -778,7 +779,8 @@ class ShopController extends Controller
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $shops->items()
+            'message' => $shops->items(),
+            'total_page' => $shops->lastPage(),
         ]);
     }
 

@@ -87,7 +87,8 @@ class ProductController extends Controller
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $products->items()
+            'message' => $products->items(),
+            'total_page' => $products->lastPage(),
         ]);
     }
 
@@ -225,7 +226,8 @@ class ProductController extends Controller
 
         return response()->json([
             'statusCode' => 1,
-            'message' => $products->items()
+            'message' => $products->items(),
+            'total_page' => $products->lastPage(),
         ]);
     }
 
