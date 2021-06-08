@@ -32,13 +32,14 @@ Route::middleware(['html_filter'])->group(function (){
     Route::GET('/list_shop',[\App\Http\Controllers\ShopController::class,'listShop']);
     Route::GET('/build/index',[\App\Http\Controllers\BuildpcController::class,'index']);
     Route::GET('/build/list',[\App\Http\Controllers\BuildpcController::class,'index']);
+    Route::GET('/build/list_all',[\App\Http\Controllers\BuildpcController::class,'listAll']);
     Route::POST('/build/relative_build',[\App\Http\Controllers\BuildpcController::class,'relativeBuild']);
     Route::GET('/product/index',[\App\Http\Controllers\ProductController::class,'index']);
     Route::GET('/product/list',[\App\Http\Controllers\ProductController::class,'list']);
 
     Route::GET('/admin_shop/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend'])->middleware(['user_role','auth:sanctum','html_filter']);
     Route::GET('/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend'])->middleware(['user_role','auth:sanctum','html_filter']);
-
+    Route::GET('/is_verify',[\App\Http\Controllers\VerificationController::class,'checkEmail'])->middleware(['auth:sanctum']);
 });
 
 /////////////////////////////////////////////

@@ -13,6 +13,7 @@ use App\Models\Powersupplyprice;
 use App\Models\Productbuild;
 use App\Models\Videocardprice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BuildpcController extends Controller
 {
@@ -179,7 +180,57 @@ class BuildpcController extends Controller
         ]);
     }
 
-/**
+    /**
+ * @OA\Get(
+ * path="/api/build/list_all",
+ * summary="list every components price by shopID",
+ * tags={"guest","user"},
+ *  *  * @OA\Parameter(
+*          name="adminshopID",
+*          description="id of component",
+*           example="1",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function listAll(Request $request)
+    {
+        $request->validate([
+            'adminshopID' => 'required',
+        ]);
+        $cpu = DB::table('cpuprices')->join('cpus','cpus.cpuID','cpuprices.cpuID')->where('cpuprices.adminshopID',$request->adminshopID)->get();
+        $case = Casepcprice::join('casepcs','casepcs.casepcID','casepcprices.casepcID')->where('adminshopID', $request->adminshopID)->get();
+        $internalHardDrive = Internalharddriveprice::join('internalharddrives','internalharddrives.internalharddriveID','internalharddriveprices.internalharddriveID')->where('adminshopID', $request->adminshopID)->get();
+        $memory = Memoryprice::join('memories','memories.memoryID','memoryprices.memoryID')->where('adminshopID', $request->adminshopID)->get();
+        $monitor = Monitorprice::join('monitors','monitors.monitorID','monitorprices.monitorID')->where('adminshopID', $request->adminshopID)->get();
+        $motherboard = Motherboardprice::join('motherboards','motherboards.motherboardID','motherboardprices.motherboardID')->where('adminshopID', $request->adminshopID)->get();
+        $powerSupply = Powersupplyprice::join('powersupplies','powersupplies.powersupplyID','powersupplyprices.powersupplyID')->where('adminshopID', $request->adminshopID)->get();
+        $videoCard = Videocardprice::join('videocards','videocards.videocardID','videocardprices.videocardID')->where('adminshopID', $request->adminshopID)->get();
+
+
+        return response()->json([
+            'statusCode' => 1,
+            'cpu' => $cpu,
+            'case' => $case,
+            'internalHardDrive' => $internalHardDrive,
+            'memory' => $memory,
+            'monitor' => $monitor,
+            'motherboard' => $motherboard,
+            'powerSupply' => $powerSupply,
+            'videoCard' => $videoCard
+        ]);
+    }
+
+    /**
  * @OA\Post(
  * path="/api/build/save",
  * summary="user save build pc",

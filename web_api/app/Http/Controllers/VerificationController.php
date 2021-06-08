@@ -83,4 +83,37 @@ class VerificationController extends Controller
         return ['message' => 'send verify again'];
     }
 
+    /**
+ * @OA\Get(
+ * path="/api/is_verify",
+ * summary="check email is verify",
+ * tags={"shop","user"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function checkEmail(Request $request)
+    {
+        if($request->user()->hasVerifiedEmail())
+        {
+            return response()->json([
+                'statusCode' => 1,
+                'message' => 'email has been verified.',
+            ]);
+        }
+
+        return response()->json([
+            'statusCode' => 0,
+            'message' => 'Your email address is not verified.',
+        ]);
+
+    }
+
 }

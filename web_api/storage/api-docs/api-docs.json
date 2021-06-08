@@ -562,6 +562,43 @@
                 }
             }
         },
+        "/api/build/list_all": {
+            "get": {
+                "tags": [
+                    "guest",
+                    "user"
+                ],
+                "summary": "list every components price by shopID",
+                "operationId": "App\\Http\\Controllers\\BuildpcController::listAll",
+                "parameters": [
+                    {
+                        "name": "adminshopID",
+                        "in": "query",
+                        "description": "id of component",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/build/save": {
             "post": {
                 "tags": [
@@ -1654,6 +1691,39 @@
                                         "message": {
                                             "type": "string",
                                             "example": "send successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/is_verify": {
+            "get": {
+                "tags": [
+                    "shop",
+                    "user"
+                ],
+                "summary": "check email is verify",
+                "operationId": "App\\Http\\Controllers\\VerificationController::checkEmail",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
                                         }
                                     },
                                     "type": "object"
