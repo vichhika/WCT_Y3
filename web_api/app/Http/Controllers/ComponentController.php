@@ -171,4 +171,94 @@ class ComponentController extends Controller
             'message' => $components,
         ]);
     }
+
+    /**
+ * @OA\Get(
+ * path="/api/admin_shop/components/search_by_name",
+ * summary="search and return pagination components",
+ * security={ {"sanctum": {} }},
+ * tags={"shop"},
+ *  * @OA\Parameter(
+*          name="search",
+*          description="search by name of component",
+*          example="intel i5",
+*          required=true,
+*          in="query",
+*      ),
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*           example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="current_page",
+*          description="number of component",
+*           example="10",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Parameter(
+*          name="page",
+*          description="number of pagination",
+*           example="1",
+*          required=false,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function searchByName(Request $request)
+    {
+        $request->validate([
+            'search' => 'required',
+            'current_page' => 'numeric|min:1|max:100'
+        ]);
+        switch ($request->component) {
+            case 'cpu':
+                $components = Cpu::where(Cpu::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            case 'casepc':
+                $components = Casepc::where(Casepc::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            case 'internalharddrive':
+                $components = Internalharddrive::where(Internalharddrive::raw('CONCAT_WS(" ", brand, model,storage_type)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            case 'memory':
+                $components = Memory::where(Memory::raw('CONCAT_WS(" ", brand, model,module_type)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            case 'monitor':
+                $components = Monitor::where(Monitor::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            case 'motherboard':
+                $components = Motherboard::where(Motherboard::raw('CONCAT_WS(" ", brand, model,socket)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            case 'powersupply':
+                $components = Powersupply::where(Powersupply::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            case 'videocard':
+                $components = Videocard::where(Videocard::raw('CONCAT_WS(" ", brand, model,chipset)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                break;
+            default:
+                return response()->json([
+                    'statusCode' => 0,
+                    'message' => 'not found.'
+                ],404);
+                break;
+        }
+
+        return response()->json([
+            'statusCode' => 1,
+            'message' => $components->items(),
+            'total_page' => $components->lastPage(),
+        ]);
+    }
 }

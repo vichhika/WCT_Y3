@@ -45,8 +45,8 @@ class AuthController extends Controller
 
         $rules = array(
             'fullname' => 'required|string|max:55',
-            'username' => 'required|string|max:55',
-            'phone' => 'required|string|unique:users|regex:/^0[0-9]{1,9}/',
+            'username' => 'required|string|max:55|unique:users',
+            'phone' => 'required|string|unique:users|regex:/^0[0-9]{8,9}/',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|min:8|same:password',
@@ -57,6 +57,7 @@ class AuthController extends Controller
             'fullname.max' => 'A fullname maximun input 55 characters.',
             'username.required' => 'A username is required.',
             'username.max' => 'A username maximun input 55 characters.',
+            'email.unique' => 'A username is already registerd.',
             'phone.required' => 'A phone number is required.',
             'phone.regex' => 'A phone number is invalid.',
             'phone.unique' => 'A phone number is already registered.',
