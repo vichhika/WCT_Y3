@@ -138,10 +138,10 @@ class AuthController extends Controller
         {
             return response()->json([
                 'statusCode' => 0,
-                'message' => 'email is not verified.'
+                'message' => 'your email address is not verified.'
             ]);
         }
-        
+
         $user->tokens()->delete();
         $token = $user->createToken('user_token',['role:user'])->plainTextToken;
         return response()->json([

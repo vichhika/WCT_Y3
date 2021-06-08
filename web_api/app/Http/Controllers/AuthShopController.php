@@ -129,7 +129,7 @@ class AuthShopController extends Controller
         {
             return response()->json([
                 'statusCode' => 0,
-                'message' => 'email is not verified.'
+                'message' => 'Your email address is not verified.'
             ]);
         }
 
