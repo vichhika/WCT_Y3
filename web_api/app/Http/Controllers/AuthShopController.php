@@ -202,7 +202,8 @@ class AuthShopController extends Controller
 
     public function changePassword(Request $request)
     {
-        if(!Hash::check($request->current_password, $request->user()->password))
+        $password =  $request->current_password;
+        if(!Hash::check($password,$request->user()->password))
         {
             return response()->json([
                 'statusCode' => 0,
@@ -211,13 +212,12 @@ class AuthShopController extends Controller
         }
 
         $rules = array(
-            'new_password' => 'required|string|min:8:unique:adminshops',
-            'new_password_confirmation' => 'required|string|min:8|same:password',
+            'new_password' => 'required|string|min:7',
+            'new_password_confirmation' => 'required|string|min:7|same:new_password',
         );
 
         $messages = array(
             'new_password.required' => 'A password is required.',
-            'new_password.unique' => 'Cannot use old password.',
             'new_password.min' => 'A password is required more than or equal 8 digits.',
             'new_password_confirmation.same' => 'Password confirmation should match pasasword fill.',
         );
@@ -229,14 +229,23 @@ class AuthShopController extends Controller
                 'statusCode' => 0,
                 'message' => $validator->errors(),
             ]);
-        }else
-        {
-            $request->user()->password = bcrypt($request->new_password);
-            $request->user()->save();
-            return response()->json([
-                'statusCode' => 1,
-                'message' => 'password change successfully.'
-            ],202);
         }
+
+        $password = $request->new_password;
+        if(Hash::check($password,$request->user()->password))
+        {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'cannot use old password.',
+            ]);
+        }
+
+        $request->user()->password = bcrypt($request->new_password);
+        $request->user()->save();
+        return response()->json([
+            'statusCode' => 1,
+            'message' => 'password change successfully.'
+        ],202);
+
     }
 }
