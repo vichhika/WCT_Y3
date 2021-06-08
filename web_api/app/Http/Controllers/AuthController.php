@@ -138,7 +138,7 @@ class AuthController extends Controller
         {
             return response()->json([
                 'statusCode' => 0,
-                'message' => 'your email address is not verified.'
+                'message' => 'Your email address is not verified.'
             ]);
         }
 
