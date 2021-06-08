@@ -810,61 +810,6 @@
                 }
             }
         },
-        "/api/admin_shop/components/index": {
-            "get": {
-                "tags": [
-                    "shop"
-                ],
-                "summary": "index pagination components",
-                "operationId": "App\\Http\\Controllers\\ComponentController::index",
-                "parameters": [
-                    {
-                        "name": "component",
-                        "in": "query",
-                        "description": "name of component",
-                        "required": true,
-                        "example": "cpu"
-                    },
-                    {
-                        "name": "current_page",
-                        "in": "query",
-                        "description": "number of component",
-                        "required": false,
-                        "example": "10"
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "number of pagination",
-                        "required": false,
-                        "example": "1"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "please test it."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "sanctum": []
-                    }
-                ]
-            }
-        },
         "/api/admin_shop/components/list": {
             "get": {
                 "tags": [
@@ -905,20 +850,20 @@
                 ]
             }
         },
-        "/api/admin_shop/components/search_by_name": {
+        "/api/admin_shop/components/index": {
             "get": {
                 "tags": [
                     "shop"
                 ],
-                "summary": "search and return pagination components",
-                "operationId": "App\\Http\\Controllers\\ComponentController::searchByName",
+                "summary": "index with search pagination components",
+                "operationId": "App\\Http\\Controllers\\ComponentController::index",
                 "parameters": [
                     {
                         "name": "search",
                         "in": "query",
                         "description": "search by name of component",
                         "required": true,
-                        "example": "intel i5"
+                        "example": ""
                     },
                     {
                         "name": "component",

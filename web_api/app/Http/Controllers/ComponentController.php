@@ -24,89 +24,6 @@ use Illuminate\Http\Request;
 class ComponentController extends Controller
 {
 
-        /**
- * @OA\Get(
- * path="/api/admin_shop/components/index",
- * summary="index pagination components",
- * security={ {"sanctum": {} }},
- * tags={"shop"},
- *  * @OA\Parameter(
-*          name="component",
-*          description="name of component",
-*           example="cpu",
-*          required=true,
-*          in="query",
-*      ),
- * @OA\Parameter(
-*          name="current_page",
-*          description="number of component",
-*           example="10",
-*          required=false,
-*          in="query",
-*      ),
- * @OA\Parameter(
-*          name="page",
-*          description="number of pagination",
-*           example="1",
-*          required=false,
-*          in="query",
-*      ),
- * @OA\Response(
- *    response=200,
- *    description="",
- *    @OA\JsonContent(
- *       @OA\Property(property="message", type="string", example="please test it.")
- *        )
- *     )
- * )
- */
-
-
-    public function index(Request $request)
-    {
-        $request->validate([
-            'current_page' => 'numeric|min:1|max:100'
-        ]);
-        switch ($request->component) {
-            case 'cpu':
-                $components = Cpu::paginate($request->input('current_page',10));
-                break;
-            case 'casepc':
-                $components = Casepc::paginate($request->input('current_page',10));
-                break;
-            case 'internalharddrive':
-                $components = Internalharddrive::paginate($request->input('current_page',10));
-                break;
-            case 'memory':
-                $components = Memory::paginate($request->input('current_page',10));
-                break;
-            case 'monitor':
-                $components = Monitor::paginate($request->input('current_page',10));
-                break;
-            case 'motherboard':
-                $components = Motherboard::paginate($request->input('current_page',10));
-                break;
-            case 'powersupply':
-                $components = Powersupply::paginate($request->input('current_page',10));
-                break;
-            case 'videocard':
-                $components = Videocard::paginate($request->input('current_page',10));
-                break;
-            default:
-                return response()->json([
-                    'statusCode' => 0,
-                    'message' => 'not found.'
-                ],404);
-                break;
-        }
-
-        return response()->json([
-            'statusCode' => 1,
-            'message' => $components->items(),
-            'total_page' => $components->lastPage(),
-        ]);
-    }
-
     /**
  * @OA\Get(
  * path="/api/admin_shop/components/list",
@@ -174,14 +91,14 @@ class ComponentController extends Controller
 
     /**
  * @OA\Get(
- * path="/api/admin_shop/components/search_by_name",
- * summary="search and return pagination components",
+ * path="/api/admin_shop/components/index",
+ * summary="index with search pagination components",
  * security={ {"sanctum": {} }},
  * tags={"shop"},
  *  * @OA\Parameter(
 *          name="search",
 *          description="search by name of component",
-*          example="intel i5",
+*          example="",
 *          required=true,
 *          in="query",
 *      ),
@@ -216,10 +133,9 @@ class ComponentController extends Controller
  * )
  */
 
-    public function searchByName(Request $request)
+    public function index(Request $request)
     {
         $request->validate([
-            'search' => 'required',
             'current_page' => 'numeric|min:1|max:100'
         ]);
         switch ($request->component) {
