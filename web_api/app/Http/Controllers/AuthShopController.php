@@ -124,6 +124,15 @@ class AuthShopController extends Controller
                 'message' => 'wrong password.'
             ]);
         }
+
+        if(!$adminShop->hasVerifiedEmail())
+        {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'email is not verified.'
+            ]);
+        }
+
         $adminShop->tokens()->delete();
         $token = $adminShop->createToken('shop_token',['role:adminShop'])->plainTextToken;
         return response()->json([

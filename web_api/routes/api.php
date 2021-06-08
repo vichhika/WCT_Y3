@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['html_filter'])->group(function (){
     //user auth
     Route::POST('/register', [\App\Http\Controllers\AuthController::class, 'register']);
-    Route::POST('/login', [\App\Http\Controllers\AuthController::class, 'login'])->middleware(['verified']);
+    Route::POST('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
     //shop auth
     Route::POST('/admin_shop/register',[\App\Http\Controllers\AuthShopController::class,'register']);
-    Route::POST('/admin_shop/login',[\App\Http\Controllers\AuthShopController::class,'login'])->middleware(['verified']);
+    Route::POST('/admin_shop/login',[\App\Http\Controllers\AuthShopController::class,'login']);
 
     //email verify
     Route::GET('email/verify/{id}/{hash}/{permission}', [\App\Http\Controllers\VerificationController::class, 'verify'])->name('verification.verify');

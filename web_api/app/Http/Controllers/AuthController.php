@@ -133,6 +133,15 @@ class AuthController extends Controller
                 'message' => 'email  or password is incorrected.'
             ]);
         }
+
+        if(!$user->hasVerifiedEmail())
+        {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'email is not verified.'
+            ]);
+        }
+        
         $user->tokens()->delete();
         $token = $user->createToken('user_token',['role:user'])->plainTextToken;
         return response()->json([
