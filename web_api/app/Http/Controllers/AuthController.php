@@ -250,7 +250,7 @@ class AuthController extends Controller
         {
             return response()->json([
                 'statusCode' => 0,
-                'message' => 'cannot use old password.',
+                'message' => array('new_password' => ['cannot use old password.']),
             ]);
         }
 

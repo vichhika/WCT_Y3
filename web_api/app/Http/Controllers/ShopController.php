@@ -31,6 +31,13 @@ class ShopController extends Controller
  * tags={"shop"},
  * security={ {"sanctum": {} }},
  *  * @OA\Parameter(
+*          name="search",
+*          description="search by name of component",
+*          example="",
+*          required=true,
+*          in="query",
+*      ),
+ *  * @OA\Parameter(
 *          name="component",
 *          description="name of component",
 *          example="cpu",

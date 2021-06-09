@@ -1107,6 +1107,13 @@
                 "operationId": "App\\Http\\Controllers\\ShopController::index",
                 "parameters": [
                     {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search by name of component",
+                        "required": true,
+                        "example": ""
+                    },
+                    {
                         "name": "component",
                         "in": "query",
                         "description": "name of component",
