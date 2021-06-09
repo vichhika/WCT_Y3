@@ -41,7 +41,7 @@ class AuthShopController extends Controller
     {
         $rules = array(
             'shop_name' => 'required|string|max:55|unique:adminshops',
-            'phonenumber' => 'required|string|unique:adminshops|regex:/^0[0-9]{1,9}/',
+            'phonenumber' => 'required|string|unique:adminshops|regex:/^0[0-9]{8,9}$/',
             'email' => 'required|email|unique:adminshops',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|min:8|same:password',

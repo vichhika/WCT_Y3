@@ -63,7 +63,7 @@ class UserController extends Controller
         $request->validate([
             'fullname' => 'required|string|max:55',
             'email' => 'required|email',
-            'phone' => 'required|string|regex:/^0[0-9]{1,9}/',
+            'phone' => 'required|string|regex:/^0[0-9]{8,9}$/',
         ]);
 
         $duplicates = User::where('id','!=',$request->user()->id)->get(['email','phone'])->all();

@@ -46,7 +46,7 @@ class AuthController extends Controller
         $rules = array(
             'fullname' => 'required|string|max:55',
             'username' => 'required|string|max:55|unique:users',
-            'phone' => 'required|string|unique:users|regex:/^0[0-9]{8,9}/',
+            'phone' => 'required|string|unique:users|regex:/^0[0-9]{8,9}$/',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|min:8|same:password',

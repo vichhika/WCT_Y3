@@ -1103,7 +1103,7 @@
                 "tags": [
                     "shop"
                 ],
-                "summary": "shop owner index pagination product added",
+                "summary": "shop owner search with index pagination product added",
                 "operationId": "App\\Http\\Controllers\\ShopController::index",
                 "parameters": [
                     {
