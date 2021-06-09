@@ -216,7 +216,6 @@ class BuildpcController extends Controller
         $powerSupply = Powersupplyprice::join('powersupplies','powersupplies.powersupplyID','powersupplyprices.powersupplyID')->where('adminshopID', $request->adminshopID)->get();
         $videoCard = Videocardprice::join('videocards','videocards.videocardID','videocardprices.videocardID')->where('adminshopID', $request->adminshopID)->get();
 
-
         return response()->json([
             'statusCode' => 1,
             'cpu' => $cpu,

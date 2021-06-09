@@ -83,43 +83,43 @@ class ShopController extends Controller
                 break;
             case 'casepc':
                 $components = Casepcprice::join('casepcs','casepcs.casepcID','casepcprices.casepcID')->where([
-                    ['cpuprices.adminshopID',$request->user()->adminshopID],
+                    ['casepcprices.adminshopID',$request->user()->adminshopID],
                     [Casepc::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::join('internalharddrives','internalharddrives.internalharddriveID','internalharddriveprices.internalharddriveID')->where([
-                    ['cpuprices.adminshopID',$request->user()->adminshopID],
+                    ['internalharddriveprices.adminshopID',$request->user()->adminshopID],
                     [Internalharddrive::raw('CONCAT_WS(" ", brand, model,storage_type)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
                 break;
             case 'memory':
                 $components = Memoryprice::join('memories','memories.memoryID','memoryprices.memoryID')->where([
-                    ['cpuprices.adminshopID',$request->user()->adminshopID],
+                    ['memoryprices.adminshopID',$request->user()->adminshopID],
                     [Memory::raw('CONCAT_WS(" ", brand, model,module_type)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
                 break;
             case 'monitor':
                 $components = Monitorprice::join('monitors','monitors.monitorID','monitorprices.monitorID')->where([
-                    ['cpuprices.adminshopID',$request->user()->adminshopID],
+                    ['monitorprices.adminshopID',$request->user()->adminshopID],
                     [Monitor::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
                 break;
             case 'motherboard':
                 $components = Motherboardprice::join('motherboards','motherboards.motherboardID','motherboardprices.motherboardID')->where([
-                    ['cpuprices.adminshopID',$request->user()->adminshopID],
+                    ['motherboardprices.adminshopID',$request->user()->adminshopID],
                     [Motherboard::raw('CONCAT_WS(" ", brand, model,socket)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
                 break;
             case 'powersupply':
                 $components = Powersupplyprice::join('powersupplies','powersupplies.powersupplyID','powersupplyprices.powersupplyID')->where([
-                    ['cpuprices.adminshopID',$request->user()->adminshopID],
+                    ['powersupplyprices.adminshopID',$request->user()->adminshopID],
                     [Powersupply::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
                 break;
             case 'videocard':
                 $components = Videocardprice::join('videocards','videocards.videocardID','videocardprices.videocardID')->where([
-                    ['cpuprices.adminshopID',$request->user()->adminshopID],
+                    ['videocardprices.adminshopID',$request->user()->adminshopID],
                     [Videocard::raw('CONCAT_WS(" ", brand, model,chipset)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
                 break;
