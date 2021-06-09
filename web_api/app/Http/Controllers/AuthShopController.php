@@ -59,7 +59,7 @@ class AuthShopController extends Controller
             'email.unique' => 'A email address is already registerd.',
             'password.required' => 'A password is required.',
             'password.min' => 'A password is required more than or equal 8 digits.',
-            'password_confirmation.same' => 'Password confirmation should match pasasword fill.',
+            'password_confirmation.same' => 'Password confirmation should match password fill.',
         );
 
         $validator = Validator::make($request->all(),$rules,$messages);
@@ -219,7 +219,7 @@ class AuthShopController extends Controller
         $messages = array(
             'new_password.required' => 'A password is required.',
             'new_password.min' => 'A password is required more than or equal 8 digits.',
-            'new_password_confirmation.same' => 'Password confirmation should match pasasword fill.',
+            'new_password_confirmation.same' => 'Password confirmation should match password fill.',
         );
 
         $validator = Validator::make($request->all(),$rules,$messages);
