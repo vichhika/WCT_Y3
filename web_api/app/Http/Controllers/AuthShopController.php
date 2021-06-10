@@ -116,20 +116,18 @@ class AuthShopController extends Controller
 
     public function login(Request $request)
     {
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
         $adminShop = Adminshop::where('email', $request->email)->first();
         if(!$adminShop || !Hash::check($request->password, $adminShop->password))
         {
             return response()->json([
                 'statusCode' => 0,
                 'message' => 'wrong password.'
-            ]);
-        }
-
-        if(!$adminShop->hasVerifiedEmail())
-        {
-            return response()->json([
-                'statusCode' => 0,
-                'message' => 'Your email address is not verified.'
             ]);
         }
 

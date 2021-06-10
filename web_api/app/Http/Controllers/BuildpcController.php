@@ -75,6 +75,7 @@ class BuildpcController extends Controller
                 break;
             case 'internalharddrive':
                 $components = Internalharddriveprice::with(['Internalharddrive'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
                 break;
             case 'memory':
                 $components = Memoryprice::with(['Memory'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
@@ -87,6 +88,7 @@ class BuildpcController extends Controller
                 break;
             case 'powersupply':
                 $components = Powersupplyprice::with(['Powersupply'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
                 break;
             case 'videocard':
                 $components = Videocardprice::with(['Videocard'])->where('adminshopID', $request->adminshopID)->paginate($request->input('current_page',10));
@@ -215,6 +217,22 @@ class BuildpcController extends Controller
         $motherboard = Motherboardprice::join('motherboards','motherboards.motherboardID','motherboardprices.motherboardID')->where('adminshopID', $request->adminshopID)->get();
         $powerSupply = Powersupplyprice::join('powersupplies','powersupplies.powersupplyID','powersupplyprices.powersupplyID')->where('adminshopID', $request->adminshopID)->get();
         $videoCard = Videocardprice::join('videocards','videocards.videocardID','videocardprices.videocardID')->where('adminshopID', $request->adminshopID)->get();
+
+        foreach($internalHardDrive as $key => $component)
+        {
+            $internalHardDrive[$key]->model .= ' ' . $component->capacity/1000000000 . 'GB ' . $component->storage_type;
+        }
+
+        foreach($powerSupply as $key => $component)
+        {
+            $powerSupply[$key]->model .= ' ' . $component->wattage . ' wattage';
+        }
+
+        foreach($videoCard as $key => $component)
+        {
+            $videoCard[$key]->model .= ' ' . $component->chipset . ' ' . $component->vram/1000000000 . 'GB ';
+        }
+
 
         return response()->json([
             'statusCode' => 1,

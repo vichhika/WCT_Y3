@@ -134,14 +134,6 @@ class AuthController extends Controller
             ]);
         }
 
-        if(!$user->hasVerifiedEmail())
-        {
-            return response()->json([
-                'statusCode' => 0,
-                'message' => 'Your email address is not verified.'
-            ]);
-        }
-
         $user->tokens()->delete();
         $token = $user->createToken('user_token',['role:user'])->plainTextToken;
         return response()->json([
