@@ -24,9 +24,6 @@ class CreateCpusTable extends Migration
             $table->unique([
                 'brand',
                 'model',
-                'cores',
-                'tdp',
-                'integrated_graphics',
             ],'cpus_unique_index');
         });
     }
