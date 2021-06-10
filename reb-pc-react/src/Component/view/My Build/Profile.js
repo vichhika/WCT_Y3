@@ -48,7 +48,7 @@ function Profile() {
     let username;
     let email;
     let phoneNo;
-    const [isVerify,setVerify] = useState(true);
+    const [isVerify,setVerify] = useState(false);
     const [state,setState] = useState(initState);
 
     const {contextAuthState, updateAuthContext} = useContext(authContext);
@@ -59,21 +59,24 @@ function Profile() {
     if(contextAuthState.isAuthenticated){
         
         // In case user account is not verify
-        fullname = '...';
-        username = '...';
-        email = '...';
-        phoneNo = '...';
+        if(isVerify){
+            console.log(contextAuthState.userProfile);
+            fullname = contextAuthState.userProfile.fullname;
+            username = contextAuthState.userProfile.username;
+            email = contextAuthState.userProfile.email;
+            phoneNo = contextAuthState.userProfile.phone;
+        }else {
+            fullname = '...';
+            username = '...';
+            email = '...';
+            phoneNo = '...';
+        }
 
         axios.get(server.uri + 'is_verify', {
             headers: {'Authorization' : 'Bearer ' + contextAuthState.token}
         }).then(
             (response) => {
                 setVerify(response.data.message.localeCompare('email has been verified.') == 0 ? true : false);
-                console.log(contextAuthState.userProfile);
-                fullname = contextAuthState.userProfile.fullname;
-                username = contextAuthState.userProfile.username;
-                email = contextAuthState.userProfile.email;
-                phoneNo = contextAuthState.userProfile.phone;
             }
         ).catch(error => {
             console.log(error);
