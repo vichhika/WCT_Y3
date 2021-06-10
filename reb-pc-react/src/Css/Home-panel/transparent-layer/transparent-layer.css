@@ -1,10 +1,23 @@
 .transparent-layer{
     width: 100%;
-    height: 90vh; 
+    height: 95vh; 
     background-size: 100%;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.596);
     margin-bottom: 0;
+}
+
+@keyframes greetSlideInFromLeft {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.greeting{
+    animation: 1s ease-out 0s 1 greetSlideInFromLeft;
 }
 
 /* Extra small devices (portrait phones, less than 450px) */

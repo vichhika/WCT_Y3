@@ -10,7 +10,7 @@
     </div>
 </div> */
 .Grid-display{
-    
+    grid-row-gap: 15px;
 }
 
 .product{
@@ -23,7 +23,7 @@
 }
 
 .product img{
-    width: 70%;
+    width: 50%;
     height: auto;
 }
 

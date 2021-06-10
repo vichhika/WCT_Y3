@@ -6,14 +6,18 @@ import useData from './../../userData.js'
 export default function ItemList(props) {
     const {contextState} = useContext(buildContext)
 
-    let lastIndex = Math.min(contextState.currentList * 10, contextState.componentPayload.length);
-    let startIndex = Math.min(contextState.currentList * 10 - 10, contextState.componentPayload.length);
+    let lastIndex = Math.min(contextState.currentList * 10, props.display.length);
+    let startIndex = Math.min(contextState.currentList * 10 - 10, props.display.length);
+
+    useEffect(() => {
+        console.log("rereander")
+    },props.display)
 
     const list = () => {
         let table = []
         if (contextState.selectedComponent[contextState.component] === null) {
             for (let i = startIndex; i < lastIndex; i++) {
-                table.push(<Item itemDetail={contextState.componentPayload[i]}/>)
+                table.push(<Item itemDetail={props.display[i]}/>)
             }
         } else {
             table.push(<Item itemDetail={contextState.selectedComponent[contextState.component]}/>)
@@ -34,7 +38,7 @@ export default function ItemList(props) {
             </tr>
             </thead>
             <tbody>
-            {list()}
+                {list()}
             </tbody>
 
         </table>

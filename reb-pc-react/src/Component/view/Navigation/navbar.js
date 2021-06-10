@@ -1,33 +1,54 @@
 import React ,{useContext}from "react";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import '../../../Css/navigation_bar/navigation-bar-style.css';
 import '../../../Css/navigation_bar/menu/menu.css';
 import '../../../Css/navigation_bar/sm-screen-view/sm-screen-view.css';
 import '../../../Css/navigation_bar/md-lg-screen-view/md-lg-screen-view.css';
 import '../../../Css/navigation_bar/menu/entry.css';
 import '../../../Css/navigation_bar/user-profile-btn/user-profile-btn.css';
-import { AuthContext } from "../../Context/AuthContext";
+import { authContext } from "../../Context/AuthContext";
+import Logout from './../LoginAndSignUp/Logout';
+import useScrollPosition from '@react-hook/window-scroll'
+import { useHistory } from 'react-router';
 
-function Navbar() {
+function Navbar(props) {
 
-    const {isAuthenticated} = useContext(AuthContext);
+    let history = useHistory();
+    const scrollY = useScrollPosition(60 /*fps*/);
 
-    const displayEntry = isAuthenticated ? 'none' : 'list-item';
-    const displayUserProfile = !isAuthenticated ? 'none' : 'inline-block';
-    const displayUserBuildPage = !isAuthenticated ? 'none' : 'list-item';
+    let colorNavbar = '';
+    
+    let location = history.location.pathname;
+
+    if(location == '/'){
+        colorNavbar = scrollY > 0 ? '#161b21' : '';
+    }else {
+        colorNavbar = '#161b21';
+    }
+
+    const {contextAuthState} = useContext(authContext);
+
+    const displayEntry = contextAuthState.isAuthenticated ? 'none' : 'list-item';
+    const displayUserProfile = !contextAuthState.isAuthenticated ? 'inline-block' : 'none';
+    const displayUserBuildPage = !contextAuthState.isAuthenticated ? 'none' : 'list-item';
 
     function click(){
         let menu = document.getElementById("mnu").style.display;
-        if (menu == 0 || menu ==='none')
+        if (menu === 0 || menu ==='none')
             document.getElementById("mnu").style.display = 'block';
         else if (menu === 'block')
             document.getElementById("mnu").style.display = 'none';
     }
 
+    const styleNavItem = {
+        textDecoration: 'none',
+
+    }
+
     return (
 
     // <!--Navigation bar component-->
-        <nav className="navigation-bar navbar navbar-expand-lg fixed-top">
+        <nav className="navigation-bar navbar navbar-expand-lg fixed-top" style={{backgroundColor: colorNavbar, transition: 'all 1s ease 0s'}}>
 
             {/* <!--sm Screen view--> */}
             <div className="sm-screen-view">
@@ -36,7 +57,7 @@ function Navbar() {
                         
                     {/* <!--menulist button--> */}
                     <button type="button" className="btn btn-dark btn-sm" style={{backgroundColor: 'rgba(0, 0, 0, 1)', alignSelf: 'center', border:'none'}} onClick={click}>
-                        <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign:'middle'}}></i>
+                        <i id="dpd-menu-btn-id" className="menu-btn far fa-bars" style={{color: 'white', verticalAlign: 'middle'}}/>
                     </button>
                     
                     {/* <!--Website Title Component--> */}
@@ -76,11 +97,11 @@ function Navbar() {
 
                     {/* <!--Declare entry to make it easy to select and disable--> */}
                     <li className="entry log-in-btn" style={{display: displayEntry}}>
-                        <Link to="/Login">Login</Link>
+                        <Link to="/login">Login</Link>
                         {/* <a href="#">Log in</a> */}
                     </li>
                     <li className="entry sign-up-btn" style={{display: displayEntry}}>
-                        <Link to="/SignUp">Sign Up</Link>
+                        <Link to="/signUp">Sign Up</Link>
                         {/* <a href="#">Sign up</a> */}
                     </li>
                 </ul>
@@ -93,46 +114,40 @@ function Navbar() {
                 {/* <a className="navbar-brand text-light"
                     href="#"
                     style={{margin: 0}}>Reab PC</a> */}
-                <Link className="navbar-brand text-light" to="/" style={{margin: 0, fontWeight: 'bold'}}>Reab PC</Link>
+                <Link className="navbar-brand" to="/" style={{margin: 0, color: '#f3aa4e'}}><i class="fal fa-desktop"></i> &nbsp;REABPC</Link>
                 
                 <ul className="menu">
                     <li>
-                        <Link className="text-light" to="/">Home</Link>
+                        <Link className={location == '/' ? '.mactive' : 'text-white-50'} to="/" style={styleNavItem}>Home</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/Build">Build</Link>
+                        <Link className={location == '/build' ? '.mactive' : 'text-white-50'} to="/build" style={styleNavItem}>Build</Link>
                     </li>
                     <li>
-                        <Link className="text-light" to="/product_page">Product</Link>
-                    </li>
-                    <li>
-                        <Link className="text-light" to="/Donate">Donate</Link>
+                        <Link className={location == '/product_page' ? '.mactive' : 'text-white-50'} to="/product_page" style={styleNavItem}>Product</Link>
                     </li>
 
-                    <li>
-                        <Link className="text-light" to="/profile">Profile</Link>
-                        {/* <a className="text-light" href="#">Donate</a> */}
+                    <li style={{display: `${contextAuthState.isAuthenticated ? "list-item" : "none"}`}}>
+                        <Link className={location == '/profile' ? '.mactive' : 'text-white-50'} to="/profile" style={styleNavItem}>Profile</Link>
                     </li>
 
                     {/* <!--Declare entry to make it easy to select and disable--> */}
 
 
                     <li className="entry log-in-btn" style={{display: displayEntry}}>
-                        <Link to="/Login">Login</Link>
+                        <Link to="/login" style={styleNavItem}>Login</Link>
                     </li>
-                    <li className="entry sign-up-btn" style={{display: displayEntry}}>
-                        <Link to="/SignUp">Sign Up</Link>
-                    </li>
-                    
-                    {/* User Build */}
 
-                    <li style={{display: displayUserBuildPage}}>
-                        <Link  className="text-light" to="#">My Build</Link>
+                    <li className="entry sign-up-btn" style={{display: displayEntry}}>
+                        <button className="btn btn-sm">
+                            <Link className="text-light" to="/signUp" style={styleNavItem}><b>Sign Up</b></Link>
+                        </button>
                     </li>
 
                     {/* <!--Display this user-profile only acc exist--> */}
-                    <li className="acc-exist" style={{display: displayUserProfile}}>
-                        <button className="user-profile-btn btn btn-primary btn-sm">B</button>
+                    <li className="acc-exist" style={{position: 'relative', display: `${contextAuthState.isAuthenticated ? "list-item" : "none"}`}}>
+                        {/* <button className="user-profile-btn btn btn-primary btn-sm">B</button> */}
+                        <Logout/>
                     </li>
                 </ul>
             </div>

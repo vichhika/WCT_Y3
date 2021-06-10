@@ -9,7 +9,8 @@ function PreBuildContextProvider(props){
         components: null,
         sortAs: 'default',
         filterBy: [],
-        filterComponents: null, 
+        filterComponents: null,
+        currentPage: 1, 
     }
 
     const [state,setState] = useState(initState);
@@ -25,7 +26,7 @@ function PreBuildContextProvider(props){
                 }
             }
         )
-        .then(data => setState({loading:false, components: data, sortAs: 'default', filterBy: [], filterComponents: data}));
+        .then(data => setState({loading:false, components: data, sortAs: 'default', filterBy: [], filterComponents: data, currentPage: 1}));
     },[]);
 
 
@@ -40,7 +41,7 @@ function PreBuildContextProvider(props){
             }else if (state.filterBy.length > 0){
 
                 cpu = cpu.filter(item => state.filterBy.includes(item.model));
-                setState({...state,filterComponents: {cpu}});
+                setState({...state,filterComponents: {cpu}, currentPage: 1});
 
             }
             
@@ -51,16 +52,15 @@ function PreBuildContextProvider(props){
                     if(parseFloat(a.price.replace('$','')) > parseFloat(b.price.replace('$',''))){ return 1; }
                     return 0;
                 });
-                setState({...state,filterComponents: {cpu}});
+                setState({...state,filterComponents: {cpu}, currentPage: 1});
             }else if (state.sortAs == 'DESC'){
                 cpu.sort((a,b) => {
                     if (parseFloat(b.price.replace('$','')) < parseFloat(a.price.replace('$',''))){ return -1; }
                     if(parseFloat(b.price.replace('$','')) > parseFloat(a.price.replace('$',''))){ return 1; }
                     return 0;
                 });
-                setState({...state, filterComponents: {cpu}});
+                setState({...state, filterComponents: {cpu}, currentPage: 1});
             }
-
         }
     },[state.sortAs, state.filterBy.length]);
 
@@ -69,11 +69,12 @@ function PreBuildContextProvider(props){
 
     const setFilterBy = (type) => {setState({...state,filterBy: type})};
 
+    const setCurrentPage = (page) => {setState({...state,currentPage: page})}
 
 
 
     return (
-        <PreBuildContext.Provider value={{...state, setSortAs: setSortAs, setFilterBy: setFilterBy}}>
+        <PreBuildContext.Provider value={{...state, setSortAs: setSortAs, setFilterBy: setFilterBy, setCurrentPage: setCurrentPage}}>
             {props.children}
         </PreBuildContext.Provider>
     );
