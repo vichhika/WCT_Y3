@@ -7,9 +7,40 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\VerificationEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
+
+/**
+ * @OA\Post(
+ * path="/api/register",
+ * summary="user register",
+ * tags={"user"},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"fullname","username","phone","email","password","password_confirmation"},
+ *      @OA\Property(property="fullname", type="string", format="fullname", example="Sok kha"),
+ *      @OA\Property(property="username", type="string", format="username", example="user1"),
+ *      @OA\Property(property="phone", type="string", format="phone", example="012812812"),
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *      @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+ *      @OA\Property(property="password_confirmation", type="string", format="password_confirmation", example="PassWord12345"),
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="Email sent! please comfirm your email at your inbox message.")
+ *        )
+ *     )
+ * )
+ */
+
     public function register(Request $request){
 
         $rules = array(
@@ -18,6 +49,7 @@ class AuthController extends Controller
             'phone' => 'required|string|unique:users|regex:/^0[0-9]{1,9}/',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
+            'password_confirmation' => 'required|string|min:8|same:password',
         );
 
         $messages = array(
@@ -32,12 +64,16 @@ class AuthController extends Controller
             'email.email' => 'A email address is invalid.',
             'email.unique' => 'A email address is already registerd.',
             'password.required' => 'A password is required.',
-            'password.min' => 'A password is required more than or equal 8 digits.'
+            'password.min' => 'A password is required more than or equal 8 digits.',
+            'password_confirmation.same' => 'Password confirmation should match pasasword fill.',
         );
 
         $validator = Validator::make($request->all(),$rules,$messages);
         if($validator->fails()){
-            return $validator->errors();
+            return response()->json([
+                "statusCode" => 0,
+                "message" => $validator->errors(),
+            ]);
         }else{
             $user = new User([
                 'fullname' => $request->get('fullname'),
@@ -45,48 +81,167 @@ class AuthController extends Controller
                 'phone' => $request->get('phone'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
+                'permission' => 0,
             ]);
             $user->save();
-            $accessToken = $user->createToken('myToken')->plainTextToken;
+            $accessToken = $user->createToken('myToken',['role:user'])->plainTextToken;
             $user->sendEmailVerificationNotification();
+            //Mail::to($user->email)->send(new VerificationEmail($user));
             return response()->json([
+                'statusCode' => 1,
                 'access_token' => $accessToken,
                 'message' => 'Email sent! please comfirm your email at your inbox message.'
             ],201);
         }
     }
 
-    public function changePassword(Request $request){
+    /**
+ * @OA\Post(
+ * path="/api/login",
+ * summary="user login",
+ * tags={"user"},
+ * @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"email","password"},
+ *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *      @OA\Property(property="password", type="string", format="password", example="PassWord12345")
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="login successfully.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function login(Request $request){
+
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
         $user = User::where('email',$request->email)->first();
-
-        if (!$user){
-            return response('Login wrong email', 502);
+        if (!$user || !Hash::check($request->password,$user->password)){
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'email  or password is incorrected.'
+            ]);
         }
-        if (!Hash::check($request->password, $user->password)) {
-            return response('Login wrong password', 503);
-        }
-        if ($request->newpassword != $request->confirmpassword){
-            return response('Login password and confirm pasword invalid', 504);
-        }
-
-        $user->password = bcrypt($request->newpassword);
-        $user->save();
-        return ['newpassword' => $user->password,'message' => 'change password success',$request->all()];
+        $user->tokens()->delete();
+        $token = $user->createToken('user_token',['role:user'])->plainTextToken;
+        return response()->json([
+            'statusCode' => 1,
+            'token' => $token,
+            'message' => 'login successfully.'
+        ],202);
     }
+
+       /**
+ * @OA\Get(
+ * path="/api/logout",
+ * summary="user logout",
+ * tags={"user"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="logout successfully.")
+ *        )
+ *     )
+ * )
+ */
+
 
     public function logout(Request $request){
         $request->user()->tokens()->delete();
-        return ["message" => "logout: success"];
+        return response()->json([
+            'statusCode' => 1,
+            'message' => 'logout successfully.',
+        ],202);
     }
 
-    public function login(Request $request){
-        $user = User::where('email',$request->email)->first();
+    public function forgotPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+        Password::sendResetLink($request);
 
-        if (!$user || !Hash::check($request->password,$user->password)){
-            return ['message' => 'wrong password'];
+        return response()->json([
+            'statusCode' => 1,
+            'message' => 'Reset password link sent on your email.'
+        ]);
+    }
+
+           /**
+ * @OA\Post(
+ * path="/api/change_password",
+ * summary="user change_password",
+ * tags={"user"},
+ * security={ {"sanctum": {} }},
+* @OA\RequestBody(
+ *    required=true,
+ *    @OA\JsonContent(
+ *       required={"current_password","new_password","new_password_confirmation"},
+ *      @OA\Property(property="current_password", type="string", format="password", example="PassWord12345"),
+ *      @OA\Property(property="new_password", type="string", format="password", example="password"),
+ *      @OA\Property(property="new_password_confirmation", type="string", format="password", example="password")
+ *    ),
+ * ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="changed password successfully.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function changePassword(Request $request)
+    {
+        if(!Hash::check($request->current_password, $request->user()->password))
+        {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'current password is not correct.',
+            ]);
         }
 
-        $token = $user->createToken('myToken')->plainTextToken;
-        return ["token" => $token];
+        $rules = array(
+            'new_password' => 'required|string|min:8:unique:adminshops',
+            'new_password_confirmation' => 'required|string|min:8|same:new_password',
+        );
+
+        $messages = array(
+            'new_password.required' => 'A password is required.',
+            'new_password.unique' => 'Cannot use old password.',
+            'new_password.min' => 'A password is required more than 8 digits.',
+            'new_password_confirmation.same' => 'Password confirmation should match pasasword fill.',
+        );
+
+        $validator = Validator::make($request->all(),$rules,$messages);
+        if($validator->fails())
+        {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => $validator->errors(),
+            ]);
+        }else
+        {
+            $request->user()->password = bcrypt($request->new_password);
+            $request->user()->save();
+            return response()->json([
+                'statusCode' => 1,
+                'message' => 'password change successfully.'
+            ],202);
+        }
     }
+
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Productbuild;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -22,7 +23,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'phone',
         'email',
-        'password'
+        'password',
+        'permission',
+        'email_verified_at',
     ];
 
     /**
@@ -33,6 +36,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -43,4 +48,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function productbuilds()
+    {
+        return $this->hasMany(Productbuild::class,'id');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+      return $this->notify(new \App\Notifications\VerificationEmail);
+    }
 }
