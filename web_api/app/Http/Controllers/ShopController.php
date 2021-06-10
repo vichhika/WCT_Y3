@@ -92,6 +92,10 @@ class ShopController extends Controller
                     ['internalharddriveprices.adminshopID',$request->user()->adminshopID],
                     [Internalharddrive::raw('CONCAT_WS(" ", brand, model,storage_type)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
+                {
+                    $components[$key]->model .= ' ' . $component->capacity/1000000000 . 'GB ' . $component->storage_type;
+                }
                 break;
             case 'memory':
                 $components = Memoryprice::join('memories','memories.memoryID','memoryprices.memoryID')->where([
@@ -116,12 +120,20 @@ class ShopController extends Controller
                     ['powersupplyprices.adminshopID',$request->user()->adminshopID],
                     [Powersupply::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
+                {
+                    $components[$key]->model .= ' ' . $component->wattage . ' wattage';
+                }
                 break;
             case 'videocard':
                 $components = Videocardprice::join('videocards','videocards.videocardID','videocardprices.videocardID')->where([
                     ['videocardprices.adminshopID',$request->user()->adminshopID],
                     [Videocard::raw('CONCAT_WS(" ", brand, model,chipset)'),'like','%'.$request->search.'%']
                 ])->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
+                {
+                    $components[$key]->model .= ' ' . $component->chipset . ' ' . $component->vram/1000000000 . 'GB ';
+                }
                 break;
             default:
                 return response()->json([

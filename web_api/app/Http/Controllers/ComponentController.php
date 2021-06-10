@@ -147,6 +147,10 @@ class ComponentController extends Controller
                 break;
             case 'internalharddrive':
                 $components = Internalharddrive::where(Internalharddrive::raw('CONCAT_WS(" ", brand, model,storage_type)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
+                {
+                    $components[$key]->model .= ' ' . $component->capacity/1000000000 . 'GB ' . $component->storage_type;
+                }
                 break;
             case 'memory':
                 $components = Memory::where(Memory::raw('CONCAT_WS(" ", brand, model,module_type)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
@@ -159,9 +163,17 @@ class ComponentController extends Controller
                 break;
             case 'powersupply':
                 $components = Powersupply::where(Powersupply::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
+                {
+                    $components[$key]->model .= ' ' . $component->wattage . ' wattage';
+                }
                 break;
             case 'videocard':
                 $components = Videocard::where(Videocard::raw('CONCAT_WS(" ", brand, model,chipset)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                foreach($components as $key => $component)
+                {
+                    $components[$key]->model .= ' ' . $component->chipset . ' ' . $component->vram/1000000000 . 'GB ';
+                }
                 break;
             default:
                 return response()->json([
