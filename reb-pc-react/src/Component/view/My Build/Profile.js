@@ -48,31 +48,51 @@ function Profile() {
     let username;
     let email;
     let phoneNo;
-    const [isVerify,setVerify] = useState(true);
+    const [isVerify,setVerify] = useState(false);
     const [state,setState] = useState(initState);
 
     const {contextAuthState, updateAuthContext} = useContext(authContext);
 
     document.body.style.backgroundImage = 'none';
     const classes = useStyles();
+    
     console.log(contextAuthState.userProfile);
-    if(contextAuthState.isAuthenticated){
-        console.log(contextAuthState.userProfile.fullname);
-        fullname = contextAuthState.userProfile.fullname;
-        username = contextAuthState.userProfile.username;
-        email = contextAuthState.userProfile.email;
-        phoneNo = contextAuthState.userProfile.phone;
-        axios.get(server.uri + 'is_verify', {
-            headers: {'Authorization' : 'Bearer ' + contextAuthState.token}
-        }).then(
-            (response) => {
-                setVerify(response.data.message.localeCompare('email has been verified.') == 0 ? true : false);
-            }
-        ).catch(error => {
-            console.log(error);
-        });
 
-    }else {
+    // before it reload request is_verify to check if user email is verify
+    window.onbeforeunload = () => {
+        // request if it is verify
+        axios.get(server.uri + 'is_verify', {
+            headers: {'Authorization': 'Bearer ' + `${contextAuthState.token}`}
+        }).then(
+            response => {
+                let verified = response.data.message
+                                .localeCompare('email has been verified.') == 0 ? true : false;
+                updateAuthContext({type: 'setIsVerify', payload: verified})
+            }
+        )
+    }
+
+    if(contextAuthState.isAuthenticated){
+        
+        // In case user account is not verify
+        if(contextAuthState.isVerify && !contextAuthState.loading){
+
+            console.log(contextAuthState.loading);
+            fullname = contextAuthState.userProfile.fullname;
+            username = contextAuthState.userProfile.username;
+            email = contextAuthState.userProfile.email;
+            phoneNo = contextAuthState.userProfile.phone;
+
+        }else {
+
+            fullname = '...';
+            username = '...';
+            email = '...';
+            phoneNo = '...';
+
+        }
+
+    }else { // in case is not authenticated
 
         fullname = '...';
         username = '...';
@@ -123,7 +143,7 @@ function Profile() {
                         username={username}
                         email={email}
                         phoneNo={phoneNo}
-                        isVerify={isVerify} /> : <UserBuild/>
+                        isVerify={contextAuthState.isVerify} /> : <UserBuild/>
                         
                     }
 
