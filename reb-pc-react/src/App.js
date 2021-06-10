@@ -8,7 +8,6 @@ import Product from "./Component/view/Product/product_page";
 import Login from "./Component/view/LoginAndSignUp/Login";
 import Signup from "./Component/view/LoginAndSignUp/SignUp";
 import Home from "./../src/Component/view/HomePage/Home"
-import PreBuildContextProvider from "./Component/Context/PreBuildContext";
 import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
 import ProductDetail from './Component/view/Product/productDetail'
@@ -16,10 +15,11 @@ import ProductDetailContextProvider from './Component/Context/productDetailConte
 
 import {BuildContextProvider} from "./Component/Context/BuildContext";
 import React from "react";
-import * as url from "url";
 import {Switch} from "react-router-dom";
 import PageNotfound from "./Component/view/PageNotFound";
-
+import ProductsContextProvider from "./Component/Context/ProductsContext";
+import {ShopsContextProvider} from "./Component/Context/ShopsContext";
+import {UserProfileContextProvider} from './Component/Context/UserProfileContext';
 function App() {
 
     return (
@@ -30,10 +30,16 @@ function App() {
                 <Route path="/donate"> <Navbar/><Donate/></Route>
                 <Route path="/login"><Navbar/><Login/></Route>
                 <Route path="/signUp"><Navbar/><Signup/></Route>
-                <Route path="/profile"><Navbar/><Profile/></Route>
+                <Route path="/profile">
+                    <Navbar/>
+                    <Profile/>
+                </Route>
                 <Route path="/build">
                     <BuildContextProvider>
-                        <Navbar/><Build/>
+                        <Navbar/>
+                        <ShopsContextProvider>
+                            <Build/>
+                        </ShopsContextProvider>
                     </BuildContextProvider>
                 </Route>
                 <Route path="/summeryBuild">
@@ -41,20 +47,19 @@ function App() {
                         <Navbar/><SummeryBuild/>
                     </BuildContextProvider>
                 </Route>
-                <Route path="/product_page">
-                    <PreBuildContextProvider>
-                        <ProductDetailContextProvider>
-                            <Navbar/><Product/>
-                        </ProductDetailContextProvider>
-                    </PreBuildContextProvider>
-                </Route>
-                <Route path="/productDetail">
-                    <PreBuildContextProvider>
-                        <ProductDetailContextProvider>
-                            <Navbar/><ProductDetail/>
-                        </ProductDetailContextProvider>
-                    </PreBuildContextProvider>
-                </Route>
+                <ProductsContextProvider>
+                    <ProductDetailContextProvider>
+                        <Route path="/product_page">
+                                
+                                    <Navbar/>
+                                    <Product/>
+                        </Route>
+                        <Route path="/productDetail">
+                                    <Navbar/>
+                                    <ProductDetail/>
+                        </Route>
+                    </ProductDetailContextProvider>
+                </ProductsContextProvider>
                 <Route path="*"><PageNotfound/></Route>
             </Switch>
         </div>

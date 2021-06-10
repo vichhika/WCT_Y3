@@ -1,10 +1,24 @@
 import React, {useContext, useEffect} from 'react'
 import '../../../Css/Product_Page_Css/control-bar_css/control-bar.css'
-import { PreBuildContext } from '../../Context/PreBuildContext';
+import {ProductsContext} from './../../Context/ProductsContext';
 
 function ControlBar(){
+    
+    const {productsContextState,updateProductsContext} = useContext(ProductsContext);
 
-    const {sortAs, setSortAs} = useContext(PreBuildContext);
+    const getSortAsValue = () => {
+        return document.getElementById('sortSelection').value;
+    }
+
+    const selected = () => {
+        return productsContextState.sortAs;
+    }
+
+    const showSortAs = () => {
+        return productsContextState.sortAs == 'ASC' ? 'Price(Low -> High)' : 'Price(High -> Low)';
+    }
+
+    console.log(productsContextState.sortAs);
 
     return (
 
@@ -17,10 +31,10 @@ function ControlBar(){
             </div>
             <div className="sortOption">
                 <div className="sortIn input-group-sm">
-                    <select className="custom-select" id="sortSelection" onChange={() => setSortAs(document.getElementById('sortSelection').value)}>
-                        <option selected>Default Sort</option>
-                        <option value='ASC'>Price(Low &#45;&#62; Hight)</option>
-                        <option value='DESC'>Price(Hight &#45;&#62; Low)</option>
+                    <select className="custom-select" id="sortSelection" onChange={() => updateProductsContext({type : 'setSortAs', payload: getSortAsValue()})}>
+                        <option selected={selected() == 'default'} value='default'>default</option>
+                        <option selected={selected() == 'ASC'} value='ASC'>Price(Low &#45;&#62; Hight)</option>
+                        <option selected={selected() == 'DESC'} value='DESC'>Price(Hight &#45;&#62; Low)</option>
                     </select>
                 </div>
             </div>

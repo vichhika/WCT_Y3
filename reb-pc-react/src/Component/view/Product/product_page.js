@@ -13,22 +13,26 @@ function ProductPage(){
     document.body.style.backgroundImage = 'none';
 
     return (
-        <div className="conatiner-fluid d-flex" style={{paddingTop: '100px'}}>
+        
+            <div className="conatiner-fluid d-flex" style={{paddingTop: '100px'}}>
 
-            {/* !--Filter Component-- */}
-            <ProductFilter/>
+                {/* !--Filter Component-- */}
+                <ProductFilter/>
 
-            <div className="products container">
-                <h4><b>Computer Custom</b></h4>
-                <ControlBar/>
-                <hr/>
-                <PaginateContextProvider>
-                    <ProductListing selectDetailProduct={selectDetailProduct}/>
-                </PaginateContextProvider>
-                <br></br>
+                <div className="products container">
+                    <h4><b>Computer Custom</b></h4>
+                    <ControlBar/>
+                    <hr/>
+
+                        <PaginateContextProvider>
+                            
+                            <ProductListing selectDetailProduct={selectDetailProduct}/>
+                        
+                        </PaginateContextProvider>
+                    <br></br>
+                </div>
+
             </div>
-
-        </div>
     );
 }
 
