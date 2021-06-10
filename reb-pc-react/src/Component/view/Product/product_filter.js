@@ -1,32 +1,34 @@
 import React ,{useContext, useEffect}from 'react'
 import './../../../Css/Product_Page_Css/Filter-side-bar/filter.css'
-import { PreBuildContext } from '../../Context/PreBuildContext';
+import {ProductsContext} from '../../Context/ProductsContext'
 
 function ProductFilter(){
 
-    const {loading,components,filterBy,setFilterBy} = useContext(PreBuildContext); 
+    // const {loading,components,filterBy,setFilterBy} = useContext(PreBuildContext); 
+    const {productsContextState, updateProductsContext} = useContext(ProductsContext);
     
     let INTEL;
     let AMD;
     let intel = [];
     let amd = [];
-    var filter = filterBy;
+    var filter = productsContextState.filterBy;
 
     function handleFilter(cpu) {
-        let data = document.getElementById(cpu).value;
+        let data = cpu;
+            // check if it is got checked
             if(document.getElementById(cpu).checked){
                 filter.push(data);
             }else{
                 filter.splice(filter.indexOf(data), 1);
             }
-            setFilterBy(filter);
+            updateProductsContext({type: 'setFilterBy', payload: filter});
     };
 
-    if(loading){
+    if(productsContextState.loading){
         INTEL = <div className="form-check" style={{paddingLeft: '100px'}}>...</div>
         AMD = <div className="form-check" style={{paddingLeft: '100px'}}>...</div>
     }else{
-        components.cpu.forEach(cpu => {
+        productsContextState.products.forEach(cpu => {
             if(cpu.model.includes("Intel")){
                 intel.push(cpu.model);
             }else if (cpu.model.includes("Ryzen")){
@@ -41,7 +43,7 @@ function ProductFilter(){
         // arrange data to categoried
         INTEL = intel.map(cpu => {
             return <div key={cpu} className="form-check" style={{paddingLeft: '100px'}}>
-                        <input className="form-check-input" type="checkbox" value={cpu} id={cpu} onChange={ () =>  handleFilter(cpu)}/>
+                        <input className="form-check-input" checked={filter.includes(cpu)} type="checkbox" value={cpu} id={cpu} onChange={ () =>  handleFilter(cpu)}/>
                         <label className="form-check-label" for={cpu} style={{fontSize: '15px'}}>
                         {cpu}
                         </label>
@@ -49,7 +51,7 @@ function ProductFilter(){
         });
         AMD = amd.map(cpu => {
             return <div key={cpu} className="form-check" style={{paddingLeft: '100px'}}>
-                        <input className="form-check-input" type="checkbox" value={cpu} id={cpu} onChange={ () =>  handleFilter(cpu)}/>
+                        <input className="form-check-input" checked={filter.includes(cpu)} type="checkbox" value={cpu} id={cpu} onChange={ () =>  handleFilter(cpu)}/>
                         <label className="form-check-label" for={cpu} style={{fontSize: '15px'}}>
                         {cpu}
                         </label>

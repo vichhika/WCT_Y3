@@ -1,9 +1,10 @@
 import React, {createContext, useEffect, useReducer, useState} from 'react';
-
-
+import server from './../../config.json';
+import axios from 'axios';
 const initState = {
     isAuthenticated: false,
-    token: null
+    token: null,
+    userProfile: null,
 }
 
 const authContext = createContext(initState);
@@ -20,7 +21,13 @@ const actions = {
             ...state,
             token
         }
-    }
+    },
+    setUserProfile: (state,userProfile) => {
+        return {
+            ...state,
+            userProfile
+        }
+    },
 }
 
 const authReducer = (state, action) => {
@@ -33,6 +40,10 @@ const authReducer = (state, action) => {
             return {...state}
         case 'reset_context':
             return {...action.payload}
+        case 'setUserProfile'  :   state = actions.setUserProfile(state, action.payload);
+                    return {
+                        ...state
+                    }
         default:
             return {...state}
     }
@@ -62,8 +73,36 @@ const AuthContextProvider = props => {
                 useEffect(() => {
                     if (!loadingState){
                         sessionStorage.setItem("auth", JSON.stringify(contextAuthState));
+                        
                     }
                 }, [contextAuthState])
+
+            }
+
+            {
+                useEffect(() => {
+
+                    if(contextAuthState.isAuthenticated){
+
+                        // request user profile
+                        axios.get(server.uri + 'profile_info', { 'headers': { 'Authorization': `Bearer ` + `${contextAuthState.token}`}}).then(
+                            (response) => {
+                                
+                                updateAuthContext({type: 'setFullname', payload: response.data});
+                                let userProfile = response.data.message[0];
+
+                                updateAuthContext({type: 'setUserProfile', payload: userProfile});
+                            }
+                        ).catch((error) => {
+                            console.log(error.response.status);
+                            if(error.response.status == 403){
+                                alert("Your email address is not verified.");
+                            }
+                        })
+
+                    }
+
+                },[contextAuthState.isAuthenticated])
             }
 
             {props.children}
