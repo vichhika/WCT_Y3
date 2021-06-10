@@ -236,14 +236,14 @@ class ShopController extends Controller
     public function dashboard(Request $request)
     {
 
-        $cpu = Cpuprice::where('adminshopID',$request->adminshopID)->count();
-        $casepc = Casepcprice::where('adminshopID', $request->adminshopID)->count();
-        $internalharddrive = Internalharddrive::where('adminshopID', $request->adminshopID)->count();
-        $memory = Memoryprice::where('adminshopID', $request->adminshopID)->count();
-        $monitor = Monitorprice::where('adminshopID', $request->adminshopID)->count();
-        $motherboard = Motherboardprice::where('adminshopID', $request->adminshopID)->count();
-        $powersupply = Powersupplyprice::where('adminshopID', $request->adminshopID)->count();
-        $videocard = Videocardprice::where('adminshopID', $request->adminshopID)->count();
+        $cpu = Cpuprice::where('adminshopID',$request->user()->adminshopID)->count();
+        $casepc = Casepcprice::where('adminshopID', $request->user()->adminshopID)->count();
+        $internalharddrive = Internalharddriveprice::where('adminshopID', $request->user()->adminshopID)->count();
+        $memory = Memoryprice::where('adminshopID', $request->user()->adminshopID)->count();
+        $monitor = Monitorprice::where('adminshopID', $request->user()->adminshopID)->count();
+        $motherboard = Motherboardprice::where('adminshopID', $request->user()->adminshopID)->count();
+        $powersupply = Powersupplyprice::where('adminshopID', $request->user()->adminshopID)->count();
+        $videocard = Videocardprice::where('adminshopID', $request->user()->adminshopID)->count();
 
         return response()->json([
             'statusCode' => 1,
