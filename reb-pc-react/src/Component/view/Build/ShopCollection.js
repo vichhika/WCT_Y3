@@ -17,7 +17,7 @@ const ShopCollection = (props) => {
     if(shopsContext.loading){
         view = <h6 className="w-100 text-center">Loading...</h6>;
     }else {
-        view = <div class="list-group">
+        view = <div class="list-group overflow-auto" style={{height: '50vh'}}>
             {shopsContext.shops.map(shop => {
                 return <a href="#" key={shop.adminshopID} id={shop.adminshopID} onClick={() => handleSelectShop(shop.shop_name)} class="list-group-item list-group-item-action">{shop.shop_name}</a>
             })}
