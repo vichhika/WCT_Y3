@@ -17,23 +17,28 @@ function Login() {
 
     let [wrongEmail, setWrongEmail] = useState(false);
     let [onSubmited, setOnSubmited] = useState(false);
-
+    let [emailNotVerify, setEmailNotVerify] = useState(false);
 
     const summitToServer = data => {
         setWrongEmail(false);
         setOnSubmited(true);
         axios.post(server.uri + "login", data)
             .then(function (response) {
-                console.log(response.data)
+                console.log("Statue code: ",response.data);
                 if (response.data.message && response.data.message.toString().localeCompare("email  or password is incorrected.") === 0) {
                     setWrongEmail(true);
                 }
                 if (response.data.token) {
-                    updateAuthContext({type: "set_isAuthenticated",payload: true});
                     updateAuthContext({type: "set_token",payload: response.data.token});
+                    updateAuthContext({type: "set_isAuthenticated",payload: true});
                     history.replace('/');
                 }
                 setOnSubmited(false);
+                if(response.data.message.localeCompare("Your email address is not verified.") == 0){
+                    setEmailNotVerify(true);
+                }else {
+                    setEmailNotVerify(false);
+                }
             }).catch(function (error) {
             console.log(error);
         });
@@ -67,7 +72,8 @@ function Login() {
                                 {errors.password && <p className="error-signup">Password is required</p>}
                             </div>
                             {wrongEmail && <p className="error-signup">Wrong Email or Password</p>}
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex flex-column justify-content-center">
+                                {emailNotVerify && <p className="error-signup">Your email address is not verified.</p>}
                                 {onSubmited || <button type="submit" className="btn btn-primary">Log In</button>}
                                 {onSubmited && <CircularProgress/>}
                             </div>

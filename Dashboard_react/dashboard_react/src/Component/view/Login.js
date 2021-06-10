@@ -17,6 +17,12 @@ function Login() {
     const [submiting, setSubmiting] = useState(false);
 
 
+    useEffect(() => {
+        if(authContextState.authentication.isAuthentication){
+            history.push("/")
+        }
+    })
+
     const summitLogin = data => {
         setSubmiting(true)
         axios.post(server.uri + "admin_shop/login", data)

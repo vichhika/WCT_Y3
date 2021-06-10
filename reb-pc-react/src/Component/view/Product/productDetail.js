@@ -45,58 +45,58 @@ function ProductDetail() {
     }
 
     return (
-        <div className="container" style={outterStyle}>
+            <div className="container" style={outterStyle}>
 
-            <Link to='/product_page' style={{textDecoration: 'none', marginLeft:'8px'}}><i class="fad fa-angle-left"></i> back</Link>
-            <br/>
+                <Link to='/product_page' style={{textDecoration: 'none', marginLeft:'8px'}}><i class="fad fa-angle-left"></i> back</Link>
+                <br/>
 
-             <Box
-                boxShadow={6}
-                bgcolor="background.paper"
-                m={1}
-                p={1}
-            >
-                <div className="card border-0">
-                    <div className="card-body">
-                        <div className="row">
-                            <div className="col-4">  
-                                <div className="container" style={image_container}>
-                                    <img className="ml-3" src="https://www.chantracomputer.com/DESKTOP%20SYSTEM/CASE/AEROCOOL/TOR-PRO-RGB.gif" width='auto' height='auto'></img>
+                <Box
+                    boxShadow={6}
+                    bgcolor="background.paper"
+                    m={1}
+                    p={1}
+                >
+                    <div className="card border-0">
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-4">  
+                                    <div className="container" style={image_container}>
+                                        <img className="ml-3" src="https://www.chantracomputer.com/DESKTOP%20SYSTEM/CASE/AEROCOOL/TOR-PRO-RGB.gif" width='auto' height='auto'></img>
+                                    </div>
+
+                                    <hr/>
+
+                                    <h6><b>Other</b></h6>
+
+                                    <div className={classes.root}>
+                                        <Chip label="CPU" clickable/>
+                                        <Chip label="Motherboard" clickable />
+                                        <Chip label="RAM" clickable />
+                                        <Chip label="Hard Drive" clickable />
+                                        <Chip label="GPU" clickable />
+                                        <Chip label="Case" clickable />
+                                        <Chip label="Power Supply" clickable />
+                                        <Chip label="Monitor" clickable />
+                                    </div>
                                 </div>
-
-                                <hr/>
-
-                                <h6><b>Other</b></h6>
-
-                                <div className={classes.root}>
-                                    <Chip label="CPU" clickable/>
-                                    <Chip label="Motherboard" clickable />
-                                    <Chip label="RAM" clickable />
-                                    <Chip label="Hard Drive" clickable />
-                                    <Chip label="GPU" clickable />
-                                    <Chip label="Case" clickable />
-                                    <Chip label="Power Supply" clickable />
-                                    <Chip label="Monitor" clickable />
-                                </div>
-                            </div>
-                            <div className="col">
-                                <div className="d-flex">
-                                    <div className="container">
-                                        <h1>Component</h1>
-                                        {
-                                            componentDetail.map((detail) => {
-                                                return <p>{detail}</p>
-                                            })
-                                        }
+                                <div className="col">
+                                    <div className="d-flex">
+                                        <div className="container">
+                                            <h1>Component</h1>
+                                            {
+                                                componentDetail.map((detail) => {
+                                                    return <p>{detail}</p>
+                                                })
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-            </Box>
-        </div>
+                    
+                </Box>
+            </div>
     );
 
 }

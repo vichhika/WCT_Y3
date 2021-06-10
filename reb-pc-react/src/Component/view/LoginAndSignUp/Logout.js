@@ -18,7 +18,7 @@ const Logout = () =>  {
             }
         }).then((response) => {
 
-            console.log(response)
+            updateAuthContext({type: 'setUserProfile', payload: null});
         
         },(error) => {
         
@@ -28,7 +28,6 @@ const Logout = () =>  {
 
         // update auth state
         updateAuthContext({type: 'set_isAuthenticated', payload: false});
-
         // redirect to the home page 
         history.replace('/');
 
