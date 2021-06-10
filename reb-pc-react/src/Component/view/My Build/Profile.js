@@ -57,16 +57,23 @@ function Profile() {
     const classes = useStyles();
     console.log(contextAuthState.userProfile);
     if(contextAuthState.isAuthenticated){
-        console.log(contextAuthState.userProfile.fullname);
-        fullname = contextAuthState.userProfile.fullname;
-        username = contextAuthState.userProfile.username;
-        email = contextAuthState.userProfile.email;
-        phoneNo = contextAuthState.userProfile.phone;
+        
+        // In case user account is not verify
+        fullname = '...';
+        username = '...';
+        email = '...';
+        phoneNo = '...';
+
         axios.get(server.uri + 'is_verify', {
             headers: {'Authorization' : 'Bearer ' + contextAuthState.token}
         }).then(
             (response) => {
                 setVerify(response.data.message.localeCompare('email has been verified.') == 0 ? true : false);
+                console.log(contextAuthState.userProfile);
+                fullname = contextAuthState.userProfile.fullname;
+                username = contextAuthState.userProfile.username;
+                email = contextAuthState.userProfile.email;
+                phoneNo = contextAuthState.userProfile.phone;
             }
         ).catch(error => {
             console.log(error);

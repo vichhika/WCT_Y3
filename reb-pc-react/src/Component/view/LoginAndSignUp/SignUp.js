@@ -27,7 +27,6 @@ function SignUp() {
         setOnSubmited(true);
         axios.post(server.uri + "register", data)
             .then(function (response) {
-                console.log(response.data.message.username);
                 if(response.data.message.username && response.data.message.username.toString().localeCompare("The username has already been taken.") === 0){
                     setUsernameUsed(true);
                 }

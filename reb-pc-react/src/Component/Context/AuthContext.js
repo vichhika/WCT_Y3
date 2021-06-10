@@ -95,7 +95,7 @@ const AuthContextProvider = props => {
                             }
                         ).catch((error) => {
                             console.log(error.response.status);
-                            if(error.response.status == 403){
+                            if(error.response.status == 401){
                                 alert("Your email address is not verified.");
                             }
                         })
