@@ -24,11 +24,32 @@ body {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.btn.btn-outline-secondary {
+    color: #333333;
+    background-color: transparent;
+    border-color: #d6d6d6;
+}
+
+.cover{
+    top:0;left:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+}
+
+.loading-pannel{
+    height:  582px;
+}
+
+.table>tbody>tr {
+    position: static;
+}
+
 .btn.btn-primary {
     color: #fff;
     background-color: #0d6efd;
     border-color: #0d6efd;
-    box-shadow: 0 2px 2px 0 rgba(13,110,253, 0.14), 0 3px 1px -2px rgba(13,110,253, 0.2), 0 1px 5px 0 rgba(13,110,253, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(13,110,253, 0.14), 0 3px 1px -2px rgba(13,110,253, 0.2), 0 1px 5px 0 rgba(13, 110, 253, 0.12);
 }
 
 .btn.btn-primary:hover {
@@ -78,6 +99,14 @@ body {
     box-shadow: 0 14px 26px -12px rgba(13,110,253, 0.42), 0 4px 23px 0px rgba(13,110,253, 0.12), 0 8px 10px -5px rgba(13,110,253, 0.2);
 }
 
+a {
+    color: #0d6efd;
+}
+
+a:hover {
+    color: #0c5ec3;
+}
+
 .add-back-btn.btn.btn-default{
     color: #000;
     background-color: #546c5500;
@@ -93,6 +122,17 @@ body {
 .form-control:focus {
     background-color: #fff;
 }
+
+.card-title{
+    font-size: 2rem;
+}
+
+
+.form-control:invalid {
+    background-image: none;
+}
+
+
 
 .form-control, .is-focused .form-control {
     background-image: none;

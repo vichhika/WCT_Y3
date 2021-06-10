@@ -1,6 +1,6 @@
 import React from "react";
 import App from "../../App";
-import Dashboard from "./dashboard";
+import Dashboard from "./Dashboard";
 
 function Footer() {
     return (<footer className="footer">

@@ -5,14 +5,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import {ProductContextProvider} from "./Component/productContext";
+import {ProductContextProvider} from "./Component/Context/ProductContext";
 import "../src/css/dashboard.css"
 import "../src/css/custom_css_dashboard.css"
+import "../src/css/login.css"
+import {AuthContextProvider} from "./Component/Context/AuthContext";
 
 ReactDOM.render(
     <ProductContextProvider>
         <BrowserRouter>
-            <App/>
+            <AuthContextProvider>
+                <App/>
+            </AuthContextProvider>
         </BrowserRouter>
     </ProductContextProvider>
     ,
