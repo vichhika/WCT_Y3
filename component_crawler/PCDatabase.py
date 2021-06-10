@@ -23,6 +23,6 @@ class PCDatabase:
         for x in values:
             try:
                 self.mycursor.execute(sql, x)
-                self.mydb.commit()
             except:
                 self.mydb.rollback()
+        self.mydb.commit()

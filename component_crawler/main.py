@@ -63,7 +63,7 @@ for i in range(len(data['memory'])): ((data['memory'])[i])['speed'] = ((data['me
 for k,v in data.items():
     table = tableName[k]
     entity_keys = list((v[0]).keys())
-    values = [tuple([y for y in x.values()]) for x in v]
+    values = [tuple([y if y else "" for y in x.values()]) for x in v]
     database.insertOrIgnore(table,entity_keys,values)
 
 
