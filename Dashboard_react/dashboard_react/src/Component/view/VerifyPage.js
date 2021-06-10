@@ -37,10 +37,12 @@ function VerifyPage() {
 
     const resendVerify = () => {
         setOnProcess(true)
-        axios.get(server.uri + "resend_email_verification", {headers: {'Authorization': 'Bearer ' + authContextState.authentication.token}})
-            .then(() => {
+        axios.get(server.uri + "admin_shop/resend_email_verification", {headers: {'Authorization': 'Bearer ' + authContextState.authentication.token}})
+            .then((r) => {
+                console.log(r.data)
                 setOnProcess(false)
-            })
+            }).catch(e => {
+            console.log(e); setOnProcess(false)})
     }
 
     return (
