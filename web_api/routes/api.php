@@ -56,6 +56,7 @@ Route::middleware(['shop_role','auth:sanctum','html_filter','verified'])->group(
     Route::POST('/admin_shop/destroy',[\App\Http\Controllers\ShopController::class,'destroy']);
     Route::GET('/admin_shop/profile_info',[\App\Http\Controllers\ShopController::class,'profileInfo']);
     Route::POST('/admin_shop/profile_update',[\App\Http\Controllers\ShopController::class,'profileUpdate']);
+    Route::GET('/admin_shop/dashboard',[\App\Http\Controllers\ShopController::class,'dashboard']);
 
 });
 

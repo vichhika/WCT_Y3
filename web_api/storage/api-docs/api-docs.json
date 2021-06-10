@@ -1200,6 +1200,38 @@
                 ]
             }
         },
+        "/api/admin_shop/dashboard": {
+            "get": {
+                "tags": [
+                    "shop"
+                ],
+                "summary": "shop owner count all product added",
+                "operationId": "App\\Http\\Controllers\\ShopController::dashboard",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
         "/api/admin_shop/store": {
             "post": {
                 "tags": [

@@ -218,6 +218,47 @@ class ShopController extends Controller
     }
 
     /**
+ * @OA\Get(
+ * path="/api/admin_shop/dashboard",
+ * summary="shop owner count all product added",
+ * tags={"shop"},
+ * security={ {"sanctum": {} }},
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
+    public function dashboard(Request $request)
+    {
+
+        $cpu = Cpuprice::where('adminshopID',$request->adminshopID)->count();
+        $casepc = Casepcprice::where('adminshopID', $request->adminshopID)->count();
+        $internalharddrive = Internalharddrive::where('adminshopID', $request->adminshopID)->count();
+        $memory = Memoryprice::where('adminshopID', $request->adminshopID)->count();
+        $monitor = Monitorprice::where('adminshopID', $request->adminshopID)->count();
+        $motherboard = Motherboardprice::where('adminshopID', $request->adminshopID)->count();
+        $powersupply = Powersupplyprice::where('adminshopID', $request->adminshopID)->count();
+        $videocard = Videocardprice::where('adminshopID', $request->adminshopID)->count();
+
+        return response()->json([
+            'statusCode' => 1,
+            'cpu' => $cpu,
+            'casepc' => $casepc,
+            'internalharddrive' => $internalharddrive,
+            'memory' => $memory,
+            'monitor' => $monitor,
+            'motherboard' => $motherboard,
+            'powersupply' => $powersupply,
+            'videocard' => $videocard,
+        ]);
+    }
+
+    /**
  * @OA\Post(
  * path="/api/admin_shop/store",
  * summary="shop owner add product",
