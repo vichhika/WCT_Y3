@@ -9,7 +9,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 function ProdunctListItem(props) {
 
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit, formState: {errors}} = useForm()
     const {contextProductState, updateContextProductState} = useContext(ProductContext);
     const {authContextState} = useContext(AuthContext)
     const [submiting,setSubmiting] = useState(false);
@@ -173,12 +173,13 @@ function ProdunctListItem(props) {
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">$</div>
                                         </div>
-                                        <input placeholder={props.row.price} type="number" {...register('price')}
+                                        <input placeholder={props.row.price} type="number" {...register('price',{required: true})}
                                                className="form-control mt-0" min="1"/>
                                     </div>
                                 </div>
                                 <button class="d-none" ref={submitRef} type="submit"/>
                             </form>
+                            {errors.price?.type === 'required' && <p className="my-2 text-danger">Price field require</p>}
                         </div>
                         <div className="modal-footer">
                             {submiting ? <CircularProgress/> : <>

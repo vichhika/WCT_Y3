@@ -8,7 +8,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 function Item(props) {
 
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit,formState: {errors}} = useForm()
     const {authContextState} = useContext(AuthContext)
     const submitRef = useRef();
     const closeModelRef = useRef();
@@ -115,8 +115,6 @@ function Item(props) {
                             <button type="button" className="btn btn-secondary"
                                     data-dismiss="modal">Close
                             </button>
-                            <button type="button" className="btn btn-primary">Add
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -144,12 +142,14 @@ function Item(props) {
                                         <div className="input-group-prepend">
                                             <div className="input-group-text">$</div>
                                         </div>
-                                        <input type="number" {...register('price')}
+                                        <input type="number" {...register('price',{required: true})}
                                                className="form-control mt-0" min="1"/>
+
                                     </div>
                                 </div>
                                 <button class="d-none" ref={submitRef} type="submit"/>
                             </form>
+                            {errors.price?.type === 'required' && <p className="my-2 text-danger">Price field require</p>}
                             {summitError && <p className="my-2 text-danger">You already add this component</p>}
                         </div>
                         <div className="modal-footer">
