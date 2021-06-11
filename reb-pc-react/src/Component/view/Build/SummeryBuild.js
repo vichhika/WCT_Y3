@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useRef} from "react"
 import {useContext, useEffect, useState} from "react"
 import {buildContext} from "./../../Context/BuildContext"
 import "./../../../Css/build.scss";
@@ -19,6 +19,7 @@ function SummeryBuild() {
     const [goToBuild, setGotoBuild] = useState(false);
     const [submiting, setSubting] = useState(false);
     let history = useHistory()
+    const close = useRef()
 
     if (goToBuild) {
         history.replace('/build');
@@ -60,7 +61,7 @@ function SummeryBuild() {
                     <td className="col-2">{conponent[i]}</td>
                     <td className="col-3">{contextState.selectedComponent[i].brand}</td>
                     <td className="col-3">{contextState.selectedComponent[i].model}</td>
-                    <td className="col-2">{contextState.selectedComponent[i].price}</td>
+                    <td className="col-2">{contextState.selectedComponent[i].price}$</td>
                     <td className="col-1">
                         <button type="button" className="btn btn-danger" onClick={() => {
                             popOutSelectedStore(i)
@@ -139,6 +140,7 @@ function SummeryBuild() {
         }, {headers: {'Authorization': `Bearer ${contextAuthState.token}`}}).then(r => {
                 if (r.data.statusCode === 1) {
                     console.log("save done")
+                    close.current.click();
                 } else {
                     console.log("save error")
                 }
@@ -170,7 +172,7 @@ function SummeryBuild() {
         return (
             <div className="p-Build">
                 <div className="container w-75 d-flex justify-content-center text-center">
-                    <h2 class="card-title mt-5">Build Custom PC at {shopsContext.shopsName}</h2>
+                    <h2 class="card-title mt-5">Build Custom PC at {shopsContext.shopName}</h2>
                     <div className="card mt-5">
                         <div className="card-header mx-3">
                             <div className="d-flex justify-content-between align-items-center">
@@ -195,7 +197,7 @@ function SummeryBuild() {
                             </div>
                         </div>
                         <div className="card-footer pt-0">
-                            <button type="button" onClick={clearBuild} className="btn btn-secondary">Clear</button>
+                            <button type="button" ref={close} onClick={clearBuild} className="btn btn-secondary">Clear</button>
                             {contextAuthState.isAuthenticated && contextAuthState.isVerify && saveBtn}
                         </div>
                     </div>
