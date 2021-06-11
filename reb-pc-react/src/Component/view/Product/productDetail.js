@@ -61,7 +61,7 @@ function ProductDetail() {
     if(selectedDetailProduct !== null){
         console.log(selectedDetailProduct[selectedComponent]);
         for(const [key, value] of Object.entries(selectedDetailProduct[selectedComponent])){
-            if(key !== 'productbuildID' && key !== 'user'){
+            if(key !== 'productbuildID' && key !== 'user' && !key.includes('ID')){
                 key === 'totalprice' ? componentDetail.push(<span key={key} >{key} : <span className='text-danger'>{'$'+value}</span></span>) : componentDetail.push(<span key={key}>{key} : {value}</span>)
             }
             console.log(key);
