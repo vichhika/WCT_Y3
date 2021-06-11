@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {createContext, useEffect, useReducer} from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import server from '../../config.json';
 
 const initState = {
@@ -37,42 +37,43 @@ const actions = {
 
 const shopReducer = (state, action) => {
 
-    switch(action.type){
-        case 'setLoading'  :       state = actions.setLoading(state,action.payload);
-                                return {
-                                    ...state
-                                }
-        case 'setShops' :       state = actions.setShops(state, action.payload);
-                                return {
-                                    ...state
-                                }
-        case 'setSeletedShop':  state = actions.setSeletedShop(state, action.payload);
-                                return {
-                                    ...state
-                                }
-        default         :       return {...state}
+    switch (action.type) {
+        case 'setLoading': state = actions.setLoading(state, action.payload);
+            return {
+                ...state
+            }
+        case 'setShops': state = actions.setShops(state, action.payload);
+            return {
+                ...state
+            }
+        case 'setSeletedShop': state = actions.setSeletedShop(state, action.payload);
+            return {
+                ...state
+            }
+        default: return { ...state }
     }
 
 }
 
 const ShopsContextProvider = (props) => {
 
-    const [shopsContext,updateShopsContext] = useReducer(shopReducer,initState);
+    const [shopsContext, updateShopsContext] = useReducer(shopReducer, initState);
 
     return (
 
-        <ShopsContext.Provider value={{shopsContext,updateShopsContext}}>
+        <ShopsContext.Provider value={{ shopsContext, updateShopsContext }}>
             {
-                useEffect( () => {
+                useEffect(() => {
                     axios.get(server.uri + 'list_shop').then(
                         (response) => {
-                            updateShopsContext({type: 'setShops', payload: response.data.message});
-                            updateShopsContext({type: 'setLoading', payload: false});
+                            console.log(response.data.message);
+                            updateShopsContext({ type: 'setShops', payload: response.data.message });
+                            updateShopsContext({ type: 'setLoading', payload: false });
                         }
-                    ).catch( (error) => {
+                    ).catch((error) => {
                         console.log(error);
                     })
-                },[])
+                }, [])
             }
             {props.children}
         </ShopsContext.Provider>
