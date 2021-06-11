@@ -964,6 +964,7 @@ class ShopController extends Controller
  *      @OA\Property(property="shop_name", type="string", format="shop_name", example="Sok kha"),
  *      @OA\Property(property="phonenumber", type="string", format="phonenumber", example="012812812"),
  *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
+ *      @OA\Property(property="location", type="string", format="email", example="Phnom Penh Cambodia")
  *    ),
  * ),
  * @OA\Response(
@@ -1002,6 +1003,7 @@ class ShopController extends Controller
                 'shop_name' => $request->shop_name,
                 'phonenumber' => $request->phonenumber,
                 'email' =>  $request->email,
+                'location' => $request->location,
             ]);
 
             return response()->json([
