@@ -20,6 +20,7 @@ use App\Models\Powersupplyprice;
 use App\Models\Videocard;
 use App\Models\Videocardprice;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use OpenApi\Annotations\Get;
 
 class ShopController extends Controller
@@ -859,7 +860,27 @@ class ShopController extends Controller
         $request->validate([
             'current_page' => 'numeric|min:1|max:100'
         ]);
-        $shops = Adminshop::select('adminshopID','shop_name','profile')->paginate($request->input('current_page',10));
+        $shops = Adminshop::select('adminshopID')->get();
+        $shops = $shops->filter(function ($value) {
+            $cpu = Cpuprice::join('cpus','cpus.cpuID','cpuprices.cpuID')->where('cpuprices.adminshopID',$value->adminshopID)->first();
+            $case = Casepcprice::join('casepcs','casepcs.casepcID','casepcprices.casepcID')->where('adminshopID', $value->adminshopID)->first();
+            $internalharddrive = Internalharddriveprice::join('internalharddrives','internalharddrives.internalharddriveID','internalharddriveprices.internalharddriveID')->where('adminshopID', $value->adminshopID)->first();
+            $memory = Memoryprice::join('memories','memories.memoryID','memoryprices.memoryID')->where('adminshopID', $value->adminshopID)->first();
+            $monitor = Monitorprice::join('monitors','monitors.monitorID','monitorprices.monitorID')->where('adminshopID', $value->adminshopID)->first();
+            $motherboard = Motherboardprice::join('motherboards','motherboards.motherboardID','motherboardprices.motherboardID')->where('adminshopID', $value->adminshopID)->first();
+            $powersupply = Powersupplyprice::join('powersupplies','powersupplies.powersupplyID','powersupplyprices.powersupplyID')->where('adminshopID', $value->adminshopID)->first();
+            $videocard = Videocardprice::join('videocards','videocards.videocardID','videocardprices.videocardID')->where('adminshopID', $value->adminshopID)->first();
+
+            if($cpu && $case && $internalharddrive && $memory && $monitor && $motherboard && $powersupply && $videocard) return true;
+        });
+
+        $shopIDs = array();
+        foreach($shops as $shop)
+        {
+            array_push($shopIDs,$shop->adminshopID);
+        }
+
+        $shops = Adminshop::whereIn('adminshopID',$shopIDs)->paginate($request->input('current_page',10),['adminshopID','shop_name','profile']);
 
         return response()->json([
             'statusCode' => 1,
@@ -887,9 +908,21 @@ class ShopController extends Controller
     {
         $shops = Adminshop::all(['adminshopID','shop_name','profile']);
 
+        $shops = $shops->filter(function ($value) {
+            $cpu = Cpuprice::join('cpus','cpus.cpuID','cpuprices.cpuID')->where('cpuprices.adminshopID',$value->adminshopID)->first();
+            $case = Casepcprice::join('casepcs','casepcs.casepcID','casepcprices.casepcID')->where('adminshopID', $value->adminshopID)->first();
+            $internalharddrive = Internalharddriveprice::join('internalharddrives','internalharddrives.internalharddriveID','internalharddriveprices.internalharddriveID')->where('adminshopID', $value->adminshopID)->first();
+            $memory = Memoryprice::join('memories','memories.memoryID','memoryprices.memoryID')->where('adminshopID', $value->adminshopID)->first();
+            $monitor = Monitorprice::join('monitors','monitors.monitorID','monitorprices.monitorID')->where('adminshopID', $value->adminshopID)->first();
+            $motherboard = Motherboardprice::join('motherboards','motherboards.motherboardID','motherboardprices.motherboardID')->where('adminshopID', $value->adminshopID)->first();
+            $powersupply = Powersupplyprice::join('powersupplies','powersupplies.powersupplyID','powersupplyprices.powersupplyID')->where('adminshopID', $value->adminshopID)->first();
+            $videocard = Videocardprice::join('videocards','videocards.videocardID','videocardprices.videocardID')->where('adminshopID', $value->adminshopID)->first();
+
+            if($cpu && $case && $internalharddrive && $memory && $monitor && $motherboard && $powersupply && $videocard) return true;
+        });
         return response()->json([
             'statusCode' => 1,
-            'message' => $shops
+            'message' => $shops->all()
         ]);
     }
 
