@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import cpu from './../../img/componentImg/cpu.png';
 import motherboard from './../../img/componentImg/motherboard.png';
 import ram from './../../img/componentImg/ram.webp';
@@ -7,15 +7,18 @@ import gpu from './../../img/componentImg/gpu.webp';
 import pc_case from './../../img/componentImg/case.png';
 import power from './../../img/componentImg/power.webp';
 import monitor from './../../img/componentImg/monitor.jpg';
-
+import server from './../../config.json'
 import {Link, useHistory, useLocation} from "react-router-dom";
 import {ProductContext} from "../Context/ProductContext";
+import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
 
 function Sidebar() {
 
     const params = useLocation().pathname;
+    const {authContextState, authUpdateContextState} = useContext(AuthContext);
     const {contextProductState, updateContextProductState} = useContext(ProductContext);
-
+    const [shopName, setShopName] = useState('Your Shop');
     const history = useHistory();
     const liClickHandler = componentIndex => {
         updateContextProductState({
@@ -29,12 +32,42 @@ function Sidebar() {
         }
     }
 
+    useEffect( () => {
+        /* check if email verify then request profile */
+        if(authContextState.isVerify){
+
+            if(authContextState.admin_shop_profile == null){
+                const config = {
+                    headers: {'Authorization' : 'Bearer ' + `${authContextState.authentication.token}`}
+                }
+                axios.get(server.uri + 'admin_shop/profile_info', config)
+                .then(
+                    response => {
+                        if(response.data.statusCode == 1){
+                            console.log(response.data.message[0]);
+                            authUpdateContextState({type: 'set_admin_shop_profile', payload: response.data.message[0]});
+                            setShopName(response.data.message[0].shop_name);
+                        }
+                    }
+                ).catch(
+                    error => {
+                        console.log(error);
+                    }
+                )
+            }else {
+                setShopName(authContextState.admin_shop_profile.shop_name);
+            }
+        }else {
+            setShopName('Your Shop');
+        }
+        /* End request profile */
+    })
 
     return (
         <div className="sidebar" data-color="purple" data-background-color="white"
              data-image="./assets/img/sidebar-1.jpg">
             <div className="logo">
-                <Link to="/" class="simple-text logo-normal">Your Shop</Link>
+                <Link to="/Profile" class="simple-text logo-normal">{shopName}</Link>
             </div>
 
             <div className="sidebar-wrapper ps-container ps-theme-default"
