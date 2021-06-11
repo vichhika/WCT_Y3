@@ -23,14 +23,5 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
-    public function broker()
-    {
-        return Password::broker('users');
-    }
-
-    public function showLinkRequestForm()
-    {
-        return view('auth.passwords.email');
-    }
 
 }

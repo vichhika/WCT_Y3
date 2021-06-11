@@ -29,17 +29,4 @@ class ResetPasswordController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    public function broker()
-    {
-        return Password::broker('users');
-    }
-
-    public function showResetForm(Request $request)
-    {
-        $token = $request->route()->parameter('token');
-
-        return view('auth.passwords.reset')->with(
-            ['token' => $token, 'email' => $request->email]
-        );
-    }
 }

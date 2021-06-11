@@ -27,12 +27,12 @@ Route::get('user/password/reset/{token}', '\App\Http\Controllers\Auth\ResetPassw
 Route::post('user/password/reset', '\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');
 
 // shop
-Route::get('admin_shop/password/reset', '\App\Http\Controllers\AuthShop\ForgotPasswordController@showLinkRequestForm')->name('shop.password.request');
-Route::post('admin_shop/password/email', '\App\Http\Controllers\AuthShop\ForgotPasswordController@sendResetLinkEmail')->name('shop.password.email');
-Route::get('admin_shop/password/reset/{token}', '\App\Http\Controllers\AuthShop\ResetPasswordController@showResetForm')->name('shop.password.reset');
-Route::post('admin_shop/password/reset', '\App\Http\Controllers\AuthShop\ResetPasswordController@reset')->name('shop.password.update');
+Route::get('admin_shop/password/reset', [\App\Http\Controllers\AuthShop\ForgotPasswordController::class,'showLinkRequestForm'])->name('shop.password.request');
+Route::post('admin_shop/password/email', [\App\Http\Controllers\AuthShop\ForgotPasswordController::class,'sendResetLinkEmail'])->name('shop.password.email');
+Route::get('admin_shop/password/reset/{token}', [\App\Http\Controllers\AuthShop\ResetPasswordController::class,'showResetForm'])->name('shop.password.reset');
+Route::post('admin_shop/password/reset', [\App\Http\Controllers\AuthShop\ResetPasswordController::class,'reset'])->name('shop.password.update');
 
-Route::get('/password_changed', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/password_changed', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::fallback(function(){
     abort(404);

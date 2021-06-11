@@ -16,6 +16,7 @@ use App\Models\Monitorprice;
 use App\Models\Motherboardprice;
 use App\Models\Powersupplyprice;
 use App\Models\Videocardprice;
+use App\Notifications\shopReset;
 
 class Adminshop extends Authenticatable implements MustVerifyEmail
 {
@@ -89,6 +90,11 @@ class Adminshop extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
       return $this->notify(new \App\Notifications\VerificationEmail);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new shopReset($token));
     }
 
 }

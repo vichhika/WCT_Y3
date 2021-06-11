@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -21,9 +21,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        request()->user()->tokens()->delete();
+        if($request->session()->get('status') != 'Your password has been reset!') abort(419);
         request()->session()->flush();
         return view('home');
     }
