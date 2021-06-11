@@ -162,6 +162,7 @@ const UpdateDialog = (props) => {
                 if(response.data.statusCode == 1){
                     // change password success then close modal
                     closeModal();
+                    alert("Password Changed Sucessfully!");
                 }
 
                 // // otherwise it will print error

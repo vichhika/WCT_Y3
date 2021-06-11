@@ -6,7 +6,7 @@ function ProductFilter(){
 
     // const {loading,components,filterBy,setFilterBy} = useContext(PreBuildContext); 
     const {productsContextState, updateProductsContext} = useContext(ProductsContext);
-    
+
     let INTEL;
     let AMD;
     let intel = [];
@@ -28,11 +28,11 @@ function ProductFilter(){
         INTEL = <div className="form-check" style={{paddingLeft: '100px'}}>...</div>
         AMD = <div className="form-check" style={{paddingLeft: '100px'}}>...</div>
     }else{
-        productsContextState.products.forEach(cpu => {
-            if(cpu.model.includes("Intel")){
-                intel.push(cpu.model);
-            }else if (cpu.model.includes("Ryzen")){
-                amd.push(cpu.model);
+        productsContextState.products.forEach(product => {
+            if(product.cpu.brand.toLowerCase().includes('intel')){
+                intel.push(product.cpu.model);
+            }else if(product.cpu.brand.toLowerCase().includes('amd')){
+                amd.push(product.cpu.model);
             }
         });
 

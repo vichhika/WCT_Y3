@@ -110,7 +110,7 @@ function Profile() {
                         <div className="nav">
                             <br/>
                             <div className="user-profile-pic d-flex flex-column align-items-center">
-                                <Avatar alt="Remy Sharp" src={bathImg} classNameName={classes.large} />
+                                <Avatar alt="Remy Sharp" classNameName={classes.large}><i class="fad fa-user-alt"></i></Avatar>
                                 <br/>
                                 <h6>Welcome back,</h6>
                                 <h5><b>{username}</b></h5>

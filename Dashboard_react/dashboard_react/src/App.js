@@ -13,6 +13,7 @@ import {useContext, useEffect} from "react";
 import PageNotfound from "./Component/view/PageNotFound";
 import Register from "./Component/view/Register";
 import VerifyPage from "./Component/view/VerifyPage";
+import { Profile } from './Component/view/Profile';
 
 function App() {
     const {authContextState, authUpdateContextState} = useContext(AuthContext)
@@ -20,6 +21,19 @@ function App() {
     return (
 
         <Switch>
+            <Route exact path="/Profile">
+                <div className="App" style={{height: "100%"}}>
+                    {authContextState.authentication.isAuthentication && <Sidebar/>}
+                    <div className="main-panel">
+                        <div className="content m-0">
+                            <div className="container-fluid">
+                                {authContextState.authentication.isAuthentication ?
+                                    authContextState.isVerify ? <Profile/> : <Redirect to="/verify"/> : <Redirect to="/login"/>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Route>
             <Route exact path="/">
                 <div className="App" style={{height: "100%"}}>
                     {authContextState.authentication.isAuthentication && <Sidebar/>}
@@ -63,8 +77,8 @@ function App() {
             </Route>
             <Route path="/verify">{authContextState.authentication.isAuthentication ? <VerifyPage/> :
                 <Redirect to="/login"/>}</Route>
-            <Route path="/login"><Login/></Route>
-            <Route path="/register"><Register/></Route>
+            <Route path="/login"> {!authContextState.authentication.isAuthentication ? <Login/> : <Redirect to="/"/>}</Route>
+            <Route path="/register">{!authContextState.authentication.isAuthentication ? <Register/> : <Redirect to="/"/>}</Route>
             <Route path="*"><PageNotfound/></Route>
         </Switch>
 

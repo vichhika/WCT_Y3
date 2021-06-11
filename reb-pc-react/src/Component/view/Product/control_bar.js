@@ -18,8 +18,6 @@ function ControlBar(){
         return productsContextState.sortAs == 'ASC' ? 'Price(Low -> High)' : 'Price(High -> Low)';
     }
 
-    console.log(productsContextState.sortAs);
-
     return (
 
         // <!--Control-bar Component-->
