@@ -27,7 +27,7 @@ class Monitorprice extends Model
 
     public function monitor()
     {
-        return $this->belongsTo(Memory::class,'monitorID');
+        return $this->belongsTo(Monitor::class,'monitorID');
     }
 
     public function adminshop()

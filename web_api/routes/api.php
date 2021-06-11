@@ -72,6 +72,7 @@ Route::middleware(['user_role','auth:sanctum','html_filter','verified'])->group(
     Route::POST('/build/save',[\App\Http\Controllers\BuildpcController::class,'save']);
     Route::GET('/build/product_index',[\App\Http\Controllers\ProductController::class,'indexByUser']);
     Route::GET('/build/product_list',[\App\Http\Controllers\ProductController::class,'listByUser']);
+    Route::POST('/build/delete',[\App\Http\Controllers\BuildpcController::class,'destory']);
 });
 
 Route::fallback(function(){

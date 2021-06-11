@@ -75,6 +75,7 @@ class ProductController extends Controller
 
         $productlist = array();
         foreach ($products as $key => $product) {
+
             $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
