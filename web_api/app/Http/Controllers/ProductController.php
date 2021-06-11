@@ -78,6 +78,7 @@ class ProductController extends Controller
             $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
+                "user" => $product->user->fullname,
                 "totalprice" => $totalprice,
                 "casepc" => $product->casepcprice->casepc,
                 "cpu" => $product->cpuprice->cpu,
@@ -154,6 +155,7 @@ class ProductController extends Controller
             $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
+                "user" => $product->user->fullname,
                 "totalprice" => $totalprice,
                 "casepc" => $product->casepcprice->casepc,
                 "cpu" => $product->cpuprice->cpu,
@@ -242,6 +244,7 @@ class ProductController extends Controller
             $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
+                "user" => $product->user->fullname,
                 "totalprice" => $totalprice,
                 "casepc" => $product->casepcprice->casepc,
                 "cpu" => $product->cpuprice->cpu,
@@ -317,6 +320,7 @@ class ProductController extends Controller
             $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
+                "user" => $product->user->fullname,
                 "totalprice" => $totalprice,
                 "casepc" => $product->casepcprice->casepc,
                 "cpu" => $product->cpuprice->cpu,

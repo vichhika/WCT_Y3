@@ -49,7 +49,10 @@ class ComponentController extends Controller
 
     public function list(Request $request)
     {
-        //dd($request->user()->adminshopID);
+        $request->validate([
+            'component' => 'required'
+        ]);
+
         switch ($request->component) {
             case 'cpu':
                 $componentIDs = Cpuprice::where('adminshopID', $request->user()->adminshopID)->get('cpuID')->toArray();
@@ -144,6 +147,7 @@ class ComponentController extends Controller
     public function index(Request $request)
     {
         $request->validate([
+            'component' => 'required',
             'current_page' => 'numeric|min:1|max:100'
         ]);
         switch ($request->component) {
@@ -204,5 +208,10 @@ class ComponentController extends Controller
             'message' => $components->items(),
             'total_page' => $components->lastPage(),
         ]);
+    }
+
+    public function getComponentByID(Request $request)
+    {
+
     }
 }
