@@ -8,8 +8,6 @@ import Product from "./Component/view/Product/product_page";
 import Login from "./Component/view/LoginAndSignUp/Login";
 import Signup from "./Component/view/LoginAndSignUp/SignUp";
 import Home from "./../src/Component/view/HomePage/Home"
-import {AuthContextProvider} from "./Component/Context/AuthContext";
-import PreBuildContextProvider from "./Component/Context/PreBuildContext";
 import SummeryBuild from "./Component/view/Build/SummeryBuild";
 import Profile from "./Component/view/My Build/Profile";
 import ProductDetail from './Component/view/Product/productDetail'
