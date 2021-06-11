@@ -1016,6 +1016,7 @@ class ShopController extends Controller
             'shop_name' => $request->shop_name,
             'phonenumber' => $request->phonenumber,
             'email' =>  $request->email,
+            'location' => $request->location,
             'email_verified_at' => NULL,
         ]);
 

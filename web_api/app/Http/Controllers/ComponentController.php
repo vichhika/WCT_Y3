@@ -52,28 +52,36 @@ class ComponentController extends Controller
         //dd($request->user()->adminshopID);
         switch ($request->component) {
             case 'cpu':
-                $components = Cpu::all();
+                $componentIDs = Cpuprice::where('adminshopID', $request->user()->adminshopID)->get('cpuID')->toArray();
+                $components = Cpu::whereNotIn('cpuID',$componentIDs)->get();
                 break;
             case 'casepc':
-                $components = Casepc::all();
+                $componentIDs = Casepcprice::where('adminshopID', $request->user()->adminshopID)->get('casepcID')->toArray();
+                $components = Casepc::whereNotIn('casepcID',$componentIDs)->get();
                 break;
             case 'internalharddrive':
-                $components = Internalharddrive::all();
+                $componentIDs = Internalharddriveprice::where('adminshopID', $request->user()->adminshopID)->get('internalharddriveID')->toArray();
+                $components = Internalharddrive::whereNotIn('internalharddriveID',$componentIDs)->get();
                 break;
             case 'memory':
-                $components = Memory::all();
+                $componentIDs = Memoryprice::where('adminshopID', $request->user()->adminshopID)->get('memoryID')->toArray();
+                $components = Memory::whereNotIn('memoryID',$componentIDs)->get();
                 break;
             case 'monitor':
-                $components = Monitor::all();
+                $componentIDs = Monitorprice::where('adminshopID', $request->user()->adminshopID)->get('monitorID')->toArray();
+                $components = Monitor::whereNotIn('monitorID',$componentIDs)->get();
                 break;
             case 'motherboard':
-                $components = Motherboard::all();
+                $componentIDs = Motherboardprice::where('adminshopID', $request->user()->adminshopID)->get('motherboardID')->toArray();
+                $components = Motherboard::whereNotIn('motherboardID',$componentIDs)->get();
                 break;
             case 'powersupply':
-                $components = Powersupply::all();
+                $componentIDs = Powersupplyprice::where('adminshopID', $request->user()->adminshopID)->get('powersupplyID')->toArray();
+                $components = Powersupply::whereNotIn('powersupplyID',$componentIDs)->get();
                 break;
             case 'videocard':
-                $components = Videocard::all();
+                $componentIDs = Videocardprice::where('adminshopID', $request->user()->adminshopID)->get('videocardID')->toArray();
+                $components = Videocard::whereNotIn('videocardID',$componentIDs)->get();
                 break;
             default:
                 return response()->json([
@@ -140,36 +148,44 @@ class ComponentController extends Controller
         ]);
         switch ($request->component) {
             case 'cpu':
-                $components = Cpu::where(Cpu::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Cpuprice::where('adminshopID', $request->user()->adminshopID)->get('cpuID')->toArray();
+                $components = Cpu::where(Cpu::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->whereNotIn('cpuID', $componentIDs)->paginate($request->input('current_page',10));
                 break;
             case 'casepc':
-                $components = Casepc::where(Casepc::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Casepcprice::where('adminshopID', $request->user()->adminshopID)->get('casepcID')->toArray();
+                $components = Casepc::where(Casepc::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->whereNotIn('casepcID', $componentIDs)->paginate($request->input('current_page',10));
                 break;
             case 'internalharddrive':
-                $components = Internalharddrive::where(Internalharddrive::raw('CONCAT_WS(" ", brand, model,storage_type)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Internalharddriveprice::where('adminshopID', $request->user()->adminshopID)->get('internalharddriveID')->toArray();
+                $components = Internalharddrive::where(Internalharddrive::raw('CONCAT_WS(" ", brand, model,storage_type)'),'like','%'.$request->search.'%')->whereNotIn('internalharddriveID',$componentIDs)->paginate($request->input('current_page',10));
                 foreach($components as $key => $component)
                 {
                     $components[$key]->model .= ' ' . $component->capacity/1000000000 . 'GB ' . $component->storage_type;
                 }
                 break;
             case 'memory':
-                $components = Memory::where(Memory::raw('CONCAT_WS(" ", brand, model,module_type)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Memoryprice::where('adminshopID', $request->user()->adminshopID)->get('memoryID')->toArray();
+                $components = Memory::where(Memory::raw('CONCAT_WS(" ", brand, model,module_type)'),'like','%'.$request->search.'%')->whereNotIn('memoryID',$componentIDs)->paginate($request->input('current_page',10));
                 break;
             case 'monitor':
-                $components = Monitor::where(Monitor::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Monitorprice::where('adminshopID', $request->user()->adminshopID)->get('monitorID')->toArray();
+                $components = Monitor::where(Monitor::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->whereNotIn('monitorID',$componentIDs)->paginate($request->input('current_page',10));
                 break;
             case 'motherboard':
-                $components = Motherboard::where(Motherboard::raw('CONCAT_WS(" ", brand, model,socket)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Motherboardprice::where('adminshopID', $request->user()->adminshopID)->get('motherboardID')->toArray();
+                $components = Motherboard::where(Motherboard::raw('CONCAT_WS(" ", brand, model,socket)'),'like','%'.$request->search.'%')->whereNotIn('motherboardID',$componentIDs)->paginate($request->input('current_page',10));
                 break;
             case 'powersupply':
-                $components = Powersupply::where(Powersupply::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Powersupplyprice::where('adminshopID', $request->user()->adminshopID)->get('powersupplyID')->toArray();
+                $components = Powersupply::where(Powersupply::raw('CONCAT_WS(" ", brand, model)'),'like','%'.$request->search.'%')->whereNotIn('powersupplyID', $componentIDs)->paginate($request->input('current_page',10));
                 foreach($components as $key => $component)
                 {
                     $components[$key]->model .= ' ' . $component->wattage . ' wattage';
                 }
                 break;
             case 'videocard':
-                $components = Videocard::where(Videocard::raw('CONCAT_WS(" ", brand, model,chipset)'),'like','%'.$request->search.'%')->paginate($request->input('current_page',10));
+                $componentIDs = Videocardprice::where('adminshopID', $request->user()->adminshopID)->get('videocardID')->toArray();
+                $components = Videocard::where(Videocard::raw('CONCAT_WS(" ", brand, model,chipset)'),'like','%'.$request->search.'%')->whereNotIn('videocardID',$componentIDs)->paginate($request->input('current_page',10));
                 foreach($components as $key => $component)
                 {
                     $components[$key]->model .= ' ' . $component->chipset . ' ' . $component->vram/1000000000 . 'GB ';
