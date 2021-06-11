@@ -920,9 +920,13 @@ class ShopController extends Controller
 
             if($cpu && $case && $internalharddrive && $memory && $monitor && $motherboard && $powersupply && $videocard) return true;
         });
+
+        $shoplist = array();
+        foreach($shops as $shop) array_push($shoplist, $shop);
+
         return response()->json([
             'statusCode' => 1,
-            'message' => $shops->all()
+            'message' => $shoplist,
         ]);
     }
 
