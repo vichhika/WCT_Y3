@@ -152,7 +152,9 @@ class ProductController extends Controller
         ])->get();
 
         $productlist = array();
+        $count = 0;
         foreach ($products as $key => $product) {
+            $count++;
             $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
@@ -178,6 +180,7 @@ class ProductController extends Controller
 
         return response()->json([
             'statusCode' => 1,
+            'count' => $count,
             'message' => $productlist,
         ]);
     }
