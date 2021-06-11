@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Component/view/Navigation/navbar.js";
-import {Route} from "react-router-dom";
+import { Route } from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";
@@ -13,54 +13,57 @@ import Profile from "./Component/view/My Build/Profile";
 import ProductDetail from './Component/view/Product/productDetail'
 import ProductDetailContextProvider from './Component/Context/productDetailContext'
 
-import {BuildContextProvider} from "./Component/Context/BuildContext";
+import { BuildContextProvider } from "./Component/Context/BuildContext";
 import React from "react";
-import {Switch} from "react-router-dom";
+import { Switch } from "react-router-dom";
 import PageNotfound from "./Component/view/PageNotFound";
 import ProductsContextProvider from "./Component/Context/ProductsContext";
-import {ShopsContextProvider} from "./Component/Context/ShopsContext";
-import {UserProfileContextProvider} from './Component/Context/UserProfileContext';
+import { ShopsContextProvider } from "./Component/Context/ShopsContext";
+import { UserProfileContextProvider } from './Component/Context/UserProfileContext';
 function App() {
 
     return (
-        <div className="App" style={{height: "100%"}}>
+        <div className="App" style={{ height: "100%" }}>
             <Switch>
-                <Route exact path="/"><Navbar/><Home/></Route>
-                <Route path="/blog"> <Navbar/><Blog/></Route>
-                <Route path="/donate"> <Navbar/><Donate/></Route>
-                <Route path="/login"><Navbar/><Login/></Route>
-                <Route path="/signUp"><Navbar/><Signup/></Route>
+                <Route exact path="/"><Navbar /><Home /></Route>
+                <Route path="/blog"> <Navbar /><Blog /></Route>
+                <Route path="/donate"> <Navbar /><Donate /></Route>
+                <Route path="/login"><Navbar /><Login /></Route>
+                <Route path="/signUp"><Navbar /><Signup /></Route>
                 <Route path="/profile">
-                    <Navbar/>
-                    <Profile/>
+                    <Navbar />
+                    <Profile />
                 </Route>
                 <Route path="/build">
                     <BuildContextProvider>
-                        <Navbar/>
+                        <Navbar />
                         <ShopsContextProvider>
-                            <Build/>
+                            <Build />
                         </ShopsContextProvider>
                     </BuildContextProvider>
                 </Route>
                 <Route path="/summeryBuild">
                     <BuildContextProvider>
-                        <Navbar/><SummeryBuild/>
+                        <Navbar />
+                        <ShopsContextProvider>
+                            <SummeryBuild />
+                        </ShopsContextProvider>
                     </BuildContextProvider>
                 </Route>
                 <ProductsContextProvider>
                     <ProductDetailContextProvider>
                         <Route path="/product_page">
-                                
-                                    <Navbar/>
-                                    <Product/>
+
+                            <Navbar />
+                            <Product />
                         </Route>
                         <Route path="/productDetail">
-                                    <Navbar/>
-                                    <ProductDetail/>
+                            <Navbar />
+                            <ProductDetail />
                         </Route>
                     </ProductDetailContextProvider>
                 </ProductsContextProvider>
-                <Route path="*"><PageNotfound/></Route>
+                <Route path="*"><PageNotfound /></Route>
             </Switch>
         </div>
     );
