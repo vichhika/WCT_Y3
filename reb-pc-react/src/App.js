@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Component/view/Navigation/navbar.js";
-import {Route} from "react-router-dom";
+import {Route,Redirect} from "react-router-dom";
 import Blog from "./Component/view/Blog";
 import Donate from "./Component/view/donate";
 import Build from "./Component/view/Build/Build";
@@ -16,12 +16,16 @@ import ProductDetail from './Component/view/Product/productDetail'
 import ProductDetailContextProvider from './Component/Context/productDetailContext'
 
 import {BuildContextProvider} from "./Component/Context/BuildContext";
-import React from "react";
-import * as url from "url";
+import React, {useContext} from "react";
 import {Switch} from "react-router-dom";
 import PageNotfound from "./Component/view/PageNotFound";
+import ProductsContextProvider from "./Component/Context/ProductsContext";
+import {ShopsContextProvider} from "./Component/Context/ShopsContext";
+import {UserProfileContextProvider} from './Component/Context/UserProfileContext';
+import {authContext} from './Component/Context/AuthContext'
 
 function App() {
+    const {contextAuthState} = useContext(authContext);
 
     return (
         <div className="App" style={{height: "100%"}}>
@@ -29,33 +33,40 @@ function App() {
                 <Route exact path="/"><Navbar/><Home/></Route>
                 <Route path="/blog"> <Navbar/><Blog/></Route>
                 <Route path="/donate"> <Navbar/><Donate/></Route>
-                <Route path="/login"><Navbar/><Login/></Route>
-                <Route path="/signUp"><Navbar/><Signup/></Route>
-                <Route path="/profile"><Navbar/><Profile/></Route>
+                <Route path="/login">{!contextAuthState.isAuthenticated ? <><Navbar/><Login/></>  : <Redirect to="/"/>}</Route>
+                <Route path="/signUp">{!contextAuthState.isAuthenticated ? <><Navbar/><Signup/></> : <Redirect to="/"/>}</Route>
+                <Route path="/profile">
+                    {contextAuthState.isAuthenticated ? <><Navbar/><Profile/></> : <Redirect to="/login"/>}
+                </Route>
                 <Route path="/build">
                     <BuildContextProvider>
-                        <Navbar/><Build/>
+                        <Navbar/>
+                        <ShopsContextProvider>
+                            <Build/>
+                        </ShopsContextProvider>
                     </BuildContextProvider>
                 </Route>
                 <Route path="/summeryBuild">
                     <BuildContextProvider>
-                        <Navbar/><SummeryBuild/>
+                        <Navbar/>
+                        <ShopsContextProvider>
+                            <SummeryBuild/>
+                        </ShopsContextProvider>
                     </BuildContextProvider>
                 </Route>
-                <Route path="/product_page">
-                    <PreBuildContextProvider>
-                        <ProductDetailContextProvider>
-                            <Navbar/><Product/>
-                        </ProductDetailContextProvider>
-                    </PreBuildContextProvider>
-                </Route>
-                <Route path="/productDetail">
-                    <PreBuildContextProvider>
-                        <ProductDetailContextProvider>
-                            <Navbar/><ProductDetail/>
-                        </ProductDetailContextProvider>
-                    </PreBuildContextProvider>
-                </Route>
+                <ProductsContextProvider>
+                    <ProductDetailContextProvider>
+                        <Route path="/product_page">
+
+                            <Navbar/>
+                            <Product/>
+                        </Route>
+                        <Route path="/productDetail">
+                            <Navbar/>
+                            <ProductDetail/>
+                        </Route>
+                    </ProductDetailContextProvider>
+                </ProductsContextProvider>
                 <Route path="*"><PageNotfound/></Route>
             </Switch>
         </div>

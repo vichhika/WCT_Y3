@@ -14,9 +14,12 @@ function SignUp() {
 
     const {register, handleSubmit, watch, formState: {errors}} = useForm();
 
+    let [usernameUsed, setUsernameUsed] = useState(false);
     let [emailUsed, setEmailUsed] = useState(false);
     let [phoneUsed, setPhoneUsed] = useState(false);
+    let [phoneInvalid, setInvalidPhone] = useState(false);
     let [onSubmited, setOnSubmited] = useState(false);
+    let [invalidPassword, setInvalidPassword] = useState(false);
 
     const summitToServer = data => {
         setEmailUsed(false);
@@ -24,12 +27,22 @@ function SignUp() {
         setOnSubmited(true);
         axios.post(server.uri + "register", data)
             .then(function (response) {
+                if(response.data.message.username && response.data.message.username.toString().localeCompare("The username has already been taken.") === 0){
+                    setUsernameUsed(true);
+                }
                 if (response.data.message.email && response.data.message.email.toString().localeCompare("A email address is already registerd.") === 0) {
                     setEmailUsed(true);
                 }
                 if (response.data.message.phone && response.data.message.phone.toString().localeCompare("A phone number is already registered.") === 0) {
                     setPhoneUsed(true);
                 }
+                if (response.data.message.phone && response.data.message.phone.toString().localeCompare("A phone number is invalid.") === 0){
+                    setInvalidPhone(true);
+                }
+                if (response.data.message.password && response.data.message.password.toString().localeCompare("A password is required more than or equal 8 digits.") === 0){
+                    setInvalidPassword(true);
+                }
+                
                 if (response.data.access_token) {
                     updateAuthContext({type: "set_isAuthenticated",payload: true});
                     updateAuthContext({type: "set_token",payload: response.data.access_token});
@@ -56,8 +69,10 @@ function SignUp() {
                     <div className="form-group">
                         <label htmlFor="InputUsername">Username</label>
                         <input type="text" class="form-control"
-                               placeholder="Enter Username" {...register("username", {required: true})} />
+                               placeholder="Enter Username" {...register("username", {required: true})}
+                               onChange={() => setUsernameUsed(false)}/>
                         {errors.username && <p className="error-signup">Username is required</p>}
+                        {usernameUsed && <p className="error-signup">Username is already register</p>}
                     </div>
 
                     <div className="form-group">
@@ -73,9 +88,10 @@ function SignUp() {
                         <label htmlFor="InputPhone">Phone</label>
                         <input type="phone" className="form-control"
                                placeholder="Enter you phone number" {...register("phone", {required: true})}
-                               onChange={() => setPhoneUsed(false)}/>
+                               onChange={() => {setPhoneUsed(false); setInvalidPhone(false)}}/>
                         {errors.phone && <p className="error-signup">Phone is required</p>}
                         {phoneUsed && <p className="error-signup">Phone number is already register</p>}
+                        {phoneInvalid && <p className="error-signup">Phone number is Invalid</p>}
 
                     </div>
 
@@ -84,6 +100,7 @@ function SignUp() {
                         <input name="password" type="password" class="form-control"
                                placeholder="Enter Password" {...register("password", {required: true})} />
                         {errors.password && <p className="error-signup">Password is required</p>}
+                        {invalidPassword && <p className="error-signup">A password is required more than or equal 8 digits.</p>}
 
                     </div>
 
