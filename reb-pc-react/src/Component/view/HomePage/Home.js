@@ -13,9 +13,9 @@ function Home() {
             <div className="d-flex justify-content-between align-items-center m-0 py-5 px-5"
                  style={{height: "100vh", backgroundColor: "#eef9fb", fontFamily: "Noto Sans JP, sans-seri"}}>
                 <div className="mb-5">
-                    <h1>Every shop can join our website</h1>
-                    <h3>Reab PC is not only a platform for costumer</h3>
-                    <h3>Shop owner can share your PC component on Reab PC </h3>
+                    <h1 className="mb-3"><b>Every shop can join our website</b></h1>
+                    <p className="m-0 text-muted">Reab PC is not only a platform for costumer, <br/> Shop owner can share your PC component on Reab PC</p>
+                    <br/>
                     <a href="http://shop.reabpc.digital/" target="_blank" type="button"
                        className="btn btn-sm my-2 mr-3 px-4 py-2 text-light"
                        style={{borderRadius: '25px', backgroundColor: '#0088A9'}}>
