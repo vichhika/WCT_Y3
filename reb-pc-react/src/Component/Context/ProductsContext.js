@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {createContext, useState, useEffect, useReducer} from 'react';
-
+import server from './../../config.json';
 const initState = {
     loading: true,
     products: null,
@@ -8,6 +8,7 @@ const initState = {
     productsFilter: null,
     filterBy: [],
     page: 1,
+    totalProducts: 1
 }
 
 const ProductsContext = createContext(initState);
@@ -38,18 +39,17 @@ const actions = {
         
         // reset page
         let page = 1;
-
         // perform sort
         if(sortAs == 'ASC'){
             productsFilter.sort((a,b) => {
-                if (parseFloat(a.price.replace('$','')) < parseFloat(b.price.replace('$',''))){ return -1; }
-                if(parseFloat(a.price.replace('$','')) > parseFloat(b.price.replace('$',''))){ return 1; }
+                if (parseFloat(a.totalprice) < parseFloat(b.totalprice)){ return -1; }
+                if(parseFloat(a.totalprice) > parseFloat(b.totalprice)){ return 1; }
                 return 0;
             });
         }else if (sortAs == 'DESC'){
             productsFilter.sort((a,b) => {
-                if (parseFloat(b.price.replace('$','')) < parseFloat(a.price.replace('$',''))){ return -1; }
-                if(parseFloat(b.price.replace('$','')) > parseFloat(a.price.replace('$',''))){ return 1; }
+                if (parseFloat(b.totalprice) < parseFloat(a.totalprice)){ return -1; }
+                if(parseFloat(b.totalprice) > parseFloat(a.totalprice)){ return 1; }
                 return 0;
             });
         }else if (sortAs == 'default'){
@@ -69,9 +69,11 @@ const actions = {
         // reset sort back to default
         let sortAs = 'default';
         let page = 1;
+        
         if(filterBy.length > 0){
-            productsFilter = productsFilter.filter(product => filterBy.includes(product.model));
+            productsFilter = productsFilter.filter(product => filterBy.includes(product.cpu.model));
         }
+        console.log(productsFilter);
         return {
             ...state,
             sortAs,
@@ -85,6 +87,12 @@ const actions = {
         return {
             ...state,
             page
+        }
+    },
+    setTotalProducts: (state, totalProducts) => {
+        return {
+            ...state,
+            totalProducts
         }
     }
 
@@ -110,8 +118,14 @@ const ProductsReducer = (state, action) => {
                                 return{
                                     ...state
                                 }     
-        case 'setPage' :        state = actions.setPage(state,action.payload);                  
-
+        case 'setPage' :        state = actions.setPage(state,action.payload);       
+                                return {
+                                    ...state
+                                }
+        case 'setTotalProducts':    state = actions.setTotalProducts(state,action.payload);
+                                return {
+                                    ...state
+                                }
         default: return {...state}
 
     }
@@ -128,9 +142,16 @@ const ProductsContextProvider = (props) => {
 
             {
                 useEffect(() => {
-                    axios.get(`https://api-303.herokuapp.com/ChantraComputer`).then(
+                    // let config = {
+                    //     params: {
+                    //         current_page: 4,
+                    //         page: productsContextState.page
+                    //     }
+                    // }
+                    axios.get(server.uri + 'product/list').then(
                         response => {
-                            updateProductsContext({type: 'setProducts', payload: response.data.cpu});
+                            updateProductsContext({type: 'setProducts', payload: response.data.message});
+                            updateProductsContext({type: 'setTotalProducts', payload: response.data.count});
                             updateProductsContext({type: 'setLoading', payload: false});
                             // updateProductsContext({type: 'setSortAs', payload: 'DESC'});
                             // updateProductsContext({type: 'setFilterBy', payload: ['Ryzen 5', 'Intel 5th']});
@@ -138,6 +159,8 @@ const ProductsContextProvider = (props) => {
                             // updateProductsContext({type: 'setFilterBy', payload: ['Intel 5th']});   
                             // updateProductsContext({type: 'setSortAs', payload: 'ASC'});
                         }
+                    ).catch (
+                        errors => console.log(errors)
                     )
                 },[])
             }

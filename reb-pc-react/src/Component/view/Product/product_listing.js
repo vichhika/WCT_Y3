@@ -13,6 +13,7 @@ function ProductListing(props){
     const {productsContextState,updateProductsContext} = useContext(ProductsContext);
     let page = productsContextState.page;
 
+
     const handlePageChange = (event,page) => {
         updateProductsContext({type: 'setPage', payload: page});
     }
@@ -23,23 +24,24 @@ function ProductListing(props){
         view = <h6 className="w-100 text-center">Loading...</h6>;
     }else{        
 
-        const componentsNum = productsContextState.productsFilter.length;
-        const pageCount =  Math.ceil(componentsNum / paginateNum);
-        const components = paginate(productsContextState.productsFilter, page, paginateNum);
-
-        view = components.map(cpu => {
-            return <div key={cpu._id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+        // const componentsNum = productsContextState.productsFilter.length;
+        // const pageCount =  Math.ceil(componentsNum / paginateNum);
+        let pageCount = Math.ceil(productsContextState.totalProducts / paginateNum);
+        const products = paginate(productsContextState.productsFilter, page, paginateNum);
+        // const products = productsContextState.productsFilter;
+        view = products.map(product => {
+            return <div key={product.productbuildID} className="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div className="product d-flex flex-column" style={{marginBottom:'0px'}}>
                     <img src="https://www.chantracomputer.com/DESKTOP%20SYSTEM/CASE/AEROCOOL/TOR-PRO-RGB.gif"/>
                     <br/>
-                    <h5 className="description">{cpu.brand + ' | ' + cpu.model + ' | cores ' + cpu.cores}</h5>  
-                <h6 className="price">{cpu.price}</h6>
+                    <h5 className="description">{product.cpu.brand + ' | ' + product.cpu.model + ' | cores ' + product.cpu.cores + ' | RAM ' + product.memory.brand + ' ' + product.memory.module_type}</h5>  
+                <h6 className="price">{'$' + product.totalprice}</h6>
                     {/* <button >Detail</button> */}
-                    <Link id={"btn" + cpu._id} className="detailBtn btn btn-primary btn-sm text-light" onClick={() => props.selectDetailProduct(cpu)} to='/productDetail'>Detail</Link>  
+                    <Link id={"btn" + product.productbuildID} className="detailBtn btn btn-primary btn-sm text-light" onClick={() => props.selectDetailProduct(product)} to='/productDetail'>Detail</Link>  
                 </div>
             </div>
         });
-        
+
         if(pageCount > 1){
             paginateView = <Pagination count={pageCount} page={page > pageCount ? 1 : page} shape="rounded" 
                                    onChange={handlePageChange} />;

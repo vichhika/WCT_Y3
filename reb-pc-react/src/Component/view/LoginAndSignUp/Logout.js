@@ -35,7 +35,7 @@ const Logout = () =>  {
 
     return (
         <>
-            <Avatar src={bathImg} id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" arial-expanded="false">B</Avatar>
+            <Avatar id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" arial-expanded="false"><i class="fad fa-user-alt"></i></Avatar>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style={{minWidth: '120px'}}>
                 <a class="dropdown-item text-danger" 
                     type="submit"
