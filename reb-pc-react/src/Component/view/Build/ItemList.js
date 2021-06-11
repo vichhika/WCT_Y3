@@ -17,7 +17,7 @@ export default function ItemList(props) {
         let table = []
         if (contextState.selectedComponent[contextState.component] === null) {
             for (let i = startIndex; i < lastIndex; i++) {
-                table.push(<Item itemDetail={props.display[i]}/>)
+                table.push(<Item itemDetail={props.display[i]} index={i}/>)
             }
         } else {
             table.push(<Item itemDetail={contextState.selectedComponent[contextState.component]}/>)

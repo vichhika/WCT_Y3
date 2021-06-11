@@ -25,7 +25,8 @@ const UpdateDialog = (props) => {
     const [confirmPassMatch, setConfirmPassMatch] = useState(true);
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {saveUpdate(data)};
-
+    const [Submitting, setSubmitting] = useState(false);
+    const [isVerify, setIsVerify] = useState(true);
     // console.log(props.userInfo.phoneNo);
     let inputType = 'text'
     let form_update;
@@ -86,6 +87,9 @@ const UpdateDialog = (props) => {
 
     const requestUpdateUserInfo = (data) =>{
 
+        // status submitting
+        setSubmitting(true);
+
         const dataset = {
             'fullname': updateLabel == 'fullname' ? data.fullname : props.userInfo.fullname,
             'phone': updateLabel == 'phone' ? data.phone : props.userInfo.phoneNo,
@@ -97,7 +101,7 @@ const UpdateDialog = (props) => {
                 'Authorization': `Bearer ` + `${contextAuthState.token}`
             } 
         }
-
+    
         axios.post(server.uri + 'profile_update', dataset, config)
         .then(
             (response) => {
@@ -116,6 +120,10 @@ const UpdateDialog = (props) => {
                         //     case 'phone'    : labelValue = updateUserInfo.phone;break;
                         //     case 'email'    : labelValue = updateUserInfo.email;break;
                         // }
+                        if(updateLabel.localeCompare('email') == 0){
+                            setIsVerify(false);
+                        }
+                        setSubmitting(false);
                     }
                     setIsUsed(false);
                     // close modal
@@ -129,6 +137,7 @@ const UpdateDialog = (props) => {
             (error) => {
                 console.log(error);
                 alert("Your email address is not verified.");
+                setIsVerify(false);
             }
         )
     }
@@ -195,6 +204,40 @@ const UpdateDialog = (props) => {
 
     }
 
+    let view;
+    if(isVerify) {
+
+        view = <>
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLongTitle">{updateLabel}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                {/* <span aria-hidden="true">&times;</span> */}
+                </button>
+            </div>
+            <div class="modal-body">
+                To update {updateLabel.toLowerCase()} in this website, please update the {updateLabel.toLowerCase()} below. We will send updates
+                request to our server.
+                <hr/>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    {form_update}
+                    <div class="modal-footer">
+                        <button id='closeBtn' type="button" class={`btn btn-secondary ${Submitting ? 'invisible' : 'visible'}`} data-dismiss="modal" onClick={() => onCloseModal()}>Close</button>
+                        <button type="submit" class={`btn btn-primary ${Submitting ? 'd-none' : ''}`} id="saveBtn">Save changes</button>
+                        <div class={`spinner-border text-info ${Submitting ? '' : 'd-none'}`} role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </>
+    }else {
+
+        view = <p className="text-danger m-0 text-center">Your Account is not verify yet! if already verify please refresh</p>
+
+    }
+
     return (
         
         <>
@@ -203,24 +246,7 @@ const UpdateDialog = (props) => {
             <div class="modal fade" id="UpdateModalCenter" tabindex="-1" role="dialog" aria-labelledby="UpdateModalCenter" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLongTitle">{updateLabel}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            {/* <span aria-hidden="true">&times;</span> */}
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            To update {updateLabel.toLowerCase()} in this website, please update the {updateLabel.toLowerCase()} below. We will send updates
-                            request to our server.
-                            <hr/>
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                {form_update}
-                                <div class="modal-footer">
-                                    <button id='closeBtn' type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => onCloseModal()}>Close</button>
-                                    <button type="submit" class="btn btn-primary" id="saveBtn">Save changes</button>
-                                </div>
-                            </form>
-                        </div>
+                        {view}
                     </div>
                 </div>
             </div>
