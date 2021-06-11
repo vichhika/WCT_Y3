@@ -1537,7 +1537,8 @@
                                 "required": [
                                     "shop_name",
                                     "phonenumber",
-                                    "email"
+                                    "email",
+                                    "location"
                                 ],
                                 "properties": {
                                     "shop_name": {
@@ -1554,6 +1555,11 @@
                                         "type": "string",
                                         "format": "email",
                                         "example": "user1@mail.com"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "Phnom Penh Cambodia"
                                     }
                                 },
                                 "type": "object"

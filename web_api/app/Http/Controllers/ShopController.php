@@ -960,7 +960,7 @@ class ShopController extends Controller
  * @OA\RequestBody(
  *    required=true,
  *    @OA\JsonContent(
- *       required={"shop_name","phonenumber","email"},
+ *       required={"shop_name","phonenumber","email","location"},
  *      @OA\Property(property="shop_name", type="string", format="shop_name", example="Sok kha"),
  *      @OA\Property(property="phonenumber", type="string", format="phonenumber", example="012812812"),
  *      @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
