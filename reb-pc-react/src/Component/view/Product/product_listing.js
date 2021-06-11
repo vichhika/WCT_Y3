@@ -26,7 +26,7 @@ function ProductListing(props){
         const componentsNum = productsContextState.productsFilter.length;
         const pageCount =  Math.ceil(componentsNum / paginateNum);
         const components = paginate(productsContextState.productsFilter, page, paginateNum);
-        console.log("Component: " + pageCount);
+
         view = components.map(cpu => {
             return <div key={cpu._id} className="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div className="product d-flex flex-column" style={{marginBottom:'0px'}}>
@@ -45,8 +45,6 @@ function ProductListing(props){
                                    onChange={handlePageChange} />;
         }
     }
-
-    console.log(productsContextState.productsFilter);
 
     return(
         
