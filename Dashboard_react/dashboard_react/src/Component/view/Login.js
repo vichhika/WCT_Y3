@@ -39,6 +39,7 @@ function Login() {
                     setSubmiting(false)
                     history.push("/verify")
                 } else if (response.data.statusCode === 0) {
+                    console.log(response.data)
                     setInvalid(true);
                 }
                 setSubmiting(false)
@@ -72,7 +73,8 @@ function Login() {
                                 {errors.password && <p className="text-danger">Password is required</p>}
                             </div>
 
-                            <div className="d-flex justify-content-end">
+                            <div className="d-flex justify-content-between">
+                                <a href="http://api.reabpc.digital/admin_shop/password/reset">Forget Password?</a>
                                 <Link to="/register">Create account here!</Link>
                             </div>
 

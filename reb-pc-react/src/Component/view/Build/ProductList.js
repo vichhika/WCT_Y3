@@ -8,10 +8,13 @@ import axios from 'axios'
 import useData from './../../userData.js'
 import {useHistory} from "react-router-dom";
 import {lightGreen} from "@material-ui/core/colors";
+import {ShopsContext} from "./../../Context/ShopsContext"
+import server from "./../../../config.json"
 
 
 function ProductList() {
     const {contextState, updatContext} = useContext(buildContext)
+    const {shopsContext,updateShopsContext} = useContext(ShopsContext);
     const [loading, setloading] = useState(true)
     const conponent = ["CPU", "Motherboard", "RAM", "HardDrive", "GPU", "Case", "PowerSupply", "Monitor"]
     const [gotoSummer, setgotoSummer] = useState(false);
@@ -32,7 +35,7 @@ function ProductList() {
             })
             setloading(false);
         } else {
-            axios.get(`https://api-303.herokuapp.com/ChantraComputer`)
+            axios.get(server.uri+"build/list_all",{params: {adminshopID: shopsContext.selectedShop}})
                 .then(function (response) {
                     updatContext({
                         type: 'set_shopPayload',

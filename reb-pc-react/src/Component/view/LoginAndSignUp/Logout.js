@@ -19,18 +19,18 @@ const Logout = () =>  {
         }).then((response) => {
 
             updateAuthContext({type: 'setUserProfile', payload: null});
-        
-        },(error) => {
-        
+            // update auth state
+            updateAuthContext({type: 'set_isAuthenticated', payload: false});
+            updateAuthContext({type: 'setIsVerify', payload: false});
+            // redirect to the home page
+            history.replace('/');
+
+
+        }).catch((error) => {
+
             console.log(error)
-        
+
         });
-
-        // update auth state
-        updateAuthContext({type: 'set_isAuthenticated', payload: false});
-        // redirect to the home page 
-        history.replace('/');
-
     }
 
     return (

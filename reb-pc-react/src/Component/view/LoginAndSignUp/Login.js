@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./../../../Css/styleLogin.scss";
 import {useForm} from "react-hook-form";
 import server from "../../../config.json";
@@ -8,7 +8,7 @@ import axios from "axios";
 import {CircularProgress} from "@material-ui/core";
 
 function Login() {
-    
+
     document.body.style.backgroundImage = 'none';
     const {contextAuthState, updateAuthContext} = useContext(authContext);
     let history = useHistory()
@@ -24,25 +24,39 @@ function Login() {
         setOnSubmited(true);
         axios.post(server.uri + "login", data)
             .then(function (response) {
-                console.log("Statue code: ",response.data);
                 if (response.data.message && response.data.message.toString().localeCompare("email  or password is incorrected.") === 0) {
                     setWrongEmail(true);
+                    setOnSubmited(false);
                 }
                 if (response.data.token) {
-                    updateAuthContext({type: "set_token",payload: response.data.token});
-                    updateAuthContext({type: "set_isAuthenticated",payload: true});
-                    history.replace('/');
-                }
-                setOnSubmited(false);
-                if(response.data.message.localeCompare("Your email address is not verified.") == 0){
-                    setEmailNotVerify(true);
-                }else {
-                    setEmailNotVerify(false);
+                    updateAuthContext({type: "set_token", payload: response.data.token});
+                    updateAuthContext({type: "set_isAuthenticated", payload: true});
                 }
             }).catch(function (error) {
             console.log(error);
         });
     }
+
+    useEffect(() => {
+        if (contextAuthState.isAuthenticated) {
+            axios.get(server.uri + "is_verify", {headers: {'Authorization': `Bearer ${contextAuthState.token}`}})
+                .then(r => {
+                    if (r.data.statusCode === 1) {
+                        setEmailNotVerify(true);
+                        updateAuthContext({type: 'setIsVerify', payload: true})
+                        history.replace('/');
+                    } else {
+                        setEmailNotVerify(false);
+                        updateAuthContext({type: 'setIsVerify', payload: false})
+                        history.replace('/');
+                    }
+                }).catch(e => {
+                console.log(e)
+                setOnSubmited(false);
+            })
+        }
+    })
+
 
     return (
 
@@ -60,7 +74,7 @@ function Login() {
                                 <input type="email" className="form-control" id="exampleInputEmail1"
                                        aria-describedby="emailHelp" placeholder="Enter email"
                                        {...register("email", {required: true})}
-                                        onChange={() => setWrongEmail(false)}/>
+                                       onChange={() => setWrongEmail(false)}/>
                                 {errors.email && <p className="error-signup">Email is required</p>}
                             </div>
                             <div class="form-group">
@@ -79,7 +93,8 @@ function Login() {
                             </div>
 
                             <div className="ButtonForget">
-                                <button type="button" className="btn btn-link"> Forget password?</button>
+                                <a href="http://api.reabpc.digital/user/password/reset" target="_blank"
+                                   rel="noopener noreferrer" className="btn btn-link"> Forget password?</a>
                             </div>
                         </form>
 
