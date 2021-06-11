@@ -40,6 +40,7 @@ Route::middleware(['html_filter'])->group(function (){
     Route::GET('/admin_shop/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend'])->middleware(['shop_role','auth:sanctum','html_filter']);
     Route::GET('/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend'])->middleware(['user_role','auth:sanctum','html_filter']);
     Route::GET('/is_verify',[\App\Http\Controllers\VerificationController::class,'checkEmail'])->middleware(['auth:sanctum']);
+    Route::GET('/get/component/id',[\App\Http\Controllers\ComponentController::class,'getComponentByID']);
 });
 
 /////////////////////////////////////////////

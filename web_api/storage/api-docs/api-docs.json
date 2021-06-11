@@ -949,6 +949,51 @@
                 ]
             }
         },
+        "/api/get/component/id": {
+            "get": {
+                "tags": [
+                    "shop",
+                    "user",
+                    "guest"
+                ],
+                "summary": "get component by id",
+                "operationId": "App\\Http\\Controllers\\ComponentController::getComponentByID",
+                "parameters": [
+                    {
+                        "name": "component",
+                        "in": "query",
+                        "description": "name of component",
+                        "required": true,
+                        "example": "cpu"
+                    },
+                    {
+                        "name": "componentID",
+                        "in": "query",
+                        "description": "ID of component",
+                        "required": true,
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "please test it."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/product/index": {
             "get": {
                 "tags": [

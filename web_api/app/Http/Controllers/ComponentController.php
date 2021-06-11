@@ -210,8 +210,80 @@ class ComponentController extends Controller
         ]);
     }
 
+
+    /**
+ * @OA\Get(
+ * path="/api/get/component/id",
+ * summary="get component by id",
+ * tags={"shop","user","guest"},
+ *  * @OA\Parameter(
+*          name="component",
+*          description="name of component",
+*           example="cpu",
+*          required=true,
+*          in="query",
+*      ),
+ *  * @OA\Parameter(
+*          name="componentID",
+*          description="ID of component",
+*           example="1",
+*          required=true,
+*          in="query",
+*      ),
+ * @OA\Response(
+ *    response=200,
+ *    description="",
+ *    @OA\JsonContent(
+ *       @OA\Property(property="message", type="string", example="please test it.")
+ *        )
+ *     )
+ * )
+ */
+
     public function getComponentByID(Request $request)
     {
 
+        $request->validate([
+            'component' => 'required',
+            'componentID' => 'required|numeric',
+        ]);
+
+        switch ($request->component) {
+            case 'cpu':
+                $components = Cpu::where('cpuID',$request->componentID)->first();
+                break;
+            case 'casepc':
+                $components = Casepc::where('casepcID',$request->componentID)->first();
+                break;
+            case 'internalharddrive':
+                $components = Internalharddrive::where('internalharddriveID',$request->componentID)->first();
+                break;
+            case 'memory':
+                $components = Memory::where('memoryID',$request->componentID)->first();
+                break;
+            case 'monitor':
+                $components = Monitor::where('monitorID',$request->componentID)->first();
+                break;
+            case 'motherboard':
+                $components = Motherboard::where('motherboardID',$request->componentID)->first();
+                break;
+            case 'powersupply':
+                $components = Powersupply::where('powersupplyID',$request->componentID)->first();
+                break;
+            case 'videocard':
+                $components = Videocard::whereNotIn('videocardID',$request->componentID)->first();
+                break;
+            default:
+                return response()->json([
+                    'statusCode' => 0,
+                    'message' => 'not found.'
+                ],404);
+                break;
+        }
+
+        return response()->json([
+            'statusCode' => 1,
+            'message' => array($components),
+        ]);
     }
 }
