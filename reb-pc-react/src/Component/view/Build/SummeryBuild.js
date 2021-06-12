@@ -51,6 +51,14 @@ function SummeryBuild() {
     }
 
 
+    const totalPrice =  () => {
+        let total = 0;
+        for (let i = 0; i < contextState.selectedComponent.length; i++) {
+            total += contextState.selectedComponent[i].price
+        }
+        return total;
+    }
+
     const getSelectedCpn = () => {
         if (!isLoading) {
             const cpn = [];
@@ -183,7 +191,7 @@ function SummeryBuild() {
                                         <th className="col-2">Component</th>
                                         <th className="col-3">Brand</th>
                                         <th className="col-3">Model</th>
-                                        <th className="col-2">Price</th>
+                                        <th className="col-2">Price <span className="text-danger">${totalPrice()}</span></th>
                                         <th className="col-1"/>
                                         <th className="col-1"/>
                                     </tr>
