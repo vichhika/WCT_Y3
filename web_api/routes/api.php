@@ -41,13 +41,16 @@ Route::middleware(['html_filter'])->group(function (){
     Route::GET('/resend_email_verification',[\App\Http\Controllers\VerificationController::class,'resend'])->middleware(['user_role','auth:sanctum','html_filter']);
     Route::GET('/is_verify',[\App\Http\Controllers\VerificationController::class,'checkEmail'])->middleware(['auth:sanctum']);
     Route::GET('/get/component/id',[\App\Http\Controllers\ComponentController::class,'getComponentByID']);
+
+
+    Route::GET('/admin_shop/logout',[\App\Http\Controllers\AuthShopController::class,'logout'])->middleware(['shop_role','auth:sanctum','html_filter']);
+    Route::GET('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware(['user_role','auth:sanctum','html_filter']);
 });
 
 /////////////////////////////////////////////
 Route::middleware(['shop_role','auth:sanctum','html_filter','verified'])->group(function(){
     //route for shop owner permission
     Route::POST('/admin_shop/change_password',[\App\Http\Controllers\AuthShopController::class,'changePassword']);
-    Route::GET('/admin_shop/logout',[\App\Http\Controllers\AuthShopController::class,'logout']);
     Route::GET('/admin_shop/components/index',[\App\Http\Controllers\ComponentController::class,'index']);
     Route::GET('/admin_shop/components/list',[\App\Http\Controllers\ComponentController::class,'list']);
     Route::GET('/admin_shop/index',[\App\Http\Controllers\ShopController::class,'index']);
@@ -63,7 +66,6 @@ Route::middleware(['shop_role','auth:sanctum','html_filter','verified'])->group(
 
 Route::middleware(['user_role','auth:sanctum','html_filter','verified'])->group(function(){
     //route for user permission
-    Route::GET('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
     Route::POST('/change_password', [\App\Http\Controllers\AuthController::class, 'changePassword']);
     Route::GET('/profile_info',[\App\Http\Controllers\UserController::class,'profileInfo']);
     Route::POST('profile_update',[\App\Http\Controllers\UserController::class,'profileUpdate']);
