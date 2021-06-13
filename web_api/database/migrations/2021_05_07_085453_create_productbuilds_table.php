@@ -25,6 +25,17 @@ class CreateProductbuildsTable extends Migration
             $table->bigInteger('memorypriceID');
             $table->bigInteger('id');
             $table->timestamps();
+            $table->unique([
+                'cpupriceID',
+                'motherboardpriceID',
+                'powersupplypriceID',
+                'internalharddrivepriceID',
+                'monitorpriceID',
+                'videocardpriceID',
+                'casepcpriceID',
+                'memorypriceID',
+                'id',
+            ],'unique_productbuild_index');
         });
     }
 

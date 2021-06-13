@@ -336,17 +336,24 @@ class BuildpcController extends Controller
             }
         }
 
-        Productbuild::create([
-            'cpupriceID' => $components[0]->cpupriceID,
-            'casepcpriceID' => $components[1]->casepcpriceID,
-            'internalharddrivepriceID' => $components[2]->internalharddrivepriceID,
-            'memorypriceID' =>$components[3]->memorypriceID,
-            'monitorpriceID' => $components[4]->monitorpriceID,
-            'motherboardpriceID' => $components[5]->motherboardpriceID,
-            'powersupplypriceID' => $components[6]->powersupplypriceID,
-            'videocardpriceID' => $components[7]->videocardpriceID,
-            'id' => $request->user()->id,
-        ]);
+        try {
+            Productbuild::create([
+                'cpupriceID' => $components[0]->cpupriceID,
+                'casepcpriceID' => $components[1]->casepcpriceID,
+                'internalharddrivepriceID' => $components[2]->internalharddrivepriceID,
+                'memorypriceID' =>$components[3]->memorypriceID,
+                'monitorpriceID' => $components[4]->monitorpriceID,
+                'motherboardpriceID' => $components[5]->motherboardpriceID,
+                'powersupplypriceID' => $components[6]->powersupplypriceID,
+                'videocardpriceID' => $components[7]->videocardpriceID,
+                'id' => $request->user()->id,
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'statusCode' => 0,
+                'message' => 'you already saved these components before.'
+            ],400);
+        }
 
         return response()->json([
             'statusCode' => 1,
