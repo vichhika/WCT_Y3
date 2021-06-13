@@ -73,31 +73,31 @@ class ProductController extends Controller
             'videocardprice.videocard'
         ])->paginate($request->input('current_page', 10));
 
-        $productlist = array();
-        foreach ($products as $key => $product) {
-
-            $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
-            array_push($productlist, array(
-                "productbuildID" => $product->productbuildID,
-                "user" => $product->user->fullname,
-                "totalprice" => $totalprice,
-                "casepc" => $product->casepcprice->casepc,
-                "cpu" => $product->cpuprice->cpu,
-                "internalharddrive" => $product->internalharddriveprice->internalharddrive,
-                "memory" => $product->memoryprice->memory,
-                "monitor" => $product->monitorprice->monitor,
-                "motherboard" => $product->motherboardprice->motherboard,
-                "powersupply" => $product->powersupplyprice->powersupply,
-                "videocard" => $product->videocardprice->videocard,
-            ));
-        }
-
-
         if($products->isEmpty()){
             return response()->json([
                 'statusCode' => 0,
                 'message' => null
             ]);
+        }
+        $productlist = array();
+        foreach ($products as $key => $product) {
+            if($product->cpuprice && $product->casepcprice && $product->internalharddriveprice && $product->memoryprice && $product->monitorprice && $product->motherboardprice && $product->powersupplyprice && $product->videocardprice)
+            {
+                $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
+                array_push($productlist, array(
+                    "productbuildID" => $product->productbuildID,
+                    "user" => $product->user->fullname,
+                    "totalprice" => $totalprice,
+                    "casepc" => $product->casepcprice->casepc,
+                    "cpu" => $product->cpuprice->cpu,
+                    "internalharddrive" => $product->internalharddriveprice->internalharddrive,
+                    "memory" => $product->memoryprice->memory,
+                    "monitor" => $product->monitorprice->monitor,
+                    "motherboard" => $product->motherboardprice->motherboard,
+                    "powersupply" => $product->powersupplyprice->powersupply,
+                    "videocard" => $product->videocardprice->videocard,
+                ));
+            }
         }
 
         return response()->json([
@@ -151,31 +151,33 @@ class ProductController extends Controller
             'videocardprice.videocard'
         ])->get();
 
-        $productlist = array();
-        $count = 0;
-        foreach ($products as $key => $product) {
-            $count++;
-            $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
-            array_push($productlist, array(
-                "productbuildID" => $product->productbuildID,
-                "user" => $product->user->fullname,
-                "totalprice" => $totalprice,
-                "casepc" => $product->casepcprice->casepc,
-                "cpu" => $product->cpuprice->cpu,
-                "internalharddrive" => $product->internalharddriveprice->internalharddrive,
-                "memory" => $product->memoryprice->memory,
-                "monitor" => $product->monitorprice->monitor,
-                "motherboard" => $product->motherboardprice->motherboard,
-                "powersupply" => $product->powersupplyprice->powersupply,
-                "videocard" => $product->videocardprice->videocard,
-            ));
-        }
-
         if($products->isEmpty()){
             return response()->json([
                 'statusCode' => 0,
                 'message' => null
             ]);
+        }
+        $productlist = array();
+        $count = 0;
+        foreach ($products as $key => $product) {
+            if($product->cpuprice && $product->casepcprice && $product->internalharddriveprice && $product->memoryprice && $product->monitorprice && $product->motherboardprice && $product->powersupplyprice && $product->videocardprice)
+            {
+                $count++;
+                $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
+                array_push($productlist, array(
+                    "productbuildID" => $product->productbuildID,
+                    "user" => $product->user->fullname,
+                    "totalprice" => $totalprice,
+                    "casepc" => $product->casepcprice->casepc,
+                    "cpu" => $product->cpuprice->cpu,
+                    "internalharddrive" => $product->internalharddriveprice->internalharddrive,
+                    "memory" => $product->memoryprice->memory,
+                    "monitor" => $product->monitorprice->monitor,
+                    "motherboard" => $product->motherboardprice->motherboard,
+                    "powersupply" => $product->powersupplyprice->powersupply,
+                    "videocard" => $product->videocardprice->videocard,
+                ));
+            }
         }
 
         return response()->json([
@@ -243,29 +245,39 @@ class ProductController extends Controller
             'videocardprice.videocard'
         ])->where('id', $request->user()->id)->paginate($request->input('current_page', 10));
 
-        $productlist = array();
-        foreach ($products as $key => $product) {
-            $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
-            array_push($productlist, array(
-                "productbuildID" => $product->productbuildID,
-                "user" => $product->user->fullname,
-                "totalprice" => $totalprice,
-                "casepc" => $product->casepcprice->casepc,
-                "cpu" => $product->cpuprice->cpu,
-                "internalharddrive" => $product->internalharddriveprice->internalharddrive,
-                "memory" => $product->memoryprice->memory,
-                "monitor" => $product->monitorprice->monitor,
-                "motherboard" => $product->motherboardprice->motherboard,
-                "powersupply" => $product->powersupplyprice->powersupply,
-                "videocard" => $product->videocardprice->videocard,
-            ));
-        }
-
         if($products->isEmpty()){
             return response()->json([
                 'statusCode' => 0,
                 'message' => null
             ]);
+        }
+
+        $productlist = array();
+        foreach ($products as $key => $product) {
+            $cpu = $product->cpuprice ? $product->cpuprice->cpu : null;
+            $casepc = $product->casepcprice ? $product->casepcprice->casepc : null;
+            $internalharddrive = $product->internalharddriveprice ? $product->internalharddriveprice->internalharddrive : null;
+            $memory = $product->memoryprice ? $product->memoryprice->memory : null;
+            $monitor = $product->monitorprice ? $product->monitorprice->monitor : null;
+            $motherboard = $product->motherboardprice ? $product->motherboardprice->motherboard : null;
+            $videocard = $product->videocardprice ? $product->videocardprice->videocard : null;
+            $powersupply = $product->powersupplyprice ? $product->powersupplyprice->powersupply : null;
+            if($cpu && $casepc && $internalharddrive && $memory && $monitor && $motherboard && $videocard) $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
+            else $totalprice = null;
+
+            array_push($productlist, array(
+                "productbuildID" => $product->productbuildID,
+                "user" => $product->user->fullname,
+                "totalprice" => $totalprice,
+                "casepc" => $casepc,
+                "cpu" => $cpu,
+                "internalharddrive" => $internalharddrive,
+                "memory" => $memory,
+                "monitor" => $monitor,
+                "motherboard" => $motherboard,
+                "powersupply" => $powersupply,
+                "videocard" => $videocard,
+            ));
         }
 
         return response()->json([
@@ -319,6 +331,13 @@ class ProductController extends Controller
             'videocardprice.videocard'
         ])->where('id', $request->user()->id)->get();
 
+        if($products->isEmpty()){
+            return response()->json([
+                'statusCode' => 0,
+                'message' => null
+            ]);
+        }
+
         $productlist = array();
         foreach ($products as $key => $product) {
             $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
@@ -335,13 +354,6 @@ class ProductController extends Controller
                 "powersupply" => $product->powersupplyprice->powersupply,
                 "videocard" => $product->videocardprice->videocard,
             ));
-        }
-
-        if($products->isEmpty()){
-            return response()->json([
-                'statusCode' => 0,
-                'message' => null
-            ]);
         }
 
         return response()->json([
