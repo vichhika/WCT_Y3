@@ -77,8 +77,8 @@ function App() {
             </Route>
             <Route path="/verify">{authContextState.authentication.isAuthentication ? <VerifyPage/> :
                 <Redirect to="/login"/>}</Route>
-            <Route path="/login"><Login/></Route>
-            <Route path="/register"><Register/></Route>
+            <Route path="/login"> {!authContextState.authentication.isAuthentication ? <Login/> : <Redirect to="/"/>}</Route>
+            <Route path="/register">{!authContextState.authentication.isAuthentication ? <Register/> : <Redirect to="/"/>}</Route>
             <Route path="*"><PageNotfound/></Route>
         </Switch>
 
