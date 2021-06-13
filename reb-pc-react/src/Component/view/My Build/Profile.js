@@ -74,10 +74,11 @@ function Profile() {
 
     if(contextAuthState.isAuthenticated){
         
+        console.log(contextAuthState.loading);
         // In case user account is not verify
         if(contextAuthState.isVerify && !contextAuthState.loading){
 
-            console.log(contextAuthState.loading);
+            console.log(contextAuthState);
             fullname = contextAuthState.userProfile.fullname;
             username = contextAuthState.userProfile.username;
             email = contextAuthState.userProfile.email;

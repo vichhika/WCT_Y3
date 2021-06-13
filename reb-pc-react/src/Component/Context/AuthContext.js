@@ -153,7 +153,7 @@ const AuthContextProvider = props => {
 
             {
                 useEffect(() => {
-
+                    console.log(contextAuthState.isAuthenticated," ",contextAuthState.isVerify);
                     if (contextAuthState.isAuthenticated && contextAuthState.isVerify) {
 
                         // request user profile
