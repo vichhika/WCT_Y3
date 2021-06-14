@@ -1,8 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {authContext} from "../../Context/AuthContext";
+import React, { useContext, useEffect, useState } from 'react';
+import { authContext } from "../../Context/AuthContext";
 import axios from "axios";
 import server from "./../../../config.json"
-import {CircularProgress} from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 
 
 const trashCanStyle = {
@@ -13,7 +13,7 @@ const trashCanStyle = {
 
 
 const UserBuild = () => {
-    const {contextAuthState} = useContext(authContext)
+    const { contextAuthState } = useContext(authContext)
     const [totalPage, setTotalPage] = useState(1)
     const [current, setCurrent] = useState(1)
     const [loading, setLoading] = useState(false)
@@ -23,7 +23,7 @@ const UserBuild = () => {
     useEffect(() => {
         setLoading(true)
         axios.get(server.uri + "build/product_index", {
-            headers: {'Authorization': `Bearer ${contextAuthState.token}`},
+            headers: { 'Authorization': `Bearer ${contextAuthState.token}` },
             params: {
                 current_page: 10,
                 page: current
@@ -37,7 +37,7 @@ const UserBuild = () => {
             }
             setLoading(false)
         }).catch(e => {
-            console.log(e)
+            console.log("erro", e)
             setLoading(false)
         })
     }, [current])
@@ -69,7 +69,7 @@ const UserBuild = () => {
             console.log(btnClassname)
 
             btns.push(<button type="button" onClick={() => setCuttentList(i)}
-                              className={btnClassname}>{i}</button>)
+                className={btnClassname}>{i}</button>)
         }
 
         let btns = []
@@ -98,53 +98,51 @@ const UserBuild = () => {
         return btns;
     }
 
-    useEffect(() => {
-        console.log(display)
-    },[display])
+
 
     let listItems = display.map(builded =>
         <div key={builded.productbuildID}>
             <div className="card"
-                 style={{marginLeft: '30px'}}>
+                style={{ marginLeft: '30px' }}>
                 <div className="card-body d-flex flex-row">
                     <img src="https://www.chantracomputer.com/DESKTOP%20SYSTEM/CASE/AEROCOOL/TOR-PRO-RGB.gif" width="6%"
-                         height="auto"/>
+                        height="auto" />
                     <div className="container d-flex justify-content-between">
                         <div>
                             <h4 data-toggle="modal" data-target={`#${builded.productbuildID}`}>
-                                <b>{builded.cpu.brand} {builded.cpu.model} {builded.memory.brand} {builded.memory.model} {builded.videocard.brand} {builded.videocard.model}</b>
+                                <b>{builded.cpu?.brand} {builded.cpu?.model} {builded.memory?.brand} {builded.memory?.model} {builded.videocard?.brand} {builded.videocard?.model}</b>
                             </h4>
-                            <h6 className="mb-1">Price : <span className="text-danger"> ${builded.totalprice}</span>
+                            <h6 className="mb-1">Price : <span className="text-danger">{builded.totalprice ? "$" + builded.totalprice : "Unavailable"}</span>
                             </h6>
                             <h6 className="mb-1">Owned By:<span> {builded.user}</span></h6>
                         </div>
                         <div onClick={() => deleteBuild(builded.productbuildID)} style={trashCanStyle}>
-                            <button className="btn btn-light btn-sm"><i className="fad fa-trash text-danger"/>
+                            <button className="btn btn-light btn-sm"><i className="fad fa-trash text-danger" />
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <br/>
+            <br />
             <div className="modal fade" id={builded.productbuildID} tabIndex="-1" role="dialog">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">{builded.cpu.brand} {builded.cpu.model} {builded.memory.brand} {builded.memory.model} {builded.videocard.brand} {builded.videocard.model}</h5>
+                            <h5 className="modal-title">{builded.cpu?.brand} {builded.cpu?.model} {builded.memory?.brand} {builded.memory?.model} {builded.videocard?.brand} {builded.videocard?.model}</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div className="modal-body">
-                            <p><b>CPU</b> {builded.cpu.brand} {builded.cpu.model}</p>
-                            <p><b>GPU</b> {builded.videocard.brand} {builded.videocard.model}</p>
-                            <p><b>Ram</b> {builded.memory.brand} {builded.memory.model}</p>
-                            <p><b>Monitor</b> {builded.monitor.brand} {builded.monitor.model}</p>
-                            <p><b>Motherboard</b> {builded.motherboard.brand} {builded.motherboard.model}</p>
-                            <p><b>Disk</b> {builded.internalharddrive.brand} {builded.internalharddrive.model}</p>
-                            <p><b>Powersupply</b> {builded.powersupply.brand} {builded.powersupply.model}</p>
-                            <p><b>Case</b> {builded.casepc.brand} {builded.casepc.model}</p>
-                            <p><b>Price</b> <span className="text-danger">${builded.totalprice}</span></p>
+                            <p><b>CPU</b> {builded.cpu?.brand} {builded.cpu?.model} {builded.cpu === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>GPU</b> {builded.videocard?.brand} {builded.videocard?.model} {builded.videocard === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>Ram</b> {builded.memory?.brand} {builded.memory?.model} {builded.memory === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>Monitor</b> {builded.monitor?.brand} {builded.monitor?.model} {builded.monitor === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>Motherboard</b> {builded.motherboard?.brand} {builded.motherboard?.model} {builded.motherboard === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>Disk</b> {builded.internalharddrive?.brand} {builded.internalharddrive?.model} {builded.internalharddrive === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>Powersupply</b> {builded.powersupply?.brand} {builded.powersupply?.model} {builded.powersupply === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>Case</b> {builded.casepc?.brand} {builded.casepc?.model} {builded.casepc === null && <span className="text-danger">Unavailable</span>}</p>
+                            <p><b>Price</b> <span className="text-danger">{builded.totalprice ? "$" + builded.totalprice : <span className="text-danger">Unavailable</span>}</span></p>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -156,13 +154,14 @@ const UserBuild = () => {
     );
 
     useEffect(() => {
-        console.log(display)
-    },[display])
+        console.log("hellllo", display);
+    }, [display])
 
-    const deleteBuild = (id) => {
+
+    const deleteBuild = id => {
         axios.post(server.uri + "build/delete",
-            {productbuildID: id},
-            {headers: {'Authorization': `Bearer ${contextAuthState.token}`}})
+            { productbuildID: id },
+            { headers: { 'Authorization': `Bearer ${contextAuthState.token}` } })
             .then(r => {
                 if (r.data.statusCode === 1) {
                     let tmp = display;
@@ -170,21 +169,21 @@ const UserBuild = () => {
                     setDisplay([...tmp])
                 }
             }).catch(e => {
-        })
+            })
     }
 
 
     return (
 
         <div className="container my-3">
-            <h3 style={{borderLeft: '3px solid', paddingLeft: '20px'}}>
+            <h3 style={{ borderLeft: '3px solid', paddingLeft: '20px' }}>
                 Your Build
             </h3>
-            <br/>
-            {loading ? <div className="d-flex justify-content-center"><CircularProgress size="10rem"/></div> :
+            <br />
+            {loading ? <div className="d-flex justify-content-center"><CircularProgress size="10rem" /></div> :
                 <div>
                     {listItems}
-                    <br/>
+                    <br />
                     <div className="d-flex justify-content-end">
                         <div className="btn-group" role="group" aria-label="First group">
                             {totalPage === 1 || btns()}
