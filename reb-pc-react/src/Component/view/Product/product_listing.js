@@ -32,12 +32,16 @@ function ProductListing(props){
         view = products.map(product => {
             return <div key={product.productbuildID} className="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div className="product d-flex flex-column" style={{marginBottom:'0px'}}>
+                <span class="badge badge-info" style={{
+                        alignSelf: 'baseline',
+                        transform: 'translate(-18px, -10px)'}}>{product.user}</span>
                     <img src="https://www.chantracomputer.com/DESKTOP%20SYSTEM/CASE/AEROCOOL/TOR-PRO-RGB.gif"/>
                     <br/>
                     <h5 className="description">{product.cpu.brand + ' | ' + product.cpu.model + ' | cores ' + product.cpu.cores + ' | RAM ' + product.memory.brand + ' ' + product.memory.module_type}</h5>  
                 <h6 className="price">{'$' + product.totalprice}</h6>
+                <Link id={"btn" + product.productbuildID} onClick={() => props.selectDetailProduct(product)} to='/productDetail' style={{textDecoration: 'none'}} >Show Detail <i class="fad fa-arrow-right"/></Link>
                     {/* <button >Detail</button> */}
-                    <Link id={"btn" + product.productbuildID} className="detailBtn btn btn-primary btn-sm text-light" onClick={() => props.selectDetailProduct(product)} to='/productDetail'>Detail</Link>  
+                    {/* <Link id={"btn" + product.productbuildID} className="detailBtn btn btn-outline-info btn-sm text-info" onClick={() => props.selectDetailProduct(product)} to='/productDetail'>Detail</Link>   */}
                 </div>
             </div>
         });

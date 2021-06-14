@@ -48,9 +48,17 @@ const PersonalInfo = (props) => {
             .then(r => {
                 console.log(r.data)
                 if (r.data.statusCode === 1) {
-                    updateAuthContext({type: 'setIsVerify', payload: true})
+                    /* 
+                        When ever email verify is change, Authcontext will
+                        try to request user data when verify is true & authenticate is true,
+                        so when ever update email verify we have change state of loading to true,
+                        to give sometime for Authcontext to request user profike, otherwise user_profile,
+                        will be nullable.
+                        */
+                    updateAuthContext({type: 'setLoading', payload: true});
+                    updateAuthContext({type: 'setIsVerify', payload: true});
                 } else {
-                    updateAuthContext({type: 'setIsVerify', payload: false})
+                    updateAuthContext({type: 'setIsVerify', payload: false});
                     setEmailSend(true)
                     setTimeout(function () {
                         setEmailSend(false)

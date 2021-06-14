@@ -18,10 +18,10 @@ const Logout = () =>  {
             }
         }).then((response) => {
 
-            updateAuthContext({type: 'setUserProfile', payload: null});
             // update auth state
-            updateAuthContext({type: 'set_isAuthenticated', payload: false});
             updateAuthContext({type: 'setIsVerify', payload: false});
+            updateAuthContext({type: 'set_isAuthenticated', payload: false});
+            updateAuthContext({type: 'setUserProfile', payload: null});
             // redirect to the home page
             history.replace('/');
 
