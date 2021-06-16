@@ -55,21 +55,22 @@ class ProductController extends Controller
 
         $products = Productbuild::with([
             'user:id,fullname',
-            'casepcprice:casepcpriceID,casepcID,price',
+            'casepcprice',
             'casepcprice.casepc',
-            'cpuprice:cpupriceID,cpuID,price',
+            'cpuprice',
             'cpuprice.cpu',
-            'internalharddriveprice:internalharddrivepriceID,price,internalharddriveID',
+            'cpuprice.adminshop',
+            'internalharddriveprice',
             'internalharddriveprice.internalharddrive',
-            'memoryprice:memorypriceID,price,memoryID',
+            'memoryprice',
             'memoryprice.memory',
-            'monitorprice:monitorpriceID,price,monitorID',
+            'monitorprice',
             'monitorprice.monitor',
-            'motherboardprice:motherboardpriceID,price,motherboardID',
+            'motherboardprice',
             'motherboardprice.motherboard',
-            'powersupplyprice:powersupplypriceID,price,powersupplyID',
+            'powersupplyprice',
             'powersupplyprice.powersupply',
-            'videocardprice:videocardpriceID,price,videocardID',
+            'videocardprice',
             'videocardprice.videocard'
         ])->paginate($request->input('current_page', 10));
 
@@ -86,6 +87,7 @@ class ProductController extends Controller
                 $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
                 array_push($productlist, array(
                     "productbuildID" => $product->productbuildID,
+                    "shop_name" => $product->cpuprice->adminshop->shop_name,
                     "user" => $product->user->fullname,
                     "totalprice" => $totalprice,
                     "casepc" => $product->casepcprice->casepc,
@@ -135,8 +137,9 @@ class ProductController extends Controller
             'user:id,fullname',
             'casepcprice:casepcpriceID,casepcID,price',
             'casepcprice.casepc',
-            'cpuprice:cpupriceID,cpuID,price',
+            'cpuprice',
             'cpuprice.cpu',
+            'cpuprice.adminshop',
             'internalharddriveprice:internalharddrivepriceID,price,internalharddriveID',
             'internalharddriveprice.internalharddrive',
             'memoryprice:memorypriceID,price,memoryID',
@@ -166,6 +169,7 @@ class ProductController extends Controller
                 $totalprice = $product->cpuprice->price + $product->casepcprice->price + $product->internalharddriveprice->price + $product->memoryprice->price + $product->monitorprice->price + $product->motherboardprice->price + $product->powersupplyprice->price + $product->videocardprice->price;
                 array_push($productlist, array(
                     "productbuildID" => $product->productbuildID,
+                    "shop_name" => $product->cpuprice->adminshop->shop_name,
                     "user" => $product->user->fullname,
                     "totalprice" => $totalprice,
                     "casepc" => $product->casepcprice->casepc,
@@ -229,8 +233,9 @@ class ProductController extends Controller
             'user:id,fullname',
             'casepcprice:casepcpriceID,casepcID,price',
             'casepcprice.casepc',
-            'cpuprice:cpupriceID,cpuID,price',
+            'cpuprice',
             'cpuprice.cpu',
+            'cpuprice.adminshop',
             'internalharddriveprice:internalharddrivepriceID,price,internalharddriveID',
             'internalharddriveprice.internalharddrive',
             'memoryprice:memorypriceID,price,memoryID',
@@ -268,6 +273,7 @@ class ProductController extends Controller
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
                 "user" => $product->user->fullname,
+                "shop_name" => $product->cpuprice->adminshop->shop_name,
                 "totalprice" => $totalprice,
                 "casepc" => $casepc,
                 "cpu" => $cpu,
@@ -315,8 +321,9 @@ class ProductController extends Controller
             'user:id,fullname',
             'casepcprice:casepcpriceID,casepcID,price',
             'casepcprice.casepc',
-            'cpuprice:cpupriceID,cpuID,price',
+            'cpuprice',
             'cpuprice.cpu',
+            'cpuprice.adminshop',
             'internalharddriveprice:internalharddrivepriceID,price,internalharddriveID',
             'internalharddriveprice.internalharddrive',
             'memoryprice:memorypriceID,price,memoryID',
@@ -354,6 +361,7 @@ class ProductController extends Controller
             array_push($productlist, array(
                 "productbuildID" => $product->productbuildID,
                 "user" => $product->user->fullname,
+                "shop_name" => $product->cpuprice->adminshop->shop_name,
                 "totalprice" => $totalprice,
                 "casepc" => $casepc,
                 "cpu" => $cpu,

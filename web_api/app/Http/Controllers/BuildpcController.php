@@ -503,14 +503,6 @@ class BuildpcController extends Controller
                 array_push($result,array(
                 'adminshopID' => $shop->adminshopID,
                 'shop_name' => $shop->shop_name,
-                // 'cpupriceID' => $cpuprice->cpupriceID,
-                // 'motherboardpriceID' => $motherboardprice->motherboardpriceID,
-                // 'powersupplypriceID' => $powersupplyprice->powersupplypriceID,
-                // 'internalharddrivepriceID' => $internalharddriveprice->internalharddrivepriceID,
-                // 'monitorpriceID' => $monitorprice->monitorpriceID,
-                // 'videocardpriceID' => $videocardprice->videocardpriceID,
-                // 'casepcpriceID' => $casepcprice->casepcpriceID,
-                // 'memorypriceID' =>$memoryprice->memorypriceID,
                 'totalprice' => $totalprice,
                ));
             }
