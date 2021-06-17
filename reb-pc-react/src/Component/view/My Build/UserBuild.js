@@ -114,7 +114,8 @@ const UserBuild = () => {
                             </h4>
                             <h6 className="mb-1">Price : <span className="text-danger">{builded.totalprice ? "$" + builded.totalprice : "Unavailable"}</span>
                             </h6>
-                            <h6 className="mb-1">Owned By:<span> {builded.user}</span></h6>
+                            <h6 className="mb-1">Build At : <span className="text-primary">{builded.shop_name}</span>
+                            </h6>
                         </div>
                         <div onClick={() => deleteBuild(builded.productbuildID)} style={trashCanStyle}>
                             <button className="btn btn-light btn-sm"><i className="fad fa-trash text-danger" />
