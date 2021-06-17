@@ -13,9 +13,12 @@ function ProductListing(props){
     const {productsContextState,updateProductsContext} = useContext(ProductsContext);
     let page = productsContextState.page;
 
-
     const handlePageChange = (event,page) => {
         updateProductsContext({type: 'setPage', payload: page});
+    }
+
+    const handleClickProduct = (productID) => {
+        document.getElementById("btn" + productID).click();
     }
 
     let view;
@@ -30,16 +33,17 @@ function ProductListing(props){
         const products = paginate(productsContextState.productsFilter, page, paginateNum);
         // const products = productsContextState.productsFilter;
         view = products.map(product => {
-            return <div key={product.productbuildID} className="col-12 col-sm-6 col-md-4 col-lg-3">
+            return <div key={product.productbuildID} className="cursor-pointer col-12 col-sm-6 col-md-4 col-lg-3" onClick={() => handleClickProduct(product.productbuildID)}>
                 <div className="product d-flex flex-column" style={{marginBottom:'0px'}}>
-                <span class="badge badge-info" style={{
+                <span class="badge badge-success" style={{
                         alignSelf: 'baseline',
-                        transform: 'translate(-18px, -10px)'}}>{product.user}</span>
+                        transform: 'translate(-18px, -10px)'}}>{product.shop_name}</span>
                     <img src="https://www.chantracomputer.com/DESKTOP%20SYSTEM/CASE/AEROCOOL/TOR-PRO-RGB.gif"/>
                     <br/>
-                    <h5 className="description">{product.cpu.brand + ' | ' + product.cpu.model + ' | cores ' + product.cpu.cores + ' | RAM ' + product.memory.brand + ' ' + product.memory.module_type}</h5>  
+                    <h5 className="description">{product.cpu.brand + ' | ' + product.cpu.model + ' | cores ' + product.cpu.cores + ' | RAM ' + product.memory.brand + ' ' + product.memory.module_type}</h5> 
                 <h6 className="price">{'$' + product.totalprice}</h6>
-                <Link id={"btn" + product.productbuildID} onClick={() => props.selectDetailProduct(product)} to='/productDetail' style={{textDecoration: 'none'}} >Show Detail <i class="fad fa-arrow-right"/></Link>
+                <Link className="d-none" id={"btn" + product.productbuildID} onClick={() => props.selectDetailProduct(product)} to='/productDetail' style={{textDecoration: 'none'}} >Show Detail <i class="fad fa-arrow-right"/></Link>
+                <small>By {product.user}</small> 
                     {/* <button >Detail</button> */}
                     {/* <Link id={"btn" + product.productbuildID} className="detailBtn btn btn-outline-info btn-sm text-info" onClick={() => props.selectDetailProduct(product)} to='/productDetail'>Detail</Link>   */}
                 </div>

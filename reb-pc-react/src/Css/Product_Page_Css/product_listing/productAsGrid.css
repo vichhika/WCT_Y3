@@ -13,6 +13,10 @@
     grid-row-gap: 15px;
 }
 
+.cursor-pointer:hover {
+    cursor: pointer;
+}
+
 .product{
     display: flex;
     flex-direction: column;
