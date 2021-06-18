@@ -70,7 +70,7 @@ function SummeryBuild() {
                     <td className="col-2">{conponent[i]}</td>
                     <td className="col-3">{contextState.selectedComponent[i].brand}</td>
                     <td className="col-3">{contextState.selectedComponent[i].model}</td>
-                    <td className="col-2">{contextState.selectedComponent[i].price}$</td>
+                    <td className="col-2">${contextState.selectedComponent[i].price}</td>
                     <td className="col-1">
                         <button type="button" className="btn btn-danger" onClick={() => {
                             popOutSelectedStore(i)
@@ -239,9 +239,9 @@ function SummeryBuild() {
         <button type="button" onClick={saveBuild} className="btn btn-success">Save</button>
     let saveRelatedBtn = shopID => {
         if (submiting) {
-            return <CircularProgress />; 
+            return <CircularProgress />;
         }
-        else{
+        else {
             return <button type="button" onClick={() => saveRelatedBuild(shopID)} className="btn btn-success">Save</button>
         }
 
@@ -264,7 +264,7 @@ function SummeryBuild() {
                                             <th className="col-2">Component</th>
                                             <th className="col-3">Brand</th>
                                             <th className="col-3">Model</th>
-                                            <th className="col-2">Price <span className="text-danger">${totalPrice()}</span></th>
+                                            <th className="col-2">Price</th>
                                             <th className="col-1" />
                                             <th className="col-1" />
                                         </tr>
@@ -273,6 +273,9 @@ function SummeryBuild() {
                                         {
                                             getSelectedCpn()
                                         }
+                                        <div className="row justify-content-end" style={{marginRight: "15vw"}}>
+                                            <b>Total Price <span className="text-danger">${totalPrice()}</span></b>
+                                        </div>
                                     </tbody>
                                 </table>
                             </div>
