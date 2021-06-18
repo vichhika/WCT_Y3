@@ -506,6 +506,10 @@ class BuildpcController extends Controller
                 'totalprice' => $totalprice,
                ));
             }
+            if(!empty($result))
+            {
+                usort($result,function($a,$b){return $a['totalprice'] <=> $b['totalprice'];});
+            }
         }
 
         if(empty($result)){
