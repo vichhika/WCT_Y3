@@ -453,7 +453,7 @@ class BuildpcController extends Controller
             'powersupplyID' => 'required|numeric',
             'videocardID' => 'required|numeric',
         ]);
-        $shops = Adminshop::where('adminshopID','!=',$request->adminShopID)->get(['adminshopID','shop_name']);
+        $shops = Adminshop::where('adminshopID','!=',$request->adminshopID)->get(['adminshopID','shop_name']);
         $result = array();
         foreach($shops as $shop)
         {
