@@ -45,9 +45,9 @@ Route::middleware(['html_filter'])->group(function (){
 
     Route::GET('/admin_shop/logout',[\App\Http\Controllers\AuthShopController::class,'logout'])->middleware(['shop_role','auth:sanctum','html_filter']);
     Route::GET('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware(['user_role','auth:sanctum','html_filter']);
-    // Route::GET('/docs',function(){
-    //     abort(401);
-    // });
+    Route::GET('/docs',function(){
+        abort(401);
+    });
 });
 
 /////////////////////////////////////////////
