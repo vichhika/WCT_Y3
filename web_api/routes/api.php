@@ -70,6 +70,7 @@ Route::middleware(['user_role','auth:sanctum','html_filter','verified'])->group(
     Route::GET('/build/product_list',[\App\Http\Controllers\ProductController::class,'listByUser']);
 });
 
+
 Route::fallback(function(){
     abort(404);
 });
